@@ -1,0 +1,279 @@
+<style>
+    .divBuscar {
+        max-height: 100%;
+        border-radius: 10px;
+        padding: 20px;
+        text-align: center;
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    /* Estilos para el contenedor del input y botón */
+    .busqueda {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0 auto;
+    }
+
+        /* Estilos para el input */
+        .busqueda input {
+            width: 80%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        /* Estilos para el botón */
+        .busqueda button {
+            color: white;
+            background-color: #0f0a35;
+            border-color: #0f0a35;
+            width: 20%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+            /* Estilos para el botón al pasar el cursor sobre él */
+            .busqueda button:hover {
+                background-color: #0056b3;
+            }
+
+        /* Espaciado entre el input y el botón */
+        .busqueda input + button {
+            margin-left: 2%;
+        }
+
+
+    /*Información de pedidos*/
+    .pedido-info-container {
+        border-radius: 10px;
+        max-height: 80%;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+        .pedido-info-container p {
+            margin: 10px 0;
+        }
+
+        .pedido-info-container span {
+            display: inline-block;
+            margin-left: 10px;
+        }
+
+    .divPedidos {
+        max-height: 100%;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+    }
+
+    #pedidosContainer {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+    }
+</style>
+<div id="contenedor-loader" class="loader" style="display: none;">
+    <div class="spinner"></div>
+</div>
+<div class="row justify-content-center h-100">
+    <!--DIV IZQUIERDA-->
+    <div class="col-sm-12 col-md-4 col-lg-4 d-flex flex-column h-100">
+        <div class="divBuscar flex-grow-1">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <div class="form-group">
+                            <h3>Buscar Ticket</h3>
+                        </div>
+                    </div>
+                    <div class="form-group busqueda">
+                        <input type="number" class="form-control" id="txtFolio" placeholder="Ingrese el número de folio" />
+                        <button type="button" class="btn" onclick="buscarTicket()">
+                            <i class="fas fa-search" style="margin-right: 6px; vertical-align: middle;"></i>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+            
+            
+        </div>
+
+        <!-- Div de información del pedido -->
+        <div class="row pedido-info-container" id="pedidoInfo" style="display: none;">
+            <h3>Información del Pedido</h3>
+            <p><strong>Folio:</strong> <span id="folio"></span></p>
+            <p><strong>Fecha:</strong> <span id="fecha"></span></p>
+            <p><strong>Cajero:</strong> <span id="cajero"></span></p>
+            <p><strong>Cliente:</strong> <span id="cliente"></span></p>
+            <p><strong>Total:</strong> <span id="total"></span></p>
+            <p><strong>Pago:</strong> <span id="pago"></span></p>
+            <p><strong>Cambio:</strong> <span id="cambio"></span></p>
+            <p><strong>Estatus:</strong> <span id="estatus"></span></p>
+            <button type="button" class="btn btn-success mt-2" id="btnPasarProduccion" onclick="ingresaTicket()">Pasar a producción</button>
+        </div>
+    </div>
+    <!--DIV DERECHA-->
+    <div class="col-sm-12 col-md-8 col-lg-8 d-flex flex-column h-100">
+        <div class="divBuscar flex-grow-1">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <div class="form-group">
+                            <h3>Pedidos</h3>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+
+    </div>
+</div>
+    
+    
+
+
+
+
+
+
+
+
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+        let parametros = "";
+        let usuarioLogin = "";
+        $(document).ready(function () {
+            // Realizar la solicitud AJAX al cargar la página
+            $.ajax({
+                url: '@Url.Action("obtengoUsuario", "Home")',
+                type: "POST",
+                success: function (usuario) {
+                    usuarioLogin = usuario;
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error al obtener el usuario:", error);
+                }
+            });
+        });
+
+        function buscarTicket() {
+            $('#pedidoInfo').hide();
+            var nofolio = $('#txtFolio').val();
+            if (nofolio === "") {
+                alert("El campo Folio no puede estar vacío.");
+            } else {
+                document.getElementById('contenedor-loader').style.display = 'flex';
+                $.ajax({
+                    url: '@Url.Action("obtenerPedido", "Home")',
+                    type: "POST",
+                    data: { folio: nofolio },
+                    success: function (data) {
+                        if (data.existeError) {
+                            dialogoEG({
+                                type: "error",
+                                title: "Error al buscar ticket",
+                                mensaje: "Ocurrió un error al consultar la base de datos. Intente de nuevo, si el inconveniente persiste contacte al administrador.",
+                                confirmar: "Aceptar",
+                                img: "img/error.png"
+                            });
+                        } else {
+                            if (data.existenDatos) {
+                                let fechaF = formatoFecha(data.infoPedido.fecha);
+                                let total = parseFloat(data.infoPedido.total).toFixed(2);
+                                let pago = parseFloat(data.infoPedido.pago).toFixed(2);
+                                let cambio = parseFloat(data.infoPedido.cambio).toFixed(2);
+                                console.log(data);
+                                // Mostrar la información del pedido
+                                $('#folio').text(data.infoPedido.folio);
+                                $('#fecha').text(fechaF);
+                                $('#cajero').text(data.infoPedido.cajero);
+                                $('#cliente').text(data.infoPedido.cliente);
+                                $('#total').text("Q." + total);
+                                $('#pago').text("Q." + pago);
+                                $('#cambio').text("Q." + cambio);
+                                $('#estatus').text(data.infoPedido.estatus);
+                                parametros = {
+                                    'infoPedido': data.infoPedido,
+                                    'usuario': usuarioLogin
+                                };
+                                // Mostrar el contenedor con la información del pedido
+                                $('#pedidoInfo').show();
+                            } else {
+                                dialogoEG({
+                                    type: "warning",
+                                    title: "Folio Incorrecto",
+                                    mensaje: "No existe ningún pedido con el número de folio ingresado. Favor verificarlo e intentar de nuevo.",
+                                    confirmar: "Aceptar",
+                                    img: "img/warning.png"
+                                });
+                            }
+                        }
+                        document.getElementById('contenedor-loader').style.display = 'none';
+                    },
+                    error: function (xhr, status, error) {
+                        document.getElementById('contenedor-loader').style.display = 'none';
+                    }
+                });
+            }
+        }
+
+        function ingresaTicket() {
+            $.ajax({
+                url: '@Url.Action("ingresarProduccion", "Home")',
+                type: "POST",
+                data: parametros,
+                success: function (data) {
+                    console.log(data);
+                    if (data.error) {
+                        dialogoEG({
+                            type: "error",
+                            title: "Error ingreso a producción",
+                            mensaje: data.error,
+                            confirmar: "Aceptar",
+                            img: "img/error.png"
+                        });
+                    } else {
+                        dialogoEG({
+                            type: "success",
+                            title: "Ingreso exitoso",
+                            mensaje: "El ticket No."+nofolio+"ha sido ingresado correctamente a PRODUCCIÓN. ",
+                            confirmar: "Aceptar",
+                            img: "img/success.png"
+                        });
+                        $('#pedidoInfo').hide();
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.log("Error al ingresar el ticket a producción:", error);
+                    dialogoEG({
+                        type: "error",
+                        title: "Error de comunicación",
+                        mensaje: "Ocurrió un error al ingresar el ticket a producción. Intente nuevamente, si el inconveniente persiste contacte al administrador.",
+                        confirmar: "Aceptar",
+                        img: "img/error.png"
+                    });
+                }
+            });
+        }
+
+        function formatoFecha(fecha) {
+            var date = new Date(fecha);
+            var dia = date.getDate();
+            var mes = date.getMonth() + 1; // Los meses son base 0
+            var anio = date.getFullYear();
+            return (dia < 10 ? '0' + dia : dia) + '/' + (mes < 10 ? '0' + mes : mes) + '/' + anio;
+        }
+</script>
+

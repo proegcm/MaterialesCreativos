@@ -1,0 +1,91 @@
+﻿
+    <form id="loginForm">
+        <div id="cont-login">
+
+            <h3 class="mb-3 mt-3">INICIO DE SESIÓN</h3>
+            <div class="mb-3">
+                <input type="text" class="form-control" id="txtUser" style="text-transform:uppercase;" placeholder="Usuario" required>
+            </div>
+            <div class="mb-3">
+                <input type="password" class="form-control" id="txtPasswd" placeholder="Contraseña" required>
+            </div>
+            <div class="mb-3">
+                <button type="submit" class="btn botonIngreso" id="btnIngreso">Ingresar</button>
+            </div>
+            <div class="mb-3">
+                <a href="#!" class="link-secondary text-decoration-none small-link">¿Olvidaste tu contraseña?</a>
+            </div>
+        </div>
+    </form>
+    @*<div id="contenedor-loader" class="loader">
+        <div class="spinner"></div>
+    </div>*@
+    
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    function Autenticar() {
+    var usuario = $('#txtUser').val();
+    var password = $('#txtPasswd').val();
+    var dataFormAut = new FormData();
+    dataFormAut.append("Usuario", usuario);
+    dataFormAut.append("Password", password);
+        document.getElementById('contenedor-loader').style.display = 'flex';
+        formactivo(true);
+    $.ajax({
+        url: '@Url.Action("Autenticacion","Login")',
+        type: "POST",
+        data: dataFormAut,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+            console.log(data);
+            if (data.estado) {
+                window.location.href = '@Url.Action("Index", "Home")';
+            } else {
+                dialogoEG({
+                    type: "error",
+                    title: "Error al iniciar sesión",
+                    mensaje: data.mensaje,
+                    confirmar: "Aceptar",
+                    img: "img/error.png"
+                }).then(() => {
+                    formactivo(false);
+                });
+            }
+        },
+        error: function (xhr, status, error) {
+            dialogoEG({
+                type: "error",
+                title: "Error al iniciar sesión",
+                mensaje: "Ocurrió un error durante la autenticación. Contacte al administrador.",
+                confirmar: "Aceptar",
+                img: "img/error.png"
+            }).then(() => {
+                formactivo(false);
+            });
+        },
+        complete: function () {
+            document.getElementById('contenedor-loader').style.display = 'none';
+        }
+    });
+
+    return false;
+    }
+
+    function formactivo(accion) {
+        document.getElementById('btnIngreso').disabled = accion;
+        document.getElementById('txtUser').disabled = accion;
+        document.getElementById('txtPasswd').disabled = accion;
+    }
+
+    document.getElementById('loginForm').addEventListener('submit', function (event) {
+        if (this.checkValidity()) {
+            event.preventDefault();
+
+            Autenticar();
+
+
+        }
+    });
+
+</script>

@@ -1,0 +1,56 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio MC</title>
+    <!-- Google Font: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="~/css/DialogoEG.css" />
+    <script type="text/javascript" src="~/js/DialogoEG.js"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="~/css/estilosLogin.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/estilosGeneral.css" />
+
+
+</head>
+<body>
+    <div class="container-fluid full-height d-flex justify-content-center align-items-center">
+        <div id="contenedor-loader" class="loader">
+            <div class="spinner"></div>
+        </div>
+        <div class="contenedor">
+            <div class="row w-100 h-100">
+                <div class="col-12 col-md-6 logo-div-mc inner-div">
+                </div>
+                <div class="col-12 col-md-6 form-div-mc inner-div">
+                    <partial name="~/Views/Shared/_LoginPartial.cshtml" />
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

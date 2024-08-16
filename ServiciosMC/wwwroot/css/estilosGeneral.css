@@ -1,0 +1,33 @@
+﻿/*LOADER SPINNER*/
+.loader {
+    display: none;
+    overflow-y: auto;
+    position: fixed;
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 auto;
+    left: 0;
+    top: 0;
+    justify-content: center;
+    align-items: center;
+    justify-content: center;
+    background: rgb(245 245 245 / 0.80);
+    z-index: 9999;
+}
+
+.spinner {
+    width: 25px; /* Aumenta el ancho del spinner */
+    height: 25px; /* Aumenta la altura del spinner */
+    border-radius: 20px; /* Aumenta el radio del spinner */
+    box-shadow: 56px 0px 0 0 rgba(232,98,23,0.2), 45.4px 33px 0 0 rgba(232,98,23,0.4), 17.36px 53.2px 0 0 rgba(232,98,23,0.6), -17.36px 53.2px 0 0 rgba(232,98,23,0.8), -45.4px 33px 0 0 #e86217;
+    animation: spinner-b87k6z 1.2s infinite linear;
+}
+
+    @keyframes spinner-b87k6z {
+        to {
+            transform: rotate(360deg);
+       }
+    }
+
