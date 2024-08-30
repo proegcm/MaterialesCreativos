@@ -38,4 +38,20 @@ namespace ServiciosMC.Models
         public string usuario { get; set; }
     }
 
+    public class infoUsuario
+    {
+        public string usuario { get; set; }
+    }
+
+   public class infoConsultaPedidos
+    {
+        public infoUsuario infoUsuario { get; set; }
+    }
+
+    public class arrayPedidos
+    {
+        public List<infoPedido> listadoPedidos { get; set; }
+    }
+
+
 }

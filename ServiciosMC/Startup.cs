@@ -50,7 +50,24 @@ namespace ServiciosMC
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("USUARIO_ADMIN", policy => policy.RequireClaim("TIPO_USUARIO", "ADMINISTRADOR"));
-                options.AddPolicy("USUARIO_NORMAL", policy => policy.RequireClaim("TIPO_USUARIO", "COLABORADOR"));
+                options.AddPolicy("USUARIO_VENDEDOR", policy => policy.RequireClaim("TIPO_USUARIO", "VENDEDOR"));
+                options.AddPolicy("USUARIO_PILOTO", policy => policy.RequireClaim("TIPO_USUARIO", "PILOTO"));
+                options.AddPolicy("USUARIO_MULTIPLE", policy =>
+                                                            policy.RequireAssertion(context =>
+                                                            context.User.HasClaim("TIPO_USUARIO", "ADMINISTRADOR") ||
+                                                            context.User.HasClaim("TIPO_USUARIO", "VENDEDOR") 
+                                                            )
+                                  );
+
+
+
+                /*
+                 options.AddPolicy("USUARIO_MULTIPLE", policy =>
+            policy.RequireAssertion(context =>
+            context.User.HasClaim("TIPO_USUARIO", "ADMINISTRADOR") ||
+            context.User.HasClaim("TIPO_USUARIO", "VENDEDOR") ||
+            context.User.HasClaim("TIPO_USUARIO", "MENSAJERO")));
+                 */
             });
 
             services.AddControllersWithViews();

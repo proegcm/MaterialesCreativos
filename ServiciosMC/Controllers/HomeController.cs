@@ -13,14 +13,14 @@ using Microsoft.Extensions.Configuration;
 using System.Net.Http;
 using System.Text.Json;
 using System.Text;
-
-
+using System.Collections.Generic;
 
 namespace ServiciosMC.Controllers
 
 
 {
-    [Authorize(Policy = "USUARIO_ADMIN")]
+    //[Authorize(Policy = "USUARIO_ADMIN")]
+    [Authorize(Policy = "USUARIO_MULTIPLE")]
     public class HomeController : Controller
     {
         private readonly IConfiguration config;
@@ -58,7 +58,7 @@ namespace ServiciosMC.Controllers
 
         }
 
-
+        [HttpPost]
         public JsonResult obtenerPedido(String folio)
         {
             Debug.WriteLine("Ingresa a obtenerPedido: " + folio);
@@ -66,8 +66,6 @@ namespace ServiciosMC.Controllers
             //Helper helper = new Helper();
             //LoginViewModel login = helper.Usuario(HttpContext);
             //String usuario = login.Usuario;
-
-
             ResultadoPedidoModel datosRespuesta = new ResultadoPedidoModel();
             infoPedido datosPedido = new infoPedido();
 
@@ -120,12 +118,11 @@ namespace ServiciosMC.Controllers
 
 
         [HttpPost]
-        public async Task<JsonResult> IngresoPedido(infoIngreso pedidoData)
+        public async Task<JsonResult> ingresarProduccion(infoIngreso pedidoData)
         {
             try
             {
-                string URL = config.GetValue<string>("Servicios:API_PYTHON");
-                var prueba = "";
+                string URL = config.GetValue<string>("Servicios:API_PYTHON")+ "ingresoPedidoMC";
                 using (HttpClient httpClient = new HttpClient())
                 {
                     var datos = JsonSerializer.Serialize(pedidoData);
@@ -135,16 +132,19 @@ namespace ServiciosMC.Controllers
                     if (response.IsSuccessStatusCode)
                     {
                         var responseBody = await response.Content.ReadAsStringAsync();
-                        prueba = responseBody;
-                        return Json(new { success = true, respuesta = prueba });
+                        var responseObject = JsonSerializer.Deserialize<Dictionary<string, string>>(responseBody);
+                        string mensaje = responseObject["mensaje"];
 
+                        return Json(new { success = true, respuesta = mensaje });
                     }
                     else
                     {
                         var responseBody = await response.Content.ReadAsStringAsync();
-                        string errorMensaje = responseBody;
-                        Debug.WriteLine("Código:"+errorMensaje);
-                        return Json(new { success = false, error = errorMensaje });
+                        var errorObject = JsonSerializer.Deserialize<Dictionary<string, string>>(responseBody);
+                        string errorMensaje = errorObject["error"];  // Acceder al valor de la clave "error"
+                        Debug.WriteLine("Código:" + errorMensaje);
+                        return Json(new { success = false, errorMensaje });
+
                     }
                 }
             }
@@ -154,8 +154,209 @@ namespace ServiciosMC.Controllers
             }
         }
 
+        [HttpPost]
+        public async Task<JsonResult> listaPedidos(infoConsultaPedidos usrData)
+        {
+            try
+            {
+                string URL = config.GetValue<string>("Servicios:API_PYTHON") + "obtengoPedidosMC";
+               
+                using (HttpClient httpClient = new HttpClient())
+                {
+                    Debug.WriteLine("entra dataUsuario: " + usrData);
+                    var datos = JsonSerializer.Serialize(usrData);
+                    Debug.WriteLine("datos: " + datos);
+                    var contenido = new StringContent(datos, Encoding.UTF8, "application/json");
+                    var response = await httpClient.PostAsync(URL, contenido);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var responseBody = await response.Content.ReadAsStringAsync();
+                        Debug.WriteLine("Respuesta del servidor: " + responseBody);
+                        return Json(new { success = true, respuesta = responseBody });
+                    }
+                    else
+                    {
+                        var responseBody = await response.Content.ReadAsStringAsync();
+                        var errorObject = JsonSerializer.Deserialize<Dictionary<string, string>>(responseBody);
+                        string errorMensaje = errorObject.ContainsKey("error") ? errorObject["error"] : "Error desconocido";
+                        Debug.WriteLine("Código:" + errorMensaje);
+                        return Json(new { success = false, errorMensaje });
+                    }
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                // Maneja problemas de conectividad o errores de solicitud HTTP.
+                Debug.WriteLine("HttpRequestException: " + ex.Message);
+                return Json(new { success = false, errorMensaje = "Ocurrió un error al obtener el listado de pedidos, no se obtuvo respuesta del servidor." });
+            }
+            catch (TaskCanceledException ex)
+            {
+                // Maneja el timeout de la solicitud.
+                Debug.WriteLine("TaskCanceledException (posible timeout): " + ex.Message);
+                return Json(new { success = false, errorMensaje = "La solicitud al servidor ha superado el tiempo de espera." });
+            }
+            catch (Exception ex)
+            {
+                // Maneja cualquier otra excepción.
+                Debug.WriteLine("Exception: " + ex.Message);
+                return Json(new { success = false, errorMensaje = "Error al procesar los datos: " + ex.Message });
+            }
+        }
 
 
+        /*Obtiene lista de pilotos ACTIVOS*/
+        [HttpPost]
+        public async Task<JsonResult> listaPilotos()
+        {
+            try
+            {
+                string URL = config.GetValue<string>("Servicios:API_PYTHON") + "obtengoPilotosMC";
+
+                using (HttpClient httpClient = new HttpClient())
+                {
+            
+                    var response = await httpClient.PostAsync(URL, null);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var responseBody = await response.Content.ReadAsStringAsync();
+                        Debug.WriteLine("Respuesta del servidor: " + responseBody);
+                        return Json(new { success = true, respuesta = responseBody });
+                    }
+                    else
+                    {
+                        var responseBody = await response.Content.ReadAsStringAsync();
+                        var errorObject = JsonSerializer.Deserialize<Dictionary<string, string>>(responseBody);
+                        string errorMensaje = errorObject.ContainsKey("error") ? errorObject["error"] : "Error desconocido";
+                        Debug.WriteLine("Código:" + errorMensaje);
+                        return Json(new { success = false, errorMensaje });
+                    }
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                Debug.WriteLine("HttpRequestException: " + ex.Message);
+                return Json(new { success = false, errorMensaje = "Ocurrió un error al obtener el listado de pilotos, no se obtuvo respuesta del servidor." });
+            }
+            catch (TaskCanceledException ex)
+            {
+                Debug.WriteLine("TaskCanceledException (posible timeout): " + ex.Message);
+                return Json(new { success = false, errorMensaje = "La solicitud al servidor ha superado el tiempo de espera." });
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Exception: " + ex.Message);
+                return Json(new { success = false, errorMensaje = "Error al procesar los datos: " + ex.Message });
+            }
+        }
+
+        /*Obtiene toda la lista de pilotos de la base de datos*/
+        [HttpPost]
+        public async Task<JsonResult> consultaPilotos()
+        {
+            try
+            {
+                string URL = config.GetValue<string>("Servicios:API_PYTHON") + "consultaPilotosMC";
+
+                using (HttpClient httpClient = new HttpClient())
+                {
+
+                    var response = await httpClient.PostAsync(URL, null);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var responseBody = await response.Content.ReadAsStringAsync();
+                        Debug.WriteLine("Respuesta del servidor: " + responseBody);
+                        return Json(new { success = true, respuesta = responseBody });
+                    }
+                    else
+                    {
+                        var responseBody = await response.Content.ReadAsStringAsync();
+                        var errorObject = JsonSerializer.Deserialize<Dictionary<string, string>>(responseBody);
+                        string errorMensaje = errorObject.ContainsKey("error") ? errorObject["error"] : "Error desconocido";
+                        Debug.WriteLine("Código:" + errorMensaje);
+                        return Json(new { success = false, errorMensaje });
+                    }
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                Debug.WriteLine("HttpRequestException: " + ex.Message);
+                return Json(new { success = false, errorMensaje = "Ocurrió un error al obtener el listado de pilotos, no se obtuvo respuesta del servidor." });
+            }
+            catch (TaskCanceledException ex)
+            {
+                Debug.WriteLine("TaskCanceledException (posible timeout): " + ex.Message);
+                return Json(new { success = false, errorMensaje = "La solicitud al servidor ha superado el tiempo de espera." });
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Exception: " + ex.Message);
+                return Json(new { success = false, errorMensaje = "Error al procesar los datos: " + ex.Message });
+            }
+        }
+
+        /*Obtiene todas las empresas de paquetería de la base de datos*/
+        [HttpPost]
+        public async Task<JsonResult> consultaPaqueterias()
+        {
+            try
+            {
+                string URL = config.GetValue<string>("Servicios:API_PYTHON") + "consultaPaqueteriasMC";
+
+                using (HttpClient httpClient = new HttpClient())
+                {
+
+                    var response = await httpClient.PostAsync(URL, null);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var responseBody = await response.Content.ReadAsStringAsync();
+                        Debug.WriteLine("Respuesta del servidor: " + responseBody);
+                        return Json(new { success = true, respuesta = responseBody });
+                    }
+                    else
+                    {
+                        var responseBody = await response.Content.ReadAsStringAsync();
+                        var errorObject = JsonSerializer.Deserialize<Dictionary<string, string>>(responseBody);
+                        string errorMensaje = errorObject.ContainsKey("error") ? errorObject["error"] : "Error desconocido";
+                        Debug.WriteLine("Código:" + errorMensaje);
+                        return Json(new { success = false, errorMensaje });
+                    }
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                Debug.WriteLine("HttpRequestException: " + ex.Message);
+                return Json(new { success = false, errorMensaje = "Ocurrió un error al obtener el listado de pilotos, no se obtuvo respuesta del servidor." });
+            }
+            catch (TaskCanceledException ex)
+            {
+                Debug.WriteLine("TaskCanceledException (posible timeout): " + ex.Message);
+                return Json(new { success = false, errorMensaje = "La solicitud al servidor ha superado el tiempo de espera." });
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Exception: " + ex.Message);
+                return Json(new { success = false, errorMensaje = "Error al procesar los datos: " + ex.Message });
+            }
+        }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     }
 
 }

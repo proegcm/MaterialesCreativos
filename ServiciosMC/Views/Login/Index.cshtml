@@ -1,4 +1,4 @@
-﻿@{
+﻿﻿@{
     Layout = null;
 }
 
@@ -15,14 +15,38 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="~/plugins/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="~/css/DialogoEG.css" />
-    <script type="text/javascript" src="~/js/DialogoEG.js"></script>
-
+    <script type="text/javascript" src="~/js/DialogoEG.js"></script>    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    @*<link rel="stylesheet" type="text/css" href="~/css/estilosPrueba.css" />*@
     <link rel="stylesheet" type="text/css" href="~/css/estilosLogin.css" />
     <link rel="stylesheet" type="text/css" href="~/css/estilosGeneral.css" />
 
-
-</head>
+</head>@**<body style="margin: 0; padding: 0; overflow-x: hidden;">
+    <div class="container-fluid min-vh-100 d-flex justify-content-center align-items-center">
+        <div class="contenedor">
+            <div class="logo-div-mc"></div>
+            <div class="form-div-mc">
+                <form id="loginForm">
+                    <div id="cont-login">
+                        <h3 class="mb-3 mt-3 text-center">INICIO DE SESIÓN</h3>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" id="txtUser" style="text-transform:uppercase;" placeholder="Usuario" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" class="form-control" id="txtPasswd" placeholder="Contraseña" required>
+                        </div>
+                        <div class="mb-3">
+                            <button type="submit" class="btn botonIngreso" id="btnIngreso">Ingresar</button>
+                        </div>
+                        <div class="mb-3 text-center">
+                            <a href="#!" class="link-secondary text-decoration-none small-link">¿Olvidaste tu contraseña?</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>*@
 <body>
     <div class="container-fluid full-height d-flex justify-content-center align-items-center">
         <div id="contenedor-loader" class="loader">
@@ -40,17 +64,6 @@
     </div>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
 
 
 

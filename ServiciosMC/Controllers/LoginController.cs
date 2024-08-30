@@ -34,6 +34,7 @@ namespace ServiciosMC.Controllers
 
             if (resultado.Estado == true)
             {
+                Debug.WriteLine("TIPO ---> " + resultado.Tipo);
                 var usuarioInfo = new List<Claim>()
                             {
                                     new Claim(ClaimTypes.Name,loginViewModel.Usuario),
@@ -41,11 +42,12 @@ namespace ServiciosMC.Controllers
                                     new Claim("Usuario",loginViewModel.Usuario),
                                     new Claim("Password",loginViewModel.Password)
                             };
+                Debug.WriteLine("usuarioInfo: " + usuarioInfo);
                 var usuarioIdentity = new ClaimsIdentity(usuarioInfo, "UsuarioInfo");
                 var userPrincipal = new ClaimsPrincipal(new[] { usuarioIdentity });
                 HttpContext.SignInAsync(userPrincipal);
             }
-            
+            Debug.WriteLine(resultado);
             return Json(resultado);
         }
 
@@ -55,24 +57,6 @@ namespace ServiciosMC.Controllers
             HttpContext.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
-
-        //public IActionResult Info()
-        //{
-
-        //    string login = Helper.config.GetSection("Servicios:WSLOGIN").Value;
-        //    login += "\n" + Helper.config.GetSection("Servicios:WSCOBERTURAS").Value;
-        //    login += "\n" + Helper.config.GetSection("Servicios:WSLOGIN").Value;
-        //    login += "\n" + Helper.config.GetSection("Servicios:WSDEPARTAMENTOS").Value;
-        //    login += "\n" + Helper.config.GetSection("Servicios:WSTOMASERVICIOGF").Value;
-        //    login += "\n" + Helper.config.GetSection("Servicios:WSTOMASERVICIO").Value;
-        //    login += "\n" + Helper.config.GetSection("Servicios:WSPERFIL").Value;
-        //    login += "\n" + Helper.config.GetSection("Servicios:WSMUNICIPIOS").Value;
-
-
-        //    ViewBag.Enviroment = Helper.Enviroment + "<br>" + login;
-        //    return View();
-        //}
-
 
     }
 }

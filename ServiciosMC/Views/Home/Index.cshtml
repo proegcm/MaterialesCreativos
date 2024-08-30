@@ -82,13 +82,91 @@
         display: flex;
         flex-direction: column;
     }
+
+    .order-info {
+        margin-top: 30px;
+    }
+
+
+        .order-info button {
+            margin-top: 10px;
+        }
+
+
+    .order-category {
+        margin-top: 30px;
+    }
+
+
+        .order-category ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+
+        .order-category li {
+            background-color: white;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+
+
+            .order-category li button {
+                background-color: #28a745;
+                padding: 5px 10px;
+            }
+
+
+                .order-category li button:hover {
+                    background-color: #218838;
+                }
+
+
+    /* Modal estilos */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+    }
+
+
+    .modal-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 4px;
+        width: 500px;
+        max-width: 90%;
+        position: relative;
+    }
+
+
+    .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        font-size: 24px;
+        cursor: pointer;
+    }
 </style>
 <div id="contenedor-loader" class="loader" style="display: none;">
     <div class="spinner"></div>
 </div>
-<div class="row justify-content-center h-100">
+<!--<div class="row justify-content-center h-100">-->
     <!--DIV IZQUIERDA-->
-    <div class="col-sm-12 col-md-4 col-lg-4 d-flex flex-column h-100">
+    <!--<div class="col-sm-12 col-md-4 col-lg-4 d-flex flex-column h-100">
         <div class="divBuscar flex-grow-1">
             <div class="row">
                 <div class="col-sm-12 col-md-12 col-lg-12">
@@ -108,10 +186,9 @@
             </div>
             
             
-        </div>
-
+        </div>-->
         <!-- Div de información del pedido -->
-        <div class="row pedido-info-container" id="pedidoInfo" style="display: none;">
+        <!--<div class="row pedido-info-container" id="pedidoInfo" style="display: none;">
             <h3>Información del Pedido</h3>
             <p><strong>Folio:</strong> <span id="folio"></span></p>
             <p><strong>Fecha:</strong> <span id="fecha"></span></p>
@@ -123,9 +200,9 @@
             <p><strong>Estatus:</strong> <span id="estatus"></span></p>
             <button type="button" class="btn btn-success mt-2" id="btnPasarProduccion" onclick="ingresaTicket()">Pasar a producción</button>
         </div>
-    </div>
+    </div>-->
     <!--DIV DERECHA-->
-    <div class="col-sm-12 col-md-8 col-lg-8 d-flex flex-column h-100">
+    <!--<div class="col-sm-12 col-md-8 col-lg-8 d-flex flex-column h-100">
         <div class="divBuscar flex-grow-1">
                 <div class="row">
                     <div class="col-sm-12 col-md-12 col-lg-12">
@@ -138,40 +215,213 @@
 
 
     </div>
+</div>-->
+    
+<!--Contenedor general-->
+<div class="row justify-content-center">
+
+    <div class="col-sm-10">
+
+        <div class="row h-100">
+            <div class="col-sm-12 col-md-8 col-lg-4 flex-grow-1">
+                <!--DIV IZQUIERDA-->
+                <div class="card" style="box-shadow: 3px 3px 7px 3px #656565; margin-top:3px">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <h3>Buscar ticket</h3>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <input type="number" class="form-control" placeholder="Ingrese número de folio" name="txtFolio" id="txtFolio" maxlength="10" />
+                                    <button class="btn btn-block w-100 mt-2" style="background-color: #121B4C; color: #ffffff;" id="btnBuscar" onclick="buscarTicket()">
+                                        <i class="fas fa-search" style="margin-right: 6px; vertical-align: middle;"></i> Buscar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" style="box-shadow: 3px 3px 7px 3px #656565; margin-top: 3px; display: none;" id="pedidoInfo">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <h3>Información del pedido</h3>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <p><strong>Folio:</strong> <span id="folio"></span></p>
+                                <p><strong>Fecha:</strong> <span id="fecha"></span></p>
+                                <p><strong>Cajero:</strong> <span id="cajero"></span></p>
+                                <p><strong>Cliente:</strong> <span id="cliente"></span></p>
+                                <p><strong>Total:</strong> <span id="total"></span></p>
+                                <p><strong>Pago:</strong> <span id="pago"></span></p>
+                                <p><strong>Cambio:</strong> <span id="cambio"></span></p>
+                                <p><strong>Estatus:</strong> <span id="estatus"></span></p>
+                                <button type="button" class="btn btn-success mt-2" id="btnPasarProduccion" onclick="ingresaTicket()">Pasar a producción</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-6 col-lg-8 flex-grow-1">
+                <!--DIV DERECHA-->
+                <div class="card" style="box-shadow: 3px 3px 7px 3px #656565; margin-top:3px">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <h3>Pedidos</h3>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group order-category">
+                                    <h3>En Producción</h3>
+                                    <ul id="production-orders">
+                                        <!-- Listado de pedidos en producción -->
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group order-category">
+                                    <h3>Completado</h3>
+                                    <ul id="completed-orders">
+                                        <!-- Listado de pedidos completados -->
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group order-category">
+                                    <h3>Envío por Mensajería</h3>
+                                    <ul id="courier-orders">
+                                        <!-- Listado de pedidos enviados por mensajería -->
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group order-category">
+                                    <h3>Envío por Paquetería</h3>
+                                    <ul id="parcel-orders">
+                                        <!-- Listado de pedidos enviados por paquetería -->
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group order-category">
+                                    <h3>Devuelto</h3>
+                                    <ul id="returned-orders">
+                                        <!-- Listado de pedidos devueltos -->
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group order-category">
+                                    <h3>Anulado</h3>
+                                    <ul id="canceled-orders">
+                                        <!-- Listado de pedidos anulados -->
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group order-category">
+                                    <h3>Entregado</h3>
+                                    <ul id="delivered-orders">
+                                        <!-- Listado de pedidos entregados -->
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- Modal/Diálogo para mostrar información del pedido -->
+    <div id="order-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">×</span>
+            <h2>Detalles del Pedido</h2>
+            <div id="modal-order-details">
+                <!-- Aquí se mostrarán los detalles del pedido -->
+            </div>
+            <div id="status-change-options">
+                <!-- Opciones para cambiar el estado del pedido -->
+            </div>
+            <!-- Selección de Piloto -->
+            <div id="pilot-selection" style="display: none;">
+                <h3>Asignar Piloto</h3>
+                <select id="pilot-select">
+                    <option value="">Selecciona un piloto</option>
+                    <option value="Piloto #1 José">Piloto #1 José</option>
+                    <option value="Piloto #2 Oscar">Piloto #2 Oscar</option>
+                    <option value="Piloto #3 Mario">Piloto #3 Mario</option>
+                </select>
+                <button id="assign-pilot-btn" style="display: none;">Cambiar estado</button>
+            </div>
+            <!-- Selección de Paquetería -->
+            <div id="parcel-selection" style="display: none;">
+                <h3>Asignar Paquetería</h3>
+                <select id="parcel-select">
+                    <option value="">Asignar paquetería</option>
+                    <option value="Guatex">Guatex</option>
+                    <option value="Forza">Forza</option>
+                    <option value="Cargo Express">Cargo Express</option>
+                </select>
+                <button id="assign-parcel-btn" style="display: none;">Cambiar estado</button>
+            </div>
+        </div>
+    </div>
+
+
+
 </div>
-    
-    
+
+        <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script type="text/javascript">
+            let parametros = "";
+            let usuarioLogin = "";
+            let pilotosActivos = [];
+
+            const categoryMap = {
+                "En producción": "production",
+                "Envío por Mensajería": "courier",
+                "Envío por Paquetería": "parcel",
+                "Entregado": "delivered",
+                "Devuelto": "returned",
+                "Anulado": "canceled",
+                "Completado": "completed"
+            };
+
+            $(document).ready(function () {
 
 
-
-
-
-
-
-
-<script src="https://kit.fontawesome.com/a076d05399.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script type="text/javascript">
-        let parametros = "";
-        let usuarioLogin = "";
-        $(document).ready(function () {
-            // Realizar la solicitud AJAX al cargar la página
-            $.ajax({
+             $.ajax({
                 url: '@Url.Action("obtengoUsuario", "Home")',
                 type: "POST",
                 success: function (usuario) {
                     usuarioLogin = usuario;
+
+                    consultaPedidos();
                 },
                 error: function (xhr, status, error) {
                     console.error("Error al obtener el usuario:", error);
                 }
             });
-        });
 
-        function buscarTicket() {
+        });
+            //Consulta folio en firebird
+            function buscarTicket() {
             $('#pedidoInfo').hide();
-            var nofolio = $('#txtFolio').val();
-            if (nofolio === "") {
+            let nofolio = $('#txtFolio').val();
+            if (!nofolio) {
                 alert("El campo Folio no puede estar vacío.");
             } else {
                 document.getElementById('contenedor-loader').style.display = 'flex';
@@ -228,34 +478,44 @@
                 });
             }
         }
-
-        function ingresaTicket() {
+            //Inserta un ticket y pasa a producción
+            function ingresaTicket() {
+                let nofolio = parametros.infoPedido.folio;
+                document.getElementById('contenedor-loader').style.display = 'flex';
             $.ajax({
                 url: '@Url.Action("ingresarProduccion", "Home")',
                 type: "POST",
                 data: parametros,
                 success: function (data) {
                     console.log(data);
-                    if (data.error) {
+                    if (!data.success) {
+                        console.log(data.errorMensaje)
                         dialogoEG({
                             type: "error",
                             title: "Error ingreso a producción",
-                            mensaje: data.error,
+                            mensaje: data.errorMensaje,
                             confirmar: "Aceptar",
                             img: "img/error.png"
+                        }).then(() => {
+                            limpiar();
                         });
                     } else {
                         dialogoEG({
                             type: "success",
                             title: "Ingreso exitoso",
-                            mensaje: "El ticket No."+nofolio+"ha sido ingresado correctamente a PRODUCCIÓN. ",
+                            mensaje: data.respuesta,
                             confirmar: "Aceptar",
                             img: "img/success.png"
+                        }).then(() => {
+                            limpiar();
+                            consultaPedidos();
                         });
                         $('#pedidoInfo').hide();
                     }
+                    document.getElementById('contenedor-loader').style.display = 'none';
                 },
                 error: function (xhr, status, error) {
+                    document.getElementById('contenedor-loader').style.display = 'none';
                     console.log("Error al ingresar el ticket a producción:", error);
                     dialogoEG({
                         type: "error",
@@ -267,6 +527,336 @@
                 }
             });
         }
+            //Consulta pedidos a cargo del usuario
+            function consultaPedidos() {
+                console.log("consultaPedidos - usuarioLogin: " + usuarioLogin);
+            let parametros = {
+                infoUsuario: {
+                    usuario: usuarioLogin
+                }
+            };
+            document.getElementById('contenedor-loader').style.display = 'flex';
+            $.ajax({
+                url: '@Url.Action("listaPedidos", "Home")',
+                type: "POST",
+                data: parametros,
+                success: function (data) {
+                    if (!data.success) {
+                        console.log(data.errorMensaje)
+                        dialogoEG({
+                            type: "error",
+                            title: "Error consulta de pedidos",
+                            mensaje: data.errorMensaje,
+                            confirmar: "Aceptar",
+                            img: "img/error.png"
+                        }).then(() => {
+                            limpiar();
+                        });
+                    } else {
+                        const pedidos = JSON.parse(data.respuesta).listadoPedidos;
+                        console.log("pedidos:");
+                        console.log(pedidos);
+                        //Actualizar listado de pedidos
+                        updateList(pedidos);
+                    }
+                    document.getElementById('contenedor-loader').style.display = 'none';
+                },
+                error: function (xhr, status, error) {
+                    document.getElementById('contenedor-loader').style.display = 'none';
+                    console.log("Error al consultar pedidos:", error);
+                    dialogoEG({
+                        type: "error",
+                        title: "Error de comunicación",
+                        mensaje: "Ocurrió un error al obtener listado de pedidos. Intente nuevamente, si el inconveniente persiste contacte al administrador.",
+                        confirmar: "Aceptar",
+                        img: "img/error.png"
+                    });
+                }
+            });
+        }
+            //Consulta pilotos activos
+            function getPilotosAct() {
+                 $.ajax({
+                    url: '@Url.Action("listaPilotos", "Home")',
+                    type: "POST",
+                     success: function (data) {
+                         if (!data.success) {
+                             console.log(data.errorMensaje);
+                         } else {
+                             // Deserializar la respuesta JSON
+                             let respuesta = JSON.parse(data.respuesta);
+
+                             // Acceder al array de pilotos
+                             let listadoPilotos = respuesta.listadoPilotos;
+
+                             // Obtener el elemento select
+                             let pilotSelect = $('#pilot-select');
+                             // Vaciar las opciones existentes
+                             pilotSelect.empty();
+                             // Agregar la opción predeterminada
+                             pilotSelect.append('<option value="">Selecciona un piloto</option>');
+
+                             // Agregar los pilotos al select
+                             listadoPilotos.forEach(piloto => {
+                                 let optionText = `Piloto #${piloto.id_usuario} ${piloto.nombre}`;
+                                 pilotSelect.append(`<option value="${optionText}">${optionText}</option>`);
+                             });
+                         }
+                     },
+                     error: function (xhr, status, error) {
+                         document.getElementById('contenedor-loader').style.display = 'none';
+                         console.log("Error al consultar pilotos:", error);
+                         dialogoEG({
+                             type: "error",
+                             title: "Error de comunicación",
+                             mensaje: "Ocurrió un error al obtener listado de pilotos. Intente nuevamente, si el inconveniente persiste contacte al administrador.",
+                             confirmar: "Aceptar",
+                             img: "img/error.png"
+                         });
+                     }
+            });
+            }
+            //Consulta todos los pilotos del sistema
+             function getPilotosAll() {
+                 $.ajax({
+                    url: '@Url.Action("consultaPilotos", "Home")',
+                    type: "POST",
+                     success: function (data) {
+                         if (!data.success) {
+                             console.log(data.errorMensaje);
+                         } else {
+                             // Deserializar la respuesta JSON
+                             let respuesta = JSON.parse(data.respuesta);
+
+                             // Acceder al array de pilotos
+                             let listadoPilotos = respuesta.listadoPilotos;
+                             listadoPilotos.forEach(piloto => {
+                                 console.log("ID Piloto: " + piloto.id_usuario);
+                                 console.log("Nombre: " + piloto.nombre);
+                                 console.log("Teléfono: " + piloto.telefono);
+                                 console.log("Username: " + piloto.username);
+                                 console.log("Activo: " + piloto.activo);
+                                 console.log("Password: " + piloto.password);
+                             });
+
+                         }
+                     },
+                     error: function (xhr, status, error) {
+                         document.getElementById('contenedor-loader').style.display = 'none';
+                         console.log("Error al consultar pilotos:", error);
+                         dialogoEG({
+                             type: "error",
+                             title: "Error de comunicación",
+                             mensaje: "Ocurrió un error al obtener listado de pilotos. Intente nuevamente, si el inconveniente persiste contacte al administrador.",
+                             confirmar: "Aceptar",
+                             img: "img/error.png"
+                         });
+                     }
+            });
+            }
+            //Consulta paqueterías
+            function getPaqueterias() {
+                  $.ajax({
+                    url: '@Url.Action("consultaPaqueterias", "Home")',
+                    type: "POST",
+                     success: function (data) {
+                         if (!data.success) {
+                             console.log(data.errorMensaje);
+                         } else {
+                             // Deserializar la respuesta JSON
+                             let respuesta = JSON.parse(data.respuesta);
+
+                             // Acceder al array de pilotos
+                             let listadoPaq = respuesta.listadoPaqueterias;
+                             listadoPaq.forEach(paq => {
+                                 console.log("ID Paquetería: " + paq.id_paqueteria);
+                                 console.log("Nombre: " + paq.nombre);
+                             });
+
+                         }
+                     },
+                     error: function (xhr, status, error) {
+                         document.getElementById('contenedor-loader').style.display = 'none';
+                         console.log("Error al consultar pilotos:", error);
+                         dialogoEG({
+                             type: "error",
+                             title: "Error de comunicación",
+                             mensaje: "Ocurrió un error al obtener listado de pilotos. Intente nuevamente, si el inconveniente persiste contacte al administrador.",
+                             confirmar: "Aceptar",
+                             img: "img/error.png"
+                         });
+                     }
+            });
+            }
+
+            function updateList(listaPedidos) {
+                // Clear existing lists
+                const categories = ['production', 'courier', 'parcel', 'delivered', 'returned', 'canceled', 'completed'];
+
+                categories.forEach(category => {
+                    const ul = document.getElementById(`${category}-orders`);
+                    ul.innerHTML = ''; // Limpiar la lista existente
+
+                    // Filtrar los pedidos por categoría utilizando el mapeo
+                    const pedidosFiltrados = listaPedidos.filter(pedido => categoryMap[pedido.estado_actual] === category);
+
+                    // Agregar los pedidos filtrados a la lista correspondiente
+                    pedidosFiltrados.forEach(pedido => {
+                        const li = document.createElement('li');
+                        li.textContent = `Folio: ${pedido.folio} - Cliente: ${pedido.cliente} - Fecha: ${pedido.fecha_estado}`;
+                        li.addEventListener('click', function () {
+                            showModal(pedido);
+                        });
+                        ul.appendChild(li);
+                    });
+                });
+            }
+
+
+
+            // Mostrar modal
+            function showModal(pedido) {
+                console.log("Abro diálogo del pedido: " + pedido.folio);
+                const orderNumber = pedido.folio;
+                const currentState = pedido.estado_actual;
+
+                // Mostrar detalles del pedido en el modal
+                document.getElementById('modal-order-details').textContent = `Detalles del pedido - Folio: #${orderNumber} Cliente: ${pedido.cliente} <br> Estado Actual: ${currentState}`;
+
+                const statusChangeOptions = document.getElementById('status-change-options');
+                const pilotSelection = document.getElementById('pilot-selection');
+                const assignPilotBtn = document.getElementById('assign-pilot-btn');
+                const parcelSelection = document.getElementById('parcel-selection');
+                const assignParcelBtn = document.getElementById('assign-parcel-btn');
+
+                // Resetear las opciones del modal
+                statusChangeOptions.innerHTML = '';
+                pilotSelection.style.display = 'none';
+                assignPilotBtn.style.display = 'none';
+                parcelSelection.style.display = 'none';
+                assignParcelBtn.style.display = 'none';
+
+                // Obtener los posibles siguientes estados
+                const nextStates = getNextStates(currentState);
+                console.log("Posibles siguientes estados [nextStates] ");
+                console.log(nextStates);
+                nextStates.forEach(nextState => {
+                    const button = document.createElement('button');
+                    button.textContent = nextState.label;
+                    button.addEventListener('click', function () {
+                        if (nextState.state === 'courier') { // Enviar por Mensajería
+                            pilotSelection.style.display = 'block';
+                            assignPilotBtn.style.display = 'block';
+                            assignParcelBtn.style.display = 'none';
+                            parcelSelection.style.display = 'none';
+
+                            assignPilotBtn.addEventListener('click', function () {
+                                const selectedPilot = document.getElementById('pilot-select').value;
+                                if (selectedPilot) {
+                                    console.log('Piloto asignado: ' + selectedPilot);
+                                    changeOrderState(orderNumber, nextState.state);
+                                } else {
+                                    alert('Por favor, selecciona un piloto.');
+                                }
+                            });
+
+                        } else if (nextState.state === 'parcel') { // Enviar por Paquetería
+                            parcelSelection.style.display = 'block';
+                            assignParcelBtn.style.display = 'block';
+                            assignPilotBtn.style.display = 'none';
+                            pilotSelection.style.display = 'none';
+
+                            assignParcelBtn.addEventListener('click', function () {
+                                const selectedParcel = document.getElementById('parcel-select').value;
+                                if (selectedParcel) {
+                                    console.log('Paquetería asignada: ' + selectedParcel);
+                                    changeOrderState(orderNumber, nextState.state);
+                                } else {
+                                    alert('Por favor, selecciona una empresa de paquetería.');
+                                }
+                            });
+
+                        } else {
+                            changeOrderState(orderNumber, nextState.state);
+                        }
+                    });
+                    statusChangeOptions.appendChild(button);
+                });
+
+                const modal = document.getElementById('order-modal');
+                modal.style.display = 'flex';
+            }
+
+            // Cerrar modal
+            function closeModal() {
+                const modal = document.getElementById('order-modal');
+                modal.style.display = 'none';
+            }
+
+            document.querySelector('.close-btn').addEventListener('click', closeModal);
+
+
+            // Obtener estados siguientes posibles
+            function getNextStates(currentState) {
+                console.log("Dentro de getNextStates: " + currentState);
+                const stateTransitions = {
+                    production: [
+                        { state: 'completed', label: 'Completado' },
+                        { state: 'canceled', label: 'Anulado' }
+                    ],
+                    completed: [
+                        { state: 'courier', label: 'Enviar por Mensajería' },
+                        { state: 'parcel', label: 'Enviar por Paquetería' },
+                        { state: 'canceled', label: 'Anulado' }
+                    ],
+                    courier: [
+                        { state: 'returned', label: 'Devuelto' },
+                        { state: 'delivered', label: 'Entregado' }
+                    ],
+                    parcel: [
+                        { state: 'returned', label: 'Devuelto' },
+                        { state: 'delivered', label: 'Entregado' }
+                    ],
+                    delivered: [],
+                    returned: [{ state: 'canceled', label: 'Anulado' }],
+                    canceled: []
+                };
+                // Usar el mapeo para convertir currentState a su correspondiente en inglés
+                const mappedState = categoryMap[currentState];
+                return stateTransitions[mappedState] || [];
+            }
+
+            // Cambiar estado del pedido
+            function changeOrderState(pedido, newState) {
+                // Obtener el estado actual del pedido
+                const currentState = pedido.estado_actual;
+
+                // Si el estado actual y el nuevo estado son diferentes, realiza el cambio
+                if (currentState && currentState !== newState) {
+                    // Actualizar el estado del pedido
+                    pedido.estado_actual = newState;
+
+                    // Actualizar la lista de pedidos en la interfaz
+                    updateList(listaPedidos);
+
+                    // Cerrar el modal después de cambiar el estado
+                    closeModal();
+                }
+            }
+
+
+        function limpiar() {
+                parametros = "";
+                $('#txtFolio').val("");
+                $('#folio').text("");
+                $('#fecha').text("");
+                $('#cajero').text("");
+                $('#cliente').text("");
+                $('#total').text("");
+                $('#pago').text("");
+                $('#cambio').text("");
+                $('#estatus').text("");
+            }
 
         function formatoFecha(fecha) {
             var date = new Date(fecha);
@@ -275,5 +865,5 @@
             var anio = date.getFullYear();
             return (dia < 10 ? '0' + dia : dia) + '/' + (mes < 10 ? '0' + mes : mes) + '/' + anio;
         }
-</script>
+        </script>
 

@@ -17,14 +17,13 @@
             </div>
         </div>
     </form>
-    @*<div id="contenedor-loader" class="loader">
-        <div class="spinner"></div>
-    </div>*@
-    
+
+
+  
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
     function Autenticar() {
-    var usuario = $('#txtUser').val();
+    var usuario = $('#txtUser').val().toUpperCase();
     var password = $('#txtPasswd').val();
     var dataFormAut = new FormData();
     dataFormAut.append("Usuario", usuario);

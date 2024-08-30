@@ -1,7 +1,6 @@
-﻿
-.contenedor {
+﻿.contenedor {
     width: 60%;
-    height: 70%;
+    height: 80%;
     border-radius: 15px;
     display: flex;
     justify-content: center;
@@ -39,7 +38,6 @@
     font-family: 'Poppins', sans-serif;
     font-size: 12px;
     text-align: center;
-    /*position: relative;*/
 }
 
     .form-div-mc h3{
@@ -403,24 +401,8 @@
 }
 
 @media (min-width: 1301px) and (max-width: 1500px) {
-    .contenedor {
-        width: 70%;
-        height: 70%;
-    }
-
-    .logo-div-mc {
-        border-radius: 15px 0 0 0;
-        flex: 0 0 auto;
-    }
-
     .form-div-mc {
-        border-radius: 0 0 15px 15px;
-        flex: 0 0 100%;
-    }
-
-    .row {
-        flex-direction: column;
-        height: 100%;
+       padding: 40px;
     }
 }
 
@@ -428,34 +410,6 @@
 
 
 
-
-
-
-
-
-
-
-
-/* Responsividad 768*/
-@media (min-width: 400px) and (max-width: 1215px) {
-    .row {
-        flex-direction: column;
-    }
-
-    .col-lg-4, .col-lg-8 {
-        width: 100%;
-    }
-
-    .col-lg-8 {
-        margin-top: 20px;
-    }
-}
-
-@media (min-width: 400px) and (max-width: 1215px) {
-    .col-lg-4, .col-lg-8 {
-        padding: 0 30px; /* Agrega un margen de 15px a ambos lados de las columnas */
-    }
-}
 
 
 

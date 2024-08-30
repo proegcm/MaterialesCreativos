@@ -32,7 +32,7 @@ namespace ServiciosMC.MaterialesCreativos
 
                 try
                 {
-                    Helpers.Helper.LogXML(validacion.Body.datos, DateTime.Now.ToString("yyyyMMddHH") + login.Usuario);
+                    //Helpers.Helper.LogXML(validacion.Body.datos, DateTime.Now.ToString("yyyyMMddHH") + login.Usuario);
                     var response = ce.validaCredenciales(validacion.Body.datos);
                     Helpers.Helper.LogXML(response, DateTime.Now.ToString("yyyyMMddHH") + login.Usuario);
                     XmlDocument doc = new XmlDocument();

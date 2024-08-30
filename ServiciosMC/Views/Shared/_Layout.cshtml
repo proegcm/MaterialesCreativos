@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var username = User.Identity.IsAuthenticated ? User.Identity.Name : "";
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -29,6 +32,7 @@
         .contenedor {
             max-height: 100%;
         }
+
         .main-header.navbar {
             padding-top: 1rem;
             padding-bottom: 1rem;
@@ -54,9 +58,11 @@
                         <a class="nav-link d-flex align-items-center" id="nomUser" data-toggle="dropdown" href="#" aria-expanded="false" style="font-weight: bold;">
                             <i class="fas fa-user mr-2"></i>
                             <span>
-                                @if (User.Identity.IsAuthenticated)
+                                @*@if (User.Identity.IsAuthenticated)
                                 {
-                                    @User.Identity.Name}
+                                    @User.Identity.Name
+                                }*@
+                                @username
                             </span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="left: inherit; right: 0px;">
@@ -85,9 +91,9 @@
                     </div>
                 </div>
             </div>
-            
-            <div class="content" >
-                <div class="container-fluid h-100">
+
+            <div class="content">
+                <div class="container-fluid">
                     @RenderBody()
                 </div>
             </div>
@@ -105,7 +111,7 @@
     <script type="text/javascript" src="~/js/datatables.min.js"></script>
     <script type="text/javascript" src="~/js/toastr.min.js"></script>
     <script type="text/javascript" src="~/js/bootstrap.bundle.min.js"></script>
-    
+
     <script type="text/javascript">
 
         $body = $('body');
