@@ -689,7 +689,7 @@
             });
             }
 
-            function updateList(listaPedidos) {
+            /*function updateList(listaPedidos) {
                 // Clear existing lists
                 const categories = ['production', 'courier', 'parcel', 'delivered', 'returned', 'canceled', 'completed'];
 
@@ -710,18 +710,61 @@
                         ul.appendChild(li);
                     });
                 });
+            }*/
+            function updateList(listaPedidos) {
+                // Crear un objeto para almacenar el último estado de cada pedido
+                const pedidosUltimoEstado = {};
+
+                // Iterar sobre la lista de pedidos para encontrar el último estado de cada folio
+                listaPedidos.forEach(pedido => {
+                    const folio = pedido.folio;
+                    // Si el folio no está en el objeto o si el estado actual es más reciente
+                    if (!pedidosUltimoEstado[folio] || new Date(pedido.fecha_estado) > new Date(pedidosUltimoEstado[folio].fecha_estado)) {
+                        pedidosUltimoEstado[folio] = pedido;
+                    }
+                });
+
+                // Obtener los valores de los pedidos con el último estado
+                const pedidosConUltimoEstado = Object.values(pedidosUltimoEstado);
+                console.log("pedidosConUltimoEstado: ");
+                console.log(pedidosConUltimoEstado);
+                // Limpiar listas existentes
+                const categories = ['production', 'courier', 'parcel', 'delivered', 'returned', 'canceled', 'completed'];
+
+                categories.forEach(category => {
+                    const ul = document.getElementById(`${category}-orders`);
+                    ul.innerHTML = ''; // Limpiar la lista existente
+
+                    // Filtrar los pedidos por categoría utilizando el mapeo
+                    const pedidosFiltrados = pedidosConUltimoEstado.filter(pedido => categoryMap[pedido.estado_actual] === category);
+
+                    // Agregar los pedidos filtrados a la lista correspondiente
+                    pedidosFiltrados.forEach(pedido => {
+                        const li = document.createElement('li');
+                        li.textContent = `Folio: ${pedido.folio} - Cliente: ${pedido.cliente} - Fecha: ${pedido.fecha_estado}`;
+                        li.addEventListener('click', function () {
+                            showModal(pedido);
+                        });
+                        ul.appendChild(li);
+                    });
+                });
             }
 
 
 
             // Mostrar modal
             function showModal(pedido) {
-                console.log("Abro diálogo del pedido: " + pedido.folio);
+                console.log("Abro diálogo del pedido: ");
+                console.log(pedido);
+                let piloto = null;
+                let paqueteria = null;
+                let obvs = null;
+
                 const orderNumber = pedido.folio;
                 const currentState = pedido.estado_actual;
 
                 // Mostrar detalles del pedido en el modal
-                document.getElementById('modal-order-details').textContent = `Detalles del pedido - Folio: #${orderNumber} Cliente: ${pedido.cliente} <br> Estado Actual: ${currentState}`;
+                document.getElementById('modal-order-details').textContent = `Detalles del pedido - Folio: #${orderNumber} Cliente: ${pedido.cliente}  Estado Actual: ${currentState}`;
 
                 const statusChangeOptions = document.getElementById('status-change-options');
                 const pilotSelection = document.getElementById('pilot-selection');
@@ -754,7 +797,7 @@
                                 const selectedPilot = document.getElementById('pilot-select').value;
                                 if (selectedPilot) {
                                     console.log('Piloto asignado: ' + selectedPilot);
-                                    changeOrderState(orderNumber, nextState.state);
+                                    changeOrderState(pedido, nextState.state, piloto, paqueteria, obvs);
                                 } else {
                                     alert('Por favor, selecciona un piloto.');
                                 }
@@ -770,14 +813,16 @@
                                 const selectedParcel = document.getElementById('parcel-select').value;
                                 if (selectedParcel) {
                                     console.log('Paquetería asignada: ' + selectedParcel);
-                                    changeOrderState(orderNumber, nextState.state);
+                                    changeOrderState(pedido, nextState.state, piloto, paqueteria, obvs);
                                 } else {
                                     alert('Por favor, selecciona una empresa de paquetería.');
                                 }
                             });
 
                         } else {
-                            changeOrderState(orderNumber, nextState.state);
+                            console.log("dentro de else");
+
+                            changeOrderState(pedido, nextState.state, piloto, paqueteria, obvs);
                         }
                     });
                     statusChangeOptions.appendChild(button);
@@ -825,23 +870,94 @@
                 const mappedState = categoryMap[currentState];
                 return stateTransitions[mappedState] || [];
             }
+            // Mapa de conversión de inglés a español
+            const entospa = {
+                "production": "En producción",
+                "courier": "Envío por Mensajería",
+                "parcel": "Envío por Paquetería",
+                "delivered": "Entregado",
+                "returned": "Devuelto",
+                "canceled": "Anulado",
+                "completed": "Completado"
+            };
+
+            // Función para obtener el equivalente en español dado un estado en inglés
+            function getState(state) {
+                return entospa[state] || "Estado desconocido";
+            }
 
             // Cambiar estado del pedido
-            function changeOrderState(pedido, newState) {
-                // Obtener el estado actual del pedido
-                const currentState = pedido.estado_actual;
+            function changeOrderState(pedido, newState, piloto, paqueteria, obvs) {
+                console.log("changeOrderState ----> ");
+                console.log("   pedido: ");
+                console.log(pedido);
+                newState = getState(newState);
+               
+                let parametros = {
+                    'folio': pedido.folio,
+                    'estadoAnterior': pedido.estado_actual,
+                    'estadoNuevo': newState,
+                    'usuario': usuarioLogin,
+                    'idMensajero': piloto,
+                    'idPaqueteria': paqueteria,
+                    'observaciones': obvs
+                };
+                console.log("   parametros:");
+                console.log(parametros);
+                //document.getElementById('contenedor-loader').style.display = 'flex';
+                if (pedido.estado_actual && pedido.estado_actual !== newState) {
+                    $.ajax({
+                    url: '@Url.Action("cambioEstadoPedido", "Home")',
+                    type: "POST",
+                    data: parametros,
+                    success: function (data) {
+                        console.log(data);
+                        if (!data.success) {
+                            console.log(data.errorMensaje)
+                            dialogoEG({
+                                type: "error",
+                                title: "Error cambio de estado",
+                                mensaje: data.errorMensaje,
+                                confirmar: "Aceptar",
+                                img: "img/error.png"
+                            }).then(() => {
+                                //limpiar();
+                            });
+                        } else {
+                            dialogoEG({
+                                type: "success",
+                                title: "Cambio de estado exitoso",
+                                mensaje: data.respuesta,
+                                confirmar: "Aceptar",
+                                img: "img/success.png"
+                            }).then(() => {
+                                closeModal();
+                                consultaPedidos();
+                            });
+                        }
+                        document.getElementById('contenedor-loader').style.display = 'none';
+                    },
+                    error: function (xhr, status, error) {
+                        document.getElementById('contenedor-loader').style.display = 'none';
+                        console.log("Error al ingresar el ticket a producción:", error);
+                        dialogoEG({
+                            type: "error",
+                            title: "Error de comunicación",
+                            mensaje: "Ocurrió un error al ingresar el ticket a producción. Intente nuevamente, si el inconveniente persiste contacte al administrador.",
+                            confirmar: "Aceptar",
+                            img: "img/error.png"
+                        });
+                    }
+            });
 
-                // Si el estado actual y el nuevo estado son diferentes, realiza el cambio
-                if (currentState && currentState !== newState) {
-                    // Actualizar el estado del pedido
-                    pedido.estado_actual = newState;
 
-                    // Actualizar la lista de pedidos en la interfaz
-                    updateList(listaPedidos);
-
-                    // Cerrar el modal después de cambiar el estado
-                    closeModal();
                 }
+
+
+
+
+
+               
             }
 
 

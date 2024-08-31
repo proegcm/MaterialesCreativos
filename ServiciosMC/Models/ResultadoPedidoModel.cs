@@ -13,6 +13,7 @@ namespace ServiciosMC.Models
 
     }
 
+
     public class infoPedido
     {
         public string folio { get; set; }
@@ -51,6 +52,21 @@ namespace ServiciosMC.Models
     public class arrayPedidos
     {
         public List<infoPedido> listadoPedidos { get; set; }
+    }
+
+
+
+    public class infoCambioPedido
+    {
+        public string folio { get; set; }
+        public string estadoAnterior { get; set; }
+        public string estadoNuevo { get; set; }
+        public string usuario { get; set; }
+        public string idMensajero { get; set; }
+        public string idPaqueteria { get; set; }
+        public string observaciones { get; set; }
+
+
     }
 
 

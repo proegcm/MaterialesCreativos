@@ -343,20 +343,65 @@ namespace ServiciosMC.Controllers
                 return Json(new { success = false, errorMensaje = "Error al procesar los datos: " + ex.Message });
             }
         }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
+
+
+
+
+        [HttpPost]
+        public async Task<JsonResult> cambioEstadoPedido(infoCambioPedido pedidoData)
+        {
+            try
+            {
+                string URL = config.GetValue<string>("Servicios:API_PYTHON") + "cambioEstadoPedidoMC";
+                using (HttpClient httpClient = new HttpClient())
+                {
+                    var datos = JsonSerializer.Serialize(pedidoData);
+                    var contenido = new StringContent(datos, Encoding.UTF8, "application/json");
+                    var response = await httpClient.PostAsync(URL, contenido);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var responseBody = await response.Content.ReadAsStringAsync();
+                        var responseObject = JsonSerializer.Deserialize<Dictionary<string, string>>(responseBody);
+                        string mensaje = responseObject["mensaje"];
+
+                        return Json(new { success = true, respuesta = mensaje });
+                    }
+                    else
+                    {
+                        var responseBody = await response.Content.ReadAsStringAsync();
+                        var errorObject = JsonSerializer.Deserialize<Dictionary<string, string>>(responseBody);
+                        string errorMensaje = errorObject["error"];  // Acceder al valor de la clave "error"
+                        Debug.WriteLine("Código:" + errorMensaje);
+                        return Json(new { success = false, errorMensaje });
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, respuesta = "Error al procesar los datos: " + ex.Message });
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
     }
 
 }
