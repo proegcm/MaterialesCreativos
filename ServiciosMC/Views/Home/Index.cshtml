@@ -128,95 +128,11 @@
                 }
 
 
-    /* Modal estilos */
-    .modal {
-        display: none;
-        position: fixed;
-        z-index: 1000;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        justify-content: center;
-        align-items: center;
-    }
-
-
-    .modal-content {
-        background-color: white;
-        padding: 20px;
-        border-radius: 4px;
-        width: 500px;
-        max-width: 90%;
-        position: relative;
-    }
-
-
-    .close-btn {
-        position: absolute;
-        top: 10px;
-        right: 15px;
-        font-size: 24px;
-        cursor: pointer;
-    }
 </style>
 <div id="contenedor-loader" class="loader" style="display: none;">
     <div class="spinner"></div>
 </div>
-<!--<div class="row justify-content-center h-100">-->
-    <!--DIV IZQUIERDA-->
-    <!--<div class="col-sm-12 col-md-4 col-lg-4 d-flex flex-column h-100">
-        <div class="divBuscar flex-grow-1">
-            <div class="row">
-                <div class="col-sm-12 col-md-12 col-lg-12">
-                    <div class="col-sm-12 col-md-12 col-lg-12">
-                        <div class="form-group">
-                            <h3>Buscar Ticket</h3>
-                        </div>
-                    </div>
-                    <div class="form-group busqueda">
-                        <input type="number" class="form-control" id="txtFolio" placeholder="Ingrese el número de folio" />
-                        <button type="button" class="btn" onclick="buscarTicket()">
-                            <i class="fas fa-search" style="margin-right: 6px; vertical-align: middle;"></i>
-                        </button>
-                    </div>
 
-                </div>
-            </div>
-            
-            
-        </div>-->
-        <!-- Div de información del pedido -->
-        <!--<div class="row pedido-info-container" id="pedidoInfo" style="display: none;">
-            <h3>Información del Pedido</h3>
-            <p><strong>Folio:</strong> <span id="folio"></span></p>
-            <p><strong>Fecha:</strong> <span id="fecha"></span></p>
-            <p><strong>Cajero:</strong> <span id="cajero"></span></p>
-            <p><strong>Cliente:</strong> <span id="cliente"></span></p>
-            <p><strong>Total:</strong> <span id="total"></span></p>
-            <p><strong>Pago:</strong> <span id="pago"></span></p>
-            <p><strong>Cambio:</strong> <span id="cambio"></span></p>
-            <p><strong>Estatus:</strong> <span id="estatus"></span></p>
-            <button type="button" class="btn btn-success mt-2" id="btnPasarProduccion" onclick="ingresaTicket()">Pasar a producción</button>
-        </div>
-    </div>-->
-    <!--DIV DERECHA-->
-    <!--<div class="col-sm-12 col-md-8 col-lg-8 d-flex flex-column h-100">
-        <div class="divBuscar flex-grow-1">
-                <div class="row">
-                    <div class="col-sm-12 col-md-12 col-lg-12">
-                        <div class="form-group">
-                            <h3>Pedidos</h3>
-                        </div>
-                    </div>
-                </div>
-        </div>
-
-
-    </div>
-</div>-->
-    
 <!--Contenedor general-->
 <div class="row justify-content-center">
 
@@ -344,37 +260,72 @@
 
 
     <!-- Modal/Diálogo para mostrar información del pedido -->
-    <div id="order-modal" class="modal">
+    <!--<div id="order-modal" class="modal">
         <div class="modal-content">
             <span class="close-btn">×</span>
             <h2>Detalles del Pedido</h2>
-            <div id="modal-order-details">
-                <!-- Aquí se mostrarán los detalles del pedido -->
-            </div>
-            <div id="status-change-options">
-                <!-- Opciones para cambiar el estado del pedido -->
-            </div>
-            <!-- Selección de Piloto -->
-            <div id="pilot-selection" style="display: none;">
-                <h3>Asignar Piloto</h3>
-                <select id="pilot-select">
-                    <option value="">Selecciona un piloto</option>
-                    <option value="Piloto #1 José">Piloto #1 José</option>
-                    <option value="Piloto #2 Oscar">Piloto #2 Oscar</option>
-                    <option value="Piloto #3 Mario">Piloto #3 Mario</option>
-                </select>
-                <button id="assign-pilot-btn" style="display: none;">Cambiar estado</button>
-            </div>
-            <!-- Selección de Paquetería -->
-            <div id="parcel-selection" style="display: none;">
+            <div id="modal-order-details">-->
+    <!-- Aquí se mostrarán los detalles del pedido -->
+    <!--</div>
+    <div id="status-change-options">-->
+    <!-- Opciones para cambiar el estado del pedido -->
+    <!--</div>-->
+    <!-- Selección de Piloto -->
+    <!--<div id="pilot-selection" style="display: none;">
+        <h3>Asignar Piloto</h3>
+        <select id="pilot-select">
+        </select>
+        <button id="assign-pilot-btn" style="display: none;">Cambiar estado</button>
+    </div>-->
+    <!-- Selección de Paquetería -->
+    <!--<div id="parcel-selection" style="display: none;">
                 <h3>Asignar Paquetería</h3>
                 <select id="parcel-select">
-                    <option value="">Asignar paquetería</option>
-                    <option value="Guatex">Guatex</option>
-                    <option value="Forza">Forza</option>
-                    <option value="Cargo Express">Cargo Express</option>
                 </select>
                 <button id="assign-parcel-btn" style="display: none;">Cambiar estado</button>
+            </div>
+        </div>
+    </div>-->
+    <!-- Modal -->
+    <div id="order-modal" class="modal fade" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h5 class="modal-title" id="orderModalLabel">Detalles del Pedido</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <!-- Modal Body -->
+                <div class="modal-body">
+                    <div id="modal-order-details">
+                        <!-- Aquí se mostrarán los detalles del pedido -->
+                    </div>
+                    <!-- Selección de Piloto -->
+                    <div id="pilot-selection" style="display: none;">
+                        <h5>Asignar Piloto</h5>
+                        <select id="pilot-select" class="form-control mb-2">
+                            <!-- Opciones de pilotos -->
+                        </select>
+                        <button id="assign-pilot-btn" class="btn btn-primary btn-block" style="display: none;">Cambiar estado</button>
+                    </div>
+                    <!-- Selección de Paquetería -->
+                    <div id="parcel-selection" style="display: none;">
+                        <h5>Asignar Paquetería</h5>
+                        <select id="parcel-select" class="form-control mb-2">
+                            <!-- Opciones de paquetería -->
+                        </select>
+                        <button id="assign-parcel-btn" class="btn btn-primary btn-block" style="display: none;">Cambiar estado</button>
+                    </div>
+                </div>
+                <!-- Modal Footer -->
+                <div class="modal-footer d-flex flex-column align-items-center">
+                    <h5 class="mb-3">Cambiar estado:</h5>
+                    <div id="status-change-options" class="d-flex flex-row gap-2">
+                        <!-- Opciones para cambiar el estado del pedido -->
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -401,21 +352,18 @@
             };
 
             $(document).ready(function () {
+                 $.ajax({
+                    url: '@Url.Action("obtengoUsuario", "Home")',
+                    type: "POST",
+                    success: function (usuario) {
+                        usuarioLogin = usuario;
 
-
-             $.ajax({
-                url: '@Url.Action("obtengoUsuario", "Home")',
-                type: "POST",
-                success: function (usuario) {
-                    usuarioLogin = usuario;
-
-                    consultaPedidos();
-                },
-                error: function (xhr, status, error) {
-                    console.error("Error al obtener el usuario:", error);
-                }
-            });
-
+                        consultaPedidos();
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("Error al obtener el usuario:", error);
+                    }
+                });
         });
             //Consulta folio en firebird
             function buscarTicket() {
@@ -598,8 +546,7 @@
 
                              // Agregar los pilotos al select
                              listadoPilotos.forEach(piloto => {
-                                 let optionText = `Piloto #${piloto.id_usuario} ${piloto.nombre}`;
-                                 pilotSelect.append(`<option value="${optionText}">${optionText}</option>`);
+                                 pilotSelect.append(`<option value="${piloto.id_usuario}">${piloto.nombre}</option>`);
                              });
                          }
                      },
@@ -617,7 +564,8 @@
             });
             }
             //Consulta todos los pilotos del sistema
-             function getPilotosAll() {
+            function getPilotosAll() {
+                document.getElementById('contenedor-loader').style.display = 'flex';
                  $.ajax({
                     url: '@Url.Action("consultaPilotos", "Home")',
                     type: "POST",
@@ -640,6 +588,7 @@
                              });
 
                          }
+                         document.getElementById('contenedor-loader').style.display = 'none';
                      },
                      error: function (xhr, status, error) {
                          document.getElementById('contenedor-loader').style.display = 'none';
@@ -656,6 +605,7 @@
             }
             //Consulta paqueterías
             function getPaqueterias() {
+                document.getElementById('contenedor-loader').style.display = 'flex';
                   $.ajax({
                     url: '@Url.Action("consultaPaqueterias", "Home")',
                     type: "POST",
@@ -666,14 +616,22 @@
                              // Deserializar la respuesta JSON
                              let respuesta = JSON.parse(data.respuesta);
 
-                             // Acceder al array de pilotos
-                             let listadoPaq = respuesta.listadoPaqueterias;
-                             listadoPaq.forEach(paq => {
-                                 console.log("ID Paquetería: " + paq.id_paqueteria);
-                                 console.log("Nombre: " + paq.nombre);
-                             });
+                             // Acceder al array de paqueterías
+                             let listadoPaqueterias = respuesta.listadoPaqueterias;
 
+                             // Obtener el elemento select
+                             let parcelSelect = $('#parcel-select');
+                             // Vaciar las opciones existentes
+                             parcelSelect.empty();
+                             // Agregar la opción predeterminada
+                             parcelSelect.append('<option value="">Selecciona una paquetería</option>');
+
+                             // Agregar las paqueterías al select
+                             listadoPaqueterias.forEach(paq => {
+                                 parcelSelect.append(`<option value="${paq.id_paqueteria}">${paq.nombre}</option>`);
+                             });
                          }
+                         document.getElementById('contenedor-loader').style.display = 'none';
                      },
                      error: function (xhr, status, error) {
                          document.getElementById('contenedor-loader').style.display = 'none';
@@ -688,29 +646,7 @@
                      }
             });
             }
-
-            /*function updateList(listaPedidos) {
-                // Clear existing lists
-                const categories = ['production', 'courier', 'parcel', 'delivered', 'returned', 'canceled', 'completed'];
-
-                categories.forEach(category => {
-                    const ul = document.getElementById(`${category}-orders`);
-                    ul.innerHTML = ''; // Limpiar la lista existente
-
-                    // Filtrar los pedidos por categoría utilizando el mapeo
-                    const pedidosFiltrados = listaPedidos.filter(pedido => categoryMap[pedido.estado_actual] === category);
-
-                    // Agregar los pedidos filtrados a la lista correspondiente
-                    pedidosFiltrados.forEach(pedido => {
-                        const li = document.createElement('li');
-                        li.textContent = `Folio: ${pedido.folio} - Cliente: ${pedido.cliente} - Fecha: ${pedido.fecha_estado}`;
-                        li.addEventListener('click', function () {
-                            showModal(pedido);
-                        });
-                        ul.appendChild(li);
-                    });
-                });
-            }*/
+            //Actualizar lista de pedidos
             function updateList(listaPedidos) {
                 // Crear un objeto para almacenar el último estado de cada pedido
                 const pedidosUltimoEstado = {};
@@ -786,8 +722,10 @@
                 nextStates.forEach(nextState => {
                     const button = document.createElement('button');
                     button.textContent = nextState.label;
+                    button.classList.add('btn', 'btn-primary', 'me-2');
                     button.addEventListener('click', function () {
                         if (nextState.state === 'courier') { // Enviar por Mensajería
+                            getPilotosAct();
                             pilotSelection.style.display = 'block';
                             assignPilotBtn.style.display = 'block';
                             assignParcelBtn.style.display = 'none';
@@ -797,6 +735,7 @@
                                 const selectedPilot = document.getElementById('pilot-select').value;
                                 if (selectedPilot) {
                                     console.log('Piloto asignado: ' + selectedPilot);
+                                    piloto = selectedPilot;
                                     changeOrderState(pedido, nextState.state, piloto, paqueteria, obvs);
                                 } else {
                                     alert('Por favor, selecciona un piloto.');
@@ -804,6 +743,7 @@
                             });
 
                         } else if (nextState.state === 'parcel') { // Enviar por Paquetería
+                            getPaqueterias();
                             parcelSelection.style.display = 'block';
                             assignParcelBtn.style.display = 'block';
                             assignPilotBtn.style.display = 'none';
@@ -812,6 +752,7 @@
                             assignParcelBtn.addEventListener('click', function () {
                                 const selectedParcel = document.getElementById('parcel-select').value;
                                 if (selectedParcel) {
+                                    paqueteria = selectedParcel;
                                     console.log('Paquetería asignada: ' + selectedParcel);
                                     changeOrderState(pedido, nextState.state, piloto, paqueteria, obvs);
                                 } else {
@@ -828,18 +769,10 @@
                     statusChangeOptions.appendChild(button);
                 });
 
-                const modal = document.getElementById('order-modal');
-                modal.style.display = 'flex';
+                // Utilizar Bootstrap para mostrar el modal
+                const modal = new bootstrap.Modal(document.getElementById('order-modal'));
+                modal.show();
             }
-
-            // Cerrar modal
-            function closeModal() {
-                const modal = document.getElementById('order-modal');
-                modal.style.display = 'none';
-            }
-
-            document.querySelector('.close-btn').addEventListener('click', closeModal);
-
 
             // Obtener estados siguientes posibles
             function getNextStates(currentState) {
@@ -931,7 +864,6 @@
                                 confirmar: "Aceptar",
                                 img: "img/success.png"
                             }).then(() => {
-                                closeModal();
                                 consultaPedidos();
                             });
                         }

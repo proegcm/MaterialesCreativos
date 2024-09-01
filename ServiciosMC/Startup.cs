@@ -55,7 +55,9 @@ namespace ServiciosMC
                 options.AddPolicy("USUARIO_MULTIPLE", policy =>
                                                             policy.RequireAssertion(context =>
                                                             context.User.HasClaim("TIPO_USUARIO", "ADMINISTRADOR") ||
-                                                            context.User.HasClaim("TIPO_USUARIO", "VENDEDOR") 
+                                                            context.User.HasClaim("TIPO_USUARIO", "VENDEDOR") ||
+                                                            context.User.HasClaim("TIPO_USUARIO","PILOTO")
+
                                                             )
                                   );
 
