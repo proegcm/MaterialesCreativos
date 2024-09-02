@@ -1,25 +1,30 @@
 ﻿
-    <form id="loginForm">
-        <div id="cont-login">
-
-            <h3 class="mb-3 mt-3">INICIO DE SESIÓN</h3>
-            <div class="mb-3">
-                <input type="text" class="form-control" id="txtUser" style="text-transform:uppercase;" placeholder="Usuario" required>
-            </div>
-            <div class="mb-3">
-                <input type="password" class="form-control" id="txtPasswd" placeholder="Contraseña" required>
-            </div>
-            <div class="mb-3">
-                <button type="submit" class="btn botonIngreso" id="btnIngreso">Ingresar</button>
-            </div>
-            <div class="mb-3">
-                <a href="#!" class="link-secondary text-decoration-none small-link">¿Olvidaste tu contraseña?</a>
-            </div>
+<form id="loginForm">
+    <div id="cont-login">
+        <h3 class="mb-3 mt-3">INICIO DE SESIÓN</h3>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="inputUsr">
+                <i class="fas fa-user"></i>
+            </span>
+            <input type="text" class="form-control" id="txtUser" placeholder="USUARIO" aria-label="inputUsr" aria-describedby="inputUsr" required>
         </div>
-    </form>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="inputPass">
+                <i class="fas fa-lock"></i>
+            </span>
+            <input type="password" class="form-control" id="txtPasswd" placeholder="CONTRASEÑA" aria-label="inputPass" aria-describedby="inputPass" required>
+        </div>
+        <div class="mb-3">
+            <button type="submit" class="btn botonIngreso" id="btnIngreso">Ingresar</button>
+        </div>
+        <div class="mb-3">
+            <a href="#!" class="link-secondary text-decoration-none small-link">¿Olvidaste tu contraseña?</a>
+        </div>
+    </div>
+</form>
 
 
-  
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
     function Autenticar() {

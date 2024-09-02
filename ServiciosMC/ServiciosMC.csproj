@@ -12,22 +12,18 @@
 	  <Compile Remove="Views\F\**" />
 	  <Compile Remove="Views\NewFolder1\**" />
 	  <Compile Remove="Views\NewFolder2\**" />
-	  <Compile Remove="Views\NewFolder\**" />
 	  <Content Remove="Views\EjemploMVCH\**" />
 	  <Content Remove="Views\F\**" />
 	  <Content Remove="Views\NewFolder1\**" />
 	  <Content Remove="Views\NewFolder2\**" />
-	  <Content Remove="Views\NewFolder\**" />
 	  <EmbeddedResource Remove="Views\EjemploMVCH\**" />
 	  <EmbeddedResource Remove="Views\F\**" />
 	  <EmbeddedResource Remove="Views\NewFolder1\**" />
 	  <EmbeddedResource Remove="Views\NewFolder2\**" />
-	  <EmbeddedResource Remove="Views\NewFolder\**" />
 	  <None Remove="Views\EjemploMVCH\**" />
 	  <None Remove="Views\F\**" />
 	  <None Remove="Views\NewFolder1\**" />
 	  <None Remove="Views\NewFolder2\**" />
-	  <None Remove="Views\NewFolder\**" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -60,6 +56,7 @@
 
 	<ItemGroup>
 	  <Folder Include="wwwroot\Log\XML\" />
+	  <Folder Include="wwwroot\MCreativos\Fonts\" />
 	</ItemGroup>
 
 	<ItemGroup>

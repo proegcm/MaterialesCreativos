@@ -1,0 +1,11 @@
+﻿@font-face {
+    font-family: 'LemonMilk';
+    src: url('/MCreativos/Fonts/LemonMilk.otf') format('opentype'),
+         url('/MCreativos/Fonts/libel-suit-rg.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'LemonMilk', sans-serif;
+}

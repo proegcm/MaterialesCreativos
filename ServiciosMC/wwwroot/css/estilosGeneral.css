@@ -1,4 +1,23 @@
-﻿/*LOADER SPINNER*/
+﻿
+@font-face {
+    font-family: 'LemonMilk';
+    src: url('/MCreativos/Fonts/LemonMilk.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LibelSuit';
+    src: url('/MCreativos/Fonts/libel-suit-rg.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.contentMC {
+    font-family: 'LemonMilk', sans-serif;
+}
+
+/*LOADER SPINNER*/
 .loader {
     display: none;
     overflow-y: auto;

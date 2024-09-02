@@ -1,0 +1,205 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Pedidos</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Listado de Pedidos</h2>
+
+    <table id="tabla-pedidos" class="table">
+        <thead>
+            <tr>
+                <th>Folio</th>
+                <th>Cliente</th>
+                <th>Fecha</th>
+                <th>Estado</th>
+                <th>Observaciones</th>
+            </tr>
+        </thead>
+        <tbody id="tbody-pedidos">
+            <!-- Las filas se agregarán aquí dinámicamente -->
+        </tbody>
+    </table>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+    let usuarioLogin = "";
+    $(document).ready(function () {
+                 $.ajax({
+                    url: '@Url.Action("obtengoUsuario", "Home")',
+                    type: "POST",
+                    success: function (usuario) {
+                        usuarioLogin = usuario;
+                        llenarTabla();
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("Error al obtener el usuario:", error);
+                    }
+                });
+        });
+ function consultaPedidos() {
+    return new Promise((resolve, reject) => {
+        let pedidosUltimoEstado = {}; // Definir el objeto para almacenar el último estado de cada folio
+        let pedidosConUltimoEstado = []; // Inicializar la lista de pedidos con el último estado
+
+        console.log("consultaPedidos - usuarioLogin: " + usuarioLogin);
+
+        let parametros = {
+            infoUsuario: {
+                usuario: usuarioLogin
+            }
+        };
+
+        document.getElementById('contenedor-loader').style.display = 'flex';
+
+        $.ajax({
+            url: '@Url.Action("listaPedidos", "History")',
+            type: "POST",
+            data: parametros,
+            success: function (data) {
+                if (!data.success) {
+                    console.log(data.errorMensaje);
+                    dialogoEG({
+                        type: "error",
+                        title: "Error consulta de pedidos",
+                        mensaje: data.errorMensaje,
+                        confirmar: "Aceptar",
+                        img: "img/error.png"
+                    }).then(() => {
+                        // Puedes limpiar o hacer otra acción aquí si es necesario
+                    });
+
+                    // Rechazar la promesa si hay un error en la respuesta
+                    reject(new Error(data.errorMensaje));
+                } else {
+                    const pedidos = JSON.parse(data.respuesta).listadoPedidos;
+                    console.log("pedidos:");
+                    console.log(pedidos);
+
+                    // Iterar sobre la lista de pedidos para encontrar el último estado de cada folio
+                    pedidos.forEach(pedido => {
+                        const folio = pedido.folio;
+                        // Si el folio no está en el objeto o si el estado actual es más reciente
+                        if (!pedidosUltimoEstado[folio] || new Date(pedido.fecha_estado) > new Date(pedidosUltimoEstado[folio].fecha_estado)) {
+                            pedidosUltimoEstado[folio] = pedido;
+                        }
+                    });
+
+                    // Obtener los valores de los pedidos con el último estado
+                    pedidosConUltimoEstado = Object.values(pedidosUltimoEstado);
+
+                    // Resolver la promesa con los datos obtenidos
+                    resolve(pedidosConUltimoEstado);
+                }
+
+                document.getElementById('contenedor-loader').style.display = 'none';
+            },
+            error: function (xhr, status, error) {
+                document.getElementById('contenedor-loader').style.display = 'none';
+                console.log("Error al consultar pedidos:", error);
+
+                dialogoEG({
+                    type: "error",
+                    title: "Error de comunicación",
+                    mensaje: "Ocurrió un error al obtener listado de pedidos. Intente nuevamente, si el inconveniente persiste contacte al administrador.",
+                    confirmar: "Aceptar",
+                    img: "img/error.png"
+                });
+
+                // Rechazar la promesa en caso de error
+                reject(error);
+            }
+        });
+    });
+}
+
+
+
+
+    function llenarTabla() {
+        const tbody = document.getElementById("tbody-pedidos");
+
+        // Limpiar el contenido actual del tbody
+        tbody.innerHTML = "";
+
+        // Llamar a consultaPedidos y manejar la promesa
+        consultaPedidos().then(pedidosConUltimoEstado => {
+            // Recorrer la lista de pedidos
+            pedidosConUltimoEstado.forEach(pedido => {
+                // Crear una fila para cada pedido
+                const fila = document.createElement("tr");
+
+                // Crear celdas para cada dato del pedido
+                const celdaId = document.createElement("td");
+                celdaId.textContent = pedido.folio;
+                fila.appendChild(celdaId);
+
+                const celdaCliente = document.createElement("td");
+                celdaCliente.textContent = pedido.cliente;
+                fila.appendChild(celdaCliente);
+
+                const celdaProducto = document.createElement("td");
+                celdaProducto.textContent = pedido.fecha_estado;
+                fila.appendChild(celdaProducto);
+
+                const celdaEstado = document.createElement("td");
+                celdaEstado.textContent = pedido.estado_actual;
+                fila.appendChild(celdaEstado);
+
+                const celdaFecha = document.createElement("td");
+                celdaFecha.textContent = pedido.observaciones;
+                fila.appendChild(celdaFecha);
+
+                // Agregar la fila al tbody
+                tbody.appendChild(fila);
+            });
+        }).catch(error => {
+            console.log("Error al llenar la tabla:", error);
+            // Aquí podrías manejar el error, por ejemplo, mostrando un mensaje en la interfaz de usuario
+        });
+    }
+
+
+</script>

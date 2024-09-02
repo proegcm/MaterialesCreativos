@@ -8,25 +8,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Seguimiento de pedidos</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="~/css/adminlte.min.css">
     <link rel="stylesheet" href="~/css/site.css">
-    <link rel="stylesheet" type="text/css" href="~/css/datatables.min.css" />
-    <link rel="stylesheet" type="text/css" href="~/css/estilosGeneral.css" />
-
+    <link rel="stylesheet" type="text/css" href="~/css/datatables.min.css">
     <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="icon" type="image/png" href="/img/pantone.png">
     <link rel="stylesheet" type="text/css" href="/css/DialogoEG.css">
     <script type="text/javascript" src="/js/DialogoEG.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/css/estilosGeneral.css">
 
     <title>Seguimiento de pedidos</title>
     <style>
+
         html, body {
             height: 100%;
             margin: 0;
-            font-family: 'Poppins', sans-serif;
         }
 
         .contenedor {
@@ -37,25 +34,92 @@
             padding-top: 1rem;
             padding-bottom: 1rem;
         }
+
+        /* Estilo para la barra lateral */
+        .main-sidebar {
+            background-color: #f8f9fa; /* Color de fondo de la barra lateral */
+        }
+
+        /* Estilo para el contenedor del logo */
+        .brand-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 10px;
+        }
+
+        /* Estilo para la imagen del logo */
+        .brand-logo {
+            width: 58px; /* Ajusta el tamaño según sea necesario */
+            height: 58px; /* Mantiene la proporción original de la imagen */
+            border-radius: 50%; /* Hace que la imagen sea circular */
+            margin-bottom: 0px; /* Espacio debajo de la imagen del logo */
+            object-fit: cover; /* Asegura que la imagen se ajuste correctamente dentro del círculo */
+        }
+
+        /* Aumentar la altura de los botones de navegación */
+        .nav-link {
+            display: flex;
+            align-items: center;
+            height: 50px; /* Ajusta la altura según tus preferencias */
+            padding: 0.75rem 1rem; /* Incrementa el padding para que los botones sean más grandes */
+            font-size: 1rem; /* Incrementa el tamaño del texto */
+        }
+
+        /* Aumentar el tamaño de los íconos */
+        .nav-icon {
+            font-size: 1.5rem; /* Ajusta el tamaño según tus preferencias */
+            margin-right: 10px; /* Espaciado entre el ícono y el texto */
+        }
+
+        /* Centrando el contenido verticalmente */
+        .main-sidebar .nav-pills > .nav-item > .nav-link {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        /* Cambiar el color de fondo de la barra lateral */
+        .main-sidebar {
+            background-color: #f4f6f9; /* Ajusta el color de fondo */
+        }
+
+        /* Opcional: Cambiar el color al pasar el mouse */
+        .nav-link:hover {
+            background-color: #d2d6de; /* Ajusta el color de fondo al pasar el mouse */
+            color: #000; /* Cambia el color del texto si lo deseas */
+        }
+
+
+
     </style>
 </head>
-<body class="hold-transition sidebar-mini text-sm sidebar-collapse">
+<body class="hold-transition sidebar-mini text-sm sidebar-collapse contentMC">
     <div id="contenedor-loader" class="loader" style="display: none;">
         <div class="spinner"></div>
     </div>
     <div class="wrapper">
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <!-- Barra de navegación -->
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light" style="box-shadow: 0px 0px 15px rgb(15 10 53 / 0.85);">
             <div class="container-fluid d-flex align-items-center justify-content-between px-3">
-                <!--IZQUIERDA-->
-                <ul class="navbar-nav">
+                <!-- IZQUIERDA -->
+                <ul class="navbar-nav d-flex align-items-center">
                     <li class="nav-item">
-                        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                        <a class="nav-link" data-widget="pushmenu" href="#" role="button" style="color: #274296; font-size: 1.5rem;">
+                            <i class="fas fa-bars"></i>
+                        </a>
+                    </li>
+                    <!-- Texto "MATERIALES CREATIVOS" -->
+                    <li class="nav-item">
+                        <h3 class="navbar-text ml-3" style="color: #0f0a35; margin: 0;">MATERIALES CREATIVOS</h3>
                     </li>
                 </ul>
-                <!--DERECHA-->
+
+                <!-- DERECHA -->
                 <ul class="navbar-nav ml-auto d-flex align-items-center">
                     <li class="nav-item dropdown d-flex align-items-center">
-                        <a class="nav-link d-flex align-items-center" id="nomUser" data-toggle="dropdown" href="#" aria-expanded="false" style="font-weight: bold;">
+                        <a class="nav-link d-flex align-items-center" id="nomUser" data-toggle="dropdown" href="#" aria-expanded="false" style="font-weight: normal; color: #274296;">
                             <i class="fas fa-user mr-2"></i>
                             <span>
                                 @*@if (User.Identity.IsAuthenticated)
@@ -75,9 +139,39 @@
             </div>
         </nav>
 
+
+
+        <!-- Barra lateral -->
         <aside class="main-sidebar sidebar-light-primary elevation-4">
+            <!-- Brand Logo -->
+            <a href="@Url.Action("Index", "Home")" class="brand-link">
+                <img src="~/img/MCIMAGEN.jpg" class="brand-logo" alt="AdminLTE Logo">
+            </a>
+            <!-- Contenedor de navegación -->
+            <div class="sidebar">
+                <!-- Elementos de la barra lateral -->
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <!-- Elemento "Inicio" -->
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "Home")" class="nav-link" style="color: #274296;">
+                            <i class="nav-icon fas fa-home"></i>
+                            <p>Inicio</p>
+                        </a>
+                    </li>
+
+                    <!-- Elemento "Historial de pedidos" -->
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "History")" class="nav-link" style="color: #e86217;">
+                            <i class="nav-icon fas fa-list"></i>
+                            <p>Historial de pedidos</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </aside>
 
+
+        <!--Contenido-->
         <div class="content-wrapper">
 
             <div class="content-header">
@@ -100,8 +194,7 @@
 
         </div>
 
-        <aside class="control-sidebar control-sidebar-dark">
-        </aside>
+
     </div>
 
 

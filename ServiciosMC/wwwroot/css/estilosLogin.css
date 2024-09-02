@@ -1,4 +1,18 @@
-﻿.contenedor {
+﻿@font-face {
+    font-family: 'LemonMilk';
+    src: url('/MCreativos/Fonts/LemonMilk.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LibelSuit';
+    src: url('/MCreativos/Fonts/libel-suit-rg.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.contenedor {
     width: 60%;
     height: 80%;
     border-radius: 15px;
@@ -35,12 +49,13 @@
     border-bottom-right-radius: 15px;
     flex: 0 0 40%;
     padding: 80px;
-    font-family: 'Poppins', sans-serif;
+    /*font-family: 'Poppins', sans-serif;*/
     font-size: 12px;
     text-align: center;
 }
 
-    .form-div-mc h3{
+    .form-div-mc h3 {
+        font-family: 'LemonMilk', sans-serif;
         text-align: center;
         font-weight: bold;
         margin-bottom: 10px;
@@ -51,6 +66,7 @@
     }
 
     .form-div-mc .botonIngreso {
+        font-family: 'LemonMilk', sans-serif;
         width: 100%;
         color: white;
         background-color: #0f0a35;
@@ -58,12 +74,19 @@
     }
     
 .form-div-mc .small-link {
-    font-size: small; 
+    font-family: 'LibelSuit', sans-serif;
+    font-size: medium; 
 }
     .form-div-mc form {
         width: 100%;
         max-width: 100%;
     }
+    .form-div-mc input {
+        /*font-family: 'LibelSuit', sans-serif;*/
+        font-family: 'LemonMilk', sans-serif;
+        
+    }
+
 
     .form-div-mc input, .form-div-mc button {
         width: 100%;
@@ -74,8 +97,14 @@
         margin-bottom: 10px;
     }
 
-
-
+.input-group-text, .form-control {
+    height: 40px; /* Ajusta esta altura según sea necesario */
+    line-height: 40px; /* Asegúrate de que coincida con la altura */
+    padding: 0 10px; /* Ajusta el padding según sea necesario */
+    box-sizing: border-box; /* Asegúrate de que ambos elementos tengan el mismo box-sizing */
+    font-size: 16px; /* Asegúrate de que ambos elementos tengan el mismo font-size */
+    color: #0f0a35;
+}
 
 /*Estilos responsivos*/
 @media (min-width: 100px) and (max-width: 600px) {
