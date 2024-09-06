@@ -1,9 +1,9 @@
 <style>
     /* Estilo general para el card */
     .card {
-        box-shadow: 3px 3px 7px 3px #656565;
+        /*box-shadow: 3px 3px 7px 3px #656565;*/
         margin-top: 3px;
-        border-radius: 10px; /* Opcional: para bordes redondeados en la tarjeta */
+        /*border-radius: 10px;*/ /* Opcional: para bordes redondeados en la tarjeta */
     }
 
     .card-body {
@@ -52,10 +52,10 @@
 
     /*Información de pedidos*/
     .pedido-info-container {
-        border-radius: 10px;
+        /*border-radius: 10px;*/
         max-height: 80%;
         padding: 20px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/
         background-color: #fff;
         display: flex;
         flex-direction: column;
@@ -73,9 +73,9 @@
 
     .divPedidos {
         max-height: 100%;
-        border-radius: 10px;
+        /*border-radius: 10px;*/
         padding: 20px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/
         background-color: #fff;
     }
 
@@ -138,12 +138,12 @@
 <!--Contenedor general-->
 <div class="row justify-content-center">
 
-    <div class="col-sm-10">
+    <div class="col-sm-12">
 
         <div class="row h-100">
-            <div class="col-sm-12 col-md-8 col-lg-4 flex-grow-1">
+            <div class="col-sm-12 col-md-8 col-lg-3 flex-grow-1">
                 <!--DIV IZQUIERDA-->
-                <div class="card" style="box-shadow: 0px 0px 15px rgb(15 10 53 / 0.85); margin-top: 3px ">
+                <div class="card" style="margin-top: 3px;">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12">
@@ -177,8 +177,7 @@
                                 <p><strong>Total:</strong> <span id="total"></span></p>
                                 <p><strong>Pago:</strong> <span id="pago"></span></p>
                                 <p><strong>Cambio:</strong> <span id="cambio"></span></p>
-                                @*<p><strong>Estatus:</strong> <span id="estatus"></span></p>*@
-                                <button class="btn btn-block w-100 mt-2" style="background-color: #aa4c9c; color: #ffffff;" id="btnPasarProduccion" onclick="ingresaTicket()">
+                                <button class="btn btn-block w-100 mt-2" style="background-color: #e86217; color: #ffffff; " id="btnPasarProduccion" onclick="ingresaTicket()">
                                     <i class="fas fa-share" style="margin-right: 6px; vertical-align: middle;"></i> Pasar a producción
                                 </button>
                             </div>
@@ -187,9 +186,9 @@
                 </div>
             </div>
 
-            <div class="col-sm-12 col-md-6 col-lg-8 flex-grow-1">
+            <div class="col-sm-12 col-md-6 col-lg-6 flex-grow-1">
                 <!--DIV DERECHA-->
-                <div class="card" style="box-shadow: 0px 0px 15px rgb(15 10 53 / 0.85); margin-top: 3px">
+                <div class="card" style="margin-top: 3px">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12">
@@ -262,35 +261,6 @@
         </div>
 
     </div>
-
-
-    <!-- Modal/Diálogo para mostrar información del pedido -->
-    <!--<div id="order-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn">×</span>
-            <h2>Detalles del Pedido</h2>
-            <div id="modal-order-details">-->
-    <!-- Aquí se mostrarán los detalles del pedido -->
-    <!--</div>
-    <div id="status-change-options">-->
-    <!-- Opciones para cambiar el estado del pedido -->
-    <!--</div>-->
-    <!-- Selección de Piloto -->
-    <!--<div id="pilot-selection" style="display: none;">
-        <h3>Asignar Piloto</h3>
-        <select id="pilot-select">
-        </select>
-        <button id="assign-pilot-btn" style="display: none;">Cambiar estado</button>
-    </div>-->
-    <!-- Selección de Paquetería -->
-    <!--<div id="parcel-selection" style="display: none;">
-                <h3>Asignar Paquetería</h3>
-                <select id="parcel-select">
-                </select>
-                <button id="assign-parcel-btn" style="display: none;">Cambiar estado</button>
-            </div>
-        </div>
-    </div>-->
     <!-- Modal -->
     <div id="order-modal" class="modal fade" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
