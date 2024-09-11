@@ -3,63 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="~/DataTables/datatables.min.css" rel="stylesheet">
+    <script src="~/DataTables/datatables.min.js"></script>
+    @*<link href="~/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/css/dataTables.bootstrap5.css" rel="stylesheet">*@
     <title>Listado de Pedidos</title>
     <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        table, th, td {
-            border: 1px solid black;
-        }
-
-        th, td {
-            padding: 8px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f2f2f2;
-        }
     </style>
 </head>
 <body>
+    <div class="row justify-content-center">
+        <div class="col-sm-12">
+            <div class="row">
+                <h2>Historial de pedidos</h2>
+            </div>
+            <div class="row">
+                
+            </div>
+            <div class="row">
+                <div class="table-responsive">
+                    <table id="tabla-pedidos" class="table hover row-border" style="width:100%">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>No.Folio</th>
+                                <th>Cliente</th>
+                                <th>Usuario a cargo</th>
+                                <th>Fecha pedido</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-pedidos">
+                            <!-- Las filas se agregarán aquí dinámicamente -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <h2>Listado de Pedidos</h2>
 
-    <table id="tabla-pedidos" class="table">
-        <thead>
-            <tr>
-                <th>Folio</th>
-                <th>Cliente</th>
-                <th>Fecha</th>
-                <th>Estado</th>
-                <th>Observaciones</th>
-            </tr>
-        </thead>
-        <tbody id="tbody-pedidos">
-            <!-- Las filas se agregarán aquí dinámicamente -->
-        </tbody>
-    </table>
+    
 
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
@@ -67,6 +56,22 @@
 <script type="text/javascript">
     let usuarioLogin = "";
     $(document).ready(function () {
+
+        let tablaPedidos = $('#tabla-pedidos').DataTable({
+            //"columnDefs": [
+            //    {
+            //        "targets": [2, 9, 10, 11, 12, 13],
+            //        "visible": false,
+            //    },
+            //],
+            "destroy": true,
+            "ordering": false,
+            "responsive": true,
+            "bLengthChange": false,
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+            }
+        });
                  $.ajax({
                     url: '@Url.Action("obtengoUsuario", "Home")',
                     type: "POST",
@@ -77,9 +82,11 @@
                     error: function (xhr, status, error) {
                         console.error("Error al obtener el usuario:", error);
                     }
-                });
-        });
- function consultaPedidos() {
+                 });
+
+
+
+function consultaPedidos() {
     return new Promise((resolve, reject) => {
         let pedidosUltimoEstado = {}; // Definir el objeto para almacenar el último estado de cada folio
         let pedidosConUltimoEstado = []; // Inicializar la lista de pedidos con el último estado
@@ -108,7 +115,7 @@
                         confirmar: "Aceptar",
                         img: "img/error.png"
                     }).then(() => {
-                        // Puedes limpiar o hacer otra acción aquí si es necesario
+                        tablaPedidos.clear().draw();
                     });
 
                     // Rechazar la promesa si hay un error en la respuesta
@@ -160,46 +167,31 @@
 
     function llenarTabla() {
         const tbody = document.getElementById("tbody-pedidos");
-
-        // Limpiar el contenido actual del tbody
-        tbody.innerHTML = "";
-
         // Llamar a consultaPedidos y manejar la promesa
         consultaPedidos().then(pedidosConUltimoEstado => {
             // Recorrer la lista de pedidos
             pedidosConUltimoEstado.forEach(pedido => {
-                // Crear una fila para cada pedido
-                const fila = document.createElement("tr");
-
-                // Crear celdas para cada dato del pedido
-                const celdaId = document.createElement("td");
-                celdaId.textContent = pedido.folio;
-                fila.appendChild(celdaId);
-
-                const celdaCliente = document.createElement("td");
-                celdaCliente.textContent = pedido.cliente;
-                fila.appendChild(celdaCliente);
-
-                const celdaProducto = document.createElement("td");
-                celdaProducto.textContent = pedido.fecha_estado;
-                fila.appendChild(celdaProducto);
-
-                const celdaEstado = document.createElement("td");
-                celdaEstado.textContent = pedido.estado_actual;
-                fila.appendChild(celdaEstado);
-
-                const celdaFecha = document.createElement("td");
-                celdaFecha.textContent = pedido.observaciones;
-                fila.appendChild(celdaFecha);
-
-                // Agregar la fila al tbody
-                tbody.appendChild(fila);
+                tablaPedidos.row.add([
+                    pedido.folio,
+                    pedido.cliente,
+                    pedido.usuario_registro,
+                    pedido.fecha_estado,
+                    pedido.estado_actual
+                ]).draw();
             });
         }).catch(error => {
             console.log("Error al llenar la tabla:", error);
-            // Aquí podrías manejar el error, por ejemplo, mostrando un mensaje en la interfaz de usuario
         });
     }
 
+
+
+
+
+
+
+
+
+        });
 
 </script>
