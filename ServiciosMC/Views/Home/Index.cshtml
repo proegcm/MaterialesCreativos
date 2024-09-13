@@ -1,332 +1,267 @@
-<style>
-    /* Estilo general para el card */
-    .card {
-        /*box-shadow: 3px 3px 7px 3px #656565;*/
-        margin-top: 3px;
-        /*border-radius: 10px;*/ /* Opcional: para bordes redondeados en la tarjeta */
-    }
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="~/css/estilosHome.css" rel="stylesheet">
+    <style>
+    </style>
+</head>
+<body>
+    <!--Contenedor general-->
+    <div class="row justify-content-center">
 
-    .card-body {
-        padding: 20px; /* Ajusta el espaciado interno de la tarjeta */
-    }
+        <div class="col-sm-12">
 
-    /* Centra el título 'Pedidos' */
-    .card .form-group > h3:first-of-type {
-        text-align: center; /* Centra el título 'Pedidos' */
-        margin-bottom: 15px; /* Ajusta el margen inferior del título 'Pedidos' */
-        font-weight: normal;
-        color: #0f0a35;
-    }
-
-    /* Estilo para los títulos dentro de cada 'order-category' */
-    .card .order-category h3 {
-        /*color: #274296;*/
-        text-align: left; /* Alinea a la izquierda */
-        font-size: 1.1rem; /* Ajusta el tamaño de la letra según sea necesario */
-        margin-bottom: 10px; /* Ajusta el margen inferior del título */
-        font-weight: normal;
-    }
-
-    /* Alinea el contenido dentro de las listas */
-    .card .order-category ul {
-        padding-left: 20px; /* Ajusta el padding para la lista */
-        text-align: left; /* Alinea el texto dentro de las listas */
-    }
-
-    .card input.form-control {
-        margin-bottom: 15px; /* Ajusta el margen inferior de los inputs */
-    }
-
-    .card .btn {
-        background-color: #274296;
-        color: #ffffff;
-        border: none; /* Quita el borde del botón */
-        padding: 10px; /* Ajusta el padding del botón */
-        border-radius: 5px; /* Opcional: para bordes redondeados en el botón */
-    }
-
-        .card .btn i {
-            margin-right: 6px;
-            vertical-align: middle; /* Alinea verticalmente el ícono */
-        }
-
-    /*Información de pedidos*/
-    .pedido-info-container {
-        /*border-radius: 10px;*/
-        max-height: 80%;
-        padding: 20px;
-        /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/
-        background-color: #fff;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
-
-        .pedido-info-container p {
-            margin: 10px 0;
-        }
-
-        .pedido-info-container span {
-            display: inline-block;
-            margin-left: 10px;
-        }
-
-    .divPedidos {
-        max-height: 100%;
-        /*border-radius: 10px;*/
-        padding: 20px;
-        /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/
-        background-color: #fff;
-    }
-
-    #pedidosContainer {
-        flex-grow: 1;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .order-info {
-        margin-top: 30px;
-    }
-
-
-        .order-info button {
-            margin-top: 10px;
-        }
-
-
-    .order-category {
-        margin-top: 30px;
-    }
-
-
-        .order-category ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-
-        .order-category li {
-            background-color: white;
-            margin: 10px 0;
-            padding: 15px;
-            border-radius: 4px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            cursor: pointer;
-        }
-
-
-            .order-category li button {
-                background-color: #28a745;
-                padding: 5px 10px;
-            }
-
-
-                .order-category li button:hover {
-                    background-color: #218838;
-                }
-
-
-</style>
-<div id="contenedor-loader" class="loader" style="display: none;">
-    <div class="spinner"></div>
-</div>
-
-<!--Contenedor general-->
-<div class="row justify-content-center">
-
-    <div class="col-sm-12">
-
-        <div class="row h-100">
-            <div class="col-sm-12 col-md-8 col-lg-3 flex-grow-1">
-                <!--DIV IZQUIERDA-->
-                <div class="card" style="margin-top: 3px;">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <h3>Buscar ticket</h3>
+            <div class="row h-100">
+                <div class="col-sm-12 col-md-8 col-lg-3 flex-grow-1">
+                    <!--DIV IZQUIERDA-->
+                    <div class="card ticket-card" style="margin-top: 3px;">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group d-flex align-items-center">
+                                        <span class="material-symbols-outlined card-icon">
+                                            order_approve
+                                        </span>
+                                        <h3 class="card-title ml-2">BUSCAR TICKET</h3>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group d-flex align-items-center">
+                                        <form id="buscarTicketForm" onsubmit="buscarTicket(); return false;" class="d-flex w-100">
+                                            <input type="text" class="form-control" placeholder="Ingrese número de folio"
+                                                   name="txtFolio" id="txtFolio" maxlength="10"
+                                                   inputmode="numeric" oninput="validarSoloNumeros(this)" required />
+                                            <button type="submit" class="btn btn-icon" id="btnBuscar">
+                                                <span class="material-symbols-outlined">
+                                                    search
+                                                </span>
+                                            </button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Ingrese número de folio"
-                                           name="txtFolio" id="txtFolio" maxlength="10"
-                                           inputmode="numeric" oninput="validarSoloNumeros(this)" required />
+                        </div>
+                    </div>
+                    <!--display:none;-->
+                    <div class="card infopedido-card" style="margin-top: 3px; " id="pedidoInfo">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group d-flex align-items-center">
+                                        <span class="material-symbols-outlined card-icon">
+                                            grading
+                                        </span>
+                                        <h3 class="card-title">INFORMACIÓN DEL PEDIDO</h3>
+                                    </div>
+                                </div>
+                             
+                                <div class="col-12">
+                                    <div class="form-group d-flex flex-column align-items-start justify-content-end">
+                                        <p><strong>Folio:</strong> <span id="folio"></span></p>
+                                        <p><strong>Fecha:</strong> <span id="fecha"></span></p>
+                                        <p><strong>Cajero:</strong> <span id="cajero"></span></p>
+                                        <p><strong>Cliente:</strong> <span id="cliente"></span></p>
+                                        <p><strong>Total:</strong> <span id="total"></span></p>
+                                        <p><strong>Pago:</strong> <span id="pago"></span></p>
+                                        <p><strong>Cambio:</strong> <span id="cambio"></span></p>
+                                        <button class="btn btn-block w-100 mt-2" style="background-color: #e86217; color: #ffffff; " id="btnPasarProduccion" onclick="ingresaTicket()">
+                                            <i class="fas fa-share" style="margin-right: 6px; vertical-align: middle;"></i> Pasar a producción
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="col-sm-12 col-md-6 col-lg-6 flex-grow-1">
+                    <!--DIV DERECHA-->
+                    <div class="card pedidos-card" style="margin-top: 3px">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12 cpedidos   ">
+                                    <div class="form-group d-flex justify-content-center align-items-center">
+                                        <span class="material-symbols-outlined card-icon">package_2</span>
+                                        <h3 class="card-title ml-2">PEDIDOS</h3>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group order-category category-1">
+                                        <div class="order-header">
+                                            <span class="material-symbols-outlined order-icon">arrow_drop_down_circle</span>
+                                            <h3>En Producción</h3>
+                                        </div>
+                                        <div class="card-container" id="production-orders">
+                                            <!-- Listado de pedidos en producción -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 oculto">
+                                    <div class="form-group order-category category-2">
+                                        <div class="order-header">
+                                            <span class="material-symbols-outlined order-icon">arrow_drop_down_circle</span>
+                                            <h3>Completado</h3>
+                                        </div>
+                                        <div class="card-container"  id="completed-orders">
+                                            <!-- Listado de pedidos completados -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 oculto">
+                                    <div class="form-group order-category category-3">
+                                        <div class="order-header">
+                                            <span class="material-symbols-outlined order-icon">arrow_drop_down_circle</span>
+                                            <h3>Envío por Mensajería</h3>
+                                        </div>
+                                        <div class="card-container"  id="courier-orders">
+                                            <!-- Listado de pedidos enviados por mensajería -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 oculto">
+                                    <div class="form-group order-category category-4">
+                                        <div class="order-header">
+                                            <span class="material-symbols-outlined order-icon">arrow_drop_down_circle</span>
+                                            <h3>Envío por Paquetería</h3>
+                                        </div>
+                                        <div class="card-container"  id="parcel-orders">
+                                            <!-- Listado de pedidos enviados por paquetería -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 oculto">
+                                    <div class="form-group order-category category-5">
+                                        <div class="order-header">
+                                            <span class="material-symbols-outlined order-icon">arrow_drop_down_circle</span>
+                                            <h3>Devuelto</h3>
+                                        </div>
+                                        <div class="card-container"  id="returned-orders">
+                                            <!-- Listado de pedidos devueltos -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 oculto">
+                                    <div class="form-group order-category category-6">
+                                        <div class="order-header">
+                                            <span class="material-symbols-outlined order-icon">arrow_drop_down_circle</span>
+                                            <h3>Anulado</h3>
+                                        </div>
+                                        <div class="card-container"  id="canceled-orders">
+                                            <!-- Listado de pedidos anulados -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 oculto">
+                                    <div class="form-group order-category category-7">
+                                        <div class="order-header">
+                                            <span class="material-symbols-outlined order-icon">arrow_drop_down_circle</span>
+                                            <h3>Entregado</h3>
+                                        </div>
+                                        <div class="card-container"  id="delivered-orders">
+                                            <!-- Listado de pedidos entregados -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 oculto">
+                                    <div class="form-group order-category category-1">
+                                        <div class="order-header">
+                                            <span class="material-symbols-outlined order-icon">arrow_drop_down_circle</span>
+                                            <h3>Reprogramado</h3>
+                                        </div>
+                                        <div class="card-container" id="rescheduled-orders">
+                                            <!-- Listado de pedidos Reprogramado -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 oculto">
+                                    <div class="form-group order-category category-2">
+                                        <div class="order-header">
+                                            <span class="material-symbols-outlined order-icon">arrow_drop_down_circle</span>
+                                            <h3>Recoge en oficina</h3>
+                                        </div>
+                                        <div class="card-container" id="pickup-orders">
+                                            <!-- Listado de pedidos Recoge en oficina -->
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="card" style="box-shadow: 0px 0px 15px rgb(15 10 53 / 0.85); margin-top: 3px; display: none; " id="pedidoInfo">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <h3>Información del pedido</h3>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <p><strong>Folio:</strong> <span id="folio"></span> <strong>   Fecha:</strong> <span id="fecha"></span></p>
-                                <p><strong>Cajero:</strong> <span id="cajero"></span></p>
-                                <p><strong>Cliente:</strong> <span id="cliente"></span></p>
-                                <p><strong>Total:</strong> <span id="total"></span></p>
-                                <p><strong>Pago:</strong> <span id="pago"></span></p>
-                                <p><strong>Cambio:</strong> <span id="cambio"></span></p>
-                                <button class="btn btn-block w-100 mt-2" style="background-color: #e86217; color: #ffffff; " id="btnPasarProduccion" onclick="ingresaTicket()">
-                                    <i class="fas fa-share" style="margin-right: 6px; vertical-align: middle;"></i> Pasar a producción
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
+
             </div>
 
-            <div class="col-sm-12 col-md-6 col-lg-6 flex-grow-1">
-                <!--DIV DERECHA-->
-                <div class="card" style="margin-top: 3px">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <h3>Pedidos</h3>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group order-category">
-                                    <h3>En Producción</h3>
-                                    <ul id="production-orders">
-                                        <!-- Listado de pedidos en producción -->
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group order-category">
-                                    <h3>Completado</h3>
-                                    <ul id="completed-orders">
-                                        <!-- Listado de pedidos completados -->
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group order-category">
-                                    <h3>Envío por Mensajería</h3>
-                                    <ul id="courier-orders">
-                                        <!-- Listado de pedidos enviados por mensajería -->
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group order-category">
-                                    <h3>Envío por Paquetería</h3>
-                                    <ul id="parcel-orders">
-                                        <!-- Listado de pedidos enviados por paquetería -->
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group order-category">
-                                    <h3>Devuelto</h3>
-                                    <ul id="returned-orders">
-                                        <!-- Listado de pedidos devueltos -->
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group order-category">
-                                    <h3>Anulado</h3>
-                                    <ul id="canceled-orders">
-                                        <!-- Listado de pedidos anulados -->
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group order-category">
-                                    <h3>Entregado</h3>
-                                    <ul id="delivered-orders">
-                                        <!-- Listado de pedidos entregados -->
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group order-category">
-                                    <h3>Reprogramado</h3>
-                                    <ul id="rescheduled-orders">
-                                        <!-- Listado de pedidos Reprogramado -->
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group order-category">
-                                    <h3>Recoge en oficina</h3>
-                                    <ul id="pickup-orders">
-                                        <!-- Listado de pedidos Recoge en oficina -->
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        
-        
         </div>
-
-    </div>
-    <!-- Modal -->
-    <div id="order-modal" class="modal fade" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h5 class="modal-title" id="orderModalLabel">Detalles del Pedido</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <!-- Modal Body -->
-                <div class="modal-body">
-                    <div id="modal-order-details">
-                        <!-- Aquí se mostrarán los detalles del pedido -->
+        <!-- Modal -->
+        <div id="order-modal" class="modal fade" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="orderModalLabel">Detalles del Pedido</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                    <!-- Selección de Piloto -->
-                    <div id="pilot-selection" style="display: none;">
-                        <h5>Asignar Piloto</h5>
-                        <select id="pilot-select" class="form-control mb-2">
-                            <!-- Opciones de pilotos -->
-                        </select>
-                        <button id="assign-pilot-btn" class="btn btn-primary btn-block" style="display: none;">Cambiar estado</button>
+                    <!-- Modal Body -->
+                    <div class="modal-body">
+                        <div id="modal-order-details">
+                            <!-- Aquí se mostrarán los detalles del pedido -->
+                        </div>
+                        <!-- Selección de Piloto -->
+                        <div id="pilot-selection" style="display: none;">
+                            <h5>Asignar Piloto</h5>
+                            <select id="pilot-select" class="form-control mb-2">
+                                <!-- Opciones de pilotos -->
+                            </select>
+                            <button id="assign-pilot-btn" class="btn btn-primary btn-block" style="display: none;">Cambiar estado</button>
+                        </div>
+                        <!-- Selección de Paquetería -->
+                        <div id="parcel-selection" style="display: none;">
+                            <h5>Asignar Paquetería</h5>
+                            <select id="parcel-select" class="form-control mb-2">
+                                <!-- Opciones de paquetería -->
+                            </select>
+                            <button id="assign-parcel-btn" class="btn btn-primary btn-block" style="display: none;">Cambiar estado</button>
+                        </div>
                     </div>
-                    <!-- Selección de Paquetería -->
-                    <div id="parcel-selection" style="display: none;">
-                        <h5>Asignar Paquetería</h5>
-                        <select id="parcel-select" class="form-control mb-2">
-                            <!-- Opciones de paquetería -->
-                        </select>
-                        <button id="assign-parcel-btn" class="btn btn-primary btn-block" style="display: none;">Cambiar estado</button>
-                    </div>
-                </div>
-                <!-- Modal Footer -->
-                <div class="modal-footer d-flex flex-column align-items-center">
-                    <h5 class="mb-3">Cambiar estado:</h5>
-                    <div id="status-change-options" class="d-flex flex-row gap-2">
-                        <!-- Opciones para cambiar el estado del pedido -->
+                    <!-- Modal Footer -->
+                    <div class="modal-footer d-flex flex-column align-items-center">
+                        <h5 class="mb-3">Cambiar estado:</h5>
+                        <div id="status-change-options" class="d-flex flex-row gap-2">
+                            <!-- Opciones para cambiar el estado del pedido -->
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
+
+
     </div>
 
+</body>
+</html>
 
-
-</div>
-
-        <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script type="text/javascript">
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
             let parametros = "";
             let usuarioLogin = "";
             let pilotosActivos = [];
@@ -358,7 +293,8 @@
                         console.error("Error al obtener el usuario:", error);
                     }
                 });
-        });
+            });
+
             //Consulta folio en firebird
             function buscarTicket() {
             $('#pedidoInfo').hide();
@@ -410,6 +346,7 @@
                                     confirmar: "Aceptar",
                                     img: "img/warning.png"
                                 });
+                                limpiar();
                             }
                         }
                         document.getElementById('contenedor-loader').style.display = 'none';
@@ -438,9 +375,9 @@
                             mensaje: data.errorMensaje,
                             confirmar: "Aceptar",
                             img: "img/error.png"
-                        }).then(() => {
+                        })
                             limpiar();
-                        });
+                       
                     } else {
                         dialogoEG({
                             type: "success",
@@ -465,9 +402,8 @@
                         mensaje: "Ocurrió un error al ingresar el ticket a producción. Intente nuevamente, si el inconveniente persiste contacte al administrador.",
                         confirmar: "Aceptar",
                         img: "img/error.png"
-                    }).then(() => {
+                    })
                         limpiar();
-                    });
                 }
             });
         }
@@ -642,6 +578,8 @@
                      }
             });
             }
+
+
             //Actualizar lista de pedidos
             function updateList(listaPedidos) {
                 // Crear un objeto para almacenar el último estado de cada pedido
@@ -664,21 +602,56 @@
                 const categories = ['production', 'courier', 'parcel', 'delivered', 'returned', 'canceled', 'completed'];
 
                 categories.forEach(category => {
-                    const ul = document.getElementById(`${category}-orders`);
-                    ul.innerHTML = ''; // Limpiar la lista existente
+                    const contenedorPedidos = document.getElementById(`${category}-orders`); // Cambia este id según tu categoría
+                    contenedorPedidos.innerHTML = ''; // Limpiar la lista existente
 
                     // Filtrar los pedidos por categoría utilizando el mapeo
                     const pedidosFiltrados = pedidosConUltimoEstado.filter(pedido => categoryMap[pedido.estado_actual] === category);
 
-                    // Agregar los pedidos filtrados a la lista correspondiente
                     pedidosFiltrados.forEach(pedido => {
-                        const li = document.createElement('li');
-                        li.textContent = `Folio: ${pedido.folio} - Cliente: ${pedido.cliente} - Fecha: ${pedido.fecha_estado}`;
-                        li.addEventListener('click', function () {
+
+                        // Crear un contenedor <div> en lugar de un <li>
+                        const cardItem = document.createElement('div');
+                        cardItem.classList.add('card-item'); // Clase que se usa para estilizar las tarjetas de pedidos
+
+                        // Crear elementos para cada parte del contenido
+                        const cliente = document.createElement('div');
+                        cliente.textContent = pedido.cliente;
+                        cliente.classList.add('cliente'); 
+
+                        const folio = document.createElement('div');
+                        folio.textContent = `Folio ticket #${pedido.folio}`;
+                        folio.classList.add('detalle');
+
+                        const total = document.createElement('div');
+                        total.textContent = `Total Q.${pedido.total}`;
+                        total.classList.add('detalle');
+
+                        const fecha = document.createElement('div');
+                        fecha.textContent = pedido.fecha_estado;
+                        fecha.classList.add('detalle');
+
+                        // Agregar todos los elementos creados al div card-item
+                        cardItem.appendChild(cliente);
+                        cardItem.appendChild(folio);
+                        cardItem.appendChild(total);
+                        cardItem.appendChild(fecha);
+
+                        // Agregar el evento click para el modal
+                        cardItem.addEventListener('click', function () {
                             showModal(pedido);
                         });
-                        ul.appendChild(li);
+                        // Agregar el card-item al contenedor correspondiente 
+                        contenedorPedidos.appendChild(cardItem);
+
+                        const contenedorProduccion = document.querySelector(`#${category}-orders`).closest('.col-12');
+
+                        if (contenedorProduccion.classList.contains('oculto')) {
+                            contenedorProduccion.classList.remove('oculto');
+                        }
                     });
+
+
                 });
             }
 
@@ -826,7 +799,7 @@
                 console.log("   pedido: ");
                 console.log(pedido);
                 newState = getState(newState);
-               
+
                 let parametros = {
                     'folio': pedido.folio,
                     'estadoAnterior': pedido.estado_actual,
@@ -892,7 +865,7 @@
 
 
 
-               
+
             }
 
 
@@ -907,7 +880,10 @@
                 $('#pago').text("");
                 $('#cambio').text("");
                 $('#estatus').text("");
-            }
+                $('#pedidoInfo').hide();
+                // Desplazar hasta la parte superior de la página
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
 
         function formatoFecha(fecha) {
             var date = new Date(fecha);
@@ -916,5 +892,5 @@
             var anio = date.getFullYear();
             return (dia < 10 ? '0' + dia : dia) + '/' + (mes < 10 ? '0' + mes : mes) + '/' + anio;
         }
-        </script>
+</script>
 
