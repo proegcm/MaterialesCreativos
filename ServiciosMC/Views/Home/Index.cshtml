@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,7 +23,7 @@
     <!--Contenedor general-->
     <div class="row justify-content-center">
 
-        <div class="col-sm-12">
+        <div class="col-sm-10">
 
             <div class="row h-100">
                 <div class="col-sm-12 col-md-8 col-lg-3 flex-grow-1">
@@ -55,19 +56,19 @@
                             </div>
                         </div>
                     </div>
-                    <!--display:none;-->
-                    <div class="card infopedido-card" style="margin-top: 3px; " id="pedidoInfo">
+                    <!---->
+                    <div class="card infopedido-card" style="margin-top: 3px; display: none;" id="pedidoInfo">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group d-flex align-items-center">
                                         <span class="material-symbols-outlined card-icon">
-                                            grading
+                                            list_alt
                                         </span>
                                         <h3 class="card-title">INFORMACIÓN DEL PEDIDO</h3>
                                     </div>
                                 </div>
-                             
+
                                 <div class="col-12">
                                     <div class="form-group d-flex flex-column align-items-start justify-content-end">
                                         <p><strong>Folio:</strong> <span id="folio"></span></p>
@@ -94,13 +95,13 @@
                     <div class="card pedidos-card" style="margin-top: 3px">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-12 cpedidos   ">
+                                <div class="col-12 cpedidos">
                                     <div class="form-group d-flex justify-content-center align-items-center">
                                         <span class="material-symbols-outlined card-icon">package_2</span>
                                         <h3 class="card-title ml-2">PEDIDOS</h3>
                                     </div>
                                 </div>
-                                <div class="col-12">
+                                <div class="col-12  oculto">
                                     <div class="form-group order-category category-1">
                                         <div class="order-header">
                                             <span class="material-symbols-outlined order-icon">arrow_drop_down_circle</span>
@@ -117,7 +118,7 @@
                                             <span class="material-symbols-outlined order-icon">arrow_drop_down_circle</span>
                                             <h3>Completado</h3>
                                         </div>
-                                        <div class="card-container"  id="completed-orders">
+                                        <div class="card-container" id="completed-orders">
                                             <!-- Listado de pedidos completados -->
                                         </div>
                                     </div>
@@ -128,7 +129,7 @@
                                             <span class="material-symbols-outlined order-icon">arrow_drop_down_circle</span>
                                             <h3>Envío por Mensajería</h3>
                                         </div>
-                                        <div class="card-container"  id="courier-orders">
+                                        <div class="card-container" id="courier-orders">
                                             <!-- Listado de pedidos enviados por mensajería -->
                                         </div>
                                     </div>
@@ -139,7 +140,7 @@
                                             <span class="material-symbols-outlined order-icon">arrow_drop_down_circle</span>
                                             <h3>Envío por Paquetería</h3>
                                         </div>
-                                        <div class="card-container"  id="parcel-orders">
+                                        <div class="card-container" id="parcel-orders">
                                             <!-- Listado de pedidos enviados por paquetería -->
                                         </div>
                                     </div>
@@ -150,7 +151,7 @@
                                             <span class="material-symbols-outlined order-icon">arrow_drop_down_circle</span>
                                             <h3>Devuelto</h3>
                                         </div>
-                                        <div class="card-container"  id="returned-orders">
+                                        <div class="card-container" id="returned-orders">
                                             <!-- Listado de pedidos devueltos -->
                                         </div>
                                     </div>
@@ -161,7 +162,7 @@
                                             <span class="material-symbols-outlined order-icon">arrow_drop_down_circle</span>
                                             <h3>Anulado</h3>
                                         </div>
-                                        <div class="card-container"  id="canceled-orders">
+                                        <div class="card-container" id="canceled-orders">
                                             <!-- Listado de pedidos anulados -->
                                         </div>
                                     </div>
@@ -172,7 +173,7 @@
                                             <span class="material-symbols-outlined order-icon">arrow_drop_down_circle</span>
                                             <h3>Entregado</h3>
                                         </div>
-                                        <div class="card-container"  id="delivered-orders">
+                                        <div class="card-container" id="delivered-orders">
                                             <!-- Listado de pedidos entregados -->
                                         </div>
                                     </div>
@@ -259,13 +260,11 @@
 </body>
 </html>
 
-<script src="https://kit.fontawesome.com/a076d05399.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+@section Scripts{
 <script type="text/javascript">
             let parametros = "";
             let usuarioLogin = "";
             let pilotosActivos = [];
-            // Variable global para la instancia del modal
             let modalInstance;
             const categoryMap = {
                 "En producción": "production",
@@ -274,26 +273,18 @@
                 "Entregado": "delivered",
                 "Devuelto": "returned",
                 "Anulado": "canceled",
-                "Completado": "completed"
+                "Completado": "completed",
+                "Recoge en oficina": "pickup",
+                "Reprogramar": "rescheduled"
             };
             function validarSoloNumeros(input) {
                 input.value = input.value.replace(/[^0-9]/g, ''); // Permitir solo números
             }
 
-            $(document).ready(function () {
-                 $.ajax({
-                    url: '@Url.Action("obtengoUsuario", "Home")',
-                    type: "POST",
-                    success: function (usuario) {
-                        usuarioLogin = usuario;
-
-                        consultaPedidos();
-                    },
-                    error: function (xhr, status, error) {
-                        console.error("Error al obtener el usuario:", error);
-                    }
-                });
-            });
+    $(document).ready(function () {
+        consultaPedidos();
+                 
+    });
 
             //Consulta folio en firebird
             function buscarTicket() {
@@ -333,8 +324,17 @@
                                 $('#cambio').text("Q." + cambio);
                                 $('#estatus').text(data.infoPedido.estatus);
                                 parametros = {
-                                    'infoPedido': data.infoPedido,
-                                    'usuario': usuarioLogin
+                                    infoPedido: {
+                                        folio: data.infoPedido.folio,
+                                        fecha: data.infoPedido.fecha,
+                                        cajero: data.infoPedido.cajero,
+                                        cliente: data.infoPedido.cliente,
+                                        total: data.infoPedido.total,
+                                        pago: data.infoPedido.pago,
+                                        cambio: data.infoPedido.cambio,
+                                        estatus: data.infoPedido.estatus
+                                    },
+                                    usuario: ""                                    
                                 };
                                 // Mostrar el contenedor con la información del pedido
                                 $('#pedidoInfo').show();
@@ -359,8 +359,9 @@
         }
             //Inserta un ticket y pasa a producción
             function ingresaTicket() {
-                let nofolio = parametros.infoPedido.folio;
-                document.getElementById('contenedor-loader').style.display = 'flex';
+                console.log(">>>> Los parametros son: ");
+                console.log(parametros);
+            document.getElementById('contenedor-loader').style.display = 'flex';
             $.ajax({
                 url: '@Url.Action("ingresarProduccion", "Home")',
                 type: "POST",
@@ -377,7 +378,7 @@
                             img: "img/error.png"
                         })
                             limpiar();
-                       
+
                     } else {
                         dialogoEG({
                             type: "success",
@@ -409,17 +410,11 @@
         }
             //Consulta pedidos a cargo del usuario
             function consultaPedidos() {
-                console.log("consultaPedidos - usuarioLogin: " + usuarioLogin);
-            let parametros = {
-                infoUsuario: {
-                    usuario: usuarioLogin
-                }
-            };
+             
             document.getElementById('contenedor-loader').style.display = 'flex';
             $.ajax({
                 url: '@Url.Action("listaPedidos", "Home")',
                 type: "POST",
-                data: parametros,
                 success: function (data) {
                     if (!data.success) {
                         console.log(data.errorMensaje)
@@ -599,7 +594,7 @@
                 console.log("pedidosConUltimoEstado: ");
                 console.log(pedidosConUltimoEstado);
                 // Limpiar listas existentes
-                const categories = ['production', 'courier', 'parcel', 'delivered', 'returned', 'canceled', 'completed'];
+                const categories = ['production', 'courier', 'parcel', 'delivered', 'returned', 'canceled', 'completed', 'rescheduled', 'pickup'];
 
                 categories.forEach(category => {
                     const contenedorPedidos = document.getElementById(`${category}-orders`); // Cambia este id según tu categoría
@@ -610,14 +605,14 @@
 
                     pedidosFiltrados.forEach(pedido => {
 
-                        // Crear un contenedor <div> en lugar de un <li>
+                        // Crear un contenedor 
                         const cardItem = document.createElement('div');
-                        cardItem.classList.add('card-item'); // Clase que se usa para estilizar las tarjetas de pedidos
+                        cardItem.classList.add('card-item'); 
 
                         // Crear elementos para cada parte del contenido
                         const cliente = document.createElement('div');
                         cliente.textContent = pedido.cliente;
-                        cliente.classList.add('cliente'); 
+                        cliente.classList.add('cliente');
 
                         const folio = document.createElement('div');
                         folio.textContent = `Folio ticket #${pedido.folio}`;
@@ -641,15 +636,25 @@
                         cardItem.addEventListener('click', function () {
                             showModal(pedido);
                         });
-                        // Agregar el card-item al contenedor correspondiente 
+                        // Agregar el card-item al contenedor correspondiente
                         contenedorPedidos.appendChild(cardItem);
-
-                        const contenedorProduccion = document.querySelector(`#${category}-orders`).closest('.col-12');
-
-                        if (contenedorProduccion.classList.contains('oculto')) {
-                            contenedorProduccion.classList.remove('oculto');
-                        }
                     });
+
+
+                        //const contenedorProduccion = document.querySelector(`#${category}-orders`).closest('.col-12');
+
+                        //if (contenedorProduccion.classList.contains('oculto')) {
+                        //    contenedorProduccion.classList.remove('oculto');
+                        //}
+                    // Verificar si hay elementos en el contenedor
+                    const contenedorProduccion = contenedorPedidos.closest('.col-12');
+                    if (pedidosFiltrados.length > 0) {
+                        // Si hay elementos, mostrar el contenedor
+                        contenedorProduccion.classList.remove('oculto');
+                    } else {
+                        // Si no hay elementos, ocultar el contenedor
+                        contenedorProduccion.classList.add('oculto');
+                    }
 
 
                 });
@@ -739,10 +744,6 @@
                 });
 
                 // Utilizar Bootstrap para mostrar el modal
-                //const modal = new bootstrap.Modal(document.getElementById('order-modal'));
-                //modal.show();
-
-                // Utilizar Bootstrap para mostrar el modal
                 const modalElement = document.getElementById('order-modal');
                 modalInstance = new bootstrap.Modal(modalElement);
                 modalInstance.show();
@@ -759,6 +760,7 @@
                     completed: [
                         { state: 'courier', label: 'Enviar por Mensajería' },
                         { state: 'parcel', label: 'Enviar por Paquetería' },
+                        { state: 'pickup', label: 'Recoge en oficina' },
                         { state: 'canceled', label: 'Anulado' }
                     ],
                     courier: [
@@ -770,8 +772,21 @@
                         { state: 'delivered', label: 'Entregado' }
                     ],
                     delivered: [],
-                    returned: [{ state: 'canceled', label: 'Anulado' }],
-                    canceled: []
+                    returned: [
+                        { state: 'canceled', label: 'Anulado' },
+                        { state: 'rescheduled', label: 'Reprogramar' }
+                    ],
+                    canceled: [],
+                    pickup: [
+                        { state: 'delivered', label: 'Entregado' },
+                        { state: 'canceled', label: 'Anulado' }
+                    ],
+                    rescheduled: [
+                        { state: 'courier', label: 'Enviar por Mensajería' },
+                        { state: 'parcel', label: 'Enviar por Paquetería' },
+                        { state: 'pickup', label: 'Recoge en oficina' },
+                        { state: 'canceled', label: 'Anulado' }
+                    ]
                 };
                 // Usar el mapeo para convertir currentState a su correspondiente en inglés
                 const mappedState = categoryMap[currentState];
@@ -785,7 +800,10 @@
                 "delivered": "Entregado",
                 "returned": "Devuelto",
                 "canceled": "Anulado",
-                "completed": "Completado"
+                "completed": "Completado",
+                "pickup": "Recoge en oficina",
+                "rescheduled": "Reprogramar"
+
             };
 
             // Función para obtener el equivalente en español dado un estado en inglés
@@ -804,14 +822,13 @@
                     'folio': pedido.folio,
                     'estadoAnterior': pedido.estado_actual,
                     'estadoNuevo': newState,
-                    'usuario': usuarioLogin,
+                    'usuario': "",
                     'idMensajero': piloto,
                     'idPaqueteria': paqueteria,
                     'observaciones': obvs
                 };
                 console.log("   parametros:");
                 console.log(parametros);
-                //document.getElementById('contenedor-loader').style.display = 'flex';
                 if (pedido.estado_actual && pedido.estado_actual !== newState) {
                     $.ajax({
                     url: '@Url.Action("cambioEstadoPedido", "Home")',
@@ -893,4 +910,4 @@
             return (dia < 10 ? '0' + dia : dia) + '/' + (mes < 10 ? '0' + mes : mes) + '/' + anio;
         }
 </script>
-
+}

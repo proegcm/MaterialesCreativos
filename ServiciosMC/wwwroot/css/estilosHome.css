@@ -53,7 +53,7 @@
         flex-grow: 1; /* Permite que el input ocupe todo el espacio disponible */
         margin-right: 8px; /* Espacio entre el input y el botón */
         font-family: 'Urbanist', sans-serif;
-        font-size: 1.2rem;
+        font-size: 1.1rem;
     }
 
     .ticket-card #btnBuscar {
@@ -76,6 +76,7 @@
         background-color: #1f386e;
     }
 
+
 /*ESTILOS DIV INFORMACIÓN DEL PEDIDO*/
 .infopedido-card {
     padding: 20px; /* Espaciado interno simétrico */
@@ -92,41 +93,42 @@
         font-size: 1.2rem;
         color: #0f0a35;
         margin: 0;
-        margin-bottom: 10px; /* Espacio entre el título y el input */
-        /*line-height: 1.3rem;*/
+        line-height: 1.3rem;
     }
 
     .infopedido-card .card-icon {
         font-size: 1.8rem;
         color: #0f0a35;
-        display: inline-flex;
-        align-items: center;
-        margin-right: 10px; /* Espacio entre el ícono y el título */
+        margin-right: 10px; /* Añade espacio entre ícono y título */
     }
 
     .infopedido-card .form-group {
         display: flex;
-        flex-direction: column; /* Organiza el contenido en columna */
-        align-items: flex-start; /* Alinea todo el contenido a la izquierda */
-        justify-content: flex-end; /* Alinea el contenido hacia abajo */
-        height: 100%; /* Asegura que el contenido use toda la altura disponible */
-        margin-bottom: 0; /* Elimina margen inferior */
+        justify-content: center; /* Centrar horizontalmente ícono y título */
+        align-items: center; /* Centrar verticalmente ícono y título */
+        margin-bottom: 10px;
     }
 
     .infopedido-card #btnPasarProduccion {
         background-color: #e86217;
+        font-family: 'LemonMilk', sans-serif;
         color: #ffffff;
         width: 100%; /* Botón ocupa todo el ancho */
     }
 
-        .infopedido-card #btnPasarProduccion span {
+    .infopedido-card #btnPasarProduccion span {
             font-size: 1rem; /* Tamaño del ícono */
-            font-weight: bold;
         }
 
-        .infopedido-card #btnPasarProduccion:hover {
+    .infopedido-card #btnPasarProduccion:hover {
             background-color: #1f386e;
         }
+    .infopedido-card p {
+        font-family: 'Urbanist', sans-serif;
+        font-size: 1rem; /* Ajusta el tamaño de la fuente según prefieras */
+        color: #0f0a35; /* Opcional: puedes ajustar el color de la fuente si lo necesitas */
+    }
+
 
 
 
@@ -135,27 +137,24 @@
     padding: 20px;
     box-shadow: 0px 0px 15px rgba(15, 10, 53, 0.85);
 }
-    .pedidos-card .card-body {
+.pedidos-card .card-body {
         padding: 0; /* Elimina padding adicional para evitar mucho espacio */
     }
-
-    .pedidos-card h3.card-title {
+.pedidos-card h3.card-title {
         font-family: 'LemonMilk', sans-serif;
         font-size: 1.6rem;
         color: #0f0a35;
         margin: 0;
     }
-    .pedidos-card .card-icon {
+.pedidos-card .card-icon {
         font-size: 1.8rem;
         color: #0f0a35;
         margin-right: 10px;
     }
-
 .cpedidos {
     display: flex;
     justify-content: center;
 }
-
 
 
 
@@ -165,26 +164,13 @@
 
 
 
-/* Estilo para el cliente */
-.cliente {
-    font-size: 0.9rem;
-    font-family: 'LemonMilk', sans-serif;
-    margin-bottom: 2px; 
-    color: #0f0a35;
-}
-
-/* Estilo para los detalles */
-.detalle {
-    font-size: 1rem;
-    font-family: 'Urbanist', sans-serif;
-    margin-bottom: 2px; 
-}
 
 
 /* Estilo de las categorías */
 .order-category {
     border-radius: 10px;
     margin-bottom: 10px;
+    padding-bottom:15px;
 }
 /* Estilos para .order-header */
 .order-header {
@@ -192,7 +178,7 @@
     display: flex;
     align-items: center; /* Alineación vertical */
     justify-content: flex-start; /* Alineación horizontal (puedes usar center si es necesario) */
-    margin-bottom: 15px; /* Espacio entre el encabezado y otros elementos */
+    margin-bottom: 10px; /* Espacio entre el encabezado y otros elementos */
 }
 
     /* Estilos para el ícono dentro del encabezado */
@@ -240,31 +226,31 @@
 }
 /* Sombra para los .card-item en base al color del ícono */
 .category-1 .card-item {
-    box-shadow: 0 2px 8px rgba(39, 66, 150, 0.5); /* Color azul para categoría 1 */
+    box-shadow: 0 2px 8px rgb(39 66 150 / 0.80); /* Color azul para categoría 1 */
 }
 
 .category-2 .card-item {
-    box-shadow: 0 2px 8px rgba(34, 114, 171, 0.5); /* Color azul más claro para categoría 2 */
+    box-shadow: 0 2px 8px rgba(34, 114, 171, 0.80); /* Color azul más claro para categoría 2 */
 }
 
 .category-3 .card-item {
-    box-shadow: 0 2px 8px rgba(170, 76, 156, 0.5); /* Color rosa para categoría 3 */
+    box-shadow: 0 2px 8px rgba(170, 76, 156, 0.80); /* Color rosa para categoría 3 */
 }
 
 .category-4 .card-item {
-    box-shadow: 0 2px 8px rgba(220, 65, 140, 0.5); /* Color fucsia para categoría 4 */
+    box-shadow: 0 2px 8px rgba(220, 65, 140, 0.80); /* Color fucsia para categoría 4 */
 }
 
 .category-5 .card-item {
-    box-shadow: 0 2px 8px rgba(232, 98, 23, 0.5); /* Color naranja para categoría 5 */
+    box-shadow: 0 2px 8px rgba(232, 98, 23, 0.80); /* Color naranja para categoría 5 */
 }
 
 .category-6 .card-item {
-    box-shadow: 0 2px 8px rgba(248, 210, 42, 0.5); /* Color amarillo para categoría 6 */
+    box-shadow: 0 2px 8px rgba(248, 210, 42, 0.80); /* Color amarillo para categoría 6 */
 }
 
 .category-7 .card-item {
-    box-shadow: 0 2px 8px rgba(15, 10, 53, 0.5); /* Color azul oscuro para categoría 7 */
+    box-shadow: 0 2px 8px rgba(15, 10, 53, 0.80); /* Color azul oscuro para categoría 7 */
 }
 
 /* Título dentro de cada categoría */
@@ -273,13 +259,31 @@
     margin: 0;
     text-align: left;
 }
+
+
+
+
+/* Estilo para el cliente */
+.cliente {
+    font-size: 0.9rem;
+    font-family: 'LemonMilk', sans-serif;
+    margin-bottom: 2px;
+    color: #0f0a35;
+}
+
+/* Estilo para los detalles */
+.detalle {
+    font-size: 1rem;
+    font-family: 'Urbanist', sans-serif;
+    margin-bottom: 2px;
+}
+
 /* Contenedor de tarjetas */
 .card-container {
-    display: flex;
-    flex-wrap: wrap; /* Las tarjetas se ajustan a la siguiente fila si no caben */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas de igual tamaño */
     gap: 20px; /* Espacio entre las tarjetas */
-    justify-content: flex-start; /* Alinea las tarjetas a la izquierda */
-    padding: 10px; /* Añade algo de espacio interior */
+    padding: 10px; /* Espacio interno en el contenedor */
 }
 
 /* Estilo de las tarjetas */
@@ -287,39 +291,39 @@
     padding: 15px;
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    flex: 1 1 calc(33.33% - 20px); /* Tamaño de un tercio del contenedor */
-    text-align: left;
+    background-color: white; /* Fondo blanco para las tarjetas */
     transition: box-shadow 0.3s ease;
     cursor: pointer;
     box-sizing: border-box; /* Incluye padding y border en el ancho total */
-    max-width: calc(33.33% - 20px);
 }
 
-.card-item:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
+    .card-item:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
 
 /* Estilos para pantallas pequeñas */
 @media (max-width: 767px) {
-    .card-container > .card-item {
-        flex: 1 1 100%; /* La tarjeta ocupará el 100% del contenedor */
-        max-width: 100%;
+    .card-container {
+        grid-template-columns: 1fr; /* Una columna para pantallas pequeñas */
     }
 }
 
 /* Estilos para pantallas medianas */
-@media (min-width: 768px) {
-    .card-container > .card-item {
-        flex: 1 1 calc(33.33% - 20px);
+@media (min-width: 768px) and (max-width: 991px) {
+    .card-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas para pantallas medianas */
     }
 }
 
 /* Estilos para pantallas grandes */
 @media (min-width: 992px) {
-    .card-container > .card-item {
-        flex: 1 1 calc(33.33% - 20px);
+    .card-container {
+        grid-template-columns: repeat(3, 1fr); /* 3 columnas para pantallas grandes */
     }
 }
+
+
+
 
 
 
