@@ -156,7 +156,7 @@ namespace ServiciosMC.Controllers
             }
             catch (Exception ex)
             {
-                return Json(new { success = false, respuesta = "Error al procesar los datos: " + ex.Message });
+                return Json(new { success = false, errorMensaje = "Error al procesar los datos: " + ex.Message });
             }
         }
 
@@ -207,7 +207,7 @@ namespace ServiciosMC.Controllers
             {
                 // Maneja problemas de conectividad o errores de solicitud HTTP.
                 Debug.WriteLine("HttpRequestException: " + ex.Message);
-                return Json(new { success = false, errorMensaje = "Ocurrió un error al obtener el listado de pedidos, no se obtuvo respuesta del servidor." });
+                return Json(new { success = false, errorMensaje = "Ocurrió un error al obtener el listado de pedidos, no se obtuvo respuesta del servidor. Por favor, refresque la página." });
             }
             catch (TaskCanceledException ex)
             {
@@ -219,7 +219,7 @@ namespace ServiciosMC.Controllers
             {
                 // Maneja cualquier otra excepción.
                 Debug.WriteLine("Exception: " + ex.Message);
-                return Json(new { success = false, errorMensaje = "Error al procesar los datos: " + ex.Message });
+                return Json(new { success = false, errorMensaje = ex.Message });
             }
         }
 

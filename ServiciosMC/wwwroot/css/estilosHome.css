@@ -56,7 +56,8 @@
         font-size: 1.1rem;
     }
 
-    .ticket-card #btnBuscar {
+    .ticket-card #btnBuscarTicket,
+    .ticket-card #btnLimpiar {
         background-color: #0f0a35;
         color: #fff;
         border: none;
@@ -66,15 +67,18 @@
         justify-content: center;
         min-width: 50px; /* Ancho mínimo para hacer el botón más ancho */
     }
-
-    .ticket-card #btnBuscar span {
-        font-size: 1rem; /* Tamaño del ícono */
-        font-weight:bold;
+    .ticket-card #btnBuscarTicket {
+        margin-right: 8px; /* Espacio entre el botón de buscar y el botón de limpiar */
     }
+        .ticket-card #btnBuscarTicket span,
+        .ticket-card #btnLimpiar span {
+            font-size: 1rem; /* Tamaño del ícono */
+        }
 
-    .ticket-card #btnBuscar:hover {
-        background-color: #1f386e;
-    }
+        .ticket-card #btnBuscarTicket:hover,
+        .ticket-card #btnLimpiar:hover {
+            background-color: #1f386e; /* Color de fondo al hacer hover */
+        }
 
 
 /*ESTILOS DIV INFORMACIÓN DEL PEDIDO*/
@@ -123,6 +127,7 @@
     .infopedido-card #btnPasarProduccion:hover {
             background-color: #1f386e;
         }
+    
     .infopedido-card p {
         font-family: 'Urbanist', sans-serif;
         font-size: 1rem; /* Ajusta el tamaño de la fuente según prefieras */
@@ -156,15 +161,9 @@
     justify-content: center;
 }
 
-
-
 .oculto {
     display: none;
 }
-
-
-
-
 
 /* Estilo de las categorías */
 .order-category {
@@ -172,7 +171,7 @@
     margin-bottom: 10px;
     padding-bottom:15px;
 }
-/* Estilos para .order-header */
+
 .order-header {
     font-family: 'LemonMilk', sans-serif;
     display: flex;
@@ -181,8 +180,7 @@
     margin-bottom: 10px; /* Espacio entre el encabezado y otros elementos */
 }
 
-    /* Estilos para el ícono dentro del encabezado */
-    .order-header .order-icon {
+.order-header .order-icon {
         font-size: 1.6rem; /* Ajusta el tamaño del ícono */
         color: #0f0a35; /* Aplica el color que desees */
         margin-right: 10px; /* Espacio entre el ícono y el texto */
@@ -190,8 +188,7 @@
         align-items: center; /* Asegura que el ícono esté centrado verticalmente */
     }
 
-    /* Estilos para el título dentro del encabezado */
-    .order-header h3 {
+.order-header h3 {
         font-size: 1.6rem; /* Tamaño de la fuente del título */
         color: #0f0a35;
         margin: 0; /* Elimina los márgenes predeterminados */
@@ -207,6 +204,7 @@
 .category-2 .order-icon {
     color: #2272ab;
 }
+
 .category-3 .order-icon {
     color: #aa4c9c;
 }
@@ -214,6 +212,7 @@
 .category-4 .order-icon {
     color: #dc418c;
 }
+
 .category-5 .order-icon {
     color: #e86217;
 }
@@ -221,6 +220,7 @@
 .category-6 .order-icon {
     color: #f8d22a;
 }
+
 .category-7 .order-icon {
     color: #0f0a35;
 }
@@ -260,10 +260,8 @@
     text-align: left;
 }
 
-
-
-
-/* Estilo para el cliente */
+/*ESTILOS PARA TARJETAS*/
+/* Estilo para nombre cliente */
 .cliente {
     font-size: 0.9rem;
     font-family: 'LemonMilk', sans-serif;
@@ -324,7 +322,94 @@
 
 
 
+/*ESTILOS PARA MODAL*/
+/* Estilo del header del modal */
+#order-modal .modal-header {
+    font-family: 'LemonMilk', sans-serif;
+    background-color: #f0f0f0; /* Fondo suave para el header */
+    border-bottom: 2px solid #0f0a35;
+    display: flex;
+    align-items: center;
+    padding: 10px 15px; /* Ajustar padding según sea necesario */
+}
 
+    /* Estilo para el contenedor del ícono, título y botón de cierre */
+    #order-modal .modal-header .form-group {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        /*  margin-bottom: 0;  Eliminar margen inferior */
+    }
+
+    #order-modal .modal-header h5.modal-title {
+        font-size: 1.6rem;
+        color: #0f0a35;
+        margin: 0;
+        margin-left: 10px; /* Espacio entre el icono y el título */
+        line-height: 1.3rem; /* Ajustar para reducir el espacio */
+    }
+
+    #order-modal .modal-header .card-icon {
+        font-size: 1.8rem;
+        color: #0f0a35;
+        margin: 0; /* Elimina cualquier margen inferior extra */
+    }
+
+    /* Estilo del botón de cierre */
+    #order-modal .modal-header .close {
+        font-size: 1.8rem;
+        color: #0f0a35; /* Asegúrate de que el color tenga suficiente contraste */
+        padding: 0; /* Elimina padding adicional */
+        margin-left: auto; /* Mueve el botón de cierre a la derecha */
+    }
+
+
+
+/* Estilo para el texto del cliente y demás información */
+#modal-order-details p {
+    font-family: 'LemonMilk', sans-serif;
+    font-size: 1rem;
+    color: #0f0a35;
+}
+
+/* Estilo para los labels */
+#modal-order-details label {
+    font-family: 'Urbanist', sans-serif;
+    font-size: 1rem;
+    color: #2f2f2f;
+    font-weight: bold;
+}
+
+/* Estilo para los valores debajo de los labels */
+#modal-order-details p {
+    font-family: 'Urbanist', sans-serif;
+    font-size: 1rem;
+    color: #2f2f2f;
+    margin-bottom: 0px; /* Espacio entre el label y el contenido */
+}
+
+/* Espaciado y alineación */
+#modal-order-details .row {
+    margin-bottom: 5px; /* Espacio entre filas */
+}
+
+/* Estilo para botones dentro del modal */
+#order-modal .btn-primary {
+    background-color: #0f0a35;
+    border-color: #0f0a35;
+    font-family: 'Urbanist', sans-serif;
+    font-size: 1rem;
+   /* padding: 10px 20px;*/
+    width: 100%; /* Botón ancho completo */
+}
+
+/* Ajustes del modal footer */
+#order-modal .modal-footer {
+    background-color: #f8f8f8;
+    border-top: 1px solid #e9ecef;
+    padding: 10px 20px;
+    width: 100%;
+}
 
 
 
@@ -350,7 +435,7 @@
 
 
 /* Estilo para el botón de búsqueda */
-#btnBuscar {
+.botonesBT {
     background-color: #274296;
     color: #fff;
     border: none;
@@ -359,8 +444,8 @@
     transition: background-color 0.3s ease;
 }
 
-    #btnBuscar:hover {
-        background-color: #2272ab;
+    .botonesBT:hover {
+        background-color: #2272ab; /* Color de fondo al pasar el ratón */
     }
 
 /* Responsividad */

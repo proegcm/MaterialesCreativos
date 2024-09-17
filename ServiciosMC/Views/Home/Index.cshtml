@@ -45,9 +45,14 @@
                                             <input type="text" class="form-control" placeholder="Ingrese número de folio"
                                                    name="txtFolio" id="txtFolio" maxlength="10"
                                                    inputmode="numeric" oninput="validarSoloNumeros(this)" required />
-                                            <button type="submit" class="btn btn-icon" id="btnBuscar">
+                                            <button type="submit" class="btn btn-icon" id="btnBuscarTicket"  title="Buscar ticket">
                                                 <span class="material-symbols-outlined">
                                                     search
+                                                </span>
+                                            </button>
+                                            <button type="button" class="btn btn-icon" id="btnLimpiar"  title="Limpiar búsqueda">
+                                                <span class="material-symbols-outlined">
+                                                    backspace
                                                 </span>
                                             </button>
                                         </form>
@@ -62,9 +67,6 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group d-flex align-items-center">
-                                        <span class="material-symbols-outlined card-icon">
-                                            list_alt
-                                        </span>
                                         <h3 class="card-title">INFORMACIÓN DEL PEDIDO</h3>
                                     </div>
                                 </div>
@@ -157,28 +159,6 @@
                                     </div>
                                 </div>
                                 <div class="col-12 oculto">
-                                    <div class="form-group order-category category-6">
-                                        <div class="order-header">
-                                            <span class="material-symbols-outlined order-icon">arrow_drop_down_circle</span>
-                                            <h3>Anulado</h3>
-                                        </div>
-                                        <div class="card-container" id="canceled-orders">
-                                            <!-- Listado de pedidos anulados -->
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 oculto">
-                                    <div class="form-group order-category category-7">
-                                        <div class="order-header">
-                                            <span class="material-symbols-outlined order-icon">arrow_drop_down_circle</span>
-                                            <h3>Entregado</h3>
-                                        </div>
-                                        <div class="card-container" id="delivered-orders">
-                                            <!-- Listado de pedidos entregados -->
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 oculto">
                                     <div class="form-group order-category category-1">
                                         <div class="order-header">
                                             <span class="material-symbols-outlined order-icon">arrow_drop_down_circle</span>
@@ -200,6 +180,28 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-12 oculto">
+                                    <div class="form-group order-category category-6">
+                                        <div class="order-header">
+                                            <span class="material-symbols-outlined order-icon">arrow_drop_down_circle</span>
+                                            <h3>Anulado</h3>
+                                        </div>
+                                        <div class="card-container" id="canceled-orders">
+                                            <!-- Listado de pedidos anulados -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 oculto">
+                                    <div class="form-group order-category category-7">
+                                        <div class="order-header">
+                                            <span class="material-symbols-outlined order-icon">arrow_drop_down_circle</span>
+                                            <h3>Entregado</h3>
+                                        </div>
+                                        <div class="card-container" id="delivered-orders">
+                                            <!-- Listado de pedidos entregados -->
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -215,40 +217,121 @@
                 <div class="modal-content">
                     <!-- Modal Header -->
                     <div class="modal-header">
-                        <h5 class="modal-title" id="orderModalLabel">Detalles del Pedido</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                        <div class="col-12">
+                            <div class="form-group d-flex align-items-center mt-2 mb-2">
+                                <span class="material-symbols-outlined card-icon">
+                                    receipt
+                                </span>
+                                <h5 class="modal-title" id="orderModalLabel">DETALLES DEL PEDIDO</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                        </div>
                     </div>
+
                     <!-- Modal Body -->
                     <div class="modal-body">
+                        <!--Dedatelles del pedido-->
                         <div id="modal-order-details">
-                            <!-- Aquí se mostrarán los detalles del pedido -->
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p id="txtInfoCliente"></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label><strong>Folio ticket:</strong></label>
+                                    <p id="txtInfoTicket"></p>
+                                </div>
+                                <div class="col-6">
+                                    <label><strong>Fecha del Pedido:</strong></label>
+                                    <p id="txtInfoFechaPedido"></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label><strong>Cajero:</strong></label>
+                                    <p id="txtInfoCajero"></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    <label><strong>Total:</strong></label>
+                                    <p id="txtInfoTotalPedido"></p>
+                                </div>
+                                <div class="col-4">
+                                    <label><strong>Pago:</strong></label>
+                                    <p id="txtInfoPagoPedido"></p>
+                                </div>
+                                <div class="col-4">
+                                    <label><strong>Cambio:</strong></label>
+                                    <p id="txtInfoCambioPedido"></p>
+                                </div>
+                            </div>
+                            <hr style="background-color: #2f2f2f;">
+                            <div class="row">
+                                <div class="col-12">
+                                    <label><strong>Estado actual: </strong></label>
+                                    <p id="txtInfoEstadoActual"></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label><strong>Fecha estado:</strong></label>
+                                    <p id="txtInfoEstadoFecha"></p>
+                                </div>
+                                <div class="col-6">
+                                    <label><strong>A cargo de:</strong></label>
+                                    <p id="txtInfoEstadoUsuario"></p>
+                                </div>
+                            </div>
+                            <div class="row oculto" id="cambiosPedido">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label><strong>Cambiar estado del pedido: </strong></label>
+                                        </div>
+                                        <div id="status-change-options" class="d-flex flex-row ">
+                                            <!-- Opciones para cambiar el estado del pedido gap-2-->
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
+
                         <!-- Selección de Piloto -->
-                        <div id="pilot-selection" style="display: none;">
-                            <h5>Asignar Piloto</h5>
-                            <select id="pilot-select" class="form-control mb-2">
-                                <!-- Opciones de pilotos -->
-                            </select>
-                            <button id="assign-pilot-btn" class="btn btn-primary btn-block" style="display: none;">Cambiar estado</button>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div id="pilot-selection" style="display: none;">
+                                    <label><strong>Asignar piloto:</strong></label>
+                                    <select id="pilot-select" class="form-control mb-2">
+                                        <!-- Opciones de pilotos -->
+                                    </select>
+                                    <button id="assign-pilot-btn" class="btn btn-primary btn-block" style="display: none;">Cambiar estado</button>
+                                </div>
+                            </div>
                         </div>
+
                         <!-- Selección de Paquetería -->
-                        <div id="parcel-selection" style="display: none;">
-                            <h5>Asignar Paquetería</h5>
-                            <select id="parcel-select" class="form-control mb-2">
-                                <!-- Opciones de paquetería -->
-                            </select>
-                            <button id="assign-parcel-btn" class="btn btn-primary btn-block" style="display: none;">Cambiar estado</button>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div id="parcel-selection" style="display: none;">
+                                    <label><strong>Asignar paquetería:</strong></label>
+                                    <select id="parcel-select" class="form-control mb-2">
+                                        <!-- Opciones de paquetería -->
+                                    </select>
+                                    <button id="assign-parcel-btn" class="btn btn-primary btn-block" style="display: none;">Cambiar estado</button>
+                                </div>
+                            </div>
                         </div>
+
                     </div>
-                    <!-- Modal Footer -->
-                    <div class="modal-footer d-flex flex-column align-items-center">
-                        <h5 class="mb-3">Cambiar estado:</h5>
-                        <div id="status-change-options" class="d-flex flex-row gap-2">
-                            <!-- Opciones para cambiar el estado del pedido -->
-                        </div>
-                    </div>
+                    <!-- Modal Footer
+    <div class="modal-footer d-flex flex-column align-items-center">
+
+    </div>-->
                 </div>
             </div>
         </div>
@@ -282,8 +365,9 @@
             }
 
     $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
         consultaPedidos();
-                 
+        $('#btnLimpiar').on('click', limpiar);
     });
 
             //Consulta folio en firebird
@@ -442,7 +526,7 @@
                     dialogoEG({
                         type: "error",
                         title: "Error de comunicación",
-                        mensaje: "Ocurrió un error al obtener listado de pedidos. Intente nuevamente, si el inconveniente persiste contacte al administrador.",
+                        mensaje: "Ocurrió un error al obtener el listado de pedidos. Intente nuevamente, si el inconveniente persiste contacte al administrador.",
                         confirmar: "Aceptar",
                         img: "img/error.png"
                     });
@@ -634,7 +718,7 @@
 
                         // Agregar el evento click para el modal
                         cardItem.addEventListener('click', function () {
-                            showModal(pedido);
+                            showModal(pedido, cardItem);
                         });
                         // Agregar el card-item al contenedor correspondiente
                         contenedorPedidos.appendChild(cardItem);
@@ -663,19 +747,98 @@
 
 
             // Mostrar modal
-            function showModal(pedido) {
+            function showModal(pedido, cardItem) {
                 console.log("Abro diálogo del pedido: ");
                 console.log(pedido);
                 let piloto = null;
                 let paqueteria = null;
                 let obvs = null;
+                //aginación de colores 
+                // Obtener la categoría del card-item clickeado
+                const categoryContainer = cardItem.closest('.order-category');
+                let categoryClass = '';
+                if (categoryContainer) {
+                    categoryClass = Array.from(categoryContainer.classList).find(cls => cls.startsWith('category-'));
+                    console.log("Clase de categoría: ", categoryClass);
+                }
+
+                // Función para obtener color basado en la categoría
+                function getColorForCategory(categoryClass) {
+                    switch (categoryClass) {
+                        case 'category-1':
+                            return '#263a96'; // Azul para categoría 1
+                        case 'category-2':
+                            return '#2272ab'; // Azul más claro para categoría 2
+                        case 'category-3':
+                            return '#aa4c9c'; // Rosa para categoría 3
+                        case 'category-4':
+                            return '#dc418c'; // Fucsia para categoría 4
+                        case 'category-5':
+                            return '#e86217'; // Naranja para categoría 5
+                        case 'category-6':
+                            return '#f8d22a'; // Amarillo para categoría 6
+                        case 'category-7':
+                            return '#0f0a35'; // Azul oscuro para categoría 7
+                        default:
+                            return '#f0f0f0'; // Fondo por defecto
+                    }
+                }
+
+                // Aplicar color al modal basado en la categoría
+                function applyColorToModal(color) {
+                    const modalHeader = document.querySelector('#order-modal .modal-header');
+                    const modalTitle = document.querySelector('#order-modal .modal-header h5.modal-title');
+                    const cardIcon = document.querySelector('#order-modal .modal-header .card-icon');
+                    const closeButton = document.querySelector('#order-modal .modal-header .close');
+                    const btnPrimary = document.querySelectorAll('#order-modal .btn-primary');
+                    const statusChangeButtons = document.querySelectorAll('#status-change-options .btn-primary');
+                    // Cambiar color de fondo y borde del header
+                    modalHeader.style.borderBottomColor = color;
+
+                    // Cambiar color del título y del ícono
+                    modalTitle.style.color = color;
+                    cardIcon.style.color = color;
+                    closeButton.style.color = color;
+
+                    // Cambiar color de los botones principales
+                    btnPrimary.forEach(button => {
+                        button.style.backgroundColor = color;
+                        button.style.borderColor = color;
+                    });
+
+                    // Cambiar color de los botones en el div de cambios de estado
+                    statusChangeButtons.forEach(button => {
+                        button.style.backgroundColor = color + ' !important';
+                        button.style.borderColor = color + ' !important';
+                    });
+                }
+
+                // Aplicar el color basado en la clase de categoría
+                const categoryColor = getColorForCategory(categoryClass);
+                applyColorToModal(categoryColor);
+                //fin asignacion de colores
+
+
+
+
 
                 const orderNumber = pedido.folio;
                 const currentState = pedido.estado_actual;
-
                 // Mostrar detalles del pedido en el modal
-                document.getElementById('modal-order-details').textContent = `Detalles del pedido - Folio: #${orderNumber} Cliente: ${pedido.cliente}  Estado Actual: ${currentState}`;
+                //document.getElementById('modal-order-details').textContent = `Detalles del pedido - Folio: #${orderNumber} Cliente: ${pedido.cliente}  Estado Actual: ${currentState}`;
+                $('#txtInfoCliente').text(`${pedido.cliente}`);
+                $('#txtInfoTicket').text(`#${orderNumber}`);
+                $('#txtInfoFechaPedido').text(`${formatoFecha(pedido.fecha)}`); 
+                $('#txtInfoCajero').text(`${pedido.cajero}`);
+                $('#txtInfoTotalPedido').text(`Q.${pedido.total}`);
+                $('#txtInfoPagoPedido').text(`Q.${pedido.pago}`);
+                $('#txtInfoCambioPedido').text(`Q.${pedido.cambio}`);
+                $('#txtInfoEstadoActual').text(`${currentState}`);
+                $('#txtInfoEstadoFecha').text(`${pedido.fecha_estado}`);
+                $('#txtInfoEstadoUsuario').text(`${pedido.usuario_registro}`);
 
+
+                const cambiosPedidos = document.getElementById('cambiosPedido');
                 const statusChangeOptions = document.getElementById('status-change-options');
                 const pilotSelection = document.getElementById('pilot-selection');
                 const assignPilotBtn = document.getElementById('assign-pilot-btn');
@@ -693,6 +856,12 @@
                 const nextStates = getNextStates(currentState);
                 console.log("Posibles siguientes estados [nextStates] ");
                 console.log(nextStates);
+                if (nextStates && nextStates.length > 0) {
+                    cambiosPedidos.classList.remove('oculto');  // Mostrar el div si hay estados
+                } else {
+                    cambiosPedidos.classList.add('oculto');  // Ocultar el div si no hay estados
+                }
+
                 nextStates.forEach(nextState => {
                     const button = document.createElement('button');
                     button.textContent = nextState.label;
@@ -902,12 +1071,34 @@
                 window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function formatoFecha(fecha) {
-            var date = new Date(fecha);
-            var dia = date.getDate();
-            var mes = date.getMonth() + 1; // Los meses son base 0
-            var anio = date.getFullYear();
-            return (dia < 10 ? '0' + dia : dia) + '/' + (mes < 10 ? '0' + mes : mes) + '/' + anio;
-        }
+    function formatoFecha(fecha) {
+        var date = new Date(fecha);
+
+        // Obtener partes de la fecha
+        var dia = date.getDate();
+        var mes = date.getMonth() + 1; // Los meses son base 0
+        var anio = date.getFullYear();
+
+        // Obtener partes de la hora
+        var horas = date.getHours();
+        var minutos = date.getMinutes();
+        var segundos = date.getSeconds();
+
+        // Formato de 12 horas
+        var amPm = horas >= 12 ? 'P.M.' : 'A.M.';
+        horas = horas % 12;
+        horas = horas ? horas : 12; // Si la hora es 0 (medianoche), ajustarla a 12
+
+        // Agregar ceros iniciales si es necesario
+        dia = dia < 10 ? '0' + dia : dia;
+        mes = mes < 10 ? '0' + mes : mes;
+        horas = horas < 10 ? '0' + horas : horas;
+        minutos = minutos < 10 ? '0' + minutos : minutos;
+        segundos = segundos < 10 ? '0' + segundos : segundos;
+
+        // Formato final
+        return dia + '/' + mes + '/' + anio + ' ' + horas + ':' + minutos + ':' + segundos + ' ' + amPm;
+    }
+
 </script>
 }
