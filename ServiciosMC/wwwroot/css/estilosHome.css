@@ -327,7 +327,7 @@
 #order-modal .modal-header {
     font-family: 'LemonMilk', sans-serif;
     background-color: #f0f0f0; /* Fondo suave para el header */
-    border-bottom: 2px solid #0f0a35;
+    /*border-bottom: 2px solid #0f0a35;*/
     display: flex;
     align-items: center;
     padding: 10px 15px; /* Ajustar padding según sea necesario */
@@ -343,7 +343,7 @@
 
     #order-modal .modal-header h5.modal-title {
         font-size: 1.6rem;
-        color: #0f0a35;
+        /*color: #0f0a35;*/
         margin: 0;
         margin-left: 10px; /* Espacio entre el icono y el título */
         line-height: 1.3rem; /* Ajustar para reducir el espacio */
@@ -351,14 +351,14 @@
 
     #order-modal .modal-header .card-icon {
         font-size: 1.8rem;
-        color: #0f0a35;
+        /*color: #0f0a35;*/
         margin: 0; /* Elimina cualquier margen inferior extra */
     }
 
     /* Estilo del botón de cierre */
     #order-modal .modal-header .close {
         font-size: 1.8rem;
-        color: #0f0a35; /* Asegúrate de que el color tenga suficiente contraste */
+        /*color: #0f0a35;  Asegúrate de que el color tenga suficiente contraste */
         padding: 0; /* Elimina padding adicional */
         margin-left: auto; /* Mueve el botón de cierre a la derecha */
     }
@@ -395,12 +395,9 @@
 
 /* Estilo para botones dentro del modal */
 #order-modal .btn-primary {
-    background-color: #0f0a35;
-    border-color: #0f0a35;
     font-family: 'Urbanist', sans-serif;
     font-size: 1rem;
-   /* padding: 10px 20px;*/
-    width: 100%; /* Botón ancho completo */
+    width: 100%; 
 }
 
 /* Ajustes del modal footer */
@@ -412,8 +409,168 @@
 }
 
 
+/* Estilos dinámicos por categoría */
 
+/* Categoría 1 */
+#order-modal.category-1 .modal-header h5.modal-title,
+#order-modal.category-1 .modal-header .card-icon,
+#order-modal.category-1 .modal-header .close {
+    color: #274296;
+    border-color: #274296;
+}
+/* Agregar el color al border-bottom */
+#order-modal.category-1 .modal-header {
+    border-bottom: 3px solid #274296; /* Puedes ajustar el grosor y el color según lo necesites */
+}
+/* Agregar el color a los botones */
+#order-modal.category-1 .btn-primary {
+    background-color: #274296;
+    border-color: #274296;
+    font-weight: bold;
+}
+#order-modal.category-1 .modal-body .custom-hr {
+    background-color: #274296; /* Cambia el color del hr */
+    height: 2px; /* Ajusta la altura del hr */
+    border: none; /* Elimina bordes predeterminados si es necesario */
+}
 
+/* Categoría 2 */
+#order-modal.category-2 .modal-header h5.modal-title,
+#order-modal.category-2 .modal-header .card-icon,
+#order-modal.category-2 .modal-header .close {
+    color: #2272ab;
+    border-color: #2272ab;
+}
+/* Agregar el color al border-bottom */
+#order-modal.category-2 .modal-header {
+    border-bottom: 3px solid #2272ab; /* Puedes ajustar el grosor y el color según lo necesites */
+}
+/* Agregar el color a los botones */
+#order-modal.category-2 .btn-primary {
+    background-color: #2272ab;
+    border-color: #2272ab;
+    font-weight: bold;
+}
+#order-modal.category-2 .modal-body .custom-hr {
+    background-color: #2272ab; /* Cambia el color del hr */
+    height: 2px; /* Ajusta la altura del hr */
+    border: none; /* Elimina bordes predeterminados si es necesario */
+}
+
+/* Categoría 3 */
+#order-modal.category-3 .modal-header h5.modal-title,
+#order-modal.category-3 .modal-header .card-icon,
+#order-modal.category-3 .modal-header .close {
+    color: #aa4c9c;
+    border-color: #aa4c9c;
+}
+/* Agregar el color al border-bottom */
+#order-modal.category-3 .modal-header {
+    border-bottom: 3px solid #aa4c9c; /* Puedes ajustar el grosor y el color según lo necesites */
+}
+/* Agregar el color a los botones */
+#order-modal.category-3 .btn-primary {
+    background-color: #aa4c9c;
+    border-color: #aa4c9c;
+    font-weight: bold;
+}
+#order-modal.category-3 .modal-body .custom-hr {
+    background-color: #aa4c9c; /* Cambia el color del hr */
+    height: 2px; /* Ajusta la altura del hr */
+    border: none; /* Elimina bordes predeterminados si es necesario */
+}
+
+/* Categoría 4 */
+#order-modal.category-4 .modal-header h5.modal-title,
+#order-modal.category-4 .modal-header .card-icon,
+#order-modal.category-4 .modal-header .close {
+    color: #dc418c;
+    border-color: #dc418c;
+}
+/* Agregar el color al border-bottom */
+#order-modal.category-4 .modal-header {
+    border-bottom: 3px solid #dc418c; /* Puedes ajustar el grosor y el color según lo necesites */
+}
+/* Agregar el color a los botones */
+#order-modal.category-4 .btn-primary {
+    background-color: #dc418c;
+    border-color: #dc418c;
+    font-weight: bold;
+}
+#order-modal.category-4 .modal-body .custom-hr {
+    background-color: #dc418c; /* Cambia el color del hr */
+    height: 2px; /* Ajusta la altura del hr */
+    border: none; /* Elimina bordes predeterminados si es necesario */
+}
+
+/* Categoría 5 */
+#order-modal.category-5 .modal-header h5.modal-title,
+#order-modal.category-5 .modal-header .card-icon,
+#order-modal.category-5 .modal-header .close {
+    color: #e86217;
+    border-color: #e86217;
+}
+/* Agregar el color al border-bottom */
+#order-modal.category-5 .modal-header {
+    border-bottom: 3px solid #e86217; /* Puedes ajustar el grosor y el color según lo necesites */
+}
+/* Agregar el color a los botones */
+#order-modal.category-5 .btn-primary {
+    background-color: #e86217;
+    border-color: #e86217;
+    font-weight: bold;
+}
+#order-modal.category-5 .modal-body .custom-hr {
+    background-color: #e86217; /* Cambia el color del hr */
+    height: 2px; /* Ajusta la altura del hr */
+    border: none; /* Elimina bordes predeterminados si es necesario */
+}
+
+/* Categoría 6 */
+#order-modal.category-6 .modal-header h5.modal-title,
+#order-modal.category-6 .modal-header .card-icon,
+#order-modal.category-6 .modal-header .close {
+    color: #f8d22a;
+    border-color: #f2c601;
+}
+/* Agregar el color al border-bottom */
+#order-modal.category-6 .modal-header {
+    border-bottom: 3px solid #f8d22a; /* Puedes ajustar el grosor y el color según lo necesites */
+}
+/* Agregar el color a los botones */
+#order-modal.category-6 .btn-primary {
+    background-color: #f8d22a;
+    border-color: #f8d22a;
+    font-weight: bold;
+}
+#order-modal.category-6 .modal-body .custom-hr {
+    background-color: #f8d22a; /* Cambia el color del hr */
+    height: 2px; /* Ajusta la altura del hr */
+    border: none; /* Elimina bordes predeterminados si es necesario */
+}
+
+/* Categoría 7 */
+#order-modal.category-7 .modal-header h5.modal-title,
+#order-modal.category-7 .modal-header .card-icon,
+#order-modal.category-7 .modal-header .close {
+    color: #0f0a35;
+    border-color: #0f0a35;
+}
+/* Agregar el color al border-bottom */
+#order-modal.category-7 .modal-header {
+    border-bottom: 3px solid #0f0a35; /* Puedes ajustar el grosor y el color según lo necesites */
+}
+/* Agregar el color a los botones */
+#order-modal.category-7 .btn-primary {
+    background-color: #0f0a35;
+    border-color: #0f0a35;
+    font-weight: bold;
+}
+#order-modal.category-7 .modal-body .custom-hr {
+    background-color: #0f0a35; /* Cambia el color del hr */
+    height: 2px; /* Ajusta la altura del hr */
+    border: none; /* Elimina bordes predeterminados si es necesario */
+}
 
 
 

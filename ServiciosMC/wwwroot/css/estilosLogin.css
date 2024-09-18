@@ -308,7 +308,7 @@
             padding: 0 90px;
         }
     }
-    @media (min-height: 671px)  {
+    @media (min-height: 671px) and (max-height: 700px) {
         .contenedor {
             height: 80%;
         }
@@ -322,6 +322,35 @@
             padding: 90px;
         }
     }
+    @media (min-height: 700px) {
+        .contenedor {
+            height: 90%;
+            width: 90%;
+        }
+
+        .logo-div-mc {
+            border-radius: 15px 0 0 0;
+            width: 60%;
+            height: 100%;
+            flex: 0 0 auto;
+        }
+
+        .form-div-mc {
+            height: 100%;
+            padding: 90px;
+        }
+        .form-div-mc {
+            border-radius: 0 0 15px 15px;
+            width: 40%;
+            padding: 35px;
+            flex: 0 0 auto;
+        }
+
+        .row {
+            flex-direction:column;
+            height: 100%;
+        }
+    }
 }
 
 @media (min-width: 851px) and (max-width: 950px) {
@@ -333,34 +362,46 @@
 
     .form-div-mc {
         flex: 0 0 100%;
+        width: 40%;
         padding: 35px;
     }
 
     .logo-div-mc {
         border-radius: 15px 0 0 0;
         height: 100%;
+        width: 60%;
         flex: 0 0 auto;
     }
-    
+    .row {
+        flex-direction:column;
+        height: 100%;
+    }
 
 }
 
 @media (min-width: 951px) and (max-width: 1050px) {
     .contenedor {
-        width: 70%;
+        width: 90%;
     }
+    
     .logo-div-mc {
         border-radius: 15px 0 0 0;
-        width: 50%;
+        width: 60%;
         flex: 0 0 auto;
     }
     .form-div-mc {
-        flex: 0 0 100%;
-        padding: 50px;
+        border-radius: 0 0 15px 15px;
+        width: 40%;
+        padding: 35px;
+        flex: 0 0 auto;
+    }
+
+    .row {
+        height: 100%;
     }
     @media (min-height: 400px) and (max-height: 950px) {
         .contenedor {
-            height: 70%;
+            height: 90%;
         }
     }
     }
@@ -368,15 +409,17 @@
 @media (min-width: 1051px) and (max-width: 1150px) {
     .contenedor {
         width: 90%;
-        height: 70%;
+        height: 90%;
     }
     .logo-div-mc {
         border-radius: 15px 0 0 0;
+        width: 100%;
         flex: 0 0 auto;
     }
     .form-div-mc {
-        flex: 0 0 100%;
+        flex: 0 0 auto;
         padding: 60px;
+        width: 100%;
     }
 }
 
@@ -392,7 +435,7 @@
 
     .form-div-mc {
         border-radius: 0 0 15px 15px;
-        flex: 0 0 100%;
+        flex: 0 0 auto;
     }
     .row {
         flex-direction: column;
@@ -429,9 +472,9 @@
     }
 }
 
-@media (min-width: 1301px) and (max-width: 1500px) {
+@media (min-width: 1301px) and (max-width: 10000px) {
     .form-div-mc {
-       padding: 40px;
+       padding: 60px;
     }
 }
 

@@ -4,17 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&family=Urbanist:ital,wght@0,100..900&family=Ubuntu+Mono:ital,wght@0,400;0,700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link href="~/css/estilosHome.css" rel="stylesheet">
     <style>
     </style>
@@ -45,12 +41,12 @@
                                             <input type="text" class="form-control" placeholder="Ingrese número de folio"
                                                    name="txtFolio" id="txtFolio" maxlength="10"
                                                    inputmode="numeric" oninput="validarSoloNumeros(this)" required />
-                                            <button type="submit" class="btn btn-icon" id="btnBuscarTicket"  title="Buscar ticket">
+                                            <button type="submit" class="btn btn-icon" id="btnBuscarTicket" title="Buscar ticket">
                                                 <span class="material-symbols-outlined">
                                                     search
                                                 </span>
                                             </button>
-                                            <button type="button" class="btn btn-icon" id="btnLimpiar"  title="Limpiar búsqueda">
+                                            <button type="button" class="btn btn-icon" id="btnLimpiar" title="Limpiar búsqueda">
                                                 <span class="material-symbols-outlined">
                                                     backspace
                                                 </span>
@@ -88,8 +84,6 @@
                             </div>
                         </div>
                     </div>
-
-
                 </div>
 
                 <div class="col-sm-12 col-md-6 col-lg-6 flex-grow-1">
@@ -222,9 +216,9 @@
                                 <span class="material-symbols-outlined card-icon">
                                     receipt
                                 </span>
-                                <h5 class="modal-title" id="orderModalLabel">DETALLES DEL PEDIDO</h5>
+                                <h5 class="modal-title" id="orderModalLabel">DETALLE DEL PEDIDO</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">×</span>
+                                    <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                         </div>
@@ -236,6 +230,7 @@
                         <div id="modal-order-details">
                             <div class="row">
                                 <div class="col-md-12">
+                                    <label><strong>Cliente:</strong></label>
                                     <p id="txtInfoCliente"></p>
                                 </div>
                             </div>
@@ -269,7 +264,7 @@
                                     <p id="txtInfoCambioPedido"></p>
                                 </div>
                             </div>
-                            <hr style="background-color: #2f2f2f;">
+                            <hr class="custom-hr">
                             <div class="row">
                                 <div class="col-12">
                                     <label><strong>Estado actual: </strong></label>
@@ -286,70 +281,64 @@
                                     <p id="txtInfoEstadoUsuario"></p>
                                 </div>
                             </div>
+                            <hr class="custom-hr">
                             <div class="row oculto" id="cambiosPedido">
-                                <div class="col-md-12">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <label><strong>Cambiar estado del pedido: </strong></label>
-                                        </div>
-                                        <div id="status-change-options" class="d-flex flex-row ">
-                                            <!-- Opciones para cambiar el estado del pedido gap-2-->
-                                        </div>
+                                <div class="col-12">
+                                    <label><strong>Cambiar estado del pedido: </strong></label>
+                                </div>
+                                <div class="col-12 form-group">
+                                    <label><strong>Observaciones:</strong></label>
+                                    <textarea class="form-control" id="txtInfoObservaciones" title="Agrega observaciones del cambio de estado" />
+                                </div>
+                                <div class="col-12 mt-3">
+                                    <div id="status-change-options" class="d-flex flex-row ">
+                                        <!-- Opciones para cambiar el estado del pedido gap-2-->
                                     </div>
-
                                 </div>
                             </div>
-                        </div>
-
-                        <!-- Selección de Piloto -->
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div id="pilot-selection" style="display: none;">
-                                    <label><strong>Asignar piloto:</strong></label>
-                                    <select id="pilot-select" class="form-control mb-2">
-                                        <!-- Opciones de pilotos -->
-                                    </select>
-                                    <button id="assign-pilot-btn" class="btn btn-primary btn-block" style="display: none;">Cambiar estado</button>
+                            <!-- Selección de Piloto -->
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div id="pilot-selection" style="display: none;">
+                                        <label><strong>Asignar piloto:</strong></label>
+                                        <select id="pilot-select" class="form-control mb-2">
+                                            <!-- Opciones de pilotos -->
+                                        </select>
+                                        <button id="assign-pilot-btn" class="btn btn-primary btn-block" style="display: none;">Cambiar estado</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <!-- Selección de Paquetería -->
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div id="parcel-selection" style="display: none;">
-                                    <label><strong>Asignar paquetería:</strong></label>
-                                    <select id="parcel-select" class="form-control mb-2">
-                                        <!-- Opciones de paquetería -->
-                                    </select>
-                                    <button id="assign-parcel-btn" class="btn btn-primary btn-block" style="display: none;">Cambiar estado</button>
+                            <!-- Selección de Paquetería -->
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div id="parcel-selection" style="display: none;">
+                                        <label><strong>Asignar paquetería:</strong></label>
+                                        <select id="parcel-select" class="form-control mb-2">
+                                            <!-- Opciones de paquetería -->
+                                        </select>
+                                        <button id="assign-parcel-btn" class="btn btn-primary btn-block" style="display: none;">Cambiar estado</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-
-                    </div>
-                    <!-- Modal Footer
-    <div class="modal-footer d-flex flex-column align-items-center">
-
-    </div>-->
-                </div>
-            </div>
-        </div>
-
-
-
-    </div>
+                    </div> <!-- fin del cuerpo del modal -->
+                    </div> <!-- fin del modal-body -->
+                </div> <!-- fin de modal-content -->
+            </div> <!-- fin de modal-dialog -->
+        </div> <!-- fin de modal -->
+    
+        </div> <!-- fin del contenedor general -->
 
 </body>
 </html>
 
-@section Scripts{
+
 <script type="text/javascript">
-            let parametros = "";
-            let usuarioLogin = "";
-            let pilotosActivos = [];
-            let modalInstance;
-            const categoryMap = {
+    let parametros = "";
+    let usuarioLogin = "";
+    let pilotosActivos = [];
+    let modalInstance;
+    const categoryMap = {
                 "En producción": "production",
                 "Envío por Mensajería": "courier",
                 "Envío por Paquetería": "parcel",
@@ -360,9 +349,10 @@
                 "Recoge en oficina": "pickup",
                 "Reprogramar": "rescheduled"
             };
-            function validarSoloNumeros(input) {
-                input.value = input.value.replace(/[^0-9]/g, ''); // Permitir solo números
-            }
+
+    function validarSoloNumeros(input) {
+        input.value = input.value.replace(/[^0-9]/g, ''); // Permitir solo números
+    }
 
     $(document).ready(function () {
         $('[data-toggle="tooltip"]').tooltip();
@@ -370,24 +360,24 @@
         $('#btnLimpiar').on('click', limpiar);
     });
 
-            //Consulta folio en firebird
-            function buscarTicket() {
+    //Consulta folio en firebird
+    function buscarTicket() {
             $('#pedidoInfo').hide();
             let nofolio = $('#txtFolio').val();
-            if (!nofolio) {
-                alert("El campo Folio no puede estar vacío.");
-            } else {
+          
                 document.getElementById('contenedor-loader').style.display = 'flex';
                 $.ajax({
                     url: '@Url.Action("obtenerPedido", "Home")',
                     type: "POST",
                     data: { folio: nofolio },
                     success: function (data) {
+                        console.log("Obtener pedido: ");
+                        console.log(data);
                         if (data.existeError) {
                             dialogoEG({
                                 type: "error",
                                 title: "Error al buscar ticket",
-                                mensaje: "Ocurrió un error al consultar la base de datos. Intente de nuevo, si el inconveniente persiste contacte al administrador.",
+                                mensaje: "Ocurrió un error al consultar a la base de datos. Intente de nuevo, si el inconveniente persiste contacte al administrador.",
                                 confirmar: "Aceptar",
                                 img: "img/error.png"
                             });
@@ -397,7 +387,6 @@
                                 let total = parseFloat(data.infoPedido.total).toFixed(2);
                                 let pago = parseFloat(data.infoPedido.pago).toFixed(2);
                                 let cambio = parseFloat(data.infoPedido.cambio).toFixed(2);
-                                console.log(data);
                                 // Mostrar la información del pedido
                                 $('#folio').text(data.infoPedido.folio);
                                 $('#fecha').text(fechaF);
@@ -439,10 +428,11 @@
                         document.getElementById('contenedor-loader').style.display = 'none';
                     }
                 });
-            }
+            
         }
-            //Inserta un ticket y pasa a producción
-            function ingresaTicket() {
+
+    //Inserta un ticket y pasa a producción
+    function ingresaTicket() {
                 console.log(">>>> Los parametros son: ");
                 console.log(parametros);
             document.getElementById('contenedor-loader').style.display = 'flex';
@@ -492,49 +482,50 @@
                 }
             });
         }
-            //Consulta pedidos a cargo del usuario
-            function consultaPedidos() {
-             
-            document.getElementById('contenedor-loader').style.display = 'flex';
-            $.ajax({
-                url: '@Url.Action("listaPedidos", "Home")',
-                type: "POST",
-                success: function (data) {
-                    if (!data.success) {
-                        console.log(data.errorMensaje)
-                        dialogoEG({
-                            type: "error",
-                            title: "Error consulta de pedidos",
-                            mensaje: data.errorMensaje,
-                            confirmar: "Aceptar",
-                            img: "img/error.png"
-                        }).then(() => {
-                            limpiar();
-                        });
-                    } else {
-                        const pedidos = JSON.parse(data.respuesta).listadoPedidos;
-                        console.log("pedidos:");
-                        console.log(pedidos);
-                        //Actualizar listado de pedidos
-                        updateList(pedidos);
-                    }
-                    document.getElementById('contenedor-loader').style.display = 'none';
-                },
-                error: function (xhr, status, error) {
-                    document.getElementById('contenedor-loader').style.display = 'none';
-                    console.log("Error al consultar pedidos:", error);
+
+    //Consulta pedidos a cargo del usuario
+    function consultaPedidos() {
+        console.log("consultaPedidos...");
+        document.getElementById('contenedor-loader').style.display = 'flex';
+        $.ajax({
+            url: '@Url.Action("listaPedidos", "Home")',
+            type: "POST",
+            success: function (data) {
+                if (!data.success) {
+                    console.log(data.errorMensaje)
                     dialogoEG({
                         type: "error",
-                        title: "Error de comunicación",
-                        mensaje: "Ocurrió un error al obtener el listado de pedidos. Intente nuevamente, si el inconveniente persiste contacte al administrador.",
+                        title: "Error consulta de pedidos",
+                        mensaje: data.errorMensaje,
                         confirmar: "Aceptar",
                         img: "img/error.png"
+                    }).then(() => {
+                        limpiar();
                     });
+                } else {
+                    const pedidos = JSON.parse(data.respuesta).listadoPedidos;
+                    console.log("pedidos:");
+                    console.log(pedidos);
+                    //Actualizar listado de pedidos
+                    updateList(pedidos);
                 }
-            });
-        }
-            //Consulta pilotos activos
-            function getPilotosAct() {
+                document.getElementById('contenedor-loader').style.display = 'none';
+            },
+            error: function (xhr, status, error) {
+                document.getElementById('contenedor-loader').style.display = 'none';
+                console.log("Error al consultar pedidos:", error);
+                dialogoEG({
+                    type: "error",
+                    title: "Error de comunicación",
+                    mensaje: "Ocurrió un error al obtener el listado de pedidos. Intente nuevamente, si el inconveniente persiste contacte al administrador.",
+                    confirmar: "Aceptar",
+                    img: "img/error.png"
+                });
+            }
+        });
+    }
+
+    function getPilotosAct() {
                  $.ajax({
                     url: '@Url.Action("listaPilotos", "Home")',
                     type: "POST",
@@ -574,8 +565,9 @@
                      }
             });
             }
-            //Consulta todos los pilotos del sistema
-            function getPilotosAll() {
+
+    //Consulta todos los pilotos del sistema
+    function getPilotosAll() {
                 document.getElementById('contenedor-loader').style.display = 'flex';
                  $.ajax({
                     url: '@Url.Action("consultaPilotos", "Home")',
@@ -613,9 +605,10 @@
                          });
                      }
             });
-            }
-            //Consulta paqueterías
-            function getPaqueterias() {
+    }
+
+    //Consulta paqueterías
+    function getPaqueterias() {
                 document.getElementById('contenedor-loader').style.display = 'flex';
                   $.ajax({
                     url: '@Url.Action("consultaPaqueterias", "Home")',
@@ -658,9 +651,8 @@
             });
             }
 
-
-            //Actualizar lista de pedidos
-            function updateList(listaPedidos) {
+    //Actualizar lista de pedidos
+    function updateList(listaPedidos) {
                 // Crear un objeto para almacenar el último estado de cada pedido
                 const pedidosUltimoEstado = {};
 
@@ -742,18 +734,17 @@
 
 
                 });
-            }
+    }
 
-
-
-            // Mostrar modal
-            function showModal(pedido, cardItem) {
+    // Mostrar modal
+    function showModal(pedido, cardItem) {
                 console.log("Abro diálogo del pedido: ");
                 console.log(pedido);
                 let piloto = null;
                 let paqueteria = null;
                 let obvs = null;
-                //aginación de colores 
+
+                //Aginación de colores
                 // Obtener la categoría del card-item clickeado
                 const categoryContainer = cardItem.closest('.order-category');
                 let categoryClass = '';
@@ -761,66 +752,6 @@
                     categoryClass = Array.from(categoryContainer.classList).find(cls => cls.startsWith('category-'));
                     console.log("Clase de categoría: ", categoryClass);
                 }
-
-                // Función para obtener color basado en la categoría
-                function getColorForCategory(categoryClass) {
-                    switch (categoryClass) {
-                        case 'category-1':
-                            return '#263a96'; // Azul para categoría 1
-                        case 'category-2':
-                            return '#2272ab'; // Azul más claro para categoría 2
-                        case 'category-3':
-                            return '#aa4c9c'; // Rosa para categoría 3
-                        case 'category-4':
-                            return '#dc418c'; // Fucsia para categoría 4
-                        case 'category-5':
-                            return '#e86217'; // Naranja para categoría 5
-                        case 'category-6':
-                            return '#f8d22a'; // Amarillo para categoría 6
-                        case 'category-7':
-                            return '#0f0a35'; // Azul oscuro para categoría 7
-                        default:
-                            return '#f0f0f0'; // Fondo por defecto
-                    }
-                }
-
-                // Aplicar color al modal basado en la categoría
-                function applyColorToModal(color) {
-                    const modalHeader = document.querySelector('#order-modal .modal-header');
-                    const modalTitle = document.querySelector('#order-modal .modal-header h5.modal-title');
-                    const cardIcon = document.querySelector('#order-modal .modal-header .card-icon');
-                    const closeButton = document.querySelector('#order-modal .modal-header .close');
-                    const btnPrimary = document.querySelectorAll('#order-modal .btn-primary');
-                    const statusChangeButtons = document.querySelectorAll('#status-change-options .btn-primary');
-                    // Cambiar color de fondo y borde del header
-                    modalHeader.style.borderBottomColor = color;
-
-                    // Cambiar color del título y del ícono
-                    modalTitle.style.color = color;
-                    cardIcon.style.color = color;
-                    closeButton.style.color = color;
-
-                    // Cambiar color de los botones principales
-                    btnPrimary.forEach(button => {
-                        button.style.backgroundColor = color;
-                        button.style.borderColor = color;
-                    });
-
-                    // Cambiar color de los botones en el div de cambios de estado
-                    statusChangeButtons.forEach(button => {
-                        button.style.backgroundColor = color + ' !important';
-                        button.style.borderColor = color + ' !important';
-                    });
-                }
-
-                // Aplicar el color basado en la clase de categoría
-                const categoryColor = getColorForCategory(categoryClass);
-                applyColorToModal(categoryColor);
-                //fin asignacion de colores
-
-
-
-
 
                 const orderNumber = pedido.folio;
                 const currentState = pedido.estado_actual;
@@ -834,8 +765,9 @@
                 $('#txtInfoPagoPedido').text(`Q.${pedido.pago}`);
                 $('#txtInfoCambioPedido').text(`Q.${pedido.cambio}`);
                 $('#txtInfoEstadoActual').text(`${currentState}`);
-                $('#txtInfoEstadoFecha').text(`${pedido.fecha_estado}`);
+                $('#txtInfoEstadoFecha').text(`${formatoFechaDos(pedido.fecha_estado)}`);
                 $('#txtInfoEstadoUsuario').text(`${pedido.usuario_registro}`);
+                //$('#txtInfoDetallesEstadoActual').text(`${pedido.observaciones}`);
 
 
                 const cambiosPedidos = document.getElementById('cambiosPedido');
@@ -844,6 +776,7 @@
                 const assignPilotBtn = document.getElementById('assign-pilot-btn');
                 const parcelSelection = document.getElementById('parcel-selection');
                 const assignParcelBtn = document.getElementById('assign-parcel-btn');
+                /*const detallePedido = document.getElementById('divDetallesEstado');*/
 
                 // Resetear las opciones del modal
                 statusChangeOptions.innerHTML = '';
@@ -861,7 +794,11 @@
                 } else {
                     cambiosPedidos.classList.add('oculto');  // Ocultar el div si no hay estados
                 }
-
+                //if (pedido.observaciones) {
+                //    detallePedido.show();
+                //} else {
+                //    detallePedido.show();
+                //}
                 nextStates.forEach(nextState => {
                     const button = document.createElement('button');
                     button.textContent = nextState.label;
@@ -876,6 +813,7 @@
 
                             assignPilotBtn.addEventListener('click', function () {
                                 const selectedPilot = document.getElementById('pilot-select').value;
+                                obvs = document.getElementById('txtInfoObservaciones').value;
                                 if (selectedPilot) {
                                     console.log('Piloto asignado: ' + selectedPilot);
                                     piloto = selectedPilot;
@@ -894,6 +832,7 @@
 
                             assignParcelBtn.addEventListener('click', function () {
                                 const selectedParcel = document.getElementById('parcel-select').value;
+                                obvs = document.getElementById('txtInfoObservaciones').value;
                                 if (selectedParcel) {
                                     paqueteria = selectedParcel;
                                     console.log('Paquetería asignada: ' + selectedParcel);
@@ -905,7 +844,7 @@
 
                         } else {
                             console.log("dentro de else");
-
+                            obvs = document.getElementById('txtInfoObservaciones').value;
                             changeOrderState(pedido, nextState.state, piloto, paqueteria, obvs);
                         }
                     });
@@ -913,13 +852,27 @@
                 });
 
                 // Utilizar Bootstrap para mostrar el modal
+                //const modalElement = document.getElementById('order-modal');
+                //modalElement.classList.add(categoryClass);
+                //modalInstance = new bootstrap.Modal(modalElement);
+                //modalInstance.show();
+                // Mostrar el modal y agregar la clase de categoría si existe
                 const modalElement = document.getElementById('order-modal');
+
+                // Remover cualquier clase de categoría existente para evitar múltiples clases
+                modalElement.classList.remove(...Array.from(modalElement.classList).filter(cls => cls.startsWith('category-')));
+
+                // Agregar la clase de categoría si existe
+                if (categoryClass) {
+                    modalElement.classList.add(categoryClass);
+                }
+                // Mostrar el modal utilizando Bootstrap
                 modalInstance = new bootstrap.Modal(modalElement);
                 modalInstance.show();
             }
 
-            // Obtener estados siguientes posibles
-            function getNextStates(currentState) {
+    // Obtener estados siguientes posibles
+    function getNextStates(currentState) {
                 console.log("Dentro de getNextStates: " + currentState);
                 const stateTransitions = {
                     production: [
@@ -961,8 +914,9 @@
                 const mappedState = categoryMap[currentState];
                 return stateTransitions[mappedState] || [];
             }
-            // Mapa de conversión de inglés a español
-            const entospa = {
+
+    // Mapa de conversión de inglés a español
+    const entospa = {
                 "production": "En producción",
                 "courier": "Envío por Mensajería",
                 "parcel": "Envío por Paquetería",
@@ -975,14 +929,15 @@
 
             };
 
-            // Función para obtener el equivalente en español dado un estado en inglés
-            function getState(state) {
-                return entospa[state] || "Estado desconocido";
-            }
+    // Función para obtener el equivalente en español dado un estado en inglés
+    function getState(state) {
+        return entospa[state] || "Estado desconocido";
+    }
 
-            // Cambiar estado del pedido
-            function changeOrderState(pedido, newState, piloto, paqueteria, obvs) {
+    // Cambiar estado del pedido
+    function changeOrderState(pedido, newState, piloto, paqueteria, obvs) {
                 console.log("changeOrderState ----> ");
+                console.log("observaciones .... " + obvs);
                 console.log("   pedido: ");
                 console.log(pedido);
                 newState = getState(newState);
@@ -1047,15 +1002,9 @@
 
                 }
 
-
-
-
-
-
             }
 
-
-        function limpiar() {
+    function limpiar() {
                 parametros = "";
                 $('#txtFolio').val("");
                 $('#folio').text("");
@@ -1100,5 +1049,38 @@
         return dia + '/' + mes + '/' + anio + ' ' + horas + ':' + minutos + ':' + segundos + ' ' + amPm;
     }
 
+    function formatoFechaDos(fecha) {
+        // Separar la fecha y la hora
+        var partesFechaHora = fecha.split(' ');
+        var partesFecha = partesFechaHora[0].split('/');
+        var partesHora = partesFechaHora[1].split(':');
+
+        // Crear un objeto Date usando las partes de la fecha y hora
+        var dia = parseInt(partesFecha[0], 10);
+        var mes = parseInt(partesFecha[1], 10) - 1; // Mes es base 0 en JavaScript
+        var anio = parseInt(partesFecha[2], 10);
+
+        var horas = parseInt(partesHora[0], 10);
+        var minutos = parseInt(partesHora[1], 10);
+        var segundos = parseInt(partesHora[2], 10);
+
+        // Determinar A.M. o P.M.
+        var amPm = horas >= 12 ? 'P.M.' : 'A.M.';
+
+        // Convertir a formato de 12 horas
+        horas = horas % 12;
+        horas = horas ? horas : 12; // Si es 0, asignar 12 (medianoche o mediodía)
+
+        // Agregar ceros iniciales si es necesario
+        dia = dia < 10 ? '0' + dia : dia;
+        mes = (mes + 1) < 10 ? '0' + (mes + 1) : (mes + 1); // Ajustar el mes de nuevo a base 1
+        horas = horas < 10 ? '0' + horas : horas;
+        minutos = minutos < 10 ? '0' + minutos : minutos;
+        segundos = segundos < 10 ? '0' + segundos : segundos;
+
+        // Formato final
+        return dia + '/' + mes + '/' + anio + ' ' + horas + ':' + minutos + ':' + segundos + ' ' + amPm;
+    }
+
 </script>
-}
+

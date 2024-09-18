@@ -14,6 +14,7 @@ using System.Net.Http;
 using System.Text.Json;
 using System.Text;
 using System.Collections.Generic;
+using System.ServiceModel;
 
 namespace ServiciosMC.Controllers
 
@@ -106,12 +107,35 @@ namespace ServiciosMC.Controllers
                     catch (Exception x)
                     {
                         Helpers.Helper.Log("Error al obtener datos: " + x.Message);
+                        return Json(new
+                        {
+                            existeError = true,
+                            existenDatos = false,
+                            mensajeError ="Ocurrió un error al procesar la información del pedido."
+                        });
                     }
                 }
             }
-            catch (Exception)
+            catch (EndpointNotFoundException ex)
             {
-                throw;
+                Helpers.Helper.Log("Error de conexión al servicio: " + ex.Message);
+                return Json(new
+                {
+                    existeError = true,
+                    existenDatos = false,
+                    mensajeError = "No se pudo conectar con el servicio de pedidos. Por favor, verifique su conexión o intente de nuevo."
+                });
+            }
+            catch (Exception ex)
+            {
+                // Error genérico
+                Helpers.Helper.Log("Error inesperado: " + ex.Message);
+                return Json(new
+                {
+                    existeError = true,
+                    existenDatos = false,
+                    mensajeError = "Ocurrió un error inesperado. Intente nuevamente de nuevo."
+                });
             }
             return Json(datosRespuesta);
         }
@@ -184,6 +208,7 @@ namespace ServiciosMC.Controllers
                     
                     var datos = JsonSerializer.Serialize(usrData);
                     Debug.WriteLine("datos: " + datos);
+
                     var contenido = new StringContent(datos, Encoding.UTF8, "application/json");
                     var response = await httpClient.PostAsync(URL, contenido);
 
