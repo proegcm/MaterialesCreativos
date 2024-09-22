@@ -1,0 +1,329 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <script src="~/plugins/jquery/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="~/css/estilosPanelControl.css" rel="stylesheet">
+    <title>Panel de Control</title>
+</head>
+<body style="font-family: 'Urbanist', sans-serif;">
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <div class="row h-100">
+                <div class="card usuarios-card" style="margin-top: 3px;">
+                    <div class="card-body">
+                        <!--TÍTULO-->
+                        <div class="col-12">
+                            <div class="form-group d-flex align-items-center">
+                                <span class="material-symbols-outlined card-icon">dashboard</span>
+                                <h3 class="card-title ml-2">GESTIÓN DE USUARIOS</h3>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group d-flex">
+                                <span class="material-symbols-outlined card-icon">person_add</span>
+                                <h5 class="card-title ml-2">DATOS DE USUARIO</h5>
+                            </div>
+                            <form id="formInsertarUsuario" onsubmit="ingresoUsuario(); return false;" class="w-100">
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label for="nombre">
+                                                <span class="material-symbols-outlined">person</span>
+                                                Nombre completo:
+                                            </label>
+                                            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese el nombre" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label for="telefono">
+                                                <span class="material-symbols-outlined">phone</span>
+                                                Teléfono:
+                                            </label>
+                                            <input type="text" class="form-control" id="telefono" name="telefono" placeholder="Ingrese el teléfono" maxlength="8">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label for="activo">
+                                                <span class="material-symbols-outlined">toggle_on</span>
+                                                Activo:
+                                            </label>
+                                            <select class="form-control" id="activo" name="activo" required>
+                                                <option value="S">Sí</option>
+                                                <option value="N">No</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label for="username">
+                                                <span class="material-symbols-outlined">account_circle</span>
+                                                Nombre de Usuario:
+                                            </label>
+                                            <input type="text" class="form-control" id="username" name="username" placeholder="Ingrese el nombre de usuario" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label for="password">
+                                                <span class="material-symbols-outlined">lock</span>
+                                                Contraseña:
+                                            </label>
+                                            <input type="password" class="form-control" id="password" name="password" placeholder="Ingrese la contraseña" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label for="idrol">
+                                                <span class="material-symbols-outlined">group</span>
+                                                Rol de usuario:
+                                            </label>
+                                            <select class="form-control" id="roluser" name="roluser" required>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <div class="col-12 col-md-6 d-flex justify-content-around">
+                                        <button type="submit" class="btn btn-primary" id="btnIngreso">
+                                            <span class="material-symbols-outlined">send</span>
+                                            Ingresar usuario
+                                        </button>
+                                        <button type="button" class="btn btn-primary" onclick="limpiarFormulario()" id="btnLimpiar">
+                                            <span class="material-symbols-outlined">ink_eraser</span>
+                                            Limpiar formulario
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            console.log("READY :D");
+            getRoles();
+
+        });
+
+        //Consulta empresas de paquetería
+        function getPaqueterias() {
+            document.getElementById('contenedor-loader').style.display = 'flex';
+            $.ajax({
+                    url: '@Url.Action("ConsultaPaqueterias", "PanelControl")',
+                    type: "POST",
+                     success: function (data) {
+                         if (!data.success) {
+                             console.log(data.errorMensaje);
+                         } else {
+                             // Deserializar la respuesta JSON
+                             let respuesta = JSON.parse(data.respuesta);
+
+                             // Acceder al array de paqueterías
+                             let listadoPaqueterias = respuesta.listadoPaqueterias;
+
+                             // Obtener el elemento select
+                             let parcelSelect = $('#parcel-select');
+                             // Vaciar las opciones existentes
+                             parcelSelect.empty();
+                             // Agregar la opción predeterminada
+                             parcelSelect.append('<option value="">Selecciona una paquetería</option>');
+
+                             // Agregar las paqueterías al select
+                             listadoPaqueterias.forEach(paq => {
+                                 parcelSelect.append(`<option value="${paq.id_paqueteria}">${paq.nombre}</option>`);
+                             });
+                         }
+                         document.getElementById('contenedor-loader').style.display = 'none';
+                     },
+                     error: function (xhr, status, error) {
+                         document.getElementById('contenedor-loader').style.display = 'none';
+                         console.log("Error al consultar pilotos:", error);
+                         dialogoEG({
+                             type: "error",
+                             title: "Error de comunicación",
+                             mensaje: "Ocurrió un error al obtener listado de pilotos. Intente nuevamente, si el inconveniente persiste contacte al administrador.",
+                             confirmar: "Aceptar",
+                             img: "img/error.png"
+                         });
+                     }
+            });
+        }
+
+        //Consulta de usuarios
+        function getUsuarios() {
+            document.getElementById('contenedor-loader').style.display = 'flex';
+            $.ajax({
+                    url: '@Url.Action("ConsultaUsuarios", "PanelControl")',
+                    type: "POST",
+                     success: function (data) {
+                         if (!data.success) {
+                             console.log(data.errorMensaje);
+                         } else {
+                             // Deserializar la respuesta JSON
+                             let respuesta = JSON.parse(data.respuesta);
+
+                             // Acceder al array de paqueterías
+                             let listadoPaqueterias = respuesta.listadoPaqueterias;
+
+                             // Obtener el elemento select
+                             let parcelSelect = $('#parcel-select');
+                             // Vaciar las opciones existentes
+                             parcelSelect.empty();
+                             // Agregar la opción predeterminada
+                             parcelSelect.append('<option value="">Selecciona una paquetería</option>');
+
+                             // Agregar las paqueterías al select
+                             listadoPaqueterias.forEach(paq => {
+                                 parcelSelect.append(`<option value="${paq.id_paqueteria}">${paq.nombre}</option>`);
+                             });
+                         }
+                         document.getElementById('contenedor-loader').style.display = 'none';
+                     },
+                     error: function (xhr, status, error) {
+                         document.getElementById('contenedor-loader').style.display = 'none';
+                         console.log("Error al consultar pilotos:", error);
+                         dialogoEG({
+                             type: "error",
+                             title: "Error de comunicación",
+                             mensaje: "Ocurrió un error al obtener listado de pilotos. Intente nuevamente, si el inconveniente persiste contacte al administrador.",
+                             confirmar: "Aceptar",
+                             img: "img/error.png"
+                         });
+                     }
+            });
+        }
+
+        //Consulta de roles
+        function getRoles() {
+            document.getElementById('contenedor-loader').style.display = 'flex';
+            $.ajax({
+                    url: '@Url.Action("ConsultaRoles", "PanelControl")',
+                    type: "POST",
+                success: function (data) {
+                    console.log(data);
+                         if (!data.success) {
+                             console.log(data.errorMensaje);
+                         } else {
+                             // Deserializar la respuesta JSON
+                             let respuesta = JSON.parse(data.respuesta);
+
+                             // Acceder al array de paqueterías
+                             let listadoRoles = respuesta.listadoRoles;
+
+                             // Obtener el elemento select
+                             let rolSelect = $('#roluser');
+                             // Vaciar las opciones existentes
+                             rolSelect.empty();
+                             // Agregar la opción predeterminada
+                             rolSelect.append('<option value="">Selecciona un rol</option>');
+
+                             // Agregar las paqueterías al select
+                             listadoRoles.forEach(rol => {
+                                 rolSelect.append(`<option value="${rol.id_rol}">${rol.nombrerol}</option>`);
+                             });
+                         }
+                         document.getElementById('contenedor-loader').style.display = 'none';
+                     },
+                     error: function (xhr, status, error) {
+                         document.getElementById('contenedor-loader').style.display = 'none';
+                         console.log("Error al roles:", error);
+                         dialogoEG({
+                             type: "error",
+                             title: "Error de comunicación",
+                             mensaje: "Ocurrió un error al obtener listado de roles. Intente nuevamente, si el inconveniente persiste solicite soporte.",
+                             confirmar: "Aceptar",
+                             img: "img/error.png"
+                         });
+                     }
+            });
+        }
+
+        //Insertar usuario nuevo
+        function ingresoUsuario() {
+            // Obtener los valores del formulario
+            var nombre = document.getElementById('nombre').value;
+            var telefono = document.getElementById('telefono').value;
+            var activo = document.getElementById('activo').value;
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+            var idrol = document.getElementById('roluser').value;
+
+            // Construir el objeto parametros
+            var parametros = {
+                infoUsuarioIngreso: {
+                    nombre: nombre,
+                    telefono: telefono,
+                    activo: activo,
+                    username: username,
+                    password: password,
+                    idrol: idrol
+                }
+            };
+             $.ajax({
+                url: '@Url.Action("IngresoUsuario", "Principal")',
+                type: "POST",
+                data: parametros,
+                success: function (data) {
+                    console.log(data);
+                    if (!data.success) {
+                        console.log(data.errorMensaje)
+                        dialogoEG({
+                            type: "error",
+                            title: "Error ingreso usuario",
+                            mensaje: data.errorMensaje,
+                            confirmar: "Aceptar",
+                            img: "img/error.png"
+                        })
+                        limpiarFormulario();
+                    } else {
+                        dialogoEG({
+                            type: "success",
+                            title: "Ingreso de usuario exitoso",
+                            mensaje: data.respuesta,
+                            confirmar: "Aceptar",
+                            img: "img/success.png"
+                        }).then(() => {
+                            limpiarFormulario();
+                        });
+                    }
+                    document.getElementById('contenedor-loader').style.display = 'none';
+                },
+                error: function (xhr, status, error) {
+                    document.getElementById('contenedor-loader').style.display = 'none';
+                    console.log("Error al ingresar el usuario", error);
+                    dialogoEG({
+                        type: "error",
+                        title: "Error de comunicación",
+                        mensaje: "Ocurrió un error al ingresar el usuario. Intente nuevamente, si el inconveniente persiste contacte con soporte.",
+                        confirmar: "Aceptar",
+                        img: "img/error.png"
+                    })
+                    limpiarFormulario();
+                }
+            });
+        }
+
+        function limpiarFormulario() {
+            console.log("limpiar form :D");
+            document.getElementById("formInsertarUsuario").reset();
+        }
+
+
+
+    </script>
+
+}

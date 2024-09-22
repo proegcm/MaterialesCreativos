@@ -61,6 +61,7 @@
     height: 100vh; /* Asegúrate de que la barra lateral ocupe toda la altura de la ventana */
 }
 
+
 /* Estilo para el contenedor del logo */
 .brand-link {
     display: flex;
@@ -100,8 +101,8 @@
 
 /* Aumentar el tamaño de los íconos */
 .nav-icon {
-    font-size: 1.5rem; /* Ajusta el tamaño según tus preferencias */
-    margin-right: 10px; /* Espaciado entre el ícono y el texto */
+    font-size: 2rem; /* Ajusta el tamaño según tus preferencias */
+    margin-right: 15px; /* Espaciado entre el ícono y el texto */
 }
 
 /* Centrando el contenido verticalmente */
@@ -124,11 +125,7 @@
 /* Opcional: Cambiar el color al pasar el mouse */
 .nav-link:hover {
     background-color: #d2d6de; /* Ajusta el color de fondo al pasar el mouse */
-    color: #000; /* Cambia el color del texto si lo deseas */
 }
-
-
-
 
 /* Estilo para el contenedor de los elementos a la derecha */
 .navbar-nav.ml-auto {
@@ -159,16 +156,21 @@
     align-items: center; /* Centra verticalmente el texto */
 }
 
+/*[class*=sidebar-light-] .sidebar .nav-link {
+    color: #274296 !important;
+}
+*/
+
 /* Ajusta el tamaño de la fuente en dispositivos más pequeños */
 @media (max-width: 768px) {
     .navbar-text {
-        font-size:1.1rem; /* Ajusta el tamaño según sea necesario */
+        font-size:1.2rem; /* Ajusta el tamaño según sea necesario */
     }
 }
 
 @media (max-width: 576px) {
     .navbar-text {
-        font-size: 1.1rem; /* Ajusta el tamaño según sea necesario */
+        font-size: 1.2rem; /* Ajusta el tamaño según sea necesario */
     }
 }
 

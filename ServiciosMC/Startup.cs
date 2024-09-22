@@ -34,15 +34,7 @@ namespace ServiciosMC
                config.LoginPath = new PathString("/Login");
                config.Events.OnRedirectToLogin = context =>
                {
-                   if (context.Request.Path.StartsWithSegments("/CreacionClienteCODInterno"))
-                   {
-                       var redirecthPath = new Uri(context.RedirectUri);
-                       context.Response.Redirect(new PathString("/LoginInterno"));
-
-                   }
-                   else {
-                       context.Response.Redirect(context.RedirectUri);
-                   }
+                   context.Response.Redirect("/Login");
                    return Task.CompletedTask;
                };
            });

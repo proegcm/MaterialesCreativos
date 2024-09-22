@@ -1,34 +1,18 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- jQuery -->
-    @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&family=Urbanist:ital,wght@0,100..900&family=Ubuntu+Mono:ital,wght@0,400;0,700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <link href="~/css/estilosHome.css" rel="stylesheet">*@
-     <link href="~/css/estilosHome.css" rel="stylesheet">
     <script src="~/plugins/jquery/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-
-    <style>
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="~/css/estilosHome.css" rel="stylesheet">
 </head>
 <body>
-
-    <!--Contenedor general-->
     <div class="row justify-content-center">
-
-        <div class="col-sm-10">
-
+        <div class="col-sm-12 col-lg-10 col-md-10">
             <div class="row h-100">
-                <div class="col-sm-12 col-md-8 col-lg-3 flex-grow-1">
+                <div class="col-sm-4 col-md-6 col-lg-5 flex-grow-1">
                     <!--DIV IZQUIERDA-->
+                    
                     <div class="card ticket-card" style="margin-top: 3px;">
                         <div class="card-body">
                             <div class="row">
@@ -41,27 +25,41 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <div class="form-group d-flex align-items-center">
-                                        <form id="buscarTicketForm" onsubmit="buscarTicket(); return false;" class="d-flex w-100">
-                                            <input type="text" class="form-control" placeholder="Ingrese número de folio"
-                                                   name="txtFolio" id="txtFolio" maxlength="10"
-                                                   inputmode="numeric" oninput="validarSoloNumeros(this)" required />
-                                            <button type="submit" class="btn btn-icon" id="btnBuscarTicket" title="Buscar ticket">
-                                                <span class="material-symbols-outlined">
-                                                    search
-                                                </span>
-                                            </button>
-                                            <button type="button" class="btn btn-icon" id="btnLimpiar" title="Limpiar búsqueda">
-                                                <span class="material-symbols-outlined">
-                                                    backspace
-                                                </span>
-                                            </button>
+                                    <div class="form-group">
+                                        <form id="buscarTicketForm" onsubmit="buscarTicket(); return false;" class="w-100">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" placeholder="Ingrese número de folio"
+                                                       name="txtFolio" id="txtFolio" maxlength="10"
+                                                       inputmode="numeric" oninput="validarSoloNumeros(this)" required />
+                                                <div class="input-group-append d-none d-md-flex">
+                                                    <button type="submit" class="btn btn-icon" id="btnBuscarTicket" title="Buscar ticket">
+                                                        <span class="material-symbols-outlined">
+                                                            search
+                                                        </span>
+                                                    </button>
+                                                    <button type="button" class="btn btn-icon" id="btnLimpiar" title="Limpiar búsqueda">
+                                                        <span class="material-symbols-outlined">
+                                                            backspace
+                                                        </span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex d-md-none justify-content-between mt-2">
+                                                <button type="submit" class="btn btn-primary w-50 mr-2" id="btnBuscarTicketMobile">
+                                                    Buscar
+                                                </button>
+                                                <button type="button" class="btn btn-secondary w-50" id="btnLimpiarMobile">
+                                                    Limpiar
+                                                </button>
+                                            </div>
                                         </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+
                     <!---->
                     <div class="card infopedido-card" style="margin-top: 3px; display: none;" id="pedidoInfo">
                         <div class="card-body">
@@ -91,7 +89,7 @@
                     </div>
                 </div>
 
-                <div class="col-sm-12 col-md-6 col-lg-6 flex-grow-1">
+                <div class="col-sm-8 col-md-6 col-lg-7 flex-grow-1">
                     <!--DIV DERECHA-->
                     <div class="card pedidos-card" style="margin-top: 3px">
                         <div class="card-body">
@@ -205,16 +203,14 @@
                         </div>
                     </div>
                 </div>
-
-
             </div>
-
         </div>
+
         <!-- Modal -->
         <div id="order-modal" class="modal fade" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                    <!-- Modal Header -->
+                    <!--Modal header-->
                     <div class="modal-header">
                         <div class="col-12">
                             <div class="form-group d-flex align-items-center mt-2 mb-2">
@@ -228,10 +224,8 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- Modal Body -->
+                    <!--Modal body-->
                     <div class="modal-body">
-                        <!--Dedatelles del pedido-->
                         <div id="modal-order-details">
                             <div class="row">
                                 <div class="col-md-12">
@@ -291,88 +285,82 @@
                                 <div class="col-12">
                                     <label><strong>Cambiar estado del pedido: </strong></label>
                                 </div>
-                                <div class="col-12 form-group">
+                                <div class="col-12">
                                     <label><strong>Observaciones:</strong></label>
-                                    <textarea class="form-control" id="txtInfoObservaciones" title="Agrega observaciones del cambio de estado" />
+                                    <textarea class="form-control" id="txtInfoObservaciones"></textarea>
                                 </div>
-                                <div class="col-12 mt-3">
-                                    <div id="status-change-options" class="d-flex flex-row ">
-                                        <!-- Opciones para cambiar el estado del pedido gap-2-->
-                                    </div>
+                                <div id="status-change-options" class="d-flex flex-row gap-2">
+
                                 </div>
                             </div>
-                            <!-- Selección de Piloto -->
+
+                            <!--Selección de Piloto-->
                             <div class="row">
                                 <div class="col-md-12">
                                     <div id="pilot-selection" style="display: none;">
                                         <label><strong>Asignar piloto:</strong></label>
                                         <select id="pilot-select" class="form-control mb-2">
-                                            <!-- Opciones de pilotos -->
+                                            // Opciones de pilotos
                                         </select>
                                         <button id="assign-pilot-btn" class="btn btn-primary btn-block" style="display: none;">Cambiar estado</button>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Selección de Paquetería -->
+                            <!--Selección de Paquetería-->
                             <div class="row">
                                 <div class="col-md-12">
                                     <div id="parcel-selection" style="display: none;">
                                         <label><strong>Asignar paquetería:</strong></label>
                                         <select id="parcel-select" class="form-control mb-2">
-                                            <!-- Opciones de paquetería -->
+                                            <!--Opciones de paquetería-->
                                         </select>
                                         <button id="assign-parcel-btn" class="btn btn-primary btn-block" style="display: none;">Cambiar estado</button>
                                     </div>
                                 </div>
                             </div>
-                        </div> <!-- fin del cuerpo del modal -->
-                    </div> <!-- fin del modal-body -->
-                </div> <!-- fin de modal-content -->
-            </div> <!-- fin de modal-dialog -->
-        </div> <!-- fin de modal -->
-
-    </div> <!-- fin del contenedor general -->
-
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script type="text/javascript">
-    let parametros = "";
-    let usuarioLogin = "";
-    let pilotosActivos = [];
-    let modalInstance;
-    const categoryMap = {
-                "En producción": "production",
-                "Envío por Mensajería": "courier",
-                "Envío por Paquetería": "parcel",
-                "Entregado": "delivered",
-                "Devuelto": "returned",
-                "Anulado": "canceled",
-                "Completado": "completed",
-                "Recoge en oficina": "pickup",
-                "Reprogramar": "rescheduled"
-            };
 
-    function validarSoloNumeros(input) {
-        input.value = input.value.replace(/[^0-9]/g, ''); // Permitir solo números
-    }
 
-    $(document).ready(function () {
-        $('[data-toggle="tooltip"]').tooltip();
-        consultaPedidos();
-        $('#btnLimpiar').on('click', limpiar);
-    });
 
-    //Consulta folio en firebird
-    function buscarTicket() {
+@section Scripts {
+    <script type="text/javascript">
+        let parametros = "";
+        let usuarioLogin = "";
+        let pilotosActivos = [];
+        let modalInstance;
+        const categoryMap = {
+            "En producción": "production",
+            "Envío por Mensajería": "courier",
+            "Envío por Paquetería": "parcel",
+            "Entregado": "delivered",
+            "Devuelto": "returned",
+            "Anulado": "canceled",
+            "Completado": "completed",
+            "Recoge en oficina": "pickup",
+            "Reprogramar": "rescheduled"
+        };
+
+        $(document).ready(function () {
+            console.log("READY :D");
+            consultaPedidos();
+        });
+
+        //Consulta folio en firebird
+        function buscarTicket() {
             $('#pedidoInfo').hide();
             let nofolio = $('#txtFolio').val();
-
-                document.getElementById('contenedor-loader').style.display = 'flex';
-                $.ajax({
-                    url: '@Url.Action("obtenerPedido", "Home")',
+            document.getElementById('contenedor-loader').style.display = 'flex';
+            $.ajax({
+                    url: '@Url.Action("ObtenerPedido", "Principal")',
                     type: "POST",
                     data: { folio: nofolio },
                     success: function (data) {
@@ -433,16 +421,15 @@
                         document.getElementById('contenedor-loader').style.display = 'none';
                     }
                 });
-
         }
 
-    //Inserta un ticket y pasa a producción
-    function ingresaTicket() {
-                console.log(">>>> Los parametros son: ");
-                console.log(parametros);
+        //Insertar un ticket
+        function ingresaTicket() {
+            console.log(">>>> Los parametros son: ");
+            console.log(parametros);
             document.getElementById('contenedor-loader').style.display = 'flex';
             $.ajax({
-                url: '@Url.Action("ingresarProduccion", "Home")',
+                url: '@Url.Action("IngresarProduccion", "Principal")',
                 type: "POST",
                 data: parametros,
                 success: function (data) {
@@ -488,12 +475,12 @@
             });
         }
 
-    //Consulta pedidos a cargo del usuario
-    function consultaPedidos() {
-        console.log("consultaPedidos...");
-        document.getElementById('contenedor-loader').style.display = 'flex';
-        $.ajax({
-            url: '@Url.Action("listaPedidos", "Home")',
+        //Consulta de pedidos
+        function consultaPedidos() {
+            console.log("consultaPedidos...");
+            document.getElementById('contenedor-loader').style.display = 'flex';
+             $.ajax({
+            url: '@Url.Action("ListaPedidos", "Principal")',
             type: "POST",
             success: function (data) {
                 if (!data.success) {
@@ -528,11 +515,12 @@
                 });
             }
         });
-    }
+        }
 
-    function getPilotosAct() {
-                 $.ajax({
-                    url: '@Url.Action("listaPilotos", "Home")',
+        //Obtener pilotos activos
+        function getPilotosAct() {
+            $.ajax({
+                    url: '@Url.Action("ListaPilotos", "Principal")',
                     type: "POST",
                      success: function (data) {
                          if (!data.success) {
@@ -569,13 +557,13 @@
                          });
                      }
             });
-            }
+        }
 
-    //Consulta todos los pilotos del sistema
-    function getPilotosAll() {
-                document.getElementById('contenedor-loader').style.display = 'flex';
-                 $.ajax({
-                    url: '@Url.Action("consultaPilotos", "Home")',
+        //Consulta todos los pilotos del sistema
+        function getPilotosAll() {
+            document.getElementById('contenedor-loader').style.display = 'flex';
+            $.ajax({
+                    url: '@Url.Action("ConsultaPilotos", "Principal")',
                     type: "POST",
                      success: function (data) {
                          if (!data.success) {
@@ -610,14 +598,13 @@
                          });
                      }
             });
-    }
+        }
 
-    //Consulta paqueterías
-
-    function getPaqueterias() {
-                document.getElementById('contenedor-loader').style.display = 'flex';
-                  $.ajax({
-                    url: '@Url.Action("consultaPaqueterias", "Home")',
+        //Consulta empresas de paquetería
+        function getPaqueterias() {
+            document.getElementById('contenedor-loader').style.display = 'flex';
+            $.ajax({
+                    url: '@Url.Action("ConsultaPaqueterias", "Principal")',
                     type: "POST",
                      success: function (data) {
                          if (!data.success) {
@@ -655,312 +642,297 @@
                          });
                      }
             });
-            }
+        }
 
-    //Actualizar lista de pedidos
-    function updateList(listaPedidos) {
-                // Crear un objeto para almacenar el último estado de cada pedido
-                const pedidosUltimoEstado = {};
+        //Actualizar lista de pedidos
+        function updateList(listaPedidos) {
+            // Crear un objeto para almacenar el último estado de cada pedido
+            const pedidosUltimoEstado = {};
+            // Iterar sobre la lista de pedidos para encontrar el último estado de cada folio
+            listaPedidos.forEach(pedido => {
+                const folio = pedido.folio;
+                // Si el folio no está en el objeto o si el estado actual es más reciente
+                if (!pedidosUltimoEstado[folio] || new Date(pedido.fecha_estado) > new Date(pedidosUltimoEstado[folio].fecha_estado)) {
+                    pedidosUltimoEstado[folio] = pedido;
+                }
+            });
+            // Obtener los valores de los pedidos con el último estado
+            const pedidosConUltimoEstado = Object.values(pedidosUltimoEstado);
+            console.log("pedidosConUltimoEstado: ");
+            console.log(pedidosConUltimoEstado);
+            // Limpiar listas existentes
+            const categories = ['production', 'courier', 'parcel', 'delivered', 'returned', 'canceled', 'completed', 'rescheduled', 'pickup'];
+            categories.forEach(category => {
+                const contenedorPedidos = document.getElementById(`${category}-orders`); // Cambia este id según tu categoría
+                contenedorPedidos.innerHTML = ''; // Limpiar la lista existente
 
-                // Iterar sobre la lista de pedidos para encontrar el último estado de cada folio
-                listaPedidos.forEach(pedido => {
-                    const folio = pedido.folio;
-                    // Si el folio no está en el objeto o si el estado actual es más reciente
-                    if (!pedidosUltimoEstado[folio] || new Date(pedido.fecha_estado) > new Date(pedidosUltimoEstado[folio].fecha_estado)) {
-                        pedidosUltimoEstado[folio] = pedido;
-                    }
-                });
+                // Filtrar los pedidos por categoría utilizando el mapeo
+                const pedidosFiltrados = pedidosConUltimoEstado.filter(pedido => categoryMap[pedido.estado_actual] === category);
 
-                // Obtener los valores de los pedidos con el último estado
-                const pedidosConUltimoEstado = Object.values(pedidosUltimoEstado);
-                console.log("pedidosConUltimoEstado: ");
-                console.log(pedidosConUltimoEstado);
-                // Limpiar listas existentes
-                const categories = ['production', 'courier', 'parcel', 'delivered', 'returned', 'canceled', 'completed', 'rescheduled', 'pickup'];
+                pedidosFiltrados.forEach(pedido => {
 
-                categories.forEach(category => {
-                    const contenedorPedidos = document.getElementById(`${category}-orders`); // Cambia este id según tu categoría
-                    contenedorPedidos.innerHTML = ''; // Limpiar la lista existente
+                    // Crear un contenedor
+                    const cardItem = document.createElement('div');
+                    cardItem.classList.add('card-item');
 
-                    // Filtrar los pedidos por categoría utilizando el mapeo
-                    const pedidosFiltrados = pedidosConUltimoEstado.filter(pedido => categoryMap[pedido.estado_actual] === category);
+                    // Crear elementos para cada parte del contenido
+                    const cliente = document.createElement('div');
+                    cliente.textContent = pedido.cliente;
+                    cliente.classList.add('cliente');
 
-                    pedidosFiltrados.forEach(pedido => {
+                    const folio = document.createElement('div');
+                    folio.textContent = `Folio ticket #${pedido.folio}`;
+                    folio.classList.add('detalle');
 
-                        // Crear un contenedor
-                        const cardItem = document.createElement('div');
-                        cardItem.classList.add('card-item');
+                    const total = document.createElement('div');
+                    total.textContent = `Total Q.${pedido.total}`;
+                    total.classList.add('detalle');
 
-                        // Crear elementos para cada parte del contenido
-                        const cliente = document.createElement('div');
-                        cliente.textContent = pedido.cliente;
-                        cliente.classList.add('cliente');
+                    const fecha = document.createElement('div');
+                    fecha.textContent = pedido.fecha_estado;
+                    fecha.classList.add('detalle');
 
-                        const folio = document.createElement('div');
-                        folio.textContent = `Folio ticket #${pedido.folio}`;
-                        folio.classList.add('detalle');
+                    // Agregar todos los elementos creados al div card-item
+                    cardItem.appendChild(cliente);
+                    cardItem.appendChild(folio);
+                    cardItem.appendChild(total);
+                    cardItem.appendChild(fecha);
 
-                        const total = document.createElement('div');
-                        total.textContent = `Total Q.${pedido.total}`;
-                        total.classList.add('detalle');
-
-                        const fecha = document.createElement('div');
-                        fecha.textContent = pedido.fecha_estado;
-                        fecha.classList.add('detalle');
-
-                        // Agregar todos los elementos creados al div card-item
-                        cardItem.appendChild(cliente);
-                        cardItem.appendChild(folio);
-                        cardItem.appendChild(total);
-                        cardItem.appendChild(fecha);
-
-                        // Agregar el evento click para el modal
-                        cardItem.addEventListener('click', function () {
-                            showModal(pedido, cardItem);
-                        });
-                        // Agregar el card-item al contenedor correspondiente
-                        contenedorPedidos.appendChild(cardItem);
+                    // Agregar el evento click para el modal
+                    cardItem.addEventListener('click', function () {
+                        showModal(pedido, cardItem);
                     });
-
-
-                        //const contenedorProduccion = document.querySelector(`#${category}-orders`).closest('.col-12');
-
-                        //if (contenedorProduccion.classList.contains('oculto')) {
-                        //    contenedorProduccion.classList.remove('oculto');
-                        //}
-                    // Verificar si hay elementos en el contenedor
-                    const contenedorProduccion = contenedorPedidos.closest('.col-12');
-                    if (pedidosFiltrados.length > 0) {
-                        // Si hay elementos, mostrar el contenedor
-                        contenedorProduccion.classList.remove('oculto');
-                    } else {
-                        // Si no hay elementos, ocultar el contenedor
-                        contenedorProduccion.classList.add('oculto');
-                    }
-
-
+                    // Agregar el card-item al contenedor correspondiente
+                    contenedorPedidos.appendChild(cardItem);
                 });
-    }
 
-    // Mostrar modal
-    function showModal(pedido, cardItem) {
-                console.log("Abro diálogo del pedido: ");
-                console.log(pedido);
-                let piloto = null;
-                let paqueteria = null;
-                let obvs = null;
+                //const contenedorProduccion = document.querySelector(`#${category}-orders`).closest('.col-12');
 
-                //Aginación de colores
-                // Obtener la categoría del card-item clickeado
-                const categoryContainer = cardItem.closest('.order-category');
-                let categoryClass = '';
-                if (categoryContainer) {
-                    categoryClass = Array.from(categoryContainer.classList).find(cls => cls.startsWith('category-'));
-                    console.log("Clase de categoría: ", categoryClass);
-                }
-
-                const orderNumber = pedido.folio;
-                const currentState = pedido.estado_actual;
-                // Mostrar detalles del pedido en el modal
-                //document.getElementById('modal-order-details').textContent = `Detalles del pedido - Folio: #${orderNumber} Cliente: ${pedido.cliente}  Estado Actual: ${currentState}`;
-                $('#txtInfoCliente').text(`${pedido.cliente}`);
-                $('#txtInfoTicket').text(`#${orderNumber}`);
-                $('#txtInfoFechaPedido').text(`${formatoFecha(pedido.fecha)}`);
-                $('#txtInfoCajero').text(`${pedido.cajero}`);
-                $('#txtInfoTotalPedido').text(`Q.${pedido.total}`);
-                $('#txtInfoPagoPedido').text(`Q.${pedido.pago}`);
-                $('#txtInfoCambioPedido').text(`Q.${pedido.cambio}`);
-                $('#txtInfoEstadoActual').text(`${currentState}`);
-                $('#txtInfoEstadoFecha').text(`${formatoFechaDos(pedido.fecha_estado)}`);
-                $('#txtInfoEstadoUsuario').text(`${pedido.usuario_registro}`);
-                //$('#txtInfoDetallesEstadoActual').text(`${pedido.observaciones}`);
-
-
-                const cambiosPedidos = document.getElementById('cambiosPedido');
-                const statusChangeOptions = document.getElementById('status-change-options');
-                const pilotSelection = document.getElementById('pilot-selection');
-                const assignPilotBtn = document.getElementById('assign-pilot-btn');
-                const parcelSelection = document.getElementById('parcel-selection');
-                const assignParcelBtn = document.getElementById('assign-parcel-btn');
-                /*const detallePedido = document.getElementById('divDetallesEstado');*/
-
-                // Resetear las opciones del modal
-                statusChangeOptions.innerHTML = '';
-                pilotSelection.style.display = 'none';
-                assignPilotBtn.style.display = 'none';
-                parcelSelection.style.display = 'none';
-                assignParcelBtn.style.display = 'none';
-
-                // Obtener los posibles siguientes estados
-                const nextStates = getNextStates(currentState);
-                console.log("Posibles siguientes estados [nextStates] ");
-                console.log(nextStates);
-                if (nextStates && nextStates.length > 0) {
-                    cambiosPedidos.classList.remove('oculto');  // Mostrar el div si hay estados
+                //if (contenedorProduccion.classList.contains('oculto')) {
+                //    contenedorProduccion.classList.remove('oculto');
+                //}
+                // Verificar si hay elementos en el contenedor
+                const contenedorProduccion = contenedorPedidos.closest('.col-12');
+                if (pedidosFiltrados.length > 0) {
+                    // Si hay elementos, mostrar el contenedor
+                    contenedorProduccion.classList.remove('oculto');
                 } else {
-                    cambiosPedidos.classList.add('oculto');  // Ocultar el div si no hay estados
+                    // Si no hay elementos, ocultar el contenedor
+                    contenedorProduccion.classList.add('oculto');
                 }
+            });
+        }
+
+        //Mostral modal
+        function showModal(pedido, cardItem) {
+            console.log("Abro diálogo del pedido: ");
+            console.log(pedido);
+            let piloto = null;
+            let paqueteria = null;
+            let obvs = null;
+            //Aginación de colores
+            // Obtener la categoría del card-item clickeado
+            const categoryContainer = cardItem.closest('.order-category');
+            let categoryClass = '';
+            if (categoryContainer) {
+                categoryClass = Array.from(categoryContainer.classList).find(cls => cls.startsWith('category-'));
+                console.log("Clase de categoría: ", categoryClass);
+            }
+            const orderNumber = pedido.folio;
+            const currentState = pedido.estado_actual;
+            // Mostrar detalles del pedido en el modal
+            //document.getElementById('modal-order-details').textContent = `Detalles del pedido - Folio: #${orderNumber} Cliente: ${pedido.cliente}  Estado Actual: ${currentState}`;
+            $('#txtInfoCliente').text(`${pedido.cliente}`);
+            $('#txtInfoTicket').text(`#${orderNumber}`);
+            $('#txtInfoFechaPedido').text(`${formatoFecha(pedido.fecha)}`);
+            $('#txtInfoCajero').text(`${pedido.cajero}`);
+            $('#txtInfoTotalPedido').text(`Q.${pedido.total}`);
+            $('#txtInfoPagoPedido').text(`Q.${pedido.pago}`);
+            $('#txtInfoCambioPedido').text(`Q.${pedido.cambio}`);
+            $('#txtInfoEstadoActual').text(`${currentState}`);
+            $('#txtInfoEstadoFecha').text(`${formatoFechaDos(pedido.fecha_estado)}`);
+            $('#txtInfoEstadoUsuario').text(`${pedido.usuario_registro}`);
+            //$('#txtInfoDetallesEstadoActual').text(`${pedido.observaciones}`);
+            const cambiosPedidos = document.getElementById('cambiosPedido');
+            const statusChangeOptions = document.getElementById('status-change-options');
+            const pilotSelection = document.getElementById('pilot-selection');
+            const assignPilotBtn = document.getElementById('assign-pilot-btn');
+            const parcelSelection = document.getElementById('parcel-selection');
+            const assignParcelBtn = document.getElementById('assign-parcel-btn');
+            /*const detallePedido = document.getElementById('divDetallesEstado');*/
+            // Resetear las opciones del modal
+            statusChangeOptions.innerHTML = '';
+            pilotSelection.style.display = 'none';
+            assignPilotBtn.style.display = 'none';
+            parcelSelection.style.display = 'none';
+            assignParcelBtn.style.display = 'none';
+            // Obtener los posibles siguientes estados
+            const nextStates = getNextStates(currentState);
+            console.log("Posibles siguientes estados [nextStates] ");
+            console.log(nextStates);
+            if (nextStates && nextStates.length > 0) {
+                cambiosPedidos.classList.remove('oculto');  // Mostrar el div si hay estados
+            } else {
+                cambiosPedidos.classList.add('oculto');  // Ocultar el div si no hay estados
+            }
                 //if (pedido.observaciones) {
                 //    detallePedido.show();
                 //} else {
                 //    detallePedido.show();
                 //}
-                nextStates.forEach(nextState => {
-                    const button = document.createElement('button');
-                    button.textContent = nextState.label;
-                    button.classList.add('btn', 'btn-primary', 'me-2');
-                    button.addEventListener('click', function () {
-                        if (nextState.state === 'courier') { // Enviar por Mensajería
-                            getPilotosAct();
-                            pilotSelection.style.display = 'block';
-                            assignPilotBtn.style.display = 'block';
-                            assignParcelBtn.style.display = 'none';
-                            parcelSelection.style.display = 'none';
+            nextStates.forEach(nextState => {
+                const button = document.createElement('button');
+                button.textContent = nextState.label;
+                button.classList.add('btn', 'btn-primary', 'me-2');
+                button.addEventListener('click', function () {
+                    if (nextState.state === 'courier') { // Enviar por Mensajería
+                        getPilotosAct();
+                        pilotSelection.style.display = 'block';
+                        assignPilotBtn.style.display = 'block';
+                        assignParcelBtn.style.display = 'none';
+                        parcelSelection.style.display = 'none';
 
-                            assignPilotBtn.addEventListener('click', function () {
-                                const selectedPilot = document.getElementById('pilot-select').value;
-                                obvs = document.getElementById('txtInfoObservaciones').value;
-                                if (selectedPilot) {
-                                    console.log('Piloto asignado: ' + selectedPilot);
-                                    piloto = selectedPilot;
-                                    changeOrderState(pedido, nextState.state, piloto, paqueteria, obvs);
-                                } else {
-                                    alert('Por favor, selecciona un piloto.');
-                                }
-                            });
-
-                        } else if (nextState.state === 'parcel') { // Enviar por Paquetería
-                            getPaqueterias();
-                            parcelSelection.style.display = 'block';
-                            assignParcelBtn.style.display = 'block';
-                            assignPilotBtn.style.display = 'none';
-                            pilotSelection.style.display = 'none';
-
-                            assignParcelBtn.addEventListener('click', function () {
-                                const selectedParcel = document.getElementById('parcel-select').value;
-                                obvs = document.getElementById('txtInfoObservaciones').value;
-                                if (selectedParcel) {
-                                    paqueteria = selectedParcel;
-                                    console.log('Paquetería asignada: ' + selectedParcel);
-                                    changeOrderState(pedido, nextState.state, piloto, paqueteria, obvs);
-                                } else {
-                                    alert('Por favor, selecciona una empresa de paquetería.');
-                                }
-                            });
-
-                        } else {
-                            console.log("dentro de else");
+                        assignPilotBtn.addEventListener('click', function () {
+                            const selectedPilot = document.getElementById('pilot-select').value;
                             obvs = document.getElementById('txtInfoObservaciones').value;
-                            changeOrderState(pedido, nextState.state, piloto, paqueteria, obvs);
-                        }
-                    });
-                    statusChangeOptions.appendChild(button);
+                            if (selectedPilot) {
+                                console.log('Piloto asignado: ' + selectedPilot);
+                                piloto = selectedPilot;
+                                changeOrderState(pedido, nextState.state, piloto, paqueteria, obvs);
+                            } else {
+                                alert('Por favor, selecciona un piloto.');
+                            }
+                        });
+
+                    } else if (nextState.state === 'parcel') { // Enviar por Paquetería
+                        getPaqueterias();
+                        parcelSelection.style.display = 'block';
+                        assignParcelBtn.style.display = 'block';
+                        assignPilotBtn.style.display = 'none';
+                        pilotSelection.style.display = 'none';
+
+                        assignParcelBtn.addEventListener('click', function () {
+                            const selectedParcel = document.getElementById('parcel-select').value;
+                            obvs = document.getElementById('txtInfoObservaciones').value;
+                            if (selectedParcel) {
+                                paqueteria = selectedParcel;
+                                console.log('Paquetería asignada: ' + selectedParcel);
+                                changeOrderState(pedido, nextState.state, piloto, paqueteria, obvs);
+                            } else {
+                                alert('Por favor, selecciona una empresa de paquetería.');
+                            }
+                        });
+
+                    } else {
+                        console.log("dentro de else");
+                        obvs = document.getElementById('txtInfoObservaciones').value;
+                        changeOrderState(pedido, nextState.state, piloto, paqueteria, obvs);
+                    }
                 });
+                statusChangeOptions.appendChild(button);
+            });
+            // Utilizar Bootstrap para mostrar el modal
+            //const modalElement = document.getElementById('order-modal');
+            //modalElement.classList.add(categoryClass);
+            //modalInstance = new bootstrap.Modal(modalElement);
+            //modalInstance.show();
+            // Mostrar el modal y agregar la clase de categoría si existe
+            const modalElement = document.getElementById('order-modal');
+            // Remover cualquier clase de categoría existente para evitar múltiples clases
+            modalElement.classList.remove(...Array.from(modalElement.classList).filter(cls => cls.startsWith('category-')));
 
-                // Utilizar Bootstrap para mostrar el modal
-                //const modalElement = document.getElementById('order-modal');
-                //modalElement.classList.add(categoryClass);
-                //modalInstance = new bootstrap.Modal(modalElement);
-                //modalInstance.show();
-                // Mostrar el modal y agregar la clase de categoría si existe
-                const modalElement = document.getElementById('order-modal');
-
-                // Remover cualquier clase de categoría existente para evitar múltiples clases
-                modalElement.classList.remove(...Array.from(modalElement.classList).filter(cls => cls.startsWith('category-')));
-
-                // Agregar la clase de categoría si existe
-                if (categoryClass) {
-                    modalElement.classList.add(categoryClass);
-                }
-                // Mostrar el modal utilizando Bootstrap
-                modalInstance = new bootstrap.Modal(modalElement);
-                modalInstance.show();
+            // Agregar la clase de categoría si existe
+            if (categoryClass) {
+                modalElement.classList.add(categoryClass);
             }
+            // Mostrar el modal utilizando Bootstrap
+            modalInstance = new bootstrap.Modal(modalElement);
+            modalInstance.show();
+        }
 
-    // Obtener estados siguientes posibles
-    function getNextStates(currentState) {
-                console.log("Dentro de getNextStates: " + currentState);
-                const stateTransitions = {
-                    production: [
-                        { state: 'completed', label: 'Completado' },
-                        { state: 'canceled', label: 'Anulado' }
-                    ],
-                    completed: [
-                        { state: 'courier', label: 'Enviar por Mensajería' },
-                        { state: 'parcel', label: 'Enviar por Paquetería' },
-                        { state: 'pickup', label: 'Recoge en oficina' },
-                        { state: 'canceled', label: 'Anulado' }
-                    ],
-                    courier: [
-                        { state: 'returned', label: 'Devuelto' },
-                        { state: 'delivered', label: 'Entregado' }
-                    ],
-                    parcel: [
-                        { state: 'returned', label: 'Devuelto' },
-                        { state: 'delivered', label: 'Entregado' }
-                    ],
-                    delivered: [],
-                    returned: [
-                        { state: 'canceled', label: 'Anulado' },
-                        { state: 'rescheduled', label: 'Reprogramar' }
-                    ],
-                    canceled: [],
-                    pickup: [
-                        { state: 'delivered', label: 'Entregado' },
-                        { state: 'canceled', label: 'Anulado' }
-                    ],
-                    rescheduled: [
-                        { state: 'courier', label: 'Enviar por Mensajería' },
-                        { state: 'parcel', label: 'Enviar por Paquetería' },
-                        { state: 'pickup', label: 'Recoge en oficina' },
-                        { state: 'canceled', label: 'Anulado' }
-                    ]
-                };
-                // Usar el mapeo para convertir currentState a su correspondiente en inglés
-                const mappedState = categoryMap[currentState];
-                return stateTransitions[mappedState] || [];
-            }
-
-    // Mapa de conversión de inglés a español
-    const entospa = {
-                "production": "En producción",
-                "courier": "Envío por Mensajería",
-                "parcel": "Envío por Paquetería",
-                "delivered": "Entregado",
-                "returned": "Devuelto",
-                "canceled": "Anulado",
-                "completed": "Completado",
-                "pickup": "Recoge en oficina",
-                "rescheduled": "Reprogramar"
-
+        //Obtener estados siguientes posibles
+        function getNextStates(currentState) {
+            console.log("Dentro de getNextStates: " + currentState);
+            const stateTransitions = {
+                production: [
+                    { state: 'completed', label: 'Completado' },
+                    { state: 'canceled', label: 'Anulado' }
+                ],
+                completed: [
+                    { state: 'courier', label: 'Enviar por Mensajería' },
+                    { state: 'parcel', label: 'Enviar por Paquetería' },
+                    { state: 'pickup', label: 'Recoge en oficina' },
+                    { state: 'canceled', label: 'Anulado' }
+                ],
+                courier: [
+                    { state: 'returned', label: 'Devuelto' },
+                    { state: 'delivered', label: 'Entregado' }
+                ],
+                parcel: [
+                    { state: 'returned', label: 'Devuelto' },
+                    { state: 'delivered', label: 'Entregado' }
+                ],
+                delivered: [],
+                returned: [
+                    { state: 'canceled', label: 'Anulado' },
+                    { state: 'rescheduled', label: 'Reprogramar' }
+                ],
+                canceled: [],
+                pickup: [
+                    { state: 'delivered', label: 'Entregado' },
+                    { state: 'canceled', label: 'Anulado' }
+                ],
+                rescheduled: [
+                    { state: 'courier', label: 'Enviar por Mensajería' },
+                    { state: 'parcel', label: 'Enviar por Paquetería' },
+                    { state: 'pickup', label: 'Recoge en oficina' },
+                    { state: 'canceled', label: 'Anulado' }
+                ]
             };
+            // Usar el mapeo para convertir currentState a su correspondiente en inglés
+            const mappedState = categoryMap[currentState];
+            return stateTransitions[mappedState] || [];
+        }
 
-    // Función para obtener el equivalente en español dado un estado en inglés
-    function getState(state) {
-        return entospa[state] || "Estado desconocido";
-    }
+        // Mapa de conversión de inglés a español
+        const entospa = {
+            "production": "En producción",
+            "courier": "Envío por Mensajería",
+            "parcel": "Envío por Paquetería",
+            "delivered": "Entregado",
+            "returned": "Devuelto",
+            "canceled": "Anulado",
+            "completed": "Completado",
+            "pickup": "Recoge en oficina",
+            "rescheduled": "Reprogramar"
 
-    // Cambiar estado del pedido
-    function changeOrderState(pedido, newState, piloto, paqueteria, obvs) {
-                console.log("changeOrderState ----> ");
-                console.log("observaciones .... " + obvs);
-                console.log("   pedido: ");
-                console.log(pedido);
-                newState = getState(newState);
+        };
 
-                let parametros = {
-                    'folio': pedido.folio,
-                    'estadoAnterior': pedido.estado_actual,
-                    'estadoNuevo': newState,
-                    'usuario': "",
-                    'idMensajero': piloto,
-                    'idPaqueteria': paqueteria,
-                    'observaciones': obvs
-                };
-                console.log("   parametros:");
-                console.log(parametros);
-                if (pedido.estado_actual && pedido.estado_actual !== newState) {
-                    $.ajax({
+        // Función para obtener el equivalente en español dado un estado en inglés
+        function getState(state) {
+            return entospa[state] || "Estado desconocido";
+        }
+
+        //Cambiar estado del pedido
+        function changeOrderState(pedido, newState, piloto, paqueteria, obvs) {
+            console.log("changeOrderState ----> ");
+            console.log("observaciones .... " + obvs);
+            console.log("   pedido: ");
+            console.log(pedido);
+            newState = getState(newState);
+            let parametros = {
+                'folio': pedido.folio,
+                'estadoAnterior': pedido.estado_actual,
+                'estadoNuevo': newState,
+                'usuario': "",
+                'idMensajero': piloto,
+                'idPaqueteria': paqueteria,
+                'observaciones': obvs
+            };
+            console.log("   parametros:");
+            console.log(parametros);
+            if (pedido.estado_actual && pedido.estado_actual !== newState) {
+                $.ajax({
                     url: '@Url.Action("cambioEstadoPedido", "Home")',
                     type: "POST",
                     data: parametros,
@@ -1005,88 +977,88 @@
                     }
             });
 
-
-                }
-
             }
-
-    function limpiar() {
-                parametros = "";
-                $('#txtFolio').val("");
-                $('#folio').text("");
-                $('#fecha').text("");
-                $('#cajero').text("");
-                $('#cliente').text("");
-                $('#total').text("");
-                $('#pago').text("");
-                $('#cambio').text("");
-                $('#estatus').text("");
-                $('#pedidoInfo').hide();
-                // Desplazar hasta la parte superior de la página
-                window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-    function formatoFecha(fecha) {
-        var date = new Date(fecha);
+        //Limpiar búsqueda ticket
+        function limpiar() {
+            parametros = "";
+            $('#txtFolio').val("");
+            $('#folio').text("");
+            $('#fecha').text("");
+            $('#cajero').text("");
+            $('#cliente').text("");
+            $('#total').text("");
+            $('#pago').text("");
+            $('#cambio').text("");
+            $('#estatus').text("");
+            $('#pedidoInfo').hide();
+            // Desplazar hasta la parte superior de la página
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
 
-        // Obtener partes de la fecha
-        var dia = date.getDate();
-        var mes = date.getMonth() + 1; // Los meses son base 0
-        var anio = date.getFullYear();
+        //Formatear fecha 1
+        function formatoFecha(fecha) {
+            var date = new Date(fecha);
 
-        // Obtener partes de la hora
-        var horas = date.getHours();
-        var minutos = date.getMinutes();
-        var segundos = date.getSeconds();
+            // Obtener partes de la fecha
+            var dia = date.getDate();
+            var mes = date.getMonth() + 1; // Los meses son base 0
+            var anio = date.getFullYear();
 
-        // Formato de 12 horas
-        var amPm = horas >= 12 ? 'P.M.' : 'A.M.';
-        horas = horas % 12;
-        horas = horas ? horas : 12; // Si la hora es 0 (medianoche), ajustarla a 12
+            // Obtener partes de la hora
+            var horas = date.getHours();
+            var minutos = date.getMinutes();
+            var segundos = date.getSeconds();
 
-        // Agregar ceros iniciales si es necesario
-        dia = dia < 10 ? '0' + dia : dia;
-        mes = mes < 10 ? '0' + mes : mes;
-        horas = horas < 10 ? '0' + horas : horas;
-        minutos = minutos < 10 ? '0' + minutos : minutos;
-        segundos = segundos < 10 ? '0' + segundos : segundos;
+            // Formato de 12 horas
+            var amPm = horas >= 12 ? 'P.M.' : 'A.M.';
+            horas = horas % 12;
+            horas = horas ? horas : 12; // Si la hora es 0 (medianoche), ajustarla a 12
 
-        // Formato final
-        return dia + '/' + mes + '/' + anio + ' ' + horas + ':' + minutos + ':' + segundos + ' ' + amPm;
-    }
+            // Agregar ceros iniciales si es necesario
+            dia = dia < 10 ? '0' + dia : dia;
+            mes = mes < 10 ? '0' + mes : mes;
+            horas = horas < 10 ? '0' + horas : horas;
+            minutos = minutos < 10 ? '0' + minutos : minutos;
+            segundos = segundos < 10 ? '0' + segundos : segundos;
 
-    function formatoFechaDos(fecha) {
-        // Separar la fecha y la hora
-        var partesFechaHora = fecha.split(' ');
-        var partesFecha = partesFechaHora[0].split('/');
-        var partesHora = partesFechaHora[1].split(':');
+            // Formato final
+            return dia + '/' + mes + '/' + anio + ' ' + horas + ':' + minutos + ':' + segundos + ' ' + amPm;
+        }
 
-        // Crear un objeto Date usando las partes de la fecha y hora
-        var dia = parseInt(partesFecha[0], 10);
-        var mes = parseInt(partesFecha[1], 10) - 1; // Mes es base 0 en JavaScript
-        var anio = parseInt(partesFecha[2], 10);
+        //Formatear fecha 2 
+        function formatoFechaDos(fecha) {
+            // Separar la fecha y la hora
+            var partesFechaHora = fecha.split(' ');
+            var partesFecha = partesFechaHora[0].split('/');
+            var partesHora = partesFechaHora[1].split(':');
 
-        var horas = parseInt(partesHora[0], 10);
-        var minutos = parseInt(partesHora[1], 10);
-        var segundos = parseInt(partesHora[2], 10);
+            // Crear un objeto Date usando las partes de la fecha y hora
+            var dia = parseInt(partesFecha[0], 10);
+            var mes = parseInt(partesFecha[1], 10) - 1; // Mes es base 0 en JavaScript
+            var anio = parseInt(partesFecha[2], 10);
 
-        // Determinar A.M. o P.M.
-        var amPm = horas >= 12 ? 'P.M.' : 'A.M.';
+            var horas = parseInt(partesHora[0], 10);
+            var minutos = parseInt(partesHora[1], 10);
+            var segundos = parseInt(partesHora[2], 10);
 
-        // Convertir a formato de 12 horas
-        horas = horas % 12;
-        horas = horas ? horas : 12; // Si es 0, asignar 12 (medianoche o mediodía)
+            // Determinar A.M. o P.M.
+            var amPm = horas >= 12 ? 'P.M.' : 'A.M.';
 
-        // Agregar ceros iniciales si es necesario
-        dia = dia < 10 ? '0' + dia : dia;
-        mes = (mes + 1) < 10 ? '0' + (mes + 1) : (mes + 1); // Ajustar el mes de nuevo a base 1
-        horas = horas < 10 ? '0' + horas : horas;
-        minutos = minutos < 10 ? '0' + minutos : minutos;
-        segundos = segundos < 10 ? '0' + segundos : segundos;
+            // Convertir a formato de 12 horas
+            horas = horas % 12;
+            horas = horas ? horas : 12; // Si es 0, asignar 12 (medianoche o mediodía)
 
-        // Formato final
-        return dia + '/' + mes + '/' + anio + ' ' + horas + ':' + minutos + ':' + segundos + ' ' + amPm;
-    }
+            // Agregar ceros iniciales si es necesario
+            dia = dia < 10 ? '0' + dia : dia;
+            mes = (mes + 1) < 10 ? '0' + (mes + 1) : (mes + 1); // Ajustar el mes de nuevo a base 1
+            horas = horas < 10 ? '0' + horas : horas;
+            minutos = minutos < 10 ? '0' + minutos : minutos;
+            segundos = segundos < 10 ? '0' + segundos : segundos;
 
-</script>
-
+            // Formato final
+            return dia + '/' + mes + '/' + anio + ' ' + horas + ':' + minutos + ':' + segundos + ' ' + amPm;
+        }
+    </script>
+}

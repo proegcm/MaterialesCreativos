@@ -15,11 +15,11 @@ using ServiciosMC.Models;
 namespace ServiciosMC.Controllers
 {
     [Authorize(Policy = "USUARIO_MULTIPLE")]
-    public class HistoryController : Controller
+    public class HistorialPedidosController : Controller
     {
         private readonly IConfiguration config;
-        private readonly ILogger<HistoryController> _logger;
-        public HistoryController(ILogger<HistoryController> logger, IConfiguration Iconfig)
+        private readonly ILogger<HistorialPedidosController> _logger;
+        public HistorialPedidosController(ILogger<HistorialPedidosController> logger, IConfiguration Iconfig)
         {
             _logger = logger;
             config = Iconfig;
@@ -40,7 +40,7 @@ namespace ServiciosMC.Controllers
         }
 
         [HttpPost]
-        public async Task<JsonResult> listaPedidos(infoConsultaPedidos usrData)
+        public async Task<JsonResult> ListaPedidos(infoConsultaPedidos usrData)
         {
             try
             {

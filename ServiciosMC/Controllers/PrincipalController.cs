@@ -1,55 +1,48 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Xml.Serialization;
-using ServiciosMC.Mcreativos.Clases;
-using Microsoft.Extensions.Logging;
-using ServiciosMC.Models;
-using ServiciosMC.Helpers;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
+using System.Linq;
 using System.Net.Http;
-using System.Text.Json;
-using System.Text;
-using System.Collections.Generic;
 using System.ServiceModel;
+using System.Text;
+using System.Text.Json;
+using System.Threading.Tasks;
+using System.Xml.Serialization;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+using ServiciosMC.Helpers;
+using ServiciosMC.Mcreativos.Clases;
+using ServiciosMC.Models;
 
 namespace ServiciosMC.Controllers
-
-
 {
-    //[Authorize(Policy = "USUARIO_ADMIN")]
     [Authorize(Policy = "USUARIO_MULTIPLE")]
-    public class HomeController : Controller
+    public class PrincipalController : Controller
     {
         private readonly IConfiguration config;
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<PrincipalController> _logger;
 
-        public HomeController(ILogger<HomeController> logger, IConfiguration Iconfig)
+        public PrincipalController(ILogger<PrincipalController> logger, IConfiguration Iconfig)
         {
             _logger = logger;
             config = Iconfig;
         }
-
         public IActionResult Index()
         {
             return View();
         }
-
         public IActionResult Privacy()
         {
             return View();
         }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-
-
         [HttpPost]
         public JsonResult ObtengoUsuario()
         {
@@ -58,7 +51,6 @@ namespace ServiciosMC.Controllers
             return Json(login.Usuario);
 
         }
-
         [HttpPost]
         public JsonResult ObtenerPedido(String folio)
         {
@@ -111,7 +103,7 @@ namespace ServiciosMC.Controllers
                         {
                             existeError = true,
                             existenDatos = false,
-                            mensajeError ="Ocurrió un error al procesar la información del pedido."
+                            mensajeError = "Ocurrió un error al procesar la información del pedido."
                         });
                     }
                 }
@@ -151,8 +143,8 @@ namespace ServiciosMC.Controllers
                 string usuarioLogin = login.Usuario;
                 pedidoData.usuario = usuarioLogin;
 
-                string URL = config.GetValue<string>("Servicios:API_PYTHON")+ "ingresoPedidoMC";
-               
+                string URL = config.GetValue<string>("Servicios:API_PYTHON") + "ingresoPedidoMC";
+
                 using (HttpClient httpClient = new HttpClient())
                 {
                     var datos = JsonSerializer.Serialize(pedidoData);
@@ -187,7 +179,7 @@ namespace ServiciosMC.Controllers
         [HttpPost]
         public async Task<JsonResult> ListaPedidos()
         {
-            
+
             try
             {
                 Helper helper = new Helper();
@@ -201,11 +193,11 @@ namespace ServiciosMC.Controllers
                         usuario = usuarioLogin
                     }
                 };
-            string URL = config.GetValue<string>("Servicios:API_PYTHON") + "obtengoPedidosMC";
-               
+                string URL = config.GetValue<string>("Servicios:API_PYTHON") + "obtengoPedidosMC";
+
                 using (HttpClient httpClient = new HttpClient())
                 {
-                    
+
                     var datos = JsonSerializer.Serialize(usrData);
                     Debug.WriteLine("datos: " + datos);
 
@@ -259,7 +251,7 @@ namespace ServiciosMC.Controllers
 
                 using (HttpClient httpClient = new HttpClient())
                 {
-            
+
                     var response = await httpClient.PostAsync(URL, null);
 
                     if (response.IsSuccessStatusCode)
@@ -438,23 +430,5 @@ namespace ServiciosMC.Controllers
                 return Json(new { success = false, respuesta = "Error al procesar los datos: " + ex.Message });
             }
         }
-
-
-
-
-
-
-
-
-
-
-
-
     }
-
 }
-
-
-
-
-

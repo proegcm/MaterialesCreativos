@@ -19,11 +19,10 @@
     box-shadow: 0px 0px 15px rgb(15 10 53 / 0.85);
     margin-top: 10px;
 }
-
 .ticket-card .card-body {
     padding: 0; /* Elimina padding adicional para evitar mucho espacio */
 }
-    .ticket-card h3.card-title {
+.ticket-card h3.card-title {
         font-family: 'LemonMilk', sans-serif;
         font-size: 1.6rem;
         color: #0f0a35;
@@ -32,8 +31,7 @@
         margin-bottom: 10px; /* Espacio entre el título y el input */
         line-height: 1.3rem;
     }
-
-    .ticket-card .card-icon {
+.ticket-card .card-icon {
         font-size: 1.8rem;
         color: #0f0a35;
         justify-content: center; /* Centrar el ícono horizontalmente */
@@ -41,23 +39,20 @@
         align-items: center;
         margin-bottom: 10px; /* Espacio entre el título y el input */
     }
-
-    .ticket-card .form-group {
+.ticket-card .form-group {
         display: flex;
         justify-content: center; /* Centrar el ícono horizontalmente */
         align-items: center;
         margin-bottom: 0; /* Eliminar margen inferior */
     }
-
-    .ticket-card #txtFolio {
+.ticket-card #txtFolio {
         flex-grow: 1; /* Permite que el input ocupe todo el espacio disponible */
         margin-right: 8px; /* Espacio entre el input y el botón */
         font-family: 'Urbanist', sans-serif;
         font-size: 1.1rem;
     }
-
-    .ticket-card #btnBuscarTicket,
-    .ticket-card #btnLimpiar {
+.ticket-card #btnBuscarTicket,
+.ticket-card #btnLimpiar {
         background-color: #0f0a35;
         color: #fff;
         border: none;
@@ -67,19 +62,17 @@
         justify-content: center;
         min-width: 50px; /* Ancho mínimo para hacer el botón más ancho */
     }
-    .ticket-card #btnBuscarTicket {
+.ticket-card #btnBuscarTicket {
         margin-right: 8px; /* Espacio entre el botón de buscar y el botón de limpiar */
     }
-        .ticket-card #btnBuscarTicket span,
-        .ticket-card #btnLimpiar span {
+.ticket-card #btnBuscarTicket span,
+.ticket-card #btnLimpiar span {
             font-size: 1rem; /* Tamaño del ícono */
         }
-
-        .ticket-card #btnBuscarTicket:hover,
-        .ticket-card #btnLimpiar:hover {
+.ticket-card #btnBuscarTicket:hover,
+.ticket-card #btnLimpiar:hover {
             background-color: #1f386e; /* Color de fondo al hacer hover */
         }
-
 
 /*ESTILOS DIV INFORMACIÓN DEL PEDIDO*/
 .infopedido-card {
@@ -87,55 +80,44 @@
     box-shadow: 0px 0px 15px rgb(15 10 53 / 0.85);
     margin-top: 10px;
 }
-
-    .infopedido-card .card-body {
+.infopedido-card .card-body {
         padding: 0; /* Elimina padding adicional para evitar mucho espacio */
     }
-
-    .infopedido-card .card-title {
+.infopedido-card .card-title {
         font-family: 'LemonMilk', sans-serif;
         font-size: 1.2rem;
         color: #0f0a35;
         margin: 0;
         line-height: 1.3rem;
     }
-
-    .infopedido-card .card-icon {
+.infopedido-card .card-icon {
         font-size: 1.8rem;
         color: #0f0a35;
         margin-right: 10px; /* Añade espacio entre ícono y título */
     }
-
-    .infopedido-card .form-group {
+.infopedido-card .form-group {
         display: flex;
         justify-content: center; /* Centrar horizontalmente ícono y título */
         align-items: center; /* Centrar verticalmente ícono y título */
         margin-bottom: 10px;
     }
-
-    .infopedido-card #btnPasarProduccion {
+.infopedido-card #btnPasarProduccion {
         background-color: #e86217;
         font-family: 'LemonMilk', sans-serif;
         color: #ffffff;
         width: 100%; /* Botón ocupa todo el ancho */
     }
-
-    .infopedido-card #btnPasarProduccion span {
+.infopedido-card #btnPasarProduccion span {
             font-size: 1rem; /* Tamaño del ícono */
         }
-
-    .infopedido-card #btnPasarProduccion:hover {
+.infopedido-card #btnPasarProduccion:hover {
             background-color: #1f386e;
         }
-    
-    .infopedido-card p {
+.infopedido-card p {
         font-family: 'Urbanist', sans-serif;
         font-size: 1rem; /* Ajusta el tamaño de la fuente según prefieras */
         color: #0f0a35; /* Opcional: puedes ajustar el color de la fuente si lo necesitas */
     }
-
-
-
 
 /*ESTILOS DIV PEDIDOS*/
 .pedidos-card {
@@ -154,7 +136,6 @@
 .pedidos-card .card-icon {
         font-size: 1.8rem;
         color: #0f0a35;
-        margin-right: 10px;
     }
 .cpedidos {
     display: flex;
@@ -171,7 +152,6 @@
     margin-bottom: 10px;
     padding-bottom:15px;
 }
-
 .order-header {
     font-family: 'LemonMilk', sans-serif;
     display: flex;
@@ -179,7 +159,6 @@
     justify-content: flex-start; /* Alineación horizontal (puedes usar center si es necesario) */
     margin-bottom: 10px; /* Espacio entre el encabezado y otros elementos */
 }
-
 .order-header .order-icon {
         font-size: 1.6rem; /* Ajusta el tamaño del ícono */
         color: #0f0a35; /* Aplica el color que desees */
@@ -187,7 +166,6 @@
         display: inline-flex;
         align-items: center; /* Asegura que el ícono esté centrado verticalmente */
     }
-
 .order-header h3 {
         font-size: 1.6rem; /* Tamaño de la fuente del título */
         color: #0f0a35;
@@ -195,32 +173,25 @@
         line-height: 1.3rem; /* Ajusta la altura de línea */
     }
 
-
 /* Ícono de categoría con colores específicos */
 .category-1 .order-icon {
     color: #274296;
 }
-
 .category-2 .order-icon {
     color: #2272ab;
 }
-
 .category-3 .order-icon {
     color: #aa4c9c;
 }
-
 .category-4 .order-icon {
     color: #dc418c;
 }
-
 .category-5 .order-icon {
     color: #e86217;
 }
-
 .category-6 .order-icon {
     color: #f8d22a;
 }
-
 .category-7 .order-icon {
     color: #0f0a35;
 }
@@ -228,27 +199,21 @@
 .category-1 .card-item {
     box-shadow: 0 2px 8px rgb(39 66 150 / 0.80); /* Color azul para categoría 1 */
 }
-
 .category-2 .card-item {
     box-shadow: 0 2px 8px rgba(34, 114, 171, 0.80); /* Color azul más claro para categoría 2 */
 }
-
 .category-3 .card-item {
     box-shadow: 0 2px 8px rgba(170, 76, 156, 0.80); /* Color rosa para categoría 3 */
 }
-
 .category-4 .card-item {
     box-shadow: 0 2px 8px rgba(220, 65, 140, 0.80); /* Color fucsia para categoría 4 */
 }
-
 .category-5 .card-item {
     box-shadow: 0 2px 8px rgba(232, 98, 23, 0.80); /* Color naranja para categoría 5 */
 }
-
 .category-6 .card-item {
     box-shadow: 0 2px 8px rgba(248, 210, 42, 0.80); /* Color amarillo para categoría 6 */
 }
-
 .category-7 .card-item {
     box-shadow: 0 2px 8px rgba(15, 10, 53, 0.80); /* Color azul oscuro para categoría 7 */
 }
@@ -295,7 +260,7 @@
     box-sizing: border-box; /* Incluye padding y border en el ancho total */
 }
 
-    .card-item:hover {
+.card-item:hover {
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
 

@@ -778,8 +778,6 @@ C:\Users\gabi_\OneDrive\Documentos\PORTAL\PortalServiciosMC\ServiciosMC\obj\Debu
 C:\Users\gabi_\OneDrive\Documentos\PORTAL\PortalServiciosMC\ServiciosMC\obj\Debug\netcoreapp3.1\ServiciosMC.TagHelpers.input.cache
 C:\Users\gabi_\OneDrive\Documentos\PORTAL\PortalServiciosMC\ServiciosMC\obj\Debug\netcoreapp3.1\ServiciosMC.TagHelpers.output.cache
 C:\Users\gabi_\OneDrive\Documentos\PORTAL\PortalServiciosMC\ServiciosMC\obj\Debug\netcoreapp3.1\ServiciosMC.RazorCoreGenerate.cache
-C:\Users\gabi_\OneDrive\Documentos\PORTAL\PortalServiciosMC\ServiciosMC\obj\Debug\netcoreapp3.1\Razor\Views\Access\Index.cshtml.g.cs
-C:\Users\gabi_\OneDrive\Documentos\PORTAL\PortalServiciosMC\ServiciosMC\obj\Debug\netcoreapp3.1\Razor\Views\History\Index.cshtml.g.cs
 C:\Users\gabi_\OneDrive\Documentos\PORTAL\PortalServiciosMC\ServiciosMC\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
 C:\Users\gabi_\OneDrive\Documentos\PORTAL\PortalServiciosMC\ServiciosMC\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
 C:\Users\gabi_\OneDrive\Documentos\PORTAL\PortalServiciosMC\ServiciosMC\obj\Debug\netcoreapp3.1\Razor\Views\Login\Index.cshtml.g.cs
@@ -800,3 +798,6 @@ C:\Users\gabi_\OneDrive\Documentos\PORTAL\PortalServiciosMC\ServiciosMC\obj\Debu
 C:\Users\gabi_\OneDrive\Documentos\PORTAL\PortalServiciosMC\ServiciosMC\obj\Debug\netcoreapp3.1\ServiciosMC.dll
 C:\Users\gabi_\OneDrive\Documentos\PORTAL\PortalServiciosMC\ServiciosMC\obj\Debug\netcoreapp3.1\ServiciosMC.pdb
 C:\Users\gabi_\OneDrive\Documentos\PORTAL\PortalServiciosMC\ServiciosMC\obj\Debug\netcoreapp3.1\ServiciosMC.genruntimeconfig.cache
+C:\Users\gabi_\OneDrive\Documentos\PORTAL\PortalServiciosMC\ServiciosMC\obj\Debug\netcoreapp3.1\Razor\Views\Principal\Index.cshtml.g.cs
+C:\Users\gabi_\OneDrive\Documentos\PORTAL\PortalServiciosMC\ServiciosMC\obj\Debug\netcoreapp3.1\Razor\Views\HistorialPedidos\Index.cshtml.g.cs
+C:\Users\gabi_\OneDrive\Documentos\PORTAL\PortalServiciosMC\ServiciosMC\obj\Debug\netcoreapp3.1\Razor\Views\PanelControl\Index.cshtml.g.cs

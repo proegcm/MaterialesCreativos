@@ -100,7 +100,7 @@ function consultaPedidos() {
         document.getElementById('contenedor-loader').style.display = 'flex';
 
         $.ajax({
-            url: '@Url.Action("listaPedidos", "History")',
+            url: '@Url.Action("ListaPedidos", "HistorialPedidos")',
             type: "POST",
             data: parametros,
             success: function (data) {
@@ -181,13 +181,6 @@ function consultaPedidos() {
             console.log("Error al llenar la tabla:", error);
         });
     }
-
-
-
-
-
-
-
 
 
         });

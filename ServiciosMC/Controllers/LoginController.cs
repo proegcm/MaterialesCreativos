@@ -38,6 +38,7 @@ namespace ServiciosMC.Controllers
                 var usuarioInfo = new List<Claim>()
                             {
                                     new Claim(ClaimTypes.Name,loginViewModel.Usuario),
+                                    new Claim(ClaimTypes.Role,resultado.Tipo),
                                     new Claim("TIPO_USUARIO",resultado.Tipo),
                                     new Claim("Usuario",loginViewModel.Usuario),
                                     new Claim("Password",loginViewModel.Password)
@@ -55,7 +56,7 @@ namespace ServiciosMC.Controllers
         {
 
             HttpContext.SignOutAsync();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Login");
         }
 
     }

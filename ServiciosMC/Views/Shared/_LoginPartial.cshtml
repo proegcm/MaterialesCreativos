@@ -44,7 +44,10 @@
         success: function (data) {
             console.log(data);
             if (data.estado) {
-                window.location.href = '@Url.Action("Index", "Home")';
+                /*if (data.tipo === 'ADMINISTRADOR') {} */
+                 window.location.href = '@Url.Action("Index", "Principal")';
+                
+                //window.location.href = '@Url.Action("Index", "Principal")';
             } else {
                 dialogoEG({
                     type: "error",

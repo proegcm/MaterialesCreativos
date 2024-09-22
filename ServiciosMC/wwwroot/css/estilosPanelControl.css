@@ -1,0 +1,78 @@
+﻿
+@font-face {
+    font-family: 'LemonMilk';
+    src: url('/MCreativos/Fonts/LemonMilk.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LibelSuit';
+    src: url('/MCreativos/Fonts/libel-suit-rg.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.usuarios-card {
+    padding: 20px; /* Espaciado interno simétrico */
+    box-shadow: 0px 0px 15px rgb(15 10 53 / 0.85);
+    margin-top: 10px;
+}
+
+    .usuarios-card .card-body {
+        padding: 0; /* Elimina padding adicional para evitar mucho espacio */
+    }
+
+    .usuarios-card h3.card-title {
+        font-family: 'LemonMilk', sans-serif;
+        font-size: 1.6rem;
+        color: #bb1364;
+        margin: 0;
+        text-align: left; /* Centrar el título horizontalmente */
+        margin-bottom: 10px; /* Espacio entre el título y el input */
+        line-height: 1.3rem;
+    }
+
+    .usuarios-card .card-icon {
+        font-size: 1.8rem;
+        color: #bb1364;
+        justify-content: left; /* Centrar el ícono horizontalmente */
+        display: inline-flex;
+        align-items: flex-start;
+        margin-bottom: 10px; /* Espacio entre el título y el input */
+    }
+
+    .usuarios-card .form-group {
+        display: flex;
+        justify-content: center; /* Centrar el ícono horizontalmente */
+        align-items: center;
+        margin-bottom: 0; /* Eliminar margen inferior */
+    }
+
+    .usuarios-card  {
+        flex-grow: 1; /* Permite que el input ocupe todo el espacio disponible */
+        margin-right: 8px; /* Espacio entre el input y el botón */
+        font-family: 'Urbanist', sans-serif;
+        font-size: 1.1rem;
+    }
+
+    .usuarios-card #btnIngreso,
+    .usuarios-card #btnLimpiar {
+        background-color: #0f0a35;
+        color: #fff;
+        border: none;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 50px; /* Ancho mínimo para hacer el botón más ancho */
+    }
+        .usuarios-card #btnIngreso span,
+        .usuarios-card #btnLimpiar span {
+            font-size: 1rem; /* Tamaño del ícono */
+        }
+
+        .usuarios-card #btnIngreso:hover,
+        .usuarios-card #btnLimpiar:hover {
+            background-color: #1f386e; /* Color de fondo al hacer hover */
+        }

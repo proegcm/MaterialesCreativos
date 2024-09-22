@@ -57,7 +57,7 @@
                 <ul class="navbar-nav ml-auto d-flex align-items-center">
                     <li class="nav-item dropdown d-flex align-items-center">
                         <a class="nav-link d-flex align-items-center" id="nomUser" data-toggle="dropdown" href="#" aria-expanded="false" style="font-weight: normal; color: #274296;">
-                            <i class="fas fa-user mr-2"></i>
+                            <i class="fas fa-user mr-2" ></i>
                             <span>
                                 @*@if (User.Identity.IsAuthenticated)
                                 {
@@ -82,7 +82,7 @@
         <!-- Barra lateral -->
         <aside class="main-sidebar sidebar-light-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="@Url.Action("Index", "Home")" class="brand-link">
+            <a href="@Url.Action("Index", "Principal")" class="brand-link">
                 <img src="~/img/MCIMAGEN.jpg" class="brand-logo" alt="AdminLTE Logo">
             </a>
             <!-- Contenedor de navegación -->
@@ -91,19 +91,34 @@
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     <!-- Elemento "Inicio" -->
                     <li class="nav-item">
-                        <a href="@Url.Action("Index", "Home")" class="nav-link" style="color: #274296;">
+                        <a href="@Url.Action("Index", "Principal")" class="nav-link" style="color: #e86217;">
                             <i class="nav-icon fas fa-home"></i>
-                            <p>Inicio</p>
+                            <p>INICIO</p>
                         </a>
                     </li>
 
-                    <!-- Elemento "Historial de pedidos" -->
-                    <li class="nav-item">
-                        <a href="@Url.Action("Index", "History")" class="nav-link" style="color: #e86217;">
-                            <i class="nav-icon fas fa-list"></i>
-                            <p>Historial de pedidos</p>
-                        </a>
-                    </li>
+                    @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("VENDEDOR"))
+                    {
+                        <!-- Elemento "Historial de pedidos"-->
+                        <li class="nav-item">
+                            <a href="@Url.Action("Index", "HistorialPedidos")" class="nav-link" style="color: #aa4c9c;">
+                              <i class="nav-icon fas fa-list"></i>
+                              <p>HISTORIAL DE PEDIDOS</p>
+                            </a>
+                        </li>
+                     }
+
+                    @if (User.IsInRole("ADMINISTRADOR"))
+                    { 
+                        <!-- Elemento "Administración de accesos" (solo visible para ADMINISTRADOR) -->
+                        <li class="nav-item">
+                           <a href="@Url.Action("Index", "PanelControl")" class="nav-link"  style="color: #2272ab;">
+                              <i class="nav-icon fas fa-user-shield"></i>
+                              <p>PANEL DE CONTROL</p>
+                           </a>
+                        </li>
+                     }
+
                 </ul>
             </div>
         </aside>
@@ -115,11 +130,11 @@
             <div class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
-                        <div class="col-sm-6">
+                        @*<div class="col-sm-6">
                             <h1 class="m-0">
                                 @RenderSection("TituloPagina", required: false)
                             </h1>
-                        </div>
+                        </div>*@
                     </div>
                 </div>
             </div>

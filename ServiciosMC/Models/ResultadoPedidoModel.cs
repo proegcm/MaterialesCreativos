@@ -69,5 +69,18 @@ namespace ServiciosMC.Models
 
     }
 
+    public class infoUsuarioIngreso
+    {
+        public string nombre { get; set; }
 
+        public string telefono { get; set; }
+
+        public string activo { get; set; }
+
+        public string username { get; set; }
+
+        public string password { get; set; }
+
+        public string idrol { get; set; }
+    }
 }
