@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using ServiciosMC.Helpers;
 using ServiciosMC.Models;
 
 namespace ServiciosMC.Controllers
@@ -40,17 +41,30 @@ namespace ServiciosMC.Controllers
         }
 
         [HttpPost]
-        public async Task<JsonResult> ListaPedidos(infoConsultaPedidos usrData)
+        public async Task<JsonResult> ListaPedidos()
         {
+
             try
             {
+                Helper helper = new Helper();
+                LoginViewModel login = helper.Usuario(HttpContext);
+                string usuarioLogin = login.Usuario;
+
+                infoConsultaPedidos usrData = new infoConsultaPedidos
+                {
+                    infoUsuario = new infoUsuario
+                    {
+                        usuario = usuarioLogin
+                    }
+                };
                 string URL = config.GetValue<string>("Servicios:API_PYTHON") + "obtengoPedidosMC";
 
                 using (HttpClient httpClient = new HttpClient())
                 {
-                    Debug.WriteLine("entra dataUsuario: " + usrData);
+
                     var datos = JsonSerializer.Serialize(usrData);
                     Debug.WriteLine("datos: " + datos);
+
                     var contenido = new StringContent(datos, Encoding.UTF8, "application/json");
                     var response = await httpClient.PostAsync(URL, contenido);
 
@@ -74,7 +88,7 @@ namespace ServiciosMC.Controllers
             {
                 // Maneja problemas de conectividad o errores de solicitud HTTP.
                 Debug.WriteLine("HttpRequestException: " + ex.Message);
-                return Json(new { success = false, errorMensaje = "Ocurrió un error al obtener el listado de pedidos, no se obtuvo respuesta del servidor." });
+                return Json(new { success = false, errorMensaje = "Ocurrió un error al obtener el listado de pedidos, no se obtuvo respuesta del servidor. Por favor, refresque la página." });
             }
             catch (TaskCanceledException ex)
             {
@@ -86,7 +100,7 @@ namespace ServiciosMC.Controllers
             {
                 // Maneja cualquier otra excepción.
                 Debug.WriteLine("Exception: " + ex.Message);
-                return Json(new { success = false, errorMensaje = "Error al procesar los datos: " + ex.Message });
+                return Json(new { success = false, errorMensaje = ex.Message });
             }
         }
 

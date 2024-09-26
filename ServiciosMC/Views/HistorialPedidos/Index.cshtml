@@ -5,72 +5,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <link href="~/css/estilosHistorial.css" rel="stylesheet">
     <link href="~/DataTables/datatables.min.css" rel="stylesheet">
     <script src="~/DataTables/datatables.min.js"></script>
-    @*<link href="~/css/bootstrap.min.css" rel="stylesheet">
-    <link href="~/css/dataTables.bootstrap5.css" rel="stylesheet">*@
     <title>Listado de Pedidos</title>
     <style>
     </style>
 </head>
 <body>
     <div class="row justify-content-center">
-        <div class="col-sm-12">
-            <div class="row">
-                <h2>Historial de pedidos</h2>
-            </div>
-            <div class="row">
-                
-            </div>
-            <div class="row">
-                <div class="table-responsive">
-                    <table id="tabla-pedidos" class="table hover row-border" style="width:100%">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th>No.Folio</th>
-                                <th>Cliente</th>
-                                <th>Usuario a cargo</th>
-                                <th>Fecha pedido</th>
-                                <th>Estado</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tbody-pedidos">
-                            <!-- Las filas se agregarán aquí dinámicamente -->
-                        </tbody>
-                    </table>
+        <div class="col-12">
+            <div class="row h-100">
+                <div class="card historial-card mb-3">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="d-flex align-items-center">
+                                <span class="material-symbols-outlined card-icon">history</span>
+                                <h3 class="card-title ml-2">HISTORIAL DE PEDIDOS</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="table-responsive">
+                                <table id="tabla-pedidos" class="table hover row-border" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">No.Folio</th>
+                                            <th class="text-center">Cliente</th> 
+                                            <th class="text-center">Usuario a cargo</th>
+                                            <th class="text-center">Fecha pedido</th>
+                                            <th class="text-center">Estado</th> 
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tbody-pedidos">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-
-    
-
-
 </body>
 </html>
 
-
 <script type="text/javascript">
-    let usuarioLogin = "";
     $(document).ready(function () {
 
         let tablaPedidos = $('#tabla-pedidos').DataTable({
-            //"columnDefs": [
-            //    {
-            //        "targets": [2, 9, 10, 11, 12, 13],
-            //        "visible": false,
-            //    },
-            //],
             "destroy": true,
             "ordering": false,
             "responsive": true,
             "bLengthChange": false,
             "language": {
                 "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
-            }
+            },
+            "columnDefs": [
+                { "width": "20%", "targets": 0 }, // Ancho de la columna 1 (No.Folio)
+                { "width": "30%", "targets": 1 }, // Ancho de la columna 2 (Cliente)
+                { "width": "10%", "targets": 2 }, // Ancho de la columna 3 (Usuario a cargo)
+                { "width": "20%", "targets": 3 }, // Ancho de la columna 4 (Fecha pedido)
+                { "width": "20%", "targets": 4 }  // Ancho de la columna 5 (Estado)
+            ]
         });
-                 $.ajax({
+
+        $.ajax({
                     url: '@Url.Action("obtengoUsuario", "Home")',
                     type: "POST",
                     success: function (usuario) {
@@ -83,26 +86,16 @@
                  });
 
 
-
-function consultaPedidos() {
+        function consultaPedidos() {
     return new Promise((resolve, reject) => {
         let pedidosUltimoEstado = {}; // Definir el objeto para almacenar el último estado de cada folio
         let pedidosConUltimoEstado = []; // Inicializar la lista de pedidos con el último estado
-
-        console.log("consultaPedidos - usuarioLogin: " + usuarioLogin);
-
-        let parametros = {
-            infoUsuario: {
-                usuario: usuarioLogin
-            }
-        };
 
         document.getElementById('contenedor-loader').style.display = 'flex';
 
         $.ajax({
             url: '@Url.Action("ListaPedidos", "HistorialPedidos")',
             type: "POST",
-            data: parametros,
             success: function (data) {
                 if (!data.success) {
                     console.log(data.errorMensaje);
@@ -160,29 +153,32 @@ function consultaPedidos() {
     });
 }
 
+        function llenarTabla() {
+            const tbody = document.getElementById("tbody-pedidos");
 
-
-
-    function llenarTabla() {
-        const tbody = document.getElementById("tbody-pedidos");
-        // Llamar a consultaPedidos y manejar la promesa
-        consultaPedidos().then(pedidosConUltimoEstado => {
-            // Recorrer la lista de pedidos
-            pedidosConUltimoEstado.forEach(pedido => {
-                tablaPedidos.row.add([
-                    pedido.folio,
-                    pedido.cliente,
-                    pedido.usuario_registro,
-                    pedido.fecha_estado,
-                    pedido.estado_actual
-                ]).draw();
+            consultaPedidos().then(pedidosConUltimoEstado => {
+                pedidosConUltimoEstado.forEach(pedido => {
+                    tablaPedidos.row.add([
+                        pedido.folio,
+                        pedido.cliente,
+                        pedido.usuario_registro,
+                        pedido.fecha_estado,
+                        `<button class="btn btn-tracking" onclick="verTracking('${pedido}')" title="Ver Tracking">
+                    <span class="material-symbols-outlined">wysiwyg</span>
+                    ${pedido.estado_actual}
+                </button>`
+                    ]).draw();
+                });
+            }).catch(error => {
+                console.log("Error al llenar la tabla:", error);
             });
-        }).catch(error => {
-            console.log("Error al llenar la tabla:", error);
-        });
+        }
+
+    });
+
+    // Función para manejar el click en "Ver Tracking"
+    function verTracking(pedido) {
+        alert(`Visualizando tracking para el pedido con folio: ${pedido}`);
     }
-
-
-        });
 
 </script>

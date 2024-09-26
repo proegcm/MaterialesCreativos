@@ -31,7 +31,7 @@
                                                 <input type="text" class="form-control" placeholder="Ingrese número de folio"
                                                        name="txtFolio" id="txtFolio" maxlength="10"
                                                        inputmode="numeric" oninput="validarSoloNumeros(this)" required />
-                                                <div class="input-group-append d-none d-md-flex">
+                                                <div class="input-group-append d-md-flex">
                                                     <button type="submit" class="btn btn-icon" id="btnBuscarTicket" title="Buscar ticket">
                                                         <span class="material-symbols-outlined">
                                                             search
@@ -44,18 +44,13 @@
                                                     </button>
                                                 </div>
                                             </div>
-                                            <div class="d-flex d-md-none justify-content-between mt-2">
-                                                <button type="submit" class="btn btn-primary w-50 mr-2" id="btnBuscarTicketMobile">
-                                                    Buscar
-                                                </button>
-                                                <button type="button" class="btn btn-secondary w-50" id="btnLimpiarMobile">
-                                                    Limpiar
-                                                </button>
-                                            </div>
                                         </form>
                                     </div>
                                 </div>
                             </div>
+                       
+                        
+                        
                         </div>
                     </div>
 
@@ -285,7 +280,7 @@
                                 <div class="col-12">
                                     <label><strong>Cambiar estado del pedido: </strong></label>
                                 </div>
-                                <div class="col-12">
+                                <div class="col-12 mb-3">
                                     <label><strong>Observaciones:</strong></label>
                                     <textarea class="form-control" id="txtInfoObservaciones"></textarea>
                                 </div>
@@ -727,9 +722,9 @@
         function showModal(pedido, cardItem) {
             console.log("Abro diálogo del pedido: ");
             console.log(pedido);
-            let piloto = null;
-            let paqueteria = null;
-            let obvs = null;
+            let piloto = "";
+            let paqueteria = "";
+            let obvs = "";
             //Aginación de colores
             // Obtener la categoría del card-item clickeado
             const categoryContainer = cardItem.closest('.order-category');
@@ -741,7 +736,6 @@
             const orderNumber = pedido.folio;
             const currentState = pedido.estado_actual;
             // Mostrar detalles del pedido en el modal
-            //document.getElementById('modal-order-details').textContent = `Detalles del pedido - Folio: #${orderNumber} Cliente: ${pedido.cliente}  Estado Actual: ${currentState}`;
             $('#txtInfoCliente').text(`${pedido.cliente}`);
             $('#txtInfoTicket').text(`#${orderNumber}`);
             $('#txtInfoFechaPedido').text(`${formatoFecha(pedido.fecha)}`);
@@ -752,6 +746,7 @@
             $('#txtInfoEstadoActual').text(`${currentState}`);
             $('#txtInfoEstadoFecha').text(`${formatoFechaDos(pedido.fecha_estado)}`);
             $('#txtInfoEstadoUsuario').text(`${pedido.usuario_registro}`);
+            $('#txtInfoObservaciones').val(''); 
             //$('#txtInfoDetallesEstadoActual').text(`${pedido.observaciones}`);
             const cambiosPedidos = document.getElementById('cambiosPedido');
             const statusChangeOptions = document.getElementById('status-change-options');

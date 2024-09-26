@@ -13,8 +13,9 @@
     font-style: normal;
 }
 
+
 .usuarios-card {
-    padding: 20px; /* Espaciado interno simétrico */
+    padding: 20px;
     box-shadow: 0px 0px 15px rgb(15 10 53 / 0.85);
     margin-top: 10px;
 }
@@ -41,19 +42,20 @@
         align-items: flex-start;
         margin-bottom: 10px; /* Espacio entre el título y el input */
     }
+.usuarios-card {
+    padding: 20px;
+    box-shadow: 0px 0px 15px rgb(15 10 53 / 0.85);
+    font-family: 'Urbanist', sans-serif;
+    width: 95%; /* La tarjeta ocupará el 95% del ancho */
+    margin: 10px auto; /* Centra horizontalmente la tarjeta */
+}
+
 
     .usuarios-card .form-group {
         display: flex;
         justify-content: center; /* Centrar el ícono horizontalmente */
         align-items: center;
         margin-bottom: 0; /* Eliminar margen inferior */
-    }
-
-    .usuarios-card  {
-        flex-grow: 1; /* Permite que el input ocupe todo el espacio disponible */
-        margin-right: 8px; /* Espacio entre el input y el botón */
-        font-family: 'Urbanist', sans-serif;
-        font-size: 1.1rem;
     }
 
     .usuarios-card #btnIngreso,
