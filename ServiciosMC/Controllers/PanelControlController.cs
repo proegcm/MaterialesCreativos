@@ -143,7 +143,7 @@ namespace ServiciosMC.Controllers
         {
             try
             {
-                string URL = config.GetValue<string>("Servicios:API_PYTHON") + "consultaPaqueteriasMC";
+                string URL = config.GetValue<string>("Servicios:API_PYTHON") + "consultaUsuariosMC";
 
                 using (HttpClient httpClient = new HttpClient())
                 {

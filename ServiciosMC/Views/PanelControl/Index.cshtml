@@ -1,6 +1,10 @@
 ﻿<!DOCTYPE html>
 <html lang="es">
 <head>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/plugins/jquery/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -11,98 +15,216 @@
     <div class="row justify-content-center">
         <div class="col-12">
             <div class="row h-100">
-                <div class="card usuarios-card" style="margin-top: 3px;">
+                <div class="card panel-card mb-3">
                     <div class="card-body">
-                        <!--TÍTULO-->
-                        <div class="col-12">
-                            <div class="form-group d-flex align-items-center">
-                                <span class="material-symbols-outlined card-icon">dashboard</span>
-                                <h3 class="card-title ml-2">GESTIÓN DE USUARIOS</h3>
+                        <div class="row">
+                            <div class="d-flex align-items-center">
+                                <span class="material-symbols-outlined card-icon">settings</span>
+                                <h3 class="card-title ml-2">PANEL DE CONTROL</h3>
                             </div>
                         </div>
-                        <div class="col-12">
-                            <div class="form-group d-flex">
-                                <span class="material-symbols-outlined card-icon">person_add</span>
-                                <h5 class="card-title ml-2">DATOS DE USUARIO</h5>
+
+                        <div class="row">
+                            <div >
+                                <div class="tabs-container">
+                                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                        <li class="nav-item" role="presentation">
+                                            <a class="nav-link active" id="usuarios-tab" data-bs-toggle="tab" href="#usuarios" role="tab" aria-controls="usuarios" aria-selected="true">
+                                                <span class="material-symbols-outlined text-center">group</span>
+                                                Gestión de Usuarios
+                                            </a>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <a class="nav-link" id="roles-tab" data-bs-toggle="tab" href="#roles" role="tab" aria-controls="roles" aria-selected="false">
+                                                <span class="material-symbols-outlined text-center">admin_panel_settings</span>
+                                                Gestión de Roles
+                                            </a>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <a class="nav-link" id="paqueterias-tab" data-bs-toggle="tab" href="#paqueterias" role="tab" aria-controls="paqueterias" aria-selected="false">
+                                                <span class="material-symbols-outlined text-center">local_shipping</span>
+                                                Gestión de Paqueterías
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <!-- Contenido de las Pestañas -->
+                                <div class="tab-content mt-3" id="myTabContent">
+                                    <!-- Gestión de Usuarios -->
+                                    <div class="tab-pane fade show active" id="usuarios" role="tabpanel" aria-labelledby="usuarios-tab">
+                                        <!--Botón nuevo usuario-->
+                                        <button class="btn btn-primary" id="btnNuevoUsuario">
+                                            <span class="material-symbols-outlined">person_add</span>Agregar usuario
+                                        </button>
+                                        <!--Formulario Agregar usuario-->
+                                        <div class="col-lg-10 col-md-10 col-sm-12">
+                                            <form class="mt-3" id="formularioAgregarUsuario" style="display: none;">
+                                                <div class="row mb-3">
+                                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                                        <label for="nombre" class="form-label">Nombre completo:</label>
+                                                        <input type="text" class="form-control" id="nombre" required>
+                                                    </div>
+                                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                                        <label for="telefono" class="form-label">Teléfono:</label>
+                                                        <input type="text" class="form-control" id="telefono" maxlength="8">
+                                                    </div>
+                                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                                        <label for="activo" class="form-label">Activo:</label>
+                                                        <select class="form-control" id="activo" required>
+                                                            <option value="S">Sí</option>
+                                                            <option value="N">No</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                                        <label for="username" class="form-label">Username:</label>
+                                                        <input type="text" class="form-control" id="username" required>
+                                                    </div>
+                                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                                        <label for="password" class="form-label">Contraseña:</label>
+                                                        <input type="password" class="form-control" id="password" required>
+                                                    </div>
+                                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                                        <label for="rol" class="form-label">Rol de usuario:</label>
+                                                        <select class="form-control" id="roluser" required>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="row justify-content-center">
+                                                    <div class="col-12 col-md-6 d-flex justify-content-around">
+                                                        <button type="submit" class="btn btn-primary" id="btnGuardarUsuario">
+                                                            <span class="material-symbols-outlined">person_check</span>
+                                                            Guardar usuario
+                                                        </button>
+                                                        <button type="button" class="btn btn-secondary" onclick="cancelarNuevoUsuario()" id="btnNoGuardarUsuario">
+                                                            <span class="material-symbols-outlined">close_small</span>
+                                                            Cancelar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <!-- Tabla de usuarios -->
+                                        <div class="row">
+                                            <div class="table-responsive">
+                                                <table id="tabla-usuarios" class="table hover row-border" style="width:100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="text-center">ID</th>
+                                                            <th class="text-center">Nombre</th>
+                                                            <th class="text-center">Teléfono</th>
+                                                            <th class="text-center">Username</th>
+                                                            <th class="text-center">Rol</th>
+                                                            <th class="text-center">Activo</th>
+                                                            <th class="text-center">Fecha creación</th>
+                                                            <th class="text-center">Acciones</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="tbody-usuarios">
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Gestión de Roles -->
+                                    <div class="tab-pane fade" id="roles" role="tabpanel" aria-labelledby="roles-tab">
+                                        <!--Botón nuevo Rol-->
+                                        <button class="btn btn-primary" id="btnNuevoRol">
+                                            <span class="material-symbols-outlined">encrypted_add</span>Agregar rol
+                                        </button>
+                                        <!--Formulario Agregar rol-->
+                                        <div class="col-lg-10 col-md-10 col-sm-12">
+                                            <form class="mt-3" id="formularioAgregarRol" style="display: none;">
+                                                <div class="row mb-3">
+                                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                                        <label for="nombreRol" class="form-label">Nombre del Rol:</label>
+                                                        <input type="text" class="form-control" id="nombreRol" required>
+                                                    </div>
+                                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                                        <button type="submit" class="btn btn-primary" id="btnGuardarRol">
+                                                            <span class="material-symbols-outlined">add_box</span>
+                                                            Guardar rol
+                                                        </button>
+                                                    </div>
+                                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                                        <button type="button" class="btn btn-secondary" onclick="cancelarNuevoRol()" id="btnNoGuardarRol">
+                                                            <span class="material-symbols-outlined">close_small</span>
+                                                            Cancelar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <!-- Tabla de roles -->
+                                        <div class="row">
+                                            <div class="table-responsive">
+                                                <table id="tabla-roles" class="table hover row-border" style="width:100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="text-center">ID</th>
+                                                            <th class="text-center">Nombre del Rol</th>
+                                                            <th class="text-center">Acciones</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="tbody-roles">
+                                                    </tbody>
+                                                </table>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Gestión de Paqueterías -->
+                                    <div class="tab-pane fade" id="paqueterias" role="tabpanel" aria-labelledby="paqueterias-tab">
+                                        <h3>Gestión de Paqueterías</h3>
+                                        <button class="btn btn-primary mt-2" id="mostrarFormularioPaqueteriaBtn">Agregar Paquetería</button>
+
+                                        <form class="mt-3" id="formularioAgregarPaqueteria" style="display: none;">
+                                            <div class="row mb-3">
+                                                <div class="col-md-12">
+                                                    <label for="nombrePaqueteria" class="form-label">Nombre de la Paquetería</label>
+                                                    <input type="text" class="form-control" id="nombrePaqueteria" required>
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="btn btn-success">Guardar Paquetería</button>
+                                            <button type="button" class="btn btn-secondary" id="cancelarFormularioPaqueteriaBtn">Cancelar</button>
+                                        </form>
+
+                                        <!-- Tabla de paqueterías -->
+                                        <table class="table table-striped mt-3">
+                                            <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Nombre</th>
+                                                    <th>Acciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>FedEx</td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-warning">Editar</button>
+                                                        <button class="btn btn-sm btn-danger">Eliminar</button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                           
+                            
                             </div>
-                            <form id="formInsertarUsuario" onsubmit="ingresoUsuario(); return false;" class="w-100">
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <label for="nombre">
-                                                <span class="material-symbols-outlined">person</span>
-                                                Nombre completo:
-                                            </label>
-                                            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese el nombre" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <label for="telefono">
-                                                <span class="material-symbols-outlined">phone</span>
-                                                Teléfono:
-                                            </label>
-                                            <input type="text" class="form-control" id="telefono" name="telefono" placeholder="Ingrese el teléfono" maxlength="8">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <label for="activo">
-                                                <span class="material-symbols-outlined">toggle_on</span>
-                                                Activo:
-                                            </label>
-                                            <select class="form-control" id="activo" name="activo" required>
-                                                <option value="S">Sí</option>
-                                                <option value="N">No</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <label for="username">
-                                                <span class="material-symbols-outlined">account_circle</span>
-                                                Nombre de Usuario:
-                                            </label>
-                                            <input type="text" class="form-control" id="username" name="username" placeholder="Ingrese el nombre de usuario" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <label for="password">
-                                                <span class="material-symbols-outlined">lock</span>
-                                                Contraseña:
-                                            </label>
-                                            <input type="password" class="form-control" id="password" name="password" placeholder="Ingrese la contraseña" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <label for="idrol">
-                                                <span class="material-symbols-outlined">group</span>
-                                                Rol de usuario:
-                                            </label>
-                                            <select class="form-control" id="roluser" name="roluser" required>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row justify-content-center">
-                                    <div class="col-12 col-md-6 d-flex justify-content-around">
-                                        <button type="submit" class="btn btn-primary" id="btnIngreso">
-                                            <span class="material-symbols-outlined">send</span>
-                                            Ingresar usuario
-                                        </button>
-                                        <button type="button" class="btn btn-primary" onclick="limpiarFormulario()" id="btnLimpiar">
-                                            <span class="material-symbols-outlined">ink_eraser</span>
-                                            Limpiar formulario
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
+
                         </div>
+
                     </div>
+
+                   
+
                 </div>
             </div>
         </div>
@@ -116,7 +238,151 @@
         $(document).ready(function () {
             console.log("READY :D");
             getRoles();
+            llenarTablaUsuarios();
+            let tablaUsuarios = $('#tabla-usuarios').DataTable({
+                "destroy": true,
+                "ordering": false,
+                "responsive": true,
+                "bLengthChange": false,
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"                   
+                },
+                "initComplete": function () {
+                    // Cambiar la clase del contenedor a col-12
+                    $('#tabla-usuarios_filter').parent().removeClass('col-md-6').addClass('col-sm-12 d-flex justify-content-between align-items-center w-100');
 
+                    // Establecer un margen superior en el contenedor
+                    $('#tabla-usuarios_filter').parent().css('margin-top', '20px'); // Ajusta el valor según sea necesario
+
+                    // Inserta el nuevo div de "Usuarios del sistema" antes del filtro
+                    $('#tabla-usuarios_filter').before(`
+                    <div class="d-flex align-items-center mb-0 flex-wrap" id="divTxtUsuarios" style="flex-grow: 1; margin-left: 0; padding-left: 0;">
+                        <h2 class="d-flex align-items-center card-title" style="margin: 0;">Usuarios del sistema:</h2>
+                    </div>
+                `);
+                },
+                "columnDefs": [
+                    { "width": "10%", "targets": 0 }, // Ancho de la columna 1 (ID)
+                    { "width": "20%", "targets": 1 }, // Ancho de la columna 2 (Nombre)
+                    { "width": "10%", "targets": 2 }, // Ancho de la columna 3 (Telefono)
+                    { "width": "10%", "targets": 3 }, // Ancho de la columna 4 (Username)
+                    { "width": "10%", "targets": 4 },  // Ancho de la columna 5 (Rol)
+                    { "width": "10%", "targets": 5 },  // Ancho de la columna 6 (Activo)
+                    { "width": "10%", "targets": 6 },  // Ancho de la columna 7 (Fecha)
+                    { "width": "20%", "targets": 7 }  // Ancho de la columna 8 (acciones)
+                ]
+            });
+
+            let tablaRoles = $('#tabla-roles').DataTable({
+                "destroy": true,
+                "ordering": false,
+                "responsive": true,
+                "bLengthChange": false,
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                },
+                "initComplete": function () {
+                    $('#tabla-roles_filter').parent().removeClass('col-md-6').addClass('col-sm-12 d-flex justify-content-between align-items-center w-100');
+                    $('#tabla-roles_filter').parent().css('margin-top', '20px'); 
+                    $('#tabla-roles_filter').before(`
+                            <div class="d-flex align-items-center mb-0 flex-wrap" id="divTxtUsuarios" style="flex-grow: 1; margin-left: 0; padding-left: 0;">
+                                <h2 class="d-flex align-items-center card-title" style="margin: 0;">Roles de usuario:</h2>
+                            </div>
+                        `);
+                },
+                "columnDefs": [
+                    { "width": "20%", "targets": 0 }, // Ancho de la columna 1 (ID)
+                    { "width": "40%", "targets": 1 }, // Ancho de la columna 2 (Nombre)
+                ]
+            });
+
+            let tablaPaqueterias = $('#tabla-paqueterias').DataTable({
+                "destroy": true,
+                "ordering": false,
+                "responsive": true,
+                "bLengthChange": false,
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                },
+                "initComplete": function () {
+                    $('#tabla-roles_filter').parent().removeClass('col-md-6').addClass('col-sm-12 d-flex justify-content-between align-items-center w-100');
+                    $('#tabla-roles_filter').parent().css('margin-top', '20px');
+                    $('#tabla-roles_filter').before(`
+                                    <div class="d-flex align-items-center mb-0 flex-wrap" id="divTxtUsuarios" style="flex-grow: 1; margin-left: 0; padding-left: 0;">
+                                        <h2 class="d-flex align-items-center card-title" style="margin: 0;">Roles de usuario:</h2>
+                                    </div>
+                                `);
+                },
+                "columnDefs": [
+                    { "width": "20%", "targets": 0 }, // Ancho de la columna 1 (ID)
+                    { "width": "40%", "targets": 1 }, // Ancho de la columna 2 (Nombre)
+                ]
+            });
+
+            $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function (e) {
+                var target = $(e.target).attr("href");
+                if (target === "#usuarios") {
+                    tablaUsuarios.clear().draw();
+                    getRoles();
+                    cancelarNuevoUsuario();
+                    llenarTablaUsuarios(); 
+                }
+                if (target === "#roles") {
+                    tablaRoles.clear().draw();
+                    llenarTablaRoles(); 
+                }
+                 if (target === "#paqueterias") {
+                    tablaPaqueterias.clear().draw();
+                    llenarTablaPaqueterias(); 
+                }
+            });
+
+
+            function llenarTablaUsuarios() {
+                // Limpia la tabla antes de volver a llenarla
+                getUsuarios().then(usuarios => {
+                    usuarios.forEach(user => {
+                        tablaUsuarios.row.add([
+                            user.id_usuario,
+                            user.nombre,
+                            user.telefono,
+                            user.username,
+                            user.rol,
+                            user.activo,
+                            user.fecha_creado,
+                            `
+                                     <button class="btn btn-sm btn-acciones" onclick="editarUsuario('${user}')" title="Editar usuario">
+                                     <span class="material-symbols-outlined">edit_square</span>Editar
+                             </button>
+                                     <button class="btn btn-sm btn-acciones" onclick="eliminarUsuario('${user}')" title="Eliminar usuario">
+                                     <span class="material-symbols-outlined">person_cancel</span>Eliminar
+                             </button>
+                            `
+                        ]).draw();
+                    });
+                }).catch(error => {
+                    console.log("Error al llenar la tabla:", error);
+                });
+            }
+
+
+        });
+
+
+        /*
+        ------------- PESTAÑAS ----------------
+        */
+        // Mostrar y ocultar el formulario de Usuario
+        document.getElementById('btnNuevoUsuario').addEventListener('click', function () {
+            document.getElementById('formularioAgregarUsuario').style.display = 'block';
+        });
+        // Mostrar y ocultar el formulario de Rol
+        document.getElementById('btnNuevoRol').addEventListener('click', function () {
+            document.getElementById('formularioAgregarRol').style.display = 'block';
+        });
+        // Mostrar y ocultar el formulario de Paquetería
+        document.getElementById('btnNuevaPaqueteria').addEventListener('click', function () {
+            document.getElementById('formularioAgregarPaqueteria').style.display = 'block';
         });
 
         //Consulta empresas de paquetería
@@ -165,46 +431,54 @@
 
         //Consulta de usuarios
         function getUsuarios() {
-            document.getElementById('contenedor-loader').style.display = 'flex';
-            $.ajax({
+            return new Promise((resolve, reject) => {
+
+                document.getElementById('contenedor-loader').style.display = 'flex';
+                $.ajax({
                     url: '@Url.Action("ConsultaUsuarios", "PanelControl")',
                     type: "POST",
-                     success: function (data) {
-                         if (!data.success) {
-                             console.log(data.errorMensaje);
-                         } else {
-                             // Deserializar la respuesta JSON
-                             let respuesta = JSON.parse(data.respuesta);
+                    success: function (data) {
+                        console.log("Data en getUsuarios:...");
+                        console.log(data);
+                        if (!data.success) {
+                            dialogoEG({
+                                type: "error",
+                                title: "Error consulta de usuarios",
+                                mensaje: data.errorMensaje,
+                                confirmar: "Aceptar",
+                                img: "img/error.png"
+                            }).then(() => {
+                                tablaUsuarios.clear().draw();
+                            });
+                            // Rechazar la promesa si hay un error en la respuesta
+                            reject(new Error(data.errorMensaje));
+                        } else {
+                            let respuesta = JSON.parse(data.respuesta);
+                            let usuarios = respuesta.listadoUsuarios;
+                            console.log("usuarios:");
+                            console.log(usuarios);
 
-                             // Acceder al array de paqueterías
-                             let listadoPaqueterias = respuesta.listadoPaqueterias;
+                            resolve(usuarios);
 
-                             // Obtener el elemento select
-                             let parcelSelect = $('#parcel-select');
-                             // Vaciar las opciones existentes
-                             parcelSelect.empty();
-                             // Agregar la opción predeterminada
-                             parcelSelect.append('<option value="">Selecciona una paquetería</option>');
-
-                             // Agregar las paqueterías al select
-                             listadoPaqueterias.forEach(paq => {
-                                 parcelSelect.append(`<option value="${paq.id_paqueteria}">${paq.nombre}</option>`);
-                             });
-                         }
-                         document.getElementById('contenedor-loader').style.display = 'none';
-                     },
-                     error: function (xhr, status, error) {
-                         document.getElementById('contenedor-loader').style.display = 'none';
-                         console.log("Error al consultar pilotos:", error);
-                         dialogoEG({
-                             type: "error",
-                             title: "Error de comunicación",
-                             mensaje: "Ocurrió un error al obtener listado de pilotos. Intente nuevamente, si el inconveniente persiste contacte al administrador.",
-                             confirmar: "Aceptar",
-                             img: "img/error.png"
-                         });
-                     }
+                        }
+                        document.getElementById('contenedor-loader').style.display = 'none';
+                    },
+                    error: function (xhr, status, error) {
+                        document.getElementById('contenedor-loader').style.display = 'none';
+                        console.log("Error al consultar usuarios:", error);
+                        dialogoEG({
+                            type: "error",
+                            title: "Error de comunicación",
+                            mensaje: "Ocurrió un error al obtener listado de usuarios. Intente nuevamente, si el inconveniente persiste contacte a soporte.",
+                            confirmar: "Aceptar",
+                            img: "img/error.png"
+                        });
+                        // Rechazar la promesa en caso de error
+                        reject(error);
+                    }
+                });
             });
+
         }
 
         //Consulta de roles
@@ -214,6 +488,7 @@
                     url: '@Url.Action("ConsultaRoles", "PanelControl")',
                     type: "POST",
                 success: function (data) {
+                    console.log("getRoles: ");
                     console.log(data);
                          if (!data.success) {
                              console.log(data.errorMensaje);
@@ -317,12 +592,20 @@
             });
         }
 
-        function limpiarFormulario() {
-            console.log("limpiar form :D");
-            document.getElementById("formInsertarUsuario").reset();
+        function cancelarNuevoUsuario() {
+            document.getElementById('formularioAgregarUsuario').reset();
+            document.getElementById('formularioAgregarUsuario').style.display = 'none';
         }
 
+        function cancelarNuevoRol(){
+            document.getElementById('formularioAgregarRol').reset();
+            document.getElementById('formularioAgregarRol').style.display = 'none';
+        }
 
+        function cancelarNuevaPaqueteria() {
+            document.getElementById('formularioAgregarPaqueteria').reset();
+            document.getElementById('formularioAgregarPaqueteria').style.display = 'none';
+        }
 
     </script>
 

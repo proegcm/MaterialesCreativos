@@ -52,7 +52,7 @@
 }
 
 .table thead th {
-    background-color: #0f0a35; /* Color del encabezado */
+    background-color: #4c4e4f; /* Color del encabezado */
     color: white; /* Texto blanco en el encabezado */
     text-align: center; /* Alineación centrada en el encabezado */
 }

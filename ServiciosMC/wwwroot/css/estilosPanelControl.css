@@ -14,35 +14,46 @@
 }
 
 
-.usuarios-card {
+.panel-card {
     padding: 20px;
     box-shadow: 0px 0px 15px rgb(15 10 53 / 0.85);
     margin-top: 10px;
 }
 
-    .usuarios-card .card-body {
+    .panel-card .card-body {
         padding: 0; /* Elimina padding adicional para evitar mucho espacio */
     }
 
-    .usuarios-card h3.card-title {
+    .panel-card h3.card-title {
         font-family: 'LemonMilk', sans-serif;
         font-size: 1.6rem;
-        color: #bb1364;
+        color: #0f0a35;
         margin: 0;
         text-align: left; /* Centrar el título horizontalmente */
         margin-bottom: 10px; /* Espacio entre el título y el input */
         line-height: 1.3rem;
     }
 
-    .usuarios-card .card-icon {
+    .panel-card .card-icon {
         font-size: 1.8rem;
-        color: #bb1364;
+        color: #0f0a35;
         justify-content: left; /* Centrar el ícono horizontalmente */
         display: inline-flex;
         align-items: flex-start;
         margin-bottom: 10px; /* Espacio entre el título y el input */
     }
-.usuarios-card {
+
+    .panel-card h2.card-title {
+        font-weight: bold;
+        font-size: 1.2rem;
+        color: #0f0a35;
+        display: flex;
+        align-items: center;
+        margin: 0;
+        text-align: left;
+    }
+
+.panel-card {
     padding: 20px;
     box-shadow: 0px 0px 15px rgb(15 10 53 / 0.85);
     font-family: 'Urbanist', sans-serif;
@@ -50,17 +61,37 @@
     margin: 10px auto; /* Centra horizontalmente la tarjeta */
 }
 
-
-    .usuarios-card .form-group {
+    .panel-card .form-group {
         display: flex;
         justify-content: center; /* Centrar el ícono horizontalmente */
         align-items: center;
         margin-bottom: 0; /* Eliminar margen inferior */
     }
 
-    .usuarios-card #btnIngreso,
-    .usuarios-card #btnLimpiar {
-        background-color: #0f0a35;
+    .panel-card #btnNuevoUsuario,
+    .panel-card #btnNuevoRol,
+    .panel-card #btnNuevaPaqueteria {
+        background-color: #2272ab;
+        font-weight: bold;
+        color: #fff;
+        border: none;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 10px;
+    }
+        .panel-card #btnNuevoUsuario:hover,
+        .panel-card #btnNuevoRol:hover,
+        .panel-card #btnNuevaPaqueteria:hover {
+            background-color: #196398; /* Color de fondo al hacer hover */
+        }
+
+    .panel-card #btnGuardarUsuario,
+    .panel-card #btnGuardarRol,
+    .panel-card #btnGuardarPaqueteria {
+        background-color: #dc418c;
+        font-weight: bold;
         color: #fff;
         border: none;
         padding: 10px;
@@ -69,12 +100,230 @@
         justify-content: center;
         min-width: 50px; /* Ancho mínimo para hacer el botón más ancho */
     }
-        .usuarios-card #btnIngreso span,
-        .usuarios-card #btnLimpiar span {
-            font-size: 1rem; /* Tamaño del ícono */
+
+        .panel-card #btnGuardarUsuario:hover,
+        .panel-card #btnGuardarRol:hover,
+        .panel-card #btnGuardarPaqueteria:hover {
+            background-color: #cb307b; /* Color de fondo al hacer hover */
         }
 
-        .usuarios-card #btnIngreso:hover,
-        .usuarios-card #btnLimpiar:hover {
-            background-color: #1f386e; /* Color de fondo al hacer hover */
+    .panel-card #btnNoGuardarUsuario,
+    .panel-card #btnNoGuardarRol,
+    .panel-card #btnNoGuardarPaqueteria {
+        background-color: #2272ab;
+        font-weight: bold;
+        color: #fff;
+        border: none;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 50px; /* Ancho mínimo para hacer el botón más ancho */
+    }
+
+        .panel-card #btnNoGuardarUsuario:hover,
+        .panel-card #btnNoGuardarRol:hover,
+        .panel-card #btnNoGuardarPaqueteria:hover {
+            background-color: #196398; /* Color de fondo al hacer hover */
         }
+
+        .panel-card #btnNuevoUsuario span,
+        .panel-card #btnGuardarUsuario span,
+        .panel-card #btnNoGuardarUsuario span,
+        .panel-card #btnNuevoRol span,
+        .panel-card #btnGuardarRol span,
+        .panel-card #btnNoGuardarRol span,
+        .panel-card #btnNuevaPaqueteria span,
+        .panel-card #btnGuardarPaqueteria span,
+        .panel-card #btnNoGuardarPaqueteria span {
+            font-size: 1.2rem; /* Tamaño del ícono */
+            margin-right: 5px;
+        }
+
+
+
+.material-symbols-outlined {
+    font-size: 2rem;
+    margin-right: 5px;
+}
+
+
+
+#tabla-usuarios_filter,
+#tabla-roles_filter,
+#tabla-paqueterias_filter {
+    margin-top: 20px; /* Ajusta el valor según sea necesario */
+}
+.dataTables_filter label {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #0f0a35;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    text-align: left;
+    font-weight: bold;
+}
+
+
+
+
+
+
+
+
+/* Estilos generales */
+#divTxtUsuarios h2 {
+    margin: 0;
+    padding: 0; /* Elimina el padding extra */
+}
+
+/* Para pantallas pequeñas */
+@media (max-width: 768px) {
+    #divTxtUsuarios {
+        flex-direction: column;   
+        align-items: flex-start;   
+    }
+
+    #btnNuevoUsuario {
+        width: 40%; 
+        margin-top: 15px;   
+        align-self: center; 
+    }
+
+    #divTxtUsuarios h2 {
+        width: 100%;   
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/*ESTILOS PARA PESTAÑAS PANEL DE CONTROL*/
+
+.tabs-container {
+    overflow-x: auto; /* Permitir desplazamiento horizontal */
+    white-space: nowrap; /* Evitar que las pestañas se dividan en varias líneas */
+}
+
+    .tabs-container .nav-tabs {
+        display: flex; /* Usar flexbox para mantener las pestañas en una línea */
+        flex-wrap: nowrap; /* Evitar que las pestañas se envuelvan a la siguiente línea */
+    }
+
+    .tabs-container .nav-item {
+        flex: 0 0 auto; /* Mantener el tamaño de los elementos nav */
+    }
+
+    .tabs-container .nav-tabs .nav-link {
+        color: #0f0a35; /* Color de letra inicial */
+        font-weight: normal; /* Fuente normal para las pestañas no seleccionadas */
+        font-size: 1.2rem;
+        padding: 10px 15px; /* Ajustar padding para que se vea mejor */
+        border-radius: 5px 5px 0 0; /* Bordes redondeados en la parte superior */
+        background-color: #f1f1f1; /* Fondo claro para no seleccionados */
+        transition: background-color 0.3s ease, font-weight 0.3s ease;
+    }
+
+        .tabs-container .nav-tabs .nav-link:hover {
+            background-color: #e0e0e0; /* Color al hacer hover */
+        }
+
+        .tabs-container .nav-tabs .nav-link.active {
+            font-weight: bold; /* Negrita para la pestaña activa */
+            color: #0f0a35; /* Mantener el mismo color de texto */
+            background-color: white; /* Fondo blanco para la pestaña activa */
+            border: 1px solid #ddd; /* Añadir borde para resaltar la pestaña activa */
+            border-bottom: none; /* Eliminar el borde inferior de la pestaña activa */
+            border-radius: 5px 5px 0 0; /* Bordes redondeados en la parte superior */
+        }
+
+    .tabs-container .tab-content {
+        padding: 20px; /* Espacio dentro del contenido de las pestañas */
+        background-color: white; /* Fondo del contenido de la pestaña activa */
+    }
+
+    .tabs-container .nav-link {
+        display: flex; /* Flexbox para alinear el icono y el texto */
+        align-items: center; /* Alinea verticalmente el icono y el texto */
+        font-size: 1.2rem; /* Tamaño del texto */
+        padding: 10px 15px;
+    }
+
+        .tabs-container .nav-link span.material-symbols-outlined {
+            font-size: 1.5rem; /* Tamaño del icono */
+            margin-right: 8px; /* Espacio entre el icono y el texto */
+        }
+
+        .tabs-container .nav-link.active span.material-symbols-outlined {
+            font-size: 1.5rem;
+        }
+
+@media (max-width: 768px) {
+    .tabs-container .nav-link {
+        font-size: 1.1rem; /* Tamaño del texto en pantallas pequeñas */
+    }
+
+        .tabs-container .nav-link span.material-symbols-outlined {
+            margin-right: 5px; /* Reducir espacio en pantallas pequeñas */
+            font-size: 1.4rem;
+        }
+}
+
+
+
+
+/*ESTILOS TABLA*/
+
+.btn-acciones {
+    width: 100%; /* Ocupa todo el ancho de la celda */
+    height: 100%; /* Ocupa todo el alto de la celda */
+    border: none; /* Sin borde */
+    background: transparent; /* Sin color de fondo */
+    color: inherit; /* Hereda el color del texto de la celda */
+    display: flex; /* Utiliza flexbox para alinear el contenido */
+    align-items: center; /* Centra verticalmente el contenido */
+    justify-content: flex-start; /* Alinea el contenido a la izquierda */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    padding: 0; /* Sin relleno adicional */
+}
+
+.btn-acciones span {
+        margin-right: 8px; /* Espacio entre el ícono y el texto */
+        font-size: 1rem; /* Tamaño de fuente para el ícono */
+    }
+
+.table thead th {
+    background-color: #4c4e4f; /* Color del encabezado */
+    color: white; /* Texto blanco en el encabezado */
+    text-align: center; /* Alineación centrada en el encabezado */
+}
+
+.table tbody td {
+    vertical-align: middle;
+    text-align: center; /* Alineación centrada en el contenido de la tabla por defecto */
+}
+
+.table tbody td.text-left {
+        text-align: left; /* Alineación a la izquierda para columnas específicas */
+    }
+
+@media (max-width: 768px) {
+    .table {
+        font-size: 0.8rem;
+    }
+
+        .table th, .table td {
+            padding: 0.5rem;
+        }
+}
+
+

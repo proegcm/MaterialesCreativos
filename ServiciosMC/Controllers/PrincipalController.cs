@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Net.Http;
 using System.ServiceModel;
 using System.Text;
@@ -43,6 +42,7 @@ namespace ServiciosMC.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
         [HttpPost]
         public JsonResult ObtengoUsuario()
         {
@@ -51,6 +51,7 @@ namespace ServiciosMC.Controllers
             return Json(login.Usuario);
 
         }
+
         [HttpPost]
         public JsonResult ObtenerPedido(String folio)
         {
