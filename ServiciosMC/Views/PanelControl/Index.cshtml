@@ -58,53 +58,61 @@
                                             <span class="material-symbols-outlined">person_add</span>Agregar usuario
                                         </button>
                                         <!--Formulario Agregar usuario-->
-                                        <div class="col-lg-10 col-md-10 col-sm-12">
-                                            <form class="mt-3" id="formularioAgregarUsuario" style="display: none;">
-                                                <div class="row mb-3">
-                                                    <div class="col-lg-4 col-md-6 col-sm-12">
-                                                        <label for="nombre" class="form-label">Nombre completo:</label>
-                                                        <input type="text" class="form-control" id="nombre" required>
+                                        <div class="container d-flex justify-content-center" style="margin-top: 10px;">
+                                            <div class="col-lg-10 col-md-10 col-sm-12">
+                                                <form class="mt-3 mb-3" id="formularioAgregarUsuario" onsubmit="ingresoUsuario(); return false;" style="display: none;">
+                                                    <hr />
+                                                    <div class="d-flex align-items-center mb-3 flex-wrap" id="divTxtForm" style="flex-grow: 1; margin-left: 0; padding-left: 0;">
+                                                        <h2 class="d-flex align-items-center card-title" style="margin: 0;">Datos del usuario:</h2>
                                                     </div>
-                                                    <div class="col-lg-4 col-md-6 col-sm-12">
-                                                        <label for="telefono" class="form-label">Teléfono:</label>
-                                                        <input type="text" class="form-control" id="telefono" maxlength="8">
+                                                    <div class="row mb-3">
+                                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                                            <label for="nombre" class="form-label">Nombre completo:</label>
+                                                            <input type="text" class="form-control" id="nombre" required>
+                                                        </div>
+                                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                                            <label for="telefono" class="form-label">Teléfono:</label>
+                                                            <input type="text" class="form-control" id="telefono" maxlength="8">
+                                                        </div>
+                                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                                            <label for="activo" class="form-label">Activo:</label>
+                                                            <select class="form-control" id="activo" required>
+                                                                <option value="S">Sí</option>
+                                                                <option value="N">No</option>
+                                                            </select>
+                                                        </div>
                                                     </div>
-                                                    <div class="col-lg-4 col-md-6 col-sm-12">
-                                                        <label for="activo" class="form-label">Activo:</label>
-                                                        <select class="form-control" id="activo" required>
-                                                            <option value="S">Sí</option>
-                                                            <option value="N">No</option>
-                                                        </select>
+                                                    <div class="row mb-3">
+                                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                                            <label for="username" class="form-label">Username:</label>
+                                                            <input type="text" class="form-control" id="username" required>
+                                                        </div>
+                                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                                            <label for="password" class="form-label">Contraseña:</label>
+                                                            <input type="password" class="form-control" id="password" required>
+                                                        </div>
+                                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                                            <label for="rol" class="form-label">Rol de usuario:</label>
+                                                            <select class="form-control" id="roluser" required>
+                                                            </select>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="row mb-3">
-                                                    <div class="col-lg-4 col-md-6 col-sm-12">
-                                                        <label for="username" class="form-label">Username:</label>
-                                                        <input type="text" class="form-control" id="username" required>
+                                                    <div class="row justify-content-center">
+                                                        <div class="col-12 col-md-6 d-flex justify-content-between">
+                                                            <button type="submit" class="btn btn-primary col-5" id="btnGuardarUsuario">
+                                                                <span class="material-symbols-outlined">person_check</span>
+                                                                Guardar usuario
+                                                            </button>
+                                                            <button type="button" class="btn btn-secondary col-5" onclick="cancelarNuevoUsuario()" id="btnNoGuardarUsuario">
+                                                                <span class="material-symbols-outlined">close_small</span>
+                                                                Cancelar
+                                                            </button>
+                                                        </div>
                                                     </div>
-                                                    <div class="col-lg-4 col-md-6 col-sm-12">
-                                                        <label for="password" class="form-label">Contraseña:</label>
-                                                        <input type="password" class="form-control" id="password" required>
-                                                    </div>
-                                                    <div class="col-lg-4 col-md-6 col-sm-12">
-                                                        <label for="rol" class="form-label">Rol de usuario:</label>
-                                                        <select class="form-control" id="roluser" required>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="row justify-content-center">
-                                                    <div class="col-12 col-md-6 d-flex justify-content-around">
-                                                        <button type="submit" class="btn btn-primary" id="btnGuardarUsuario">
-                                                            <span class="material-symbols-outlined">person_check</span>
-                                                            Guardar usuario
-                                                        </button>
-                                                        <button type="button" class="btn btn-secondary" onclick="cancelarNuevoUsuario()" id="btnNoGuardarUsuario">
-                                                            <span class="material-symbols-outlined">close_small</span>
-                                                            Cancelar
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </form>
+
+                                                    <hr />
+                                                </form>
+                                            </div>
                                         </div>
                                         <!-- Tabla de usuarios -->
                                         <div class="row">
@@ -133,30 +141,34 @@
                                     <div class="tab-pane fade" id="roles" role="tabpanel" aria-labelledby="roles-tab">
                                         <!--Botón nuevo Rol-->
                                         <button class="btn btn-primary" id="btnNuevoRol">
-                                            <span class="material-symbols-outlined">encrypted_add</span>Agregar rol
+                                            <span class="material-symbols-outlined">encrypted_add</span>Agregar rol de usuario
                                         </button>
                                         <!--Formulario Agregar rol-->
-                                        <div class="col-lg-10 col-md-10 col-sm-12">
-                                            <form class="mt-3" id="formularioAgregarRol" style="display: none;">
-                                                <div class="row mb-3">
-                                                    <div class="col-lg-4 col-md-6 col-sm-12">
-                                                        <label for="nombreRol" class="form-label">Nombre del Rol:</label>
-                                                        <input type="text" class="form-control" id="nombreRol" required>
+                                        <div class="container d-flex justify-content-center" style="margin-top: 10px;">
+                                            <div class="col-lg-6 col-md-8 col-sm-12">
+                                                <form class="mt-3 mb-3" id="formularioAgregarRol" onsubmit="ingresoRol(); return false;" style="display: none;">
+                                                    <hr />
+                                                    <div class="row mb-3">
+                                                        <div class="col-12">
+                                                            <label for="nombreRol" class="form-label">Nombre del Rol:</label>
+                                                            <input type="text" class="form-control" id="nombreRol" required>
+                                                        </div>
                                                     </div>
-                                                    <div class="col-lg-4 col-md-6 col-sm-12">
-                                                        <button type="submit" class="btn btn-primary" id="btnGuardarRol">
-                                                            <span class="material-symbols-outlined">add_box</span>
-                                                            Guardar rol
-                                                        </button>
+                                                    <div class="row justify-content-center">
+                                                        <div class="col-12 d-flex justify-content-between">
+                                                            <button type="submit" class="btn btn-primary col-5" id="btnGuardarRol">
+                                                                <span class="material-symbols-outlined">add_box</span>
+                                                                Guardar rol
+                                                            </button>
+                                                            <button type="button" class="btn btn-secondary col-5" onclick="cancelarNuevoRol()" id="btnNoGuardarRol">
+                                                                <span class="material-symbols-outlined">close_small</span>
+                                                                Cancelar
+                                                            </button>
+                                                        </div>
                                                     </div>
-                                                    <div class="col-lg-4 col-md-6 col-sm-12">
-                                                        <button type="button" class="btn btn-secondary" onclick="cancelarNuevoRol()" id="btnNoGuardarRol">
-                                                            <span class="material-symbols-outlined">close_small</span>
-                                                            Cancelar
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </form>
+                                                    <hr />
+                                                </form>
+                                            </div>
                                         </div>
                                         <!-- Tabla de roles -->
                                         <div class="row">
@@ -179,52 +191,58 @@
 
                                     <!-- Gestión de Paqueterías -->
                                     <div class="tab-pane fade" id="paqueterias" role="tabpanel" aria-labelledby="paqueterias-tab">
-                                        <h3>Gestión de Paqueterías</h3>
-                                        <button class="btn btn-primary mt-2" id="mostrarFormularioPaqueteriaBtn">Agregar Paquetería</button>
-
-                                        <form class="mt-3" id="formularioAgregarPaqueteria" style="display: none;">
-                                            <div class="row mb-3">
-                                                <div class="col-md-12">
-                                                    <label for="nombrePaqueteria" class="form-label">Nombre de la Paquetería</label>
-                                                    <input type="text" class="form-control" id="nombrePaqueteria" required>
-                                                </div>
+                                        <!--Botón nueva paqueteria-->
+                                        <button class="btn btn-primary" id="btnNuevaPaqueteria">
+                                            <span class="material-symbols-outlined">box_add</span>Agregar empresa de paquetería
+                                        </button>
+                                        <!--Formulario Agregar paquetería-->
+                                        <div class="container d-flex justify-content-center" style="margin-top: 10px;">
+                                            <div class="col-lg-6 col-md-8 col-sm-12">
+                                                <form class="mt-3 mb-3" id="formularioAgregarPaqueteria" onsubmit="ingresoPaqueteria(); return false;" style="display: none;">
+                                                    <hr />
+                                                    <div class="row mb-3">
+                                                        <div class="col-12">
+                                                            <label for="nombrePaqueteria" class="form-label">Nombre de la Paquetería:</label>
+                                                            <input type="text" class="form-control" id="nombrePaqueteria" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row justify-content-center">
+                                                        <div class="col-12 d-flex justify-content-between">
+                                                            <button type="submit" class="btn btn-primary col-5" id="btnGuardarPaqueteria">
+                                                                <span class="material-symbols-outlined">add_box</span>
+                                                                Guardar paquetería
+                                                            </button>
+                                                            <button type="button" class="btn btn-secondary col-5" onclick="cancelarNuevaPaqueteria()" id="btnNoGuardarPaqueteria">
+                                                                <span class="material-symbols-outlined">close_small</span>
+                                                                Cancelar
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <hr />
+                                                </form>
                                             </div>
-                                            <button type="submit" class="btn btn-success">Guardar Paquetería</button>
-                                            <button type="button" class="btn btn-secondary" id="cancelarFormularioPaqueteriaBtn">Cancelar</button>
-                                        </form>
-
+                                        </div>
                                         <!-- Tabla de paqueterías -->
-                                        <table class="table table-striped mt-3">
-                                            <thead>
-                                                <tr>
-                                                    <th>ID</th>
-                                                    <th>Nombre</th>
-                                                    <th>Acciones</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>FedEx</td>
-                                                    <td>
-                                                        <button class="btn btn-sm btn-warning">Editar</button>
-                                                        <button class="btn btn-sm btn-danger">Eliminar</button>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                        <div class="row">
+                                            <div class="table-responsive">
+                                                <table id="tabla-paqueterias" class="table hover row-border" style="width:100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="text-center">ID</th>
+                                                            <th class="text-center">Nombre</th>
+                                                            <th class="text-center">Acciones</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="tbody-paqueterias">
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                           
-                            
                             </div>
-
                         </div>
-
                     </div>
-
-                   
-
                 </div>
             </div>
         </div>
@@ -248,13 +266,7 @@
                     "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"                   
                 },
                 "initComplete": function () {
-                    // Cambiar la clase del contenedor a col-12
                     $('#tabla-usuarios_filter').parent().removeClass('col-md-6').addClass('col-sm-12 d-flex justify-content-between align-items-center w-100');
-
-                    // Establecer un margen superior en el contenedor
-                    $('#tabla-usuarios_filter').parent().css('margin-top', '20px'); // Ajusta el valor según sea necesario
-
-                    // Inserta el nuevo div de "Usuarios del sistema" antes del filtro
                     $('#tabla-usuarios_filter').before(`
                     <div class="d-flex align-items-center mb-0 flex-wrap" id="divTxtUsuarios" style="flex-grow: 1; margin-left: 0; padding-left: 0;">
                         <h2 class="d-flex align-items-center card-title" style="margin: 0;">Usuarios del sistema:</h2>
@@ -283,9 +295,8 @@
                 },
                 "initComplete": function () {
                     $('#tabla-roles_filter').parent().removeClass('col-md-6').addClass('col-sm-12 d-flex justify-content-between align-items-center w-100');
-                    $('#tabla-roles_filter').parent().css('margin-top', '20px'); 
                     $('#tabla-roles_filter').before(`
-                            <div class="d-flex align-items-center mb-0 flex-wrap" id="divTxtUsuarios" style="flex-grow: 1; margin-left: 0; padding-left: 0;">
+                            <div class="d-flex align-items-center mb-0 flex-wrap" id="divTxtRoles" style="flex-grow: 1; margin-left: 0; padding-left: 0;">
                                 <h2 class="d-flex align-items-center card-title" style="margin: 0;">Roles de usuario:</h2>
                             </div>
                         `);
@@ -305,13 +316,12 @@
                     "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                 },
                 "initComplete": function () {
-                    $('#tabla-roles_filter').parent().removeClass('col-md-6').addClass('col-sm-12 d-flex justify-content-between align-items-center w-100');
-                    $('#tabla-roles_filter').parent().css('margin-top', '20px');
-                    $('#tabla-roles_filter').before(`
-                                    <div class="d-flex align-items-center mb-0 flex-wrap" id="divTxtUsuarios" style="flex-grow: 1; margin-left: 0; padding-left: 0;">
-                                        <h2 class="d-flex align-items-center card-title" style="margin: 0;">Roles de usuario:</h2>
-                                    </div>
-                                `);
+                    $('#tabla-paqueterias_filter').parent().removeClass('col-md-6').addClass('col-sm-12 d-flex justify-content-between align-items-center w-100');
+                    $('#tabla-paqueterias_filter').before(`
+                        <div class="d-flex align-items-center mb-0 flex-wrap" id="divTxtPaqueteria" style="flex-grow: 1; margin-left: 0; padding-left: 0;">
+                           <h2 class="d-flex align-items-center card-title" style="margin: 0;">Empresas de paquetería:</h2>
+                        </div>
+                     `);
                 },
                 "columnDefs": [
                     { "width": "20%", "targets": 0 }, // Ancho de la columna 1 (ID)
@@ -329,10 +339,12 @@
                 }
                 if (target === "#roles") {
                     tablaRoles.clear().draw();
+                    cancelarNuevoRol();
                     llenarTablaRoles(); 
                 }
                  if (target === "#paqueterias") {
                     tablaPaqueterias.clear().draw();
+                    cancelarNuevaPaqueteria();
                     llenarTablaPaqueterias(); 
                 }
             });
@@ -340,7 +352,7 @@
 
             function llenarTablaUsuarios() {
                 // Limpia la tabla antes de volver a llenarla
-                getUsuarios().then(usuarios => {
+                obtengoUsuarios().then(usuarios => {
                     usuarios.forEach(user => {
                         tablaUsuarios.row.add([
                             user.id_usuario,
@@ -365,6 +377,49 @@
                 });
             }
 
+            function llenarTablaRoles() {
+                // Limpia la tabla antes de volver a llenarla
+                obtengoRoles().then(roles => {
+                    roles.forEach(rol => {
+                        tablaRoles.row.add([
+                            rol.id_rol,
+                            rol.nombrerol,
+                            `
+                                             <button class="btn btn-sm btn-acciones" onclick="editarRol('${rol}')" title="Editar rol">
+                                             <span class="material-symbols-outlined">edit_square</span>Editar
+                                     </button>
+                                                     <button class="btn btn-sm btn-acciones" onclick="eliminarRol('${rol}')" title="Eliminar rol">
+                                             <span class="material-symbols-outlined">person_cancel</span>Eliminar
+                                     </button>
+                                    `
+                        ]).draw();
+                    });
+                }).catch(error => {
+                    console.log("Error al llenar la tabla:", error);
+                });
+            }
+
+            function llenarTablaPaqueterias() {
+                // Limpia la tabla antes de volver a llenarla
+                obtengoPaqueterias().then(paqueterias => {
+                    paqueterias.forEach(paq => {
+                        tablaPaqueterias.row.add([
+                            paq.id_paqueteria,
+                            paq.nombre,
+                            `
+                            <button class="btn btn-sm btn-acciones" onclick="editarPaqueteria('${paq}')" title="Editar paquetería">
+                                <span class="material-symbols-outlined">edit_square</span>Editar
+                            </button>
+                                            <button class="btn btn-sm btn-acciones" onclick="eliminarPaqueteria('${paq}')" title="Eliminar paquetería">
+                                <span class="material-symbols-outlined">person_cancel</span>Eliminar
+                             </button>
+                            `
+                        ]).draw();
+                    });
+                }).catch(error => {
+                    console.log("Error al llenar la tabla:", error);
+                });
+            }
 
         });
 
@@ -385,52 +440,8 @@
             document.getElementById('formularioAgregarPaqueteria').style.display = 'block';
         });
 
-        //Consulta empresas de paquetería
-        function getPaqueterias() {
-            document.getElementById('contenedor-loader').style.display = 'flex';
-            $.ajax({
-                    url: '@Url.Action("ConsultaPaqueterias", "PanelControl")',
-                    type: "POST",
-                     success: function (data) {
-                         if (!data.success) {
-                             console.log(data.errorMensaje);
-                         } else {
-                             // Deserializar la respuesta JSON
-                             let respuesta = JSON.parse(data.respuesta);
-
-                             // Acceder al array de paqueterías
-                             let listadoPaqueterias = respuesta.listadoPaqueterias;
-
-                             // Obtener el elemento select
-                             let parcelSelect = $('#parcel-select');
-                             // Vaciar las opciones existentes
-                             parcelSelect.empty();
-                             // Agregar la opción predeterminada
-                             parcelSelect.append('<option value="">Selecciona una paquetería</option>');
-
-                             // Agregar las paqueterías al select
-                             listadoPaqueterias.forEach(paq => {
-                                 parcelSelect.append(`<option value="${paq.id_paqueteria}">${paq.nombre}</option>`);
-                             });
-                         }
-                         document.getElementById('contenedor-loader').style.display = 'none';
-                     },
-                     error: function (xhr, status, error) {
-                         document.getElementById('contenedor-loader').style.display = 'none';
-                         console.log("Error al consultar pilotos:", error);
-                         dialogoEG({
-                             type: "error",
-                             title: "Error de comunicación",
-                             mensaje: "Ocurrió un error al obtener listado de pilotos. Intente nuevamente, si el inconveniente persiste contacte al administrador.",
-                             confirmar: "Aceptar",
-                             img: "img/error.png"
-                         });
-                     }
-            });
-        }
-
-        //Consulta de usuarios
-        function getUsuarios() {
+        //Consulta de usuarios para llenar tabla
+        function obtengoUsuarios() {
             return new Promise((resolve, reject) => {
 
                 document.getElementById('contenedor-loader').style.display = 'flex';
@@ -438,7 +449,7 @@
                     url: '@Url.Action("ConsultaUsuarios", "PanelControl")',
                     type: "POST",
                     success: function (data) {
-                        console.log("Data en getUsuarios:...");
+                        console.log("Data en obtengoUsuarios:...");
                         console.log(data);
                         if (!data.success) {
                             dialogoEG({
@@ -481,7 +492,112 @@
 
         }
 
-        //Consulta de roles
+        //Consulta de roles para llenar tabla
+        function obtengoRoles() {
+            return new Promise((resolve, reject) => {
+
+                document.getElementById('contenedor-loader').style.display = 'flex';
+                $.ajax({
+                    url: '@Url.Action("ConsultaRoles", "PanelControl")',
+                    type: "POST",
+                    success: function (data) {
+                        console.log("Data en obtengoRoles:...");
+                        console.log(data);
+                        if (!data.success) {
+                            dialogoEG({
+                                type: "error",
+                                title: "Error consulta de Roles",
+                                mensaje: data.errorMensaje,
+                                confirmar: "Aceptar",
+                                img: "img/error.png"
+                            }).then(() => {
+                                tablaRoles.clear().draw();
+                            });
+                            // Rechazar la promesa si hay un error en la respuesta
+                            reject(new Error(data.errorMensaje));
+                        } else {
+                            let respuesta = JSON.parse(data.respuesta);
+                            let roles = respuesta.listadoRoles;
+                            console.log("roles:");
+                            console.log(roles);
+
+                            resolve(roles);
+
+                        }
+                        document.getElementById('contenedor-loader').style.display = 'none';
+                    },
+                    error: function (xhr, status, error) {
+                        document.getElementById('contenedor-loader').style.display = 'none';
+                        console.log("Error al consultar roles:", error);
+                        dialogoEG({
+                            type: "error",
+                            title: "Error de comunicación",
+                            mensaje: "Ocurrió un error al obtener listado de roles. Intente nuevamente, si el inconveniente persiste contacte a soporte.",
+                            confirmar: "Aceptar",
+                            img: "img/error.png"
+                        });
+                        // Rechazar la promesa en caso de error
+                        reject(error);
+                    }
+                });
+            });
+
+        }
+
+         //Consulta de paqueterias para llenar tabla
+        function obtengoPaqueterias() {
+            return new Promise((resolve, reject) => {
+
+                document.getElementById('contenedor-loader').style.display = 'flex';
+                $.ajax({
+                    url: '@Url.Action("ConsultaPaqueterias", "PanelControl")',
+                    type: "POST",
+                    success: function (data) {
+                        console.log("Data en obtengoRoles:...");
+                        console.log(data);
+                        if (!data.success) {
+                            dialogoEG({
+                                type: "error",
+                                title: "Error consulta de Paqueterías",
+                                mensaje: data.errorMensaje,
+                                confirmar: "Aceptar",
+                                img: "img/error.png"
+                            }).then(() => {
+                                tablaPaqueterias.clear().draw();
+                            });
+                            // Rechazar la promesa si hay un error en la respuesta
+                            reject(new Error(data.errorMensaje));
+                        } else {
+                            let respuesta = JSON.parse(data.respuesta);
+                            let empresas = respuesta.listadoPaqueterias;
+                            console.log("paqueterías:");
+                            console.log(empresas);
+
+                            resolve(empresas);
+
+                        }
+                        document.getElementById('contenedor-loader').style.display = 'none';
+                    },
+                    error: function (xhr, status, error) {
+                        document.getElementById('contenedor-loader').style.display = 'none';
+                        console.log("Error al consultar roles:", error);
+                        dialogoEG({
+                            type: "error",
+                            title: "Error de comunicación",
+                            mensaje: "Ocurrió un error al obtener listado de paqueterías. Intente nuevamente, si el inconveniente persiste contacte a soporte.",
+                            confirmar: "Aceptar",
+                            img: "img/error.png"
+                        });
+                        // Rechazar la promesa en caso de error
+                        reject(error);
+                    }
+                });
+            });
+
+        }
+
+
+        //Consulta de roles para checkbox formulario
         function getRoles() {
             document.getElementById('contenedor-loader').style.display = 'flex';
             $.ajax({
@@ -539,17 +655,18 @@
 
             // Construir el objeto parametros
             var parametros = {
-                infoUsuarioIngreso: {
+                // infoUsuarioIngreso: {
                     nombre: nombre,
                     telefono: telefono,
                     activo: activo,
                     username: username,
                     password: password,
                     idrol: idrol
-                }
             };
+            console.log("parametros:... ");
+            console.log(parametros);
              $.ajax({
-                url: '@Url.Action("IngresoUsuario", "Principal")',
+                url: '@Url.Action("IngresarUsuario", "PanelControl")',
                 type: "POST",
                 data: parametros,
                 success: function (data) {
@@ -563,7 +680,6 @@
                             confirmar: "Aceptar",
                             img: "img/error.png"
                         })
-                        limpiarFormulario();
                     } else {
                         dialogoEG({
                             type: "success",
@@ -572,7 +688,8 @@
                             confirmar: "Aceptar",
                             img: "img/success.png"
                         }).then(() => {
-                            limpiarFormulario();
+                            cancelarNuevoUsuario();
+                            llenarTablaUsuarios();
                         });
                     }
                     document.getElementById('contenedor-loader').style.display = 'none';
@@ -587,7 +704,6 @@
                         confirmar: "Aceptar",
                         img: "img/error.png"
                     })
-                    limpiarFormulario();
                 }
             });
         }

@@ -152,17 +152,14 @@
 #tabla-usuarios_filter,
 #tabla-roles_filter,
 #tabla-paqueterias_filter {
-    margin-top: 20px; /* Ajusta el valor según sea necesario */
+    margin-top: 0px; /* Ajusta el valor según sea necesario */
 }
 .dataTables_filter label {
     font-weight: bold;
     font-size: 1.2rem;
     color: #0f0a35;
-    display: flex;
-    align-items: center;
     margin: 0;
     text-align: left;
-    font-weight: bold;
 }
 
 
@@ -173,16 +170,22 @@
 
 
 /* Estilos generales */
-#divTxtUsuarios h2 {
+#divTxtUsuarios h2,
+#divTxtRoles h2,
+#divTxtPaqueteria h2,
+#divTxtForm h2 {
     margin: 0;
     padding: 0; /* Elimina el padding extra */
 }
 
 /* Para pantallas pequeñas */
 @media (max-width: 768px) {
-    #divTxtUsuarios {
-        flex-direction: column;   
-        align-items: flex-start;   
+    #divTxtUsuarios,
+    #divTxtRoles,
+    #divTxtPaqueteria,
+    #divTxtForm {
+        flex-direction: column;
+        align-items: flex-start;
     }
 
     #btnNuevoUsuario {
@@ -191,8 +194,11 @@
         align-self: center; 
     }
 
-    #divTxtUsuarios h2 {
-        width: 100%;   
+    #divTxtUsuarios h2,
+    #divTxtRoles h2,
+    #divTxtPaqueteria h2,
+    #divTxtForm h2 {
+        width: 100%;
     }
 }
 

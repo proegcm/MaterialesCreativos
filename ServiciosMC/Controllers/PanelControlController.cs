@@ -184,15 +184,22 @@ namespace ServiciosMC.Controllers
         }
 
         [HttpPost]
-        public async Task<JsonResult> IngresarUsuario(infoUsuarioIngreso pedidoData)
+        public async Task<JsonResult> IngresarUsuario(infoUsuarioIngreso usuarioData)
         {
             try
             {
-                string URL = config.GetValue<string>("Servicios:API_PYTHON") + "ingresoPedidoMC";
+                string URL = config.GetValue<string>("Servicios:API_PYTHON") + "ingresoUsuarioMC";
 
                 using (HttpClient httpClient = new HttpClient())
                 {
-                    var datos = JsonSerializer.Serialize(pedidoData);
+                    Debug.WriteLine("usuarioData: ");
+                    Debug.WriteLine("nombre: "+usuarioData.nombre);
+                    Debug.WriteLine("telefono: " + usuarioData.telefono);
+                    Debug.WriteLine("activo: " + usuarioData.activo);
+                    Debug.WriteLine("username: " + usuarioData.username);
+                    Debug.WriteLine("password: " + usuarioData.password);
+                    Debug.WriteLine("rol: " + usuarioData.idrol);
+                    var datos = JsonSerializer.Serialize(usuarioData);
                     var contenido = new StringContent(datos, Encoding.UTF8, "application/json");
                     var response = await httpClient.PostAsync(URL, contenido);
 
