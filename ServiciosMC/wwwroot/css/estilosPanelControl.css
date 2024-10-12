@@ -84,33 +84,33 @@
         .panel-card #btnNuevoUsuario:hover,
         .panel-card #btnNuevoRol:hover,
         .panel-card #btnNuevaPaqueteria:hover {
-            background-color: #196398; /* Color de fondo al hacer hover */
+            background-color: #196398; 
         }
 
     .panel-card #btnGuardarUsuario,
     .panel-card #btnGuardarRol,
     .panel-card #btnGuardarPaqueteria {
         background-color: #dc418c;
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
         font-weight: bold;
         color: #fff;
         border: none;
         padding: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-width: 50px; /* Ancho mínimo para hacer el botón más ancho */
+        margin-top: 10px;
     }
 
         .panel-card #btnGuardarUsuario:hover,
         .panel-card #btnGuardarRol:hover,
         .panel-card #btnGuardarPaqueteria:hover {
-            background-color: #cb307b; /* Color de fondo al hacer hover */
+            background-color: #cb307b; 
         }
 
-    .panel-card #btnNoGuardarUsuario,
-    .panel-card #btnNoGuardarRol,
-    .panel-card #btnNoGuardarPaqueteria {
-        background-color: #2272ab;
+    .panel-card #btnModUsuario,
+    .panel-card #btnModRol,
+    .panel-card #btnModPaqueteria {
+        background-color: #e86217;
         font-weight: bold;
         color: #fff;
         border: none;
@@ -118,36 +118,41 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        min-width: 50px; /* Ancho mínimo para hacer el botón más ancho */
+        margin-top: 10px;
+    }
+        .panel-card #btnModUsuario:hover,
+        .panel-card #btnModUsuario:hover,
+        .panel-card #btnModUsuario:hover {
+            background-color: #ca4e09; 
+        }
+
+    .panel-card #btnNoGuardarUsuario,
+    .panel-card #btnNoGuardarRol,
+    .panel-card #btnNoGuardarPaqueteria {
+        background-color: #808080;
+        font-weight: bold;
+        color: #fff;
+        border: none;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 10px;
     }
 
         .panel-card #btnNoGuardarUsuario:hover,
         .panel-card #btnNoGuardarRol:hover,
         .panel-card #btnNoGuardarPaqueteria:hover {
-            background-color: #196398; /* Color de fondo al hacer hover */
+            background-color: #4c4e4f; /* Color de fondo al hacer hover */
         }
 
-        .panel-card #btnNuevoUsuario span,
-        .panel-card #btnGuardarUsuario span,
-        .panel-card #btnNoGuardarUsuario span,
-        .panel-card #btnNuevoRol span,
-        .panel-card #btnGuardarRol span,
-        .panel-card #btnNoGuardarRol span,
-        .panel-card #btnNuevaPaqueteria span,
-        .panel-card #btnGuardarPaqueteria span,
-        .panel-card #btnNoGuardarPaqueteria span {
-            font-size: 1.2rem; /* Tamaño del ícono */
-            margin-right: 5px;
-        }
-
-
-
-.material-symbols-outlined {
-    font-size: 2rem;
-    margin-right: 5px;
-}
-
-
+    .panel-card span {
+        font-size: 1.2rem;
+        margin-right: 5px;
+        display: inline-flex;
+        align-items: center;
+        vertical-align: middle; /* Asegura que el icono se centre verticalmente */
+    }
 
 #tabla-usuarios_filter,
 #tabla-roles_filter,
@@ -288,24 +293,39 @@
 
 
 /*ESTILOS TABLA*/
-
-.btn-acciones {
-    width: 100%; /* Ocupa todo el ancho de la celda */
-    height: 100%; /* Ocupa todo el alto de la celda */
-    border: none; /* Sin borde */
-    background: transparent; /* Sin color de fondo */
-    color: inherit; /* Hereda el color del texto de la celda */
-    display: flex; /* Utiliza flexbox para alinear el contenido */
-    align-items: center; /* Centra verticalmente el contenido */
-    justify-content: flex-start; /* Alinea el contenido a la izquierda */
-    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
-    padding: 0; /* Sin relleno adicional */
+/* Contenedor de los botones, usando flex para alinear en fila */
+.contenedor-acciones {
+    display: flex; /* Utiliza flexbox para alinear los botones */
+    justify-content: center; /* Centra los botones horizontalmente */
+    align-items: center; /* Centra los botones verticalmente */
+    gap: 8px; /* Espacio entre los botones */
+    height: 100%; /* Asegura que el contenedor ocupe el alto de la celda */
 }
 
-.btn-acciones span {
-        margin-right: 8px; /* Espacio entre el ícono y el texto */
+/* Estilos para los botones */
+.btn-acciones {
+    display: flex; /* Flexbox para alinear ícono y texto dentro del botón */
+    align-items: center; /* Centra verticalmente el contenido */
+    justify-content: center; /* Centra el contenido horizontalmente */
+    border: 1px solid #ccc; /* Borde gris claro */
+    background: transparent; /* Sin fondo */
+    color: inherit; /* Hereda el color del texto de la celda */
+    padding: 4px 8px; /* Un poco de espacio dentro del botón */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    border-radius: 4px; /* Bordes redondeados para un mejor aspecto */
+}
+
+    .btn-acciones:hover {
+        border-color: #999; /* Cambia el color del borde al pasar el cursor */
+        font-weight: bold;
+    }
+
+    /* Espacio entre el ícono y el texto */
+    .btn-acciones span {
+        margin-right: 4px; /* Ajusta el espacio entre el ícono y el texto */
         font-size: 1rem; /* Tamaño de fuente para el ícono */
     }
+
 
 .table thead th {
     background-color: #4c4e4f; /* Color del encabezado */
@@ -322,6 +342,18 @@
         text-align: left; /* Alineación a la izquierda para columnas específicas */
     }
 
+table.dataTable tbody tr:hover {
+    font-weight: bold;
+}
+
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: #4c4e4f;
+    border-color: #4c4e4f;
+}
+
+
 @media (max-width: 768px) {
     .table {
         font-size: 0.8rem;
@@ -331,5 +363,3 @@
             padding: 0.5rem;
         }
 }
-
-

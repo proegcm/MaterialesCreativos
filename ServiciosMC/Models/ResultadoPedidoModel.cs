@@ -83,4 +83,34 @@ namespace ServiciosMC.Models
 
         public string idrol { get; set; }
     }
+
+    public class infoRolIngreso
+    {
+        public string nombrerol { get; set; }
+    }
+
+    public class infoPaqueteriaIngreso
+    {
+        public string nombre_paqueteria { get; set; }
+    }
+
+    public class infoUsuarioEditar
+    {
+        public string id { get; set; }
+
+        public string nombre { get; set; }
+
+        public string telefono { get; set; }
+
+        public string activo { get; set; }
+
+        public string username { get; set; }
+
+        public string password { get; set; }
+
+        public string idrol { get; set; }
+
+        public string usrcambio { get; set; }
+    }
+
 }

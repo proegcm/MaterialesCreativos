@@ -183,6 +183,7 @@ namespace ServiciosMC.Controllers
             }
         }
 
+        /* INGRESO DE USUARIOS / ROLES / PAQUETERIAS */
         [HttpPost]
         public async Task<JsonResult> IngresarUsuario(infoUsuarioIngreso usuarioData)
         {
@@ -192,13 +193,6 @@ namespace ServiciosMC.Controllers
 
                 using (HttpClient httpClient = new HttpClient())
                 {
-                    Debug.WriteLine("usuarioData: ");
-                    Debug.WriteLine("nombre: "+usuarioData.nombre);
-                    Debug.WriteLine("telefono: " + usuarioData.telefono);
-                    Debug.WriteLine("activo: " + usuarioData.activo);
-                    Debug.WriteLine("username: " + usuarioData.username);
-                    Debug.WriteLine("password: " + usuarioData.password);
-                    Debug.WriteLine("rol: " + usuarioData.idrol);
                     var datos = JsonSerializer.Serialize(usuarioData);
                     var contenido = new StringContent(datos, Encoding.UTF8, "application/json");
                     var response = await httpClient.PostAsync(URL, contenido);
@@ -228,6 +222,125 @@ namespace ServiciosMC.Controllers
             }
         }
 
+        [HttpPost]
+        public async Task<JsonResult> IngresarRol(infoRolIngreso rolData)
+        {
+            try
+            {
+                string URL = config.GetValue<string>("Servicios:API_PYTHON") + "ingresoRolMC";
+
+                using (HttpClient httpClient = new HttpClient())
+                {
+                    var datos = JsonSerializer.Serialize(rolData);
+                    var contenido = new StringContent(datos, Encoding.UTF8, "application/json");
+                    var response = await httpClient.PostAsync(URL, contenido);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var responseBody = await response.Content.ReadAsStringAsync();
+                        var responseObject = JsonSerializer.Deserialize<Dictionary<string, string>>(responseBody);
+                        string mensaje = responseObject["mensaje"];
+
+                        return Json(new { success = true, respuesta = mensaje });
+                    }
+                    else
+                    {
+                        var responseBody = await response.Content.ReadAsStringAsync();
+                        var errorObject = JsonSerializer.Deserialize<Dictionary<string, string>>(responseBody);
+                        string errorMensaje = errorObject["error"];
+                        Debug.WriteLine("Código:" + errorMensaje);
+                        return Json(new { success = false, errorMensaje });
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, errorMensaje = "Error al procesar los datos: " + ex.Message });
+            }
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> IngresarPaqueteria(infoPaqueteriaIngreso paqData)
+        {
+            try
+            {
+                string URL = config.GetValue<string>("Servicios:API_PYTHON") + "ingresoPaqueteriaMC";
+
+                using (HttpClient httpClient = new HttpClient())
+                {
+                    var datos = JsonSerializer.Serialize(paqData);
+                    var contenido = new StringContent(datos, Encoding.UTF8, "application/json");
+                    var response = await httpClient.PostAsync(URL, contenido);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var responseBody = await response.Content.ReadAsStringAsync();
+                        var responseObject = JsonSerializer.Deserialize<Dictionary<string, string>>(responseBody);
+                        string mensaje = responseObject["mensaje"];
+
+                        return Json(new { success = true, respuesta = mensaje });
+                    }
+                    else
+                    {
+                        var responseBody = await response.Content.ReadAsStringAsync();
+                        var errorObject = JsonSerializer.Deserialize<Dictionary<string, string>>(responseBody);
+                        string errorMensaje = errorObject["error"];
+                        Debug.WriteLine("Código:" + errorMensaje);
+                        return Json(new { success = false, errorMensaje });
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, errorMensaje = "Error al procesar los datos: " + ex.Message });
+            }
+        }
+
+        /* MODIFICACIÓN DE USUARIOS / ROLES / PAQUETERIAS */
+        [HttpPost]
+        public async Task<JsonResult> EditarUsuario(infoUsuarioEditar modData)
+        {
+            try
+            {
+                //Helper helper = new Helper();
+                //LoginViewModel login = helper.Usuario(HttpContext);
+                //string usuarioLogin = login.Usuario.;
+                //pedidoData.usuario = usuarioLogin;
+
+                string URL = config.GetValue<string>("Servicios:API_PYTHON") + "ingresoPaqueteriaMC";
+
+                using (HttpClient httpClient = new HttpClient())
+                {
+                    var datos = JsonSerializer.Serialize(modData);
+                    var contenido = new StringContent(datos, Encoding.UTF8, "application/json");
+                    var response = await httpClient.PostAsync(URL, contenido);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var responseBody = await response.Content.ReadAsStringAsync();
+                        var responseObject = JsonSerializer.Deserialize<Dictionary<string, string>>(responseBody);
+                        string mensaje = responseObject["mensaje"];
+
+                        return Json(new { success = true, respuesta = mensaje });
+                    }
+                    else
+                    {
+                        var responseBody = await response.Content.ReadAsStringAsync();
+                        var errorObject = JsonSerializer.Deserialize<Dictionary<string, string>>(responseBody);
+                        string errorMensaje = errorObject["error"];
+                        Debug.WriteLine("Código:" + errorMensaje);
+                        return Json(new { success = false, errorMensaje });
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, errorMensaje = "Error al procesar los datos: " + ex.Message });
+            }
+        }
 
     }
 }

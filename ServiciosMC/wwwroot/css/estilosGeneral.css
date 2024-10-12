@@ -90,6 +90,7 @@
     font-size: 1rem; /* Incrementa el tamaño del texto */
 }
 
+
 /* Estilo para la barra de navegación */
 .navbar {
     box-shadow: 0px 0px 15px rgb(15 10 53 / 0.85);
@@ -120,7 +121,10 @@
 .nav-sidebar .nav-item:first-child {
     margin-top: 10px; /* Ajusta el valor según sea necesario */
 }
-
+/* Aplica un margen de 5px a todos los demás elementos de la lista */
+.nav-sidebar .nav-item:not(:first-child) {
+    margin-top: 10px; /* Espacio entre los botones */
+}
 
 /* Opcional: Cambiar el color al pasar el mouse */
 .nav-link:hover {
@@ -156,24 +160,27 @@
     align-items: center; /* Centra verticalmente el texto */
 }
 
-/*[class*=sidebar-light-] .sidebar .nav-link {
-    color: #274296 !important;
-}
-*/
 
 /* Ajusta el tamaño de la fuente en dispositivos más pequeños */
 @media (max-width: 768px) {
     .navbar-text {
-        font-size:1.2rem; /* Ajusta el tamaño según sea necesario */
+        font-size:1.4rem; /* Ajusta el tamaño según sea necesario */
     }
 }
 
 @media (max-width: 576px) {
     .navbar-text {
-        font-size: 1.2rem; /* Ajusta el tamaño según sea necesario */
+        font-size: 1.4rem; /* Ajusta el tamaño según sea necesario */
     }
 }
 
-
+/* Estilo adicional para dispositivos pequeños */
+@media (max-width: 768px) {
+    .nav-link {
+        font-size: 1.1rem; /* Tamaño de la fuente en dispositivos pequeños */
+        height: auto; /* Permite que la altura se ajuste automáticamente */
+        padding: 0.5rem; /* Ajusta el padding para un mejor aspecto */
+    }
+}
 
 

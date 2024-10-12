@@ -65,6 +65,7 @@
                                                     <div class="d-flex align-items-center mb-3 flex-wrap" id="divTxtForm" style="flex-grow: 1; margin-left: 0; padding-left: 0;">
                                                         <h2 class="d-flex align-items-center card-title" style="margin: 0;">Datos del usuario:</h2>
                                                     </div>
+                                                    <input type="hidden" id="idUsuarioMod" value="">
                                                     <div class="row mb-3">
                                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                                             <label for="nombre" class="form-label">Nombre completo:</label>
@@ -89,7 +90,7 @@
                                                         </div>
                                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                                             <label for="password" class="form-label">Contraseña:</label>
-                                                            <input type="password" class="form-control" id="password" required>
+                                                            <input type="text" class="form-control" id="password" required>
                                                         </div>
                                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                                             <label for="rol" class="form-label">Rol de usuario:</label>
@@ -102,6 +103,11 @@
                                                             <button type="submit" class="btn btn-primary col-5" id="btnGuardarUsuario">
                                                                 <span class="material-symbols-outlined">person_check</span>
                                                                 Guardar usuario
+                                                            </button>
+                                                            <!-- Botón para guardar modificaciones -->
+                                                            <button type="button" class="btn btn-warning col-5" id="btnModUsuario" style="display: none;" onclick="guardarUsuarioEditado()">
+                                                                <span class="material-symbols-outlined">save</span>
+                                                                Guardar modificación
                                                             </button>
                                                             <button type="button" class="btn btn-secondary col-5" onclick="cancelarNuevoUsuario()" id="btnNoGuardarUsuario">
                                                                 <span class="material-symbols-outlined">close_small</span>
@@ -117,7 +123,7 @@
                                         <!-- Tabla de usuarios -->
                                         <div class="row">
                                             <div class="table-responsive">
-                                                <table id="tabla-usuarios" class="table hover row-border" style="width:100%">
+                                                <table id="tabla-usuarios" class="table" style="width:100%">
                                                     <thead>
                                                         <tr>
                                                             <th class="text-center">ID</th>
@@ -154,11 +160,17 @@
                                                             <input type="text" class="form-control" id="nombreRol" required>
                                                         </div>
                                                     </div>
+                                                    <input type="hidden" id="idRolMod" value="">
                                                     <div class="row justify-content-center">
                                                         <div class="col-12 d-flex justify-content-between">
                                                             <button type="submit" class="btn btn-primary col-5" id="btnGuardarRol">
                                                                 <span class="material-symbols-outlined">add_box</span>
                                                                 Guardar rol
+                                                            </button>
+                                                            <!-- Botón para guardar modificaciones -->
+                                                            <button type="button" class="btn btn-warning col-5" id="btnModRol" style="display: none;" onclick="guardarRolEditado()">
+                                                                <span class="material-symbols-outlined">save</span>
+                                                                Guardar modificación
                                                             </button>
                                                             <button type="button" class="btn btn-secondary col-5" onclick="cancelarNuevoRol()" id="btnNoGuardarRol">
                                                                 <span class="material-symbols-outlined">close_small</span>
@@ -173,7 +185,7 @@
                                         <!-- Tabla de roles -->
                                         <div class="row">
                                             <div class="table-responsive">
-                                                <table id="tabla-roles" class="table hover row-border" style="width:100%">
+                                                <table id="tabla-roles" class="table" style="width:100%">
                                                     <thead>
                                                         <tr>
                                                             <th class="text-center">ID</th>
@@ -206,11 +218,17 @@
                                                             <input type="text" class="form-control" id="nombrePaqueteria" required>
                                                         </div>
                                                     </div>
+                                                    <input type="hidden" id="idPaqMod" value="">
                                                     <div class="row justify-content-center">
                                                         <div class="col-12 d-flex justify-content-between">
                                                             <button type="submit" class="btn btn-primary col-5" id="btnGuardarPaqueteria">
                                                                 <span class="material-symbols-outlined">add_box</span>
                                                                 Guardar paquetería
+                                                            </button>
+                                                            <!-- Botón para guardar modificaciones -->
+                                                            <button type="button" class="btn btn-warning col-5" id="btnModPaqueteria" style="display: none;" onclick="guardarPaqueteriaEditada()">
+                                                                <span class="material-symbols-outlined">save</span>
+                                                                Guardar modificación
                                                             </button>
                                                             <button type="button" class="btn btn-secondary col-5" onclick="cancelarNuevaPaqueteria()" id="btnNoGuardarPaqueteria">
                                                                 <span class="material-symbols-outlined">close_small</span>
@@ -225,7 +243,7 @@
                                         <!-- Tabla de paqueterías -->
                                         <div class="row">
                                             <div class="table-responsive">
-                                                <table id="tabla-paqueterias" class="table hover row-border" style="width:100%">
+                                                <table id="tabla-paqueterias" class="table" style="width:100%">
                                                     <thead>
                                                         <tr>
                                                             <th class="text-center">ID</th>
@@ -253,11 +271,13 @@
 </html>
 @section Scripts {
     <script type="text/javascript">
+        let tablaUsuarios;
+        let tablaRoles;
+        let tablaPaqueterias;
+
         $(document).ready(function () {
-            console.log("READY :D");
-            getRoles();
-            llenarTablaUsuarios();
-            let tablaUsuarios = $('#tabla-usuarios').DataTable({
+            
+            tablaUsuarios = $('#tabla-usuarios').DataTable({
                 "destroy": true,
                 "ordering": false,
                 "responsive": true,
@@ -285,7 +305,7 @@
                 ]
             });
 
-            let tablaRoles = $('#tabla-roles').DataTable({
+            tablaRoles = $('#tabla-roles').DataTable({
                 "destroy": true,
                 "ordering": false,
                 "responsive": true,
@@ -307,7 +327,7 @@
                 ]
             });
 
-            let tablaPaqueterias = $('#tabla-paqueterias').DataTable({
+            tablaPaqueterias = $('#tabla-paqueterias').DataTable({
                 "destroy": true,
                 "ordering": false,
                 "responsive": true,
@@ -348,81 +368,126 @@
                     llenarTablaPaqueterias(); 
                 }
             });
-
-
-            function llenarTablaUsuarios() {
-                // Limpia la tabla antes de volver a llenarla
-                obtengoUsuarios().then(usuarios => {
-                    usuarios.forEach(user => {
-                        tablaUsuarios.row.add([
-                            user.id_usuario,
-                            user.nombre,
-                            user.telefono,
-                            user.username,
-                            user.rol,
-                            user.activo,
-                            user.fecha_creado,
-                            `
-                                     <button class="btn btn-sm btn-acciones" onclick="editarUsuario('${user}')" title="Editar usuario">
-                                     <span class="material-symbols-outlined">edit_square</span>Editar
-                             </button>
-                                     <button class="btn btn-sm btn-acciones" onclick="eliminarUsuario('${user}')" title="Eliminar usuario">
-                                     <span class="material-symbols-outlined">person_cancel</span>Eliminar
-                             </button>
-                            `
-                        ]).draw();
-                    });
-                }).catch(error => {
-                    console.log("Error al llenar la tabla:", error);
-                });
-            }
-
-            function llenarTablaRoles() {
-                // Limpia la tabla antes de volver a llenarla
-                obtengoRoles().then(roles => {
-                    roles.forEach(rol => {
-                        tablaRoles.row.add([
-                            rol.id_rol,
-                            rol.nombrerol,
-                            `
-                                             <button class="btn btn-sm btn-acciones" onclick="editarRol('${rol}')" title="Editar rol">
-                                             <span class="material-symbols-outlined">edit_square</span>Editar
-                                     </button>
-                                                     <button class="btn btn-sm btn-acciones" onclick="eliminarRol('${rol}')" title="Eliminar rol">
-                                             <span class="material-symbols-outlined">person_cancel</span>Eliminar
-                                     </button>
-                                    `
-                        ]).draw();
-                    });
-                }).catch(error => {
-                    console.log("Error al llenar la tabla:", error);
-                });
-            }
-
-            function llenarTablaPaqueterias() {
-                // Limpia la tabla antes de volver a llenarla
-                obtengoPaqueterias().then(paqueterias => {
-                    paqueterias.forEach(paq => {
-                        tablaPaqueterias.row.add([
-                            paq.id_paqueteria,
-                            paq.nombre,
-                            `
-                            <button class="btn btn-sm btn-acciones" onclick="editarPaqueteria('${paq}')" title="Editar paquetería">
-                                <span class="material-symbols-outlined">edit_square</span>Editar
-                            </button>
-                                            <button class="btn btn-sm btn-acciones" onclick="eliminarPaqueteria('${paq}')" title="Eliminar paquetería">
-                                <span class="material-symbols-outlined">person_cancel</span>Eliminar
-                             </button>
-                            `
-                        ]).draw();
-                    });
-                }).catch(error => {
-                    console.log("Error al llenar la tabla:", error);
-                });
-            }
+           
+            console.log("Ready inicio :)");
+            getRoles();
+            llenarTablaUsuarios();
 
         });
 
+
+        function llenarTablaUsuarios() {
+            // Limpia la tabla antes de llenarla
+            tablaUsuarios.clear().draw();
+            obtengoUsuarios().then(usuarios => {
+                usuarios.forEach(user => {
+                    // Agrega los datos del usuario a la tabla
+                    let row = tablaUsuarios.row.add([
+                        user.id_usuario,
+                        user.nombre,
+                        user.telefono,
+                        user.username,
+                        user.rol,
+                        user.activo,
+                        user.fecha_creado,
+                        `<div class="contenedor-acciones">
+                      <button class="btn btn-sm btn-acciones btn-editar" title="Editar usuario">
+                         <span class="material-symbols-outlined">edit_square</span>Editar
+                      </button>
+                      <button class="btn btn-sm btn-acciones btn-eliminar" title="Eliminar usuario">
+                         <span class="material-symbols-outlined">person_cancel</span>Eliminar
+                      </button>
+                    </div>`
+                    ]).draw().node();
+
+                    // Seleccionar el botón de editar
+                    let botonEditar = row.querySelector('.btn-editar');
+                    botonEditar.addEventListener('click', function () {
+                        editarUsuario(user);
+                    });
+
+                    // Puedes hacer lo mismo para el botón de eliminar
+                    let botonEliminar = row.querySelector('.btn-eliminar');
+                    botonEliminar.addEventListener('click', function () {
+                        eliminarUsuario(user);
+                    });
+                });
+            });
+            
+        }
+
+        function llenarTablaRoles() {
+            // Limpia la tabla antes de llenarla
+            tablaRoles.clear().draw();
+            obtengoRoles().then(roles => {
+                roles.forEach(rol => {
+                    // Añadir la fila a la tabla
+                    let row = tablaRoles.row.add([
+                        rol.id_rol,
+                        rol.nombrerol,
+                        `<div class="contenedor-acciones">
+                       <button class="btn btn-sm btn-acciones btn-editar" title="Editar rol">
+                          <span class="material-symbols-outlined">edit_square</span>Editar
+                       </button>
+                       <button class="btn btn-sm btn-acciones btn-eliminar" title="Eliminar rol">
+                          <span class="material-symbols-outlined">person_cancel</span>Eliminar
+                       </button>
+                    </div>`
+                    ]).draw().node();
+
+                    // Seleccionar el botón de editar
+                    let botonEditar = row.querySelector('.btn-editar');
+
+                    // Asignar el evento click al botón de editar
+                    botonEditar.addEventListener('click', function () {
+                        editarRol(rol);
+                    });
+
+                    // Seleccionar el botón de eliminar
+                    let botonEliminar = row.querySelector('.btn-eliminar');
+                    botonEliminar.addEventListener('click', function () {
+                        eliminarRol(rol);
+                    });
+                });
+            });
+        }
+
+        function llenarTablaPaqueterias() {
+            // Limpia la tabla antes de llenarla
+            tablaPaqueterias.clear().draw();
+            obtengoPaqueterias().then(paqueterias => {
+                paqueterias.forEach(paq => {
+                    // Añadir la fila a la tabla
+                    let row = tablaPaqueterias.row.add([
+                        paq.id_paqueteria,
+                        paq.nombre,
+                        `<div class="contenedor-acciones">
+                        <button class="btn btn-sm btn-acciones btn-editar" title="Editar paquetería">
+                           <span class="material-symbols-outlined">edit_square</span>Editar
+                        </button>
+                        <button class="btn btn-sm btn-acciones btn-eliminar" title="Eliminar paquetería">
+                           <span class="material-symbols-outlined">person_cancel</span>Eliminar
+                        </button>
+                    </div>`
+                    ]).draw().node();
+
+                    // Seleccionar el botón de editar
+                    let botonEditar = row.querySelector('.btn-editar');
+
+                    // Asignar el evento click al botón de editar
+                    botonEditar.addEventListener('click', function () {
+                        editarPaqueteria(paq);
+                    });
+
+                    // Seleccionar el botón de eliminar
+                    let botonEliminar = row.querySelector('.btn-eliminar');
+                    botonEliminar.addEventListener('click', function () {
+                        eliminarPaqueteria(paq);
+                    });
+                });
+            });
+
+        }
 
         /*
         ------------- PESTAÑAS ----------------
@@ -495,14 +560,11 @@
         //Consulta de roles para llenar tabla
         function obtengoRoles() {
             return new Promise((resolve, reject) => {
-
                 document.getElementById('contenedor-loader').style.display = 'flex';
                 $.ajax({
                     url: '@Url.Action("ConsultaRoles", "PanelControl")',
                     type: "POST",
                     success: function (data) {
-                        console.log("Data en obtengoRoles:...");
-                        console.log(data);
                         if (!data.success) {
                             dialogoEG({
                                 type: "error",
@@ -596,7 +658,6 @@
 
         }
 
-
         //Consulta de roles para checkbox formulario
         function getRoles() {
             document.getElementById('contenedor-loader').style.display = 'flex';
@@ -643,9 +704,204 @@
             });
         }
 
+        let puedeEnviar = true;
         //Insertar usuario nuevo
         function ingresoUsuario() {
+            if (puedeEnviar) {
+                puedeEnviar = false;
+
+                // Obtener los valores del formulario
+                var nombre = document.getElementById('nombre').value;
+                var telefono = document.getElementById('telefono').value;
+                var activo = document.getElementById('activo').value;
+                var username = document.getElementById('username').value;
+                var password = document.getElementById('password').value;
+                var idrol = document.getElementById('roluser').value;
+
+                // Construir el objeto parametros
+                var parametros = {
+                    nombre: nombre,
+                    telefono: telefono,
+                    activo: activo,
+                    username: username,
+                    password: password,
+                    idrol: idrol
+                };
+                document.getElementById('contenedor-loader').style.display = 'flex';
+                $.ajax({
+                    url: '@Url.Action("IngresarUsuario", "PanelControl")',
+                    type: "POST",
+                    data: parametros,
+                    success: function (data) {
+                        if (!data.success) {
+                            console.log(data.errorMensaje)
+                            dialogoEG({
+                                type: "error",
+                                title: "Error al ingresar usuario",
+                                mensaje: data.errorMensaje,
+                                confirmar: "Aceptar",
+                                img: "img/error.png"
+                            })
+                            puedeEnviar = true;
+                        } else {
+                            dialogoEG({
+                                type: "success",
+                                title: "Ingreso exitoso",
+                                mensaje: data.respuesta,
+                                confirmar: "Aceptar",
+                                img: "img/success.png"
+                            }).then(() => {
+                                cancelarNuevoUsuario();
+                                llenarTablaUsuarios();
+                                puedeEnviar = true;
+                            });
+                        }
+                        document.getElementById('contenedor-loader').style.display = 'none';
+                    },
+                    error: function (xhr, status, error) {
+                        document.getElementById('contenedor-loader').style.display = 'none';
+                        dialogoEG({
+                            type: "error",
+                            title: "Error de comunicación",
+                            mensaje: "Ocurrió un error al ingresar el usuario. Intente nuevamente, si el inconveniente persiste contacte con soporte.",
+                            confirmar: "Aceptar",
+                            img: "img/error.png"
+                        })
+                        puedeEnviar = true;
+                    }
+                });
+            }
+        }
+
+        //Insertar rol nuevo
+        function ingresoRol() {
+            var nombre = document.getElementById('nombreRol').value;
+            var parametros = {
+                nombrerol: nombre
+            };
+            document.getElementById('contenedor-loader').style.display = 'flex';
+            $.ajax({
+                url: '@Url.Action("IngresarRol", "PanelControl")',
+                type: "POST",
+                data: parametros,
+                success: function (data) {
+                    if (!data.success) {
+                        dialogoEG({
+                            type: "error",
+                            title: "Error al ingresar Rol",
+                            mensaje: data.errorMensaje,
+                            confirmar: "Aceptar",
+                            img: "img/error.png"
+                        })
+                    } else {
+                        dialogoEG({
+                            type: "success",
+                            title: "Ingreso exitoso",
+                            mensaje: data.respuesta,
+                            confirmar: "Aceptar",
+                            img: "img/success.png"
+                        }).then(() => {
+                            cancelarNuevoRol();
+                            llenarTablaRoles();
+                        });
+                    }
+                    document.getElementById('contenedor-loader').style.display = 'none';
+                },
+                error: function (xhr, status, error) {
+                    document.getElementById('contenedor-loader').style.display = 'none';
+                    dialogoEG({
+                        type: "error",
+                        title: "Error de comunicación",
+                        mensaje: "Ocurrió un error al ingresar el nuevo rol. Intente nuevamente, si el inconveniente persiste contacte con soporte.",
+                        confirmar: "Aceptar",
+                        img: "img/error.png"
+                    })
+                }
+            });
+        }
+
+        //Insertar paquetería nueva
+        function ingresoPaqueteria() {
+            var nombre = document.getElementById('nombrePaqueteria').value;
+            var parametros = {
+                nombre_paqueteria: nombre
+            };
+            document.getElementById('contenedor-loader').style.display = 'flex';
+            $.ajax({
+                url: '@Url.Action("IngresarPaqueteria", "PanelControl")',
+                type: "POST",
+                data: parametros,
+                success: function (data) {
+                    if (!data.success) {
+                        dialogoEG({
+                            type: "error",
+                            title: "Error ingreso de Paquetería",
+                            mensaje: data.errorMensaje,
+                            confirmar: "Aceptar",
+                            img: "img/error.png"
+                        })
+                    } else {
+                        dialogoEG({
+                            type: "success",
+                            title: "Ingreso exitoso",
+                            mensaje: data.respuesta,
+                            confirmar: "Aceptar",
+                            img: "img/success.png"
+                        }).then(() => {
+                            cancelarNuevaPaqueteria();
+                            llenarTablaPaqueterias();
+                        });
+                    }
+                    document.getElementById('contenedor-loader').style.display = 'none';
+                },
+                error: function (xhr, status, error) {
+                    document.getElementById('contenedor-loader').style.display = 'none';
+                    dialogoEG({
+                        type: "error",
+                        title: "Error de comunicación",
+                        mensaje: "Ocurrió un error al ingresar la empresa de paquetería. Intente nuevamente, si el inconveniente persiste contacte con soporte.",
+                        confirmar: "Aceptar",
+                        img: "img/error.png"
+                    })
+                }
+            });
+        }
+
+        function editarUsuario(user) {
+            console.log("en editarUsuario...");
+            console.log(user.id_usuario);
+            // Rellenar los campos del formulario con los datos del usuario
+            document.getElementById("idUsuarioMod").value = user.id_usuario;
+            document.getElementById('nombre').value = user.nombre || '';
+            document.getElementById('telefono').value = user.telefono || '';
+            document.getElementById('username').value = user.username || ''; 
+            document.getElementById('password').value = user.password || '';
+            document.getElementById('activo').value = user.activo;
+
+            // Seleccionar el rol del usuario
+            const rolSelect = document.getElementById('roluser');
+            const opciones = rolSelect.options;
+            for (let i = 0; i < opciones.length; i++) {
+                if (opciones[i].text === user.rol) {
+                    rolSelect.selectedIndex = i; // Selecciona el rol por su texto
+                    break;
+                }
+            }
+            // Mostrar el formulario
+            document.getElementById('formularioAgregarUsuario').style.display = 'block';
+            document.getElementById('btnGuardarUsuario').style.display = 'none';
+            document.getElementById('btnModUsuario').style.display = 'block';
+            // Desplaza la vista al formulario
+            document.getElementById('formularioAgregarUsuario').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+
+        }
+
+        function guardarUsuarioEditado(){
             // Obtener los valores del formulario
+            var id_usuario = document.getElementById('idUsuarioMod').value;
             var nombre = document.getElementById('nombre').value;
             var telefono = document.getElementById('telefono').value;
             var activo = document.getElementById('activo').value;
@@ -655,27 +911,26 @@
 
             // Construir el objeto parametros
             var parametros = {
-                // infoUsuarioIngreso: {
-                    nombre: nombre,
-                    telefono: telefono,
-                    activo: activo,
-                    username: username,
-                    password: password,
-                    idrol: idrol
+                id: id_usuario,
+                nombre: nombre,
+                telefono: telefono,
+                activo: activo,
+                username: username,
+                password: password,
+                idrol: idrol,
+                usrcambio : ""
             };
-            console.log("parametros:... ");
-            console.log(parametros);
-             $.ajax({
-                url: '@Url.Action("IngresarUsuario", "PanelControl")',
+            document.getElementById('contenedor-loader').style.display = 'flex';
+            $.ajax({
+                url: '@Url.Action("EditarUsuario", "PanelControl")',
                 type: "POST",
                 data: parametros,
                 success: function (data) {
-                    console.log(data);
                     if (!data.success) {
                         console.log(data.errorMensaje)
                         dialogoEG({
                             type: "error",
-                            title: "Error ingreso usuario",
+                            title: "Error al editar usuario",
                             mensaje: data.errorMensaje,
                             confirmar: "Aceptar",
                             img: "img/error.png"
@@ -683,7 +938,7 @@
                     } else {
                         dialogoEG({
                             type: "success",
-                            title: "Ingreso de usuario exitoso",
+                            title: "Usuario modificado",
                             mensaje: data.respuesta,
                             confirmar: "Aceptar",
                             img: "img/success.png"
@@ -696,11 +951,10 @@
                 },
                 error: function (xhr, status, error) {
                     document.getElementById('contenedor-loader').style.display = 'none';
-                    console.log("Error al ingresar el usuario", error);
                     dialogoEG({
                         type: "error",
                         title: "Error de comunicación",
-                        mensaje: "Ocurrió un error al ingresar el usuario. Intente nuevamente, si el inconveniente persiste contacte con soporte.",
+                        mensaje: "Ocurrió un error al modificar el usuario. Intente nuevamente, si el inconveniente persiste contacte con soporte.",
                         confirmar: "Aceptar",
                         img: "img/error.png"
                     })
@@ -710,16 +964,26 @@
 
         function cancelarNuevoUsuario() {
             document.getElementById('formularioAgregarUsuario').reset();
+            document.getElementById('idUsuarioMod').value = '';
+            document.getElementById('btnGuardarUsuario').style.display = 'block';
+            document.getElementById('btnModUsuario').style.display = 'none';
             document.getElementById('formularioAgregarUsuario').style.display = 'none';
+            
         }
 
         function cancelarNuevoRol(){
             document.getElementById('formularioAgregarRol').reset();
+            document.getElementById('idRolMod').value = '';
+            document.getElementById('btnGuardarRol').style.display = 'block';
+            document.getElementById('btnModRol').style.display = 'none';
             document.getElementById('formularioAgregarRol').style.display = 'none';
         }
 
         function cancelarNuevaPaqueteria() {
             document.getElementById('formularioAgregarPaqueteria').reset();
+            document.getElementById('idPaqMod').value = '';
+            document.getElementById('btnGuardarPaqueteria').style.display = 'block';
+            document.getElementById('btnModPaqueteria').style.display = 'none';
             document.getElementById('formularioAgregarPaqueteria').style.display = 'none';
         }
 
