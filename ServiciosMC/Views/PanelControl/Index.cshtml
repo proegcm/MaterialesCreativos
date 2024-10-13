@@ -868,9 +868,6 @@
         }
 
         function editarUsuario(user) {
-            console.log("en editarUsuario...");
-            console.log(user.id_usuario);
-            // Rellenar los campos del formulario con los datos del usuario
             document.getElementById("idUsuarioMod").value = user.id_usuario;
             document.getElementById('nombre').value = user.nombre || '';
             document.getElementById('telefono').value = user.telefono || '';
@@ -900,7 +897,6 @@
         }
 
         function guardarUsuarioEditado(){
-            // Obtener los valores del formulario
             var id_usuario = document.getElementById('idUsuarioMod').value;
             var nombre = document.getElementById('nombre').value;
             var telefono = document.getElementById('telefono').value;
@@ -918,7 +914,7 @@
                 username: username,
                 password: password,
                 idrol: idrol,
-                usrcambio : ""
+                usrcambio :''
             };
             document.getElementById('contenedor-loader').style.display = 'flex';
             $.ajax({
@@ -961,6 +957,305 @@
                 }
             });
         }
+
+        function eliminarUsuario(user){
+            console.log("eliminarUsuario");
+            console.log(user.id_usuario)
+            dialogoEG({
+                type: "warning",
+                title: "Eliminar usuario",
+                mensaje: "¿Está seguro de eliminar el usuario "+user.nombre+"-"+user.username+"?",
+                confirmar: "Aceptar",
+                cancelar: "Cancelar",
+                img: "img/warning.png"
+            }).then(() => {
+                document.getElementById('contenedor-loader').style.display = 'flex';
+                $.ajax({
+                    url: '@Url.Action("EliminarUsuario", "PanelControl")',
+                    type: "POST",
+                    data: { id_usuario: user.id_usuario },
+                    success: function (data) {
+                        if (!data.success) {
+                            dialogoEG({
+                                type: "error",
+                                title: "Error al eliminar usuario",
+                                mensaje: data.errorMensaje,
+                                confirmar: "Aceptar",
+                                img: "img/error.png"
+                            })
+                        } else {
+                            dialogoEG({
+                                type: "success",
+                                title: "¡Usuario eliminado!",
+                                mensaje: data.respuesta,
+                                confirmar: "Aceptar",
+                                img: "img/success.png"
+                            }).then(() => {
+                                cancelarNuevoUsuario();
+                                llenarTablaUsuarios();
+                            });
+                        }
+                        document.getElementById('contenedor-loader').style.display = 'none';
+                    },
+                    error: function (xhr, status, error) {
+                        document.getElementById('contenedor-loader').style.display = 'none';
+                        dialogoEG({
+                            type: "error",
+                            title: "Error de comunicación",
+                            mensaje: "Ocurrió un error al eliminar el usuario. Intente nuevamente, si el inconveniente persiste contacte con soporte.",
+                            confirmar: "Aceptar",
+                            img: "img/error.png"
+                        })
+                    }
+                });
+
+            });
+
+            }
+
+
+
+
+
+        function editarRol(rol) {
+            document.getElementById("idRolMod").value = rol.id_rol;
+            document.getElementById('nombreRol').value = rol.nombrerol || '';
+            // Mostrar el formulario
+            document.getElementById('formularioAgregarRol').style.display = 'block';
+            document.getElementById('btnGuardarRol').style.display = 'none';
+            document.getElementById('btnModRol').style.display = 'block';
+            // Desplaza la vista al formulario
+            document.getElementById('formularioAgregarRol').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+
+        }
+
+        function guardarRolEditado() {
+            var id_rol = document.getElementById('idRolMod').value;
+            var nombreRol = document.getElementById('nombreRol').value;
+           
+            // Construir el objeto parametros
+            var parametros = {
+                id_rol: id_rol,
+                nombrerol: nombreRol
+            };
+            document.getElementById('contenedor-loader').style.display = 'flex';
+            $.ajax({
+                url: '@Url.Action("EditarRol", "PanelControl")',
+                type: "POST",
+                data: parametros,
+                success: function (data) {
+                    if (!data.success) {
+                        console.log(data.errorMensaje)
+                        dialogoEG({
+                            type: "error",
+                            title: "Error al editar Rol",
+                            mensaje: data.errorMensaje,
+                            confirmar: "Aceptar",
+                            img: "img/error.png"
+                        })
+                    } else {
+                        dialogoEG({
+                            type: "success",
+                            title: "Rol de usuario modificado",
+                            mensaje: data.respuesta,
+                            confirmar: "Aceptar",
+                            img: "img/success.png"
+                        }).then(() => {
+                            cancelarNuevoRol();
+                            llenarTablaRoles();
+                        });
+                    }
+                    document.getElementById('contenedor-loader').style.display = 'none';
+                },
+                error: function (xhr, status, error) {
+                    document.getElementById('contenedor-loader').style.display = 'none';
+                    dialogoEG({
+                        type: "error",
+                        title: "Error de comunicación",
+                        mensaje: "Ocurrió un error al modificar el rol de usuario. Intente nuevamente, si el inconveniente persiste contacte con soporte.",
+                        confirmar: "Aceptar",
+                        img: "img/error.png"
+                    })
+                }
+            });
+        }
+
+        function eliminarRol(rol) {
+            dialogoEG({
+                type: "warning",
+                title: "Eliminar Rol de usuario",
+                mensaje: "¿Está seguro de eliminar el rol " + rol.nombrerol + "?",
+                confirmar: "Aceptar",
+                cancelar: "Cancelar",
+                img: "img/warning.png"
+            }).then(() => {
+                document.getElementById('contenedor-loader').style.display = 'flex';
+                $.ajax({
+                    url: '@Url.Action("EliminarRol", "PanelControl")',
+                    type: "POST",
+                    data: { id_rol: rol.id_rol },
+                    success: function (data) {
+                        if (!data.success) {
+                            dialogoEG({
+                                type: "error",
+                                title: "Error al eliminar Rol",
+                                mensaje: data.errorMensaje,
+                                confirmar: "Aceptar",
+                                img: "img/error.png"
+                            })
+                        } else {
+                            dialogoEG({
+                                type: "success",
+                                title: "¡Rol eliminado!",
+                                mensaje: data.respuesta,
+                                confirmar: "Aceptar",
+                                img: "img/success.png"
+                            }).then(() => {
+                                cancelarNuevoRol();
+                                llenarTablaRoles();
+                            });
+                        }
+                        document.getElementById('contenedor-loader').style.display = 'none';
+                    },
+                    error: function (xhr, status, error) {
+                        document.getElementById('contenedor-loader').style.display = 'none';
+                        dialogoEG({
+                            type: "error",
+                            title: "Error de comunicación",
+                            mensaje: "Ocurrió un error al eliminar el rol de usuario. Intente nuevamente, si el inconveniente persiste contacte con soporte.",
+                            confirmar: "Aceptar",
+                            img: "img/error.png"
+                        })
+                    }
+                });
+
+            });
+
+        }
+
+
+
+        function editarPaqueteria(paq) {
+            document.getElementById("idPaqMod").value = paq.id_paqueteria;
+            document.getElementById('nombrePaqueteria').value = paq.nombre || '';
+            // Mostrar el formulario
+            document.getElementById('formularioAgregarPaqueteria').style.display = 'block';
+            document.getElementById('btnGuardarPaqueteria').style.display = 'none';
+            document.getElementById('btnModPaqueteria').style.display = 'block';
+            // Desplaza la vista al formulario
+            document.getElementById('formularioAgregarPaqueteria').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+
+        }
+
+        function guardarPaqueteriaEditada() {
+            var id_paq = document.getElementById('idPaqMod').value;
+            var nombrePaq = document.getElementById('nombrePaqueteria').value;
+
+            // Construir el objeto parametros
+            var parametros = {
+                id_paqueteria: id_paq,
+                nombre: nombrePaq
+            };
+            document.getElementById('contenedor-loader').style.display = 'flex';
+            $.ajax({
+                url: '@Url.Action("EditarPaqueteria", "PanelControl")',
+                type: "POST",
+                data: parametros,
+                success: function (data) {
+                    if (!data.success) {
+                        dialogoEG({
+                            type: "error",
+                            title: "Error al editar Paquetería",
+                            mensaje: data.errorMensaje,
+                            confirmar: "Aceptar",
+                            img: "img/error.png"
+                        })
+                    } else {
+                        dialogoEG({
+                            type: "success",
+                            title: "Paquetería modificada",
+                            mensaje: data.respuesta,
+                            confirmar: "Aceptar",
+                            img: "img/success.png"
+                        }).then(() => {
+                            cancelarNuevaPaqueteria();
+                            llenarTablaPaqueterias();
+                        });
+                    }
+                    document.getElementById('contenedor-loader').style.display = 'none';
+                },
+                error: function (xhr, status, error) {
+                    document.getElementById('contenedor-loader').style.display = 'none';
+                    dialogoEG({
+                        type: "error",
+                        title: "Error de comunicación",
+                        mensaje: "Ocurrió un error al modificar la paquetería. Intente nuevamente, si el inconveniente persiste contacte con soporte.",
+                        confirmar: "Aceptar",
+                        img: "img/error.png"
+                    })
+                }
+            });
+        }
+
+        function eliminarPaqueteria(paq) {
+            dialogoEG({
+                type: "warning",
+                title: "Eliminar empresa de paquetería",
+                mensaje: "¿Está seguro de eliminar la empresa de paquetería " + paq.nombre + "?",
+                confirmar: "Aceptar",
+                cancelar: "Cancelar",
+                img: "img/warning.png"
+            }).then(() => {
+                document.getElementById('contenedor-loader').style.display = 'flex';
+                $.ajax({
+                    url: '@Url.Action("EliminarPaqueteria", "PanelControl")',
+                    type: "POST",
+                    data: { id_paqueteria: paq.id_paqueteria },
+                    success: function (data) {
+                        if (!data.success) {
+                            dialogoEG({
+                                type: "error",
+                                title: "Error al eliminar Paquetería",
+                                mensaje: data.errorMensaje,
+                                confirmar: "Aceptar",
+                                img: "img/error.png"
+                            })
+                        } else {
+                            dialogoEG({
+                                type: "success",
+                                title: "¡Paquetería eliminada!",
+                                mensaje: data.respuesta,
+                                confirmar: "Aceptar",
+                                img: "img/success.png"
+                            }).then(() => {
+                                cancelarNuevaPaqueteria();
+                                llenarTablaPaqueterias();
+                            });
+                        }
+                        document.getElementById('contenedor-loader').style.display = 'none';
+                    },
+                    error: function (xhr, status, error) {
+                        document.getElementById('contenedor-loader').style.display = 'none';
+                        dialogoEG({
+                            type: "error",
+                            title: "Error de comunicación",
+                            mensaje: "Ocurrió un error al eliminar la paquetería. Intente nuevamente, si el inconveniente persiste contacte con soporte.",
+                            confirmar: "Aceptar",
+                            img: "img/error.png"
+                        })
+                    }
+                });
+
+            });
+
+        }
+
 
         function cancelarNuevoUsuario() {
             document.getElementById('formularioAgregarUsuario').reset();

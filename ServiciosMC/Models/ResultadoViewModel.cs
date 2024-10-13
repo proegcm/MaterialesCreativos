@@ -13,5 +13,7 @@ namespace ServiciosMC.Models
 
         public string Tipo { get; set; }
 
+        public string ID { get; set; }
+
     }
 }

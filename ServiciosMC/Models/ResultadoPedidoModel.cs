@@ -113,4 +113,25 @@ namespace ServiciosMC.Models
         public string usrcambio { get; set; }
     }
 
+    public class infoRolEditar
+    {
+        public string id_rol { get; set; }
+
+        public string nombrerol { get; set; }
+    }
+
+    public class infoPaqueteriaEditar
+    {
+        public string id_paqueteria { get; set; }
+
+        public string nombre { get; set; }
+    }
+
+    public class infoEliminaUsuario 
+    {
+        public string id_usuario { get; set; }
+
+        public string username { get; set; }
+    }
+
 }

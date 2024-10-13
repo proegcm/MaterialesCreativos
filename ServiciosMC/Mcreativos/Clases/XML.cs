@@ -24,6 +24,9 @@ namespace ServiciosMC.Mcreativos.Clases
         [XmlElement(ElementName = "TIPO")]
         public string TIPO { get; set; }
 
+        [XmlElement(ElementName = "ID")]
+        public string ID { get; set; }
+
     }
 
 

@@ -40,6 +40,7 @@ namespace ServiciosMC.Controllers
                                     new Claim(ClaimTypes.Name,loginViewModel.Usuario),
                                     new Claim(ClaimTypes.Role,resultado.Tipo),
                                     new Claim("TIPO_USUARIO",resultado.Tipo),
+                                    new Claim("IDUSR",resultado.ID),
                                     new Claim("Usuario",loginViewModel.Usuario),
                                     new Claim("Password",loginViewModel.Password)
                             };

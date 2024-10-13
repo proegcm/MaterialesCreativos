@@ -47,6 +47,7 @@ namespace ServiciosMC.MaterialesCreativos
                             Debug.WriteLine(test.VALIDACREDENCIALES.RESPUESTA.MENSAJE);
                             Debug.WriteLine(test.VALIDACREDENCIALES.RESPUESTA.AUTORIZACION);
                             Debug.WriteLine(test.VALIDACREDENCIALES.RESPUESTA.TIPO);
+                            Debug.WriteLine(test.VALIDACREDENCIALES.RESPUESTA.ID);
                             Debug.WriteLine("----------------------");
 
                             if (test.VALIDACREDENCIALES.RESPUESTA.CODIGO == "200")
@@ -54,6 +55,7 @@ namespace ServiciosMC.MaterialesCreativos
                                 resultado.Estado = true;
                                 resultado.Mensaje = test.VALIDACREDENCIALES.RESPUESTA.MENSAJE;
                                 resultado.Tipo = test.VALIDACREDENCIALES.RESPUESTA.TIPO;
+                                resultado.ID = test.VALIDACREDENCIALES.RESPUESTA.ID;
                             }
                             else
                             {

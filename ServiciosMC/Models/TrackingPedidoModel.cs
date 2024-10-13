@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ServiciosMC.Models
 {
-    public class TrackingGuiaModel
+    public class TrackingPedidoModel
     {
         public string noguia { get; set; }
         public string llave { get; set; }
