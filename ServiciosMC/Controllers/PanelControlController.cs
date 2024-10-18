@@ -303,7 +303,6 @@ namespace ServiciosMC.Controllers
         [HttpPost]
         public async Task<JsonResult> EditarUsuario(infoUsuarioEditar modData)
         {
-            Debug.WriteLine(modData.ToString());
             try
             {
                 Helper helper = new Helper();
@@ -346,7 +345,6 @@ namespace ServiciosMC.Controllers
         [HttpPost]
         public async Task<JsonResult> EditarRol(infoRolEditar modData)
         {
-            Debug.WriteLine(modData.ToString());
             try
             {
                 string URL = config.GetValue<string>("Servicios:API_PYTHON") + "editarRolMC";
@@ -385,7 +383,6 @@ namespace ServiciosMC.Controllers
         [HttpPost]
         public async Task<JsonResult> EditarPaqueteria(infoPaqueteriaEditar modData)
         {
-            Debug.WriteLine(modData.ToString());
             try
             {
                 string URL = config.GetValue<string>("Servicios:API_PYTHON") + "editarPaqueteriaMC";
@@ -428,7 +425,6 @@ namespace ServiciosMC.Controllers
         {
             try
             {
-                Debug.WriteLine("ID de usuario a eliminar: " + id_usuario);
                 string URL = config.GetValue<string>("Servicios:API_PYTHON") + "eliminarUsuarioMC/"+ id_usuario;
 
                 using (HttpClient httpClient = new HttpClient())

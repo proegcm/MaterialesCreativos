@@ -73,7 +73,7 @@
                                                         </div>
                                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                                             <label for="telefono" class="form-label">Teléfono:</label>
-                                                            <input type="text" class="form-control" id="telefono" maxlength="8">
+                                                            <input type="tel" class="form-control" id="telefono" maxlength="8" inputmode="numeric" pattern="[0-9]*" oninput="this.value = this.value.replace(/[^0-9]/g, '');" required>
                                                         </div>
                                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                                             <label for="activo" class="form-label">Activo:</label>
@@ -893,7 +893,7 @@
                 behavior: 'smooth',
                 block: 'start'
             });
-
+            document.getElementById('btnNuevoUsuario').disabled = true;
         }
 
         function guardarUsuarioEditado(){
@@ -962,12 +962,12 @@
             console.log("eliminarUsuario");
             console.log(user.id_usuario)
             dialogoEG({
-                type: "warning",
+                type: "question",
                 title: "Eliminar usuario",
                 mensaje: "¿Está seguro de eliminar el usuario "+user.nombre+"-"+user.username+"?",
                 confirmar: "Aceptar",
                 cancelar: "Cancelar",
-                img: "img/warning.png"
+                img: "img/question.png"
             }).then(() => {
                 document.getElementById('contenedor-loader').style.display = 'flex';
                 $.ajax({
@@ -1029,16 +1029,16 @@
                 behavior: 'smooth',
                 block: 'start'
             });
-
+            document.getElementById('btnNuevoRol').disabled = true;
         }
 
         function guardarRolEditado() {
-            var id_rol = document.getElementById('idRolMod').value;
+            var idrol = document.getElementById('idRolMod').value;
             var nombreRol = document.getElementById('nombreRol').value;
            
             // Construir el objeto parametros
             var parametros = {
-                id_rol: id_rol,
+                id_rol: idrol,
                 nombrerol: nombreRol
             };
             document.getElementById('contenedor-loader').style.display = 'flex';
@@ -1085,12 +1085,12 @@
 
         function eliminarRol(rol) {
             dialogoEG({
-                type: "warning",
+                type: "question",
                 title: "Eliminar Rol de usuario",
                 mensaje: "¿Está seguro de eliminar el rol " + rol.nombrerol + "?",
                 confirmar: "Aceptar",
                 cancelar: "Cancelar",
-                img: "img/warning.png"
+                img: "img/question.png"
             }).then(() => {
                 document.getElementById('contenedor-loader').style.display = 'flex';
                 $.ajax({
@@ -1150,6 +1150,7 @@
                 behavior: 'smooth',
                 block: 'start'
             });
+            document.getElementById('btnNuevaPaqueteria').disabled = true;
 
         }
 
@@ -1205,12 +1206,12 @@
 
         function eliminarPaqueteria(paq) {
             dialogoEG({
-                type: "warning",
+                type: "question",
                 title: "Eliminar empresa de paquetería",
                 mensaje: "¿Está seguro de eliminar la empresa de paquetería " + paq.nombre + "?",
                 confirmar: "Aceptar",
                 cancelar: "Cancelar",
-                img: "img/warning.png"
+                img: "img/question.png"
             }).then(() => {
                 document.getElementById('contenedor-loader').style.display = 'flex';
                 $.ajax({
@@ -1263,7 +1264,7 @@
             document.getElementById('btnGuardarUsuario').style.display = 'block';
             document.getElementById('btnModUsuario').style.display = 'none';
             document.getElementById('formularioAgregarUsuario').style.display = 'none';
-            
+            document.getElementById('btnNuevoUsuario').disabled = false;
         }
 
         function cancelarNuevoRol(){
@@ -1272,6 +1273,7 @@
             document.getElementById('btnGuardarRol').style.display = 'block';
             document.getElementById('btnModRol').style.display = 'none';
             document.getElementById('formularioAgregarRol').style.display = 'none';
+            document.getElementById('btnNuevoRol').disabled = false;
         }
 
         function cancelarNuevaPaqueteria() {
@@ -1280,6 +1282,7 @@
             document.getElementById('btnGuardarPaqueteria').style.display = 'block';
             document.getElementById('btnModPaqueteria').style.display = 'none';
             document.getElementById('formularioAgregarPaqueteria').style.display = 'none';
+            document.getElementById('btnNuevaPaqueteria').disabled = false;
         }
 
     </script>

@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using ServiciosMC.Helpers;
+using ServiciosMC.Mcreativos;
 using ServiciosMC.Mcreativos.Clases;
 using ServiciosMC.Models;
 
@@ -178,7 +179,7 @@ namespace ServiciosMC.Controllers
         }
 
         [HttpPost]
-        public async Task<JsonResult> ListaPedidos()
+        public async Task<JsonResult> ListaPedidosDash()
         {
 
             try
@@ -194,7 +195,7 @@ namespace ServiciosMC.Controllers
                         usuario = usuarioLogin
                     }
                 };
-                string URL = config.GetValue<string>("Servicios:API_PYTHON") + "obtengoPedidosMC";
+                string URL = config.GetValue<string>("Servicios:API_PYTHON") + "obtengoPedidosDashboardMC";
 
                 using (HttpClient httpClient = new HttpClient())
                 {

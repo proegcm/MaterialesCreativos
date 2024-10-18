@@ -27,9 +27,49 @@
                                 <h3 class="card-title ml-2">HISTORIAL DE PEDIDOS</h3>
                             </div>
                         </div>
+                        <!-- FORMULARIO DE FILTROS DE BÚSQUEDA -->
+                        <div class="row mb-3 align-items-end">
+                            <!-- Usuario -->
+                            <div class="col-md-3 mb-2">
+                                <label for="usuario" class="form-label">Usuario:</label>
+                                <select id="usuario" class="form-select">
+                                    <option selected>Seleccione un usuario</option>
+                                    <!-- Opciones de usuario -->
+                                </select>
+                            </div>
+
+                            <!-- Fecha inicio -->
+                            <div class="col-md-2 mb-2">
+                                <label for="fecha-inicio" class="form-label">Fecha inicio:</label>
+                                <input type="date" id="fecha-inicio" class="form-control">
+                            </div>
+
+                            <!-- Fecha final -->
+                            <div class="col-md-2 mb-2">
+                                <label for="fecha-final" class="form-label">Fecha final:</label>
+                                <input type="date" id="fecha-final" class="form-control">
+                            </div>
+
+                            <!-- Estado -->
+                            <div class="col-md-3 mb-2">
+                                <label for="estado" class="form-label">Estado:</label>
+                                <select id="estado" class="form-select">
+                                    <option selected>Seleccione un estado</option>
+                                    <!-- Opciones de estado -->
+                                </select>
+                            </div>
+
+                            <!-- Botón de búsqueda -->
+                            <div class="col-md-2 mb-2">
+                                <button type="button" class="btn btn-primary w-100" id="btnBuscar">
+                                    <span class="material-symbols-outlined">search</span> Buscar
+                                </button>
+                            </div>
+                        </div>
+
                         <div class="row">
                             <div class="table-responsive">
-                                <table id="tabla-pedidos" class="table hover row-border" style="width:100%">
+                                <table id="tabla-pedidos" class="table" style="width:100%">
                                     <thead>
                                         <tr>
                                             <th class="text-center">No.Folio</th>
@@ -54,9 +94,10 @@
 </html>
 
 <script type="text/javascript">
-    $(document).ready(function () {
+    let tablaPedidos;
 
-        let tablaPedidos = $('#tabla-pedidos').DataTable({
+    $(document).ready(function () {
+        tablaPedidos = $('#tabla-pedidos').DataTable({
             "destroy": true,
             "ordering": false,
             "responsive": true,
@@ -72,109 +113,151 @@
                 { "width": "20%", "targets": 4 }  // Ancho de la columna 5 (Estado)
             ]
         });
+        getUsuarios();
+        // $.ajax({
+        //             url: '@Url.Action("obtengoUsuario", "Home")',
+        //             type: "POST",
+        //             success: function (usuario) {
+        //                 usuarioLogin = usuario;
+        //                 llenarTabla();
+        //             },
+        //             error: function (xhr, status, error) {
+        //                 console.error("Error al obtener el usuario:", error);
+        //             }
+        //          });
 
-        $.ajax({
-                    url: '@Url.Action("obtengoUsuario", "Home")',
-                    type: "POST",
-                    success: function (usuario) {
-                        usuarioLogin = usuario;
-                        llenarTabla();
-                    },
-                    error: function (xhr, status, error) {
-                        console.error("Error al obtener el usuario:", error);
+    });
+
+
+
+    function consultaPedidos() {
+        return new Promise((resolve, reject) => {
+            let pedidosUltimoEstado = {}; // Definir el objeto para almacenar el último estado de cada folio
+            let pedidosConUltimoEstado = []; // Inicializar la lista de pedidos con el último estado
+
+            document.getElementById('contenedor-loader').style.display = 'flex';
+
+            $.ajax({
+                url: '@Url.Action("ListaPedidos", "HistorialPedidos")',
+                type: "POST",
+                success: function (data) {
+                    if (!data.success) {
+                        console.log(data.errorMensaje);
+                        dialogoEG({
+                            type: "error",
+                            title: "Error consulta de pedidos",
+                            mensaje: data.errorMensaje,
+                            confirmar: "Aceptar",
+                            img: "img/error.png"
+                        }).then(() => {
+                            tablaPedidos.clear().draw();
+                        });
+
+                        // Rechazar la promesa si hay un error en la respuesta
+                        reject(new Error(data.errorMensaje));
+                    } else {
+                        const pedidos = JSON.parse(data.respuesta).listadoPedidos;
+                        // Iterar sobre la lista de pedidos para encontrar el último estado de cada folio
+                        pedidos.forEach(pedido => {
+                            const folio = pedido.folio;
+                            // Si el folio no está en el objeto o si el estado actual es más reciente
+                            if (!pedidosUltimoEstado[folio] || new Date(pedido.fecha_estado) > new Date(pedidosUltimoEstado[folio].fecha_estado)) {
+                                pedidosUltimoEstado[folio] = pedido;
+                            }
+                        });
+                        // Obtener los valores de los pedidos con el último estado
+                        pedidosConUltimoEstado = Object.values(pedidosUltimoEstado);
+                        // Resolver la promesa con los datos obtenidos
+                        resolve(pedidosConUltimoEstado);
                     }
-                 });
-
-
-        function consultaPedidos() {
-    return new Promise((resolve, reject) => {
-        let pedidosUltimoEstado = {}; // Definir el objeto para almacenar el último estado de cada folio
-        let pedidosConUltimoEstado = []; // Inicializar la lista de pedidos con el último estado
-
-        document.getElementById('contenedor-loader').style.display = 'flex';
-
-        $.ajax({
-            url: '@Url.Action("ListaPedidos", "HistorialPedidos")',
-            type: "POST",
-            success: function (data) {
-                if (!data.success) {
-                    console.log(data.errorMensaje);
+                    document.getElementById('contenedor-loader').style.display = 'none';
+                },
+                error: function (xhr, status, error) {
+                    document.getElementById('contenedor-loader').style.display = 'none';
                     dialogoEG({
                         type: "error",
-                        title: "Error consulta de pedidos",
-                        mensaje: data.errorMensaje,
+                        title: "Error de comunicación",
+                        mensaje: "Ocurrió un error al obtener listado de pedidos. Intente nuevamente, si el inconveniente persiste contacte al administrador.",
                         confirmar: "Aceptar",
                         img: "img/error.png"
-                    }).then(() => {
-                        tablaPedidos.clear().draw();
                     });
-
-                    // Rechazar la promesa si hay un error en la respuesta
-                    reject(new Error(data.errorMensaje));
-                } else {
-                    const pedidos = JSON.parse(data.respuesta).listadoPedidos;
-                    console.log("pedidos:");
-                    console.log(pedidos);
-
-                    // Iterar sobre la lista de pedidos para encontrar el último estado de cada folio
-                    pedidos.forEach(pedido => {
-                        const folio = pedido.folio;
-                        // Si el folio no está en el objeto o si el estado actual es más reciente
-                        if (!pedidosUltimoEstado[folio] || new Date(pedido.fecha_estado) > new Date(pedidosUltimoEstado[folio].fecha_estado)) {
-                            pedidosUltimoEstado[folio] = pedido;
-                        }
-                    });
-
-                    // Obtener los valores de los pedidos con el último estado
-                    pedidosConUltimoEstado = Object.values(pedidosUltimoEstado);
-
-                    // Resolver la promesa con los datos obtenidos
-                    resolve(pedidosConUltimoEstado);
+                    // Rechazar la promesa en caso de error
+                    reject(error);
                 }
-
-                document.getElementById('contenedor-loader').style.display = 'none';
-            },
-            error: function (xhr, status, error) {
-                document.getElementById('contenedor-loader').style.display = 'none';
-                console.log("Error al consultar pedidos:", error);
-
-                dialogoEG({
-                    type: "error",
-                    title: "Error de comunicación",
-                    mensaje: "Ocurrió un error al obtener listado de pedidos. Intente nuevamente, si el inconveniente persiste contacte al administrador.",
-                    confirmar: "Aceptar",
-                    img: "img/error.png"
-                });
-
-                // Rechazar la promesa en caso de error
-                reject(error);
-            }
+            });
         });
+    }
+
+    function llenarTabla() {
+        // Limpia la tabla antes de llenarla
+        tablaPedidos.clear().draw();
+        consultaPedidos().then(pedidosConUltimoEstado => {
+            pedidosConUltimoEstado.forEach(pedido => {
+                tablaPedidos.row.add([
+                    pedido.folio,
+                    pedido.cliente,
+                    pedido.usuario_registro,
+                    pedido.fecha_estado,
+                    `<div class="contenedor-acciones">
+                        <button class="btn btn-sm btn-acciones btn-tracking" onclick="verTracking('${pedido}')" title="Ver Tracking">
+                            <span class="material-symbols-outlined">wysiwyg</span>
+                            ${pedido.estado_actual}
+                        </button>
+                        </div>`
+                ]).draw().node();
+            });
+        }).catch(error => {
+            console.log("Error al llenar la tabla:", error);
+        });
+    }
+
+
+
+       // Consulta de usuarios para el select del formulario
+function getUsuarios() {
+    document.getElementById('contenedor-loader').style.display = 'flex';
+    $.ajax({
+        url: '@Url.Action("ConsultaUsuarios", "PanelControl")',
+        type: "POST",
+        success: function (data) {
+            if (!data.success) {
+                console.log(data.errorMensaje);
+            } else {
+                // Deserializar la respuesta JSON
+                let respuesta = JSON.parse(data.respuesta);
+
+                // Acceder al array de usuarios
+                let listadoUsuarios = respuesta.listadoUsuarios;
+
+                // Obtener el elemento select
+                let userSelect = $('#usuario');
+                // Vaciar las opciones existentes
+                userSelect.empty();
+                // Agregar la opción predeterminada
+                userSelect.append('<option value="">Selecciona un usuario</option>');
+
+                // Agregar los usuarios al select
+                listadoUsuarios.forEach(usr => {
+                    userSelect.append(`<option value="${usr.id_usuario}">${usr.username}</option>`);
+                });
+            }
+            document.getElementById('contenedor-loader').style.display = 'none';
+        },
+        error: function (xhr, status, error) {
+            document.getElementById('contenedor-loader').style.display = 'none';
+            dialogoEG({
+                type: "error",
+                title: "Error de comunicación",
+                mensaje: "Ocurrió un error al obtener el listado de usuarios. Intente nuevamente; si el inconveniente persiste, solicite soporte.",
+                confirmar: "Aceptar",
+                img: "img/error.png"
+            });
+        }
     });
 }
 
-        function llenarTabla() {
-            const tbody = document.getElementById("tbody-pedidos");
 
-            consultaPedidos().then(pedidosConUltimoEstado => {
-                pedidosConUltimoEstado.forEach(pedido => {
-                    tablaPedidos.row.add([
-                        pedido.folio,
-                        pedido.cliente,
-                        pedido.usuario_registro,
-                        pedido.fecha_estado,
-                        `<button class="btn btn-tracking" onclick="verTracking('${pedido}')" title="Ver Tracking">
-                    <span class="material-symbols-outlined">wysiwyg</span>
-                    ${pedido.estado_actual}
-                </button>`
-                    ]).draw();
-                });
-            }).catch(error => {
-                console.log("Error al llenar la tabla:", error);
-            });
-        }
 
-    });
 
     // Función para manejar el click en "Ver Tracking"
     function verTracking(pedido) {

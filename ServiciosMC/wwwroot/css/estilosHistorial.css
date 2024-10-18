@@ -25,10 +25,10 @@
 
     .historial-card h3.card-title {
         font-family: 'LemonMilk', sans-serif;
-        font-size: 1.8rem;
-        color: #aa4c9c;
+        font-size: 1.6rem;
+        color: #0f0a35;
         margin: 0;
-        text-align: left; 
+        text-align: left;
         margin-bottom: 10px;
         line-height: 1.3rem;
     }
@@ -51,6 +51,39 @@
     margin: 10px auto; /* Centra horizontalmente la tarjeta */
 }
 
+/*ESTILOS TABLA*/
+/* Contenedor de los botones, usando flex para alinear en fila */
+.contenedor-acciones {
+    display: flex; /* Utiliza flexbox para alinear los botones */
+    justify-content: center; /* Centra los botones horizontalmente */
+    align-items: center; /* Centra los botones verticalmente */
+    gap: 8px; /* Espacio entre los botones */
+    height: 100%; /* Asegura que el contenedor ocupe el alto de la celda */
+}
+
+/* Estilos para los botones */
+.btn-acciones {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    color: inherit;
+    padding: 4px 8px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+    .btn-acciones:hover {
+        font-weight: bold;
+    }
+
+    /* Espacio entre el ícono y el texto */
+    .btn-acciones span {
+        margin-right: 4px; /* Ajusta el espacio entre el ícono y el texto */
+        font-size: 1rem; /* Tamaño de fuente para el ícono */
+    }
+
+
 .table thead th {
     background-color: #4c4e4f; /* Color del encabezado */
     color: white; /* Texto blanco en el encabezado */
@@ -65,6 +98,17 @@
     .table tbody td.text-left {
         text-align: left; /* Alineación a la izquierda para columnas específicas */
     }
+
+table.dataTable tbody tr:hover {
+    font-weight: bold;
+}
+
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: #4c4e4f;
+    border-color: #4c4e4f;
+}
 
 .btn-tracking {
     width: 100%; /* Ocupa todo el ancho de la celda */
@@ -84,6 +128,30 @@
         font-size: 1rem; /* Tamaño de fuente para el ícono */
     }
 
+
+.historial-card #btnBuscar {
+    background-color: #2272ab;
+    font-weight: bold;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+    .historial-card #btnBuscar:hover {
+        background-color: #196398;
+    }
+
+    .historial-card span {
+        font-size: 1.2rem;
+        margin-right: 5px;
+        display: inline-flex;
+        align-items: center;
+        vertical-align: middle; /* Asegura que el icono se centre verticalmente */
+    }
 
 @media (max-width: 768px) {
     .table {

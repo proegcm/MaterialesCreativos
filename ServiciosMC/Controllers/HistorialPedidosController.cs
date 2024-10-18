@@ -104,6 +104,51 @@ namespace ServiciosMC.Controllers
             }
         }
 
+        /*Obtiene Usuarios*/
+        [HttpPost]
+        public async Task<JsonResult> ConsultaUsuarios()
+        {
+            try
+            {
+                string URL = config.GetValue<string>("Servicios:API_PYTHON") + "consultaUsuariosMC";
+
+                using (HttpClient httpClient = new HttpClient())
+                {
+
+                    var response = await httpClient.PostAsync(URL, null);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var responseBody = await response.Content.ReadAsStringAsync();
+                        Debug.WriteLine("Respuesta del servidor: " + responseBody);
+                        return Json(new { success = true, respuesta = responseBody });
+                    }
+                    else
+                    {
+                        var responseBody = await response.Content.ReadAsStringAsync();
+                        var errorObject = JsonSerializer.Deserialize<Dictionary<string, string>>(responseBody);
+                        string errorMensaje = errorObject.ContainsKey("error") ? errorObject["error"] : "Error desconocido";
+                        Debug.WriteLine("Código:" + errorMensaje);
+                        return Json(new { success = false, errorMensaje });
+                    }
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                Debug.WriteLine("HttpRequestException: " + ex.Message);
+                return Json(new { success = false, errorMensaje = "Ocurrió un error al obtener el listado de ususarios, no se obtuvo respuesta del servidor." });
+            }
+            catch (TaskCanceledException ex)
+            {
+                Debug.WriteLine("TaskCanceledException (posible timeout): " + ex.Message);
+                return Json(new { success = false, errorMensaje = "La solicitud al servidor ha superado el tiempo de espera." });
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Exception: " + ex.Message);
+                return Json(new { success = false, errorMensaje = "Error al procesar los datos: " + ex.Message });
+            }
+        }
 
 
 

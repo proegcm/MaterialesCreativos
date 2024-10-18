@@ -166,8 +166,8 @@
         display: inline-flex;
         align-items: center; /* Asegura que el ícono esté centrado verticalmente */
     }
-.order-header h3 {
-        font-size: 1.6rem; /* Tamaño de la fuente del título */
+    .order-header h3 {
+        font-size: 1.4rem !important; /* Tamaño de la fuente del título */
         color: #0f0a35;
         margin: 0; /* Elimina los márgenes predeterminados */
         line-height: 1.3rem; /* Ajusta la altura de línea */
@@ -190,7 +190,7 @@
     color: #e86217;
 }
 .category-6 .order-icon {
-    color: #f8d22a;
+    color: #d9b207;
 }
 .category-7 .order-icon {
     color: #0f0a35;
@@ -288,27 +288,49 @@
 
 
 /*ESTILOS PARA MODAL*/
-/* Estilo del header del modal */
+.modal-custom {
+    max-height: 80vh;
+    height: auto;
+    margin: auto;
+    overflow-y: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+    .modal-custom::-webkit-scrollbar {
+        display: none; /* Safari and Chrome */
+    }
+
+    /* Mostrar el scrollbar cuando el modal está en uso */
+    .modal-custom:hover::-webkit-scrollbar {
+        display: block;
+        width: 5px;
+        height: 5px;
+    }
+
+    .modal-custom:hover::-webkit-scrollbar-track {
+        background-color: inherit; /* color de fondo */
+    }
+
+    .modal-custom:hover::-webkit-scrollbar-thumb {
+        background-color: #dddddd; /* color scrollbar */
+        border-radius: 1px;
+    }
+
+        .modal-custom:hover::-webkit-scrollbar-thumb:hover {
+            background-color: #e5e5e5; /* color al pasar mouse */
+        }
+    
+
 #order-modal .modal-header {
     font-family: 'LemonMilk', sans-serif;
     background-color: #f0f0f0; /* Fondo suave para el header */
-    /*border-bottom: 2px solid #0f0a35;*/
     display: flex;
     align-items: center;
     padding: 10px 15px; /* Ajustar padding según sea necesario */
 }
 
-    /* Estilo para el contenedor del ícono, título y botón de cierre */
-    #order-modal .modal-header .form-group {
-        display: flex;
-        align-items: center;
-        width: 100%;
-        /*  margin-bottom: 0;  Eliminar margen inferior */
-    }
-
     #order-modal .modal-header h5.modal-title {
         font-size: 1.6rem;
-        /*color: #0f0a35;*/
         margin: 0;
         margin-left: 10px; /* Espacio entre el icono y el título */
         line-height: 1.3rem; /* Ajustar para reducir el espacio */
@@ -316,19 +338,35 @@
 
     #order-modal .modal-header .card-icon {
         font-size: 1.8rem;
-        /*color: #0f0a35;*/
         margin: 0; /* Elimina cualquier margen inferior extra */
     }
-
-    /* Estilo del botón de cierre */
     #order-modal .modal-header .close {
-        font-size: 1.8rem;
-        /*color: #0f0a35;  Asegúrate de que el color tenga suficiente contraste */
+        font-size: 0.8rem; /* Asegúrate de que el tamaño sea suficiente */
+        color: #303030; /* Color contrastante */
         padding: 0; /* Elimina padding adicional */
-        margin-left: auto; /* Mueve el botón de cierre a la derecha */
+        margin-right: 0px; /* Alinea a la derecha */
+        /*  display: flex; Asegúrate de que el botón se muestre */
+        align-items: center; /* Centra el icono dentro del botón */
     }
 
+/*Estilo para título cambiosPedido*/
+#cambiosPedido .cambiosE {
+    font-family: 'LemonMilk', sans-serif;
+    display: flex;
+    align-items: center;
+    padding: 0px 0px 10px 0px; /* [arriba] [derecha] [abajo] [izquierda]; */
+}
+    #cambiosPedido .cambiosE .card-icon {
+        font-size: 1.6rem; /* Tamaño del ícono */
+        margin-right: 5px; /* Espacio entre el ícono y el título */
+        color: #333; /* Color del ícono */
+    }
 
+    #cambiosPedido .cambiosE h5.modal-title {
+        font-size: 1.2rem !important;
+        margin: 0;
+        line-height: 1.3rem; /* Ajustar para reducir el espacio */
+    }
 
 /* Estilo para el texto del cliente y demás información */
 #modal-order-details p {
@@ -365,17 +403,8 @@
     width: 100%; 
 }
 
-/* Ajustes del modal footer */
-#order-modal .modal-footer {
-    background-color: #f8f8f8;
-    border-top: 1px solid #e9ecef;
-    padding: 10px 20px;
-    width: 100%;
-}
-
 
 /* Estilos dinámicos por categoría */
-
 /* Categoría 1 */
 #order-modal.category-1 .modal-header h5.modal-title,
 #order-modal.category-1 .modal-header .card-icon,
@@ -398,11 +427,15 @@
     height: 2px; /* Ajusta la altura del hr */
     border: none; /* Elimina bordes predeterminados si es necesario */
 }
+#order-modal.category-1 .modal-custom {
+    border: 3px solid #274296;
+}
+
 
 /* Categoría 2 */
-#order-modal.category-2 .modal-header h5.modal-title,
-#order-modal.category-2 .modal-header .card-icon,
-#order-modal.category-2 .modal-header .close {
+    #order-modal.category-2 .modal-header h5.modal-title, 
+    #order-modal.category-2 .modal-header .card-icon, 
+    #order-modal.category-2 .modal-header .close {
     color: #2272ab;
     border-color: #2272ab;
 }
@@ -420,6 +453,9 @@
     background-color: #2272ab; /* Cambia el color del hr */
     height: 2px; /* Ajusta la altura del hr */
     border: none; /* Elimina bordes predeterminados si es necesario */
+}
+#order-modal.category-2 .modal-custom {
+    border: 3px solid #2272ab;
 }
 
 /* Categoría 3 */
@@ -444,6 +480,9 @@
     height: 2px; /* Ajusta la altura del hr */
     border: none; /* Elimina bordes predeterminados si es necesario */
 }
+#order-modal.category-3 .modal-custom {
+    border: 3px solid #aa4c9c;
+}
 
 /* Categoría 4 */
 #order-modal.category-4 .modal-header h5.modal-title,
@@ -466,6 +505,9 @@
     background-color: #dc418c; /* Cambia el color del hr */
     height: 2px; /* Ajusta la altura del hr */
     border: none; /* Elimina bordes predeterminados si es necesario */
+}
+#order-modal.category-4 .modal-custom {
+    border: 3px solid #dc418c;
 }
 
 /* Categoría 5 */
@@ -490,28 +532,34 @@
     height: 2px; /* Ajusta la altura del hr */
     border: none; /* Elimina bordes predeterminados si es necesario */
 }
+#order-modal.category-5 .modal-custom {
+    border: 3px solid #e86217;
+}
 
 /* Categoría 6 */
 #order-modal.category-6 .modal-header h5.modal-title,
 #order-modal.category-6 .modal-header .card-icon,
 #order-modal.category-6 .modal-header .close {
-    color: #f8d22a;
+    color: #d9b207;
     border-color: #f2c601;
 }
 /* Agregar el color al border-bottom */
 #order-modal.category-6 .modal-header {
-    border-bottom: 3px solid #f8d22a; /* Puedes ajustar el grosor y el color según lo necesites */
+    border-bottom: 3px solid #d9b207; /* Puedes ajustar el grosor y el color según lo necesites */
 }
 /* Agregar el color a los botones */
 #order-modal.category-6 .btn-primary {
-    background-color: #f8d22a;
-    border-color: #f8d22a;
+    background-color: #d9b207;
+    border-color: #d9b207;
     font-weight: bold;
 }
 #order-modal.category-6 .modal-body .custom-hr {
-    background-color: #f8d22a; /* Cambia el color del hr */
+    background-color: #d9b207; /* Cambia el color del hr */
     height: 2px; /* Ajusta la altura del hr */
     border: none; /* Elimina bordes predeterminados si es necesario */
+}
+#order-modal.category-6 .modal-custom {
+    border: 3px solid #d9b207;
 }
 
 /* Categoría 7 */
@@ -536,11 +584,9 @@
     height: 2px; /* Ajusta la altura del hr */
     border: none; /* Elimina bordes predeterminados si es necesario */
 }
-
-
-
-
-
+#order-modal.category-7 .modal-custom {
+    border: 3px solid #0f0a35;
+}
 
 
 
