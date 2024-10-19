@@ -41,28 +41,21 @@ namespace ServiciosMC.Controllers
         }
 
         [HttpPost]
-        public async Task<JsonResult> ListaPedidos()
+        public async Task<JsonResult> ListaPedidos(infoHistorial dataHis)
         {
-
             try
             {
                 Helper helper = new Helper();
                 LoginViewModel login = helper.Usuario(HttpContext);
                 string usuarioLogin = login.Usuario;
+                dataHis.usuarioConsulta = usuarioLogin;
 
-                infoConsultaPedidos usrData = new infoConsultaPedidos
-                {
-                    infoUsuario = new infoUsuario
-                    {
-                        usuario = usuarioLogin
-                    }
-                };
-                string URL = config.GetValue<string>("Servicios:API_PYTHON") + "obtengoPedidosMC";
+                string URL = config.GetValue<string>("Servicios:API_PYTHON") + "obtengoHistorialPedidosMC";
 
                 using (HttpClient httpClient = new HttpClient())
                 {
 
-                    var datos = JsonSerializer.Serialize(usrData);
+                    var datos = JsonSerializer.Serialize(dataHis);
                     Debug.WriteLine("datos: " + datos);
 
                     var contenido = new StringContent(datos, Encoding.UTF8, "application/json");

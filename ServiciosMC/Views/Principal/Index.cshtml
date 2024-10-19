@@ -1,14 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="es">
 <head>
-    <!-- CSS de Select2 -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
-
-    <!-- jQuery -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-    <!-- JS de Select2 -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link href="~/css/estilosHome.css" rel="stylesheet">
@@ -324,7 +316,7 @@
                                 <div class="col-md-12">
                                     <div id="pilot-selection" style="display: none;">
                                         <label><strong>Asignar piloto:</strong></label>
-                                        <select id="pilot-select" class="form-control mb-2">
+                                        <select id="pilot-select" class="form-select mb-2">
                                             <!--lista pilotos-->
                                         </select>
                                         <button id="assign-pilot-btn" class="btn btn-primary btn-block" style="display: none;">Cambiar estado</button>
@@ -336,7 +328,7 @@
                                 <div class="col-md-12">
                                     <div id="parcel-selection" style="display: none;">
                                         <label><strong>Asignar paquetería:</strong></label>
-                                        <select id="parcel-select" class="form-control mb-2">
+                                        <select id="parcel-select" class="form-select mb-2">
                                             <!--Opciones de paquetería-->
                                         </select>
                                         <button id="assign-parcel-btn" class="btn btn-primary btn-block" style="display: none;">Cambiar estado</button>
@@ -387,6 +379,7 @@
 
         $(document).ready(function () {
             console.log("READY :D");
+            
             consultaPedidos();
             
 
@@ -573,7 +566,7 @@
                         listadoPilotos.forEach(piloto => {
                             pilotSelect.append(`<option value="${piloto.id_usuario}">${piloto.nombre}</option>`);
                         });
-
+                       
                     }  
                     document.getElementById('contenedor-loader').style.display = 'none';
                 },

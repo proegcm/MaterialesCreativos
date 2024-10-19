@@ -134,4 +134,13 @@ namespace ServiciosMC.Models
         public string username { get; set; }
     }
 
+
+    public class infoHistorial
+    {
+        public string usuarioConsulta { get; set; }
+        public string usuario { get; set; }
+        public string fechaInicio { get; set; }
+        public string fechaFin { get; set; }
+        public string estado { get; set; }
+    }
 }
