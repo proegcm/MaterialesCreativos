@@ -3,14 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
     <link href="~/css/estilosHistorial.css" rel="stylesheet">
-    <link href="~/DataTables/datatables.min.css" rel="stylesheet">
-    <script src="~/DataTables/datatables.min.js"></script>
+    @* <link href="~/DataTables/datatables.min.css" rel="stylesheet">
+    <script src="~/DataTables/datatables.min.js"></script> *@
     <title>Listado de Pedidos</title>
     <style>
     </style>
@@ -94,10 +92,9 @@
 </html>
 
 <script type="text/javascript">
-    let tablaPedidos;
 
     $(document).ready(function () {
-        tablaPedidos = $('#tabla-pedidos').DataTable({
+        let tablaPedidos = $('#tabla-pedidos').DataTable({
             "destroy": true,
             "ordering": false,
             "responsive": true,
@@ -114,27 +111,43 @@
             ]
         });
         getUsuarios();
-        // $.ajax({
-        //             url: '@Url.Action("obtengoUsuario", "Home")',
-        //             type: "POST",
-        //             success: function (usuario) {
-        //                 usuarioLogin = usuario;
-        //                 llenarTabla();
-        //             },
-        //             error: function (xhr, status, error) {
-        //                 console.error("Error al obtener el usuario:", error);
-        //             }
-        //          });
+        getEstados();
+         $('#btnBuscar').on('click', function () {
+            llenarTabla();
+         });
 
-    });
+    // Obtener los elementos de fecha
+    const fechaInicio = document.getElementById('fecha-inicio');
+    const fechaFinal = document.getElementById('fecha-final');
+
+    // Agregar evento para validar en tiempo real cuando cambia la fecha final
+    fechaFinal.addEventListener('input', validarFechas);
+
+    function validarFechas() {
+        // Obtener los valores de las fechas seleccionadas
+        const inicio = new Date(fechaInicio.value);
+        const final = new Date(fechaFinal.value);
+
+        // Comprobar que ambos campos de fecha tengan valor
+        if (fechaInicio.value && fechaFinal.value) {
+            // Calcular la diferencia en milisegundos
+            const diferenciaTiempo = final.getTime() - inicio.getTime();
+            // Convertir la diferencia en días
+            const diferenciaDias = diferenciaTiempo / (1000 * 3600 * 24);
+
+            // Validar si la diferencia es mayor a 30 días
+            if (diferenciaDias > 30) {
+                alert("La fecha final no puede ser más de un mes después de la fecha inicial.");
+                // Limpiar la fecha final para que el usuario la seleccione nuevamente
+                fechaFinal.value = '';
+            }
+        }
+    }
 
 
 
     function consultaPedidos() {
         return new Promise((resolve, reject) => {
-            let pedidosUltimoEstado = {}; // Definir el objeto para almacenar el último estado de cada folio
-            let pedidosConUltimoEstado = []; // Inicializar la lista de pedidos con el último estado
-
             document.getElementById('contenedor-loader').style.display = 'flex';
 
             $.ajax({
@@ -156,19 +169,14 @@
                         // Rechazar la promesa si hay un error en la respuesta
                         reject(new Error(data.errorMensaje));
                     } else {
-                        const pedidos = JSON.parse(data.respuesta).listadoPedidos;
-                        // Iterar sobre la lista de pedidos para encontrar el último estado de cada folio
-                        pedidos.forEach(pedido => {
-                            const folio = pedido.folio;
-                            // Si el folio no está en el objeto o si el estado actual es más reciente
-                            if (!pedidosUltimoEstado[folio] || new Date(pedido.fecha_estado) > new Date(pedidosUltimoEstado[folio].fecha_estado)) {
-                                pedidosUltimoEstado[folio] = pedido;
-                            }
-                        });
-                        // Obtener los valores de los pedidos con el último estado
-                        pedidosConUltimoEstado = Object.values(pedidosUltimoEstado);
-                        // Resolver la promesa con los datos obtenidos
-                        resolve(pedidosConUltimoEstado);
+                        // Parsear la cadena 'respuesta' a un objeto JSON
+                        const respuestaObj = JSON.parse(data.respuesta);
+
+                        // Obtener el listado de pedidos
+                        const listadoPedidos = respuestaObj.listadoPedidos;
+
+                        resolve(listadoPedidos); 
+
                     }
                     document.getElementById('contenedor-loader').style.display = 'none';
                 },
@@ -191,29 +199,36 @@
     function llenarTabla() {
         // Limpia la tabla antes de llenarla
         tablaPedidos.clear().draw();
-        consultaPedidos().then(pedidosConUltimoEstado => {
-            pedidosConUltimoEstado.forEach(pedido => {
-                tablaPedidos.row.add([
-                    pedido.folio,
-                    pedido.cliente,
-                    pedido.usuario_registro,
-                    pedido.fecha_estado,
-                    `<div class="contenedor-acciones">
-                        <button class="btn btn-sm btn-acciones btn-tracking" onclick="verTracking('${pedido}')" title="Ver Tracking">
-                            <span class="material-symbols-outlined">wysiwyg</span>
-                            ${pedido.estado_actual}
-                        </button>
-                        </div>`
-                ]).draw().node();
+
+        consultaPedidos().then(listadoPedidos => {
+        listadoPedidos.forEach(pedido => {
+            // Agrega los datos del pedido a la tabla
+            let row = tablaPedidos.row.add([
+                pedido.folio,
+                pedido.cliente,
+                pedido.usuario_registro,
+                pedido.fecha,
+                `<div class="contenedor-acciones">
+                    <button class="btn btn-sm btn-acciones btn-tracking" title="Ver Tracking">
+                        <span class="material-symbols-outlined">wysiwyg</span>
+                        ${pedido.estado_actual}
+                    </button>
+                </div>`
+            ]).draw().node();
+
+            // Seleccionar el botón de seguimiento
+            let botonTracking = row.querySelector('.btn-tracking');
+            botonTracking.addEventListener('click', function () {
+                verTracking(pedido); 
             });
-        }).catch(error => {
-            console.log("Error al llenar la tabla:", error);
         });
+    });
+
     }
 
 
 
-       // Consulta de usuarios para el select del formulario
+// Consulta de usuarios para el select del formulario
 function getUsuarios() {
     document.getElementById('contenedor-loader').style.display = 'flex';
     $.ajax({
@@ -256,12 +271,60 @@ function getUsuarios() {
     });
 }
 
+    function getEstados(){
+        // Lista de estados únicos
+        const estados = [
+            "TODOS",
+            "En producción",
+            "Completado",
+            "Envío por Mensajería",
+            "Envío por Paquetería",
+            "Recoge en oficina",
+            "Anulado",
+            "Devuelto",
+            "Reprogramar",
+            "Entregado"
+        ];
 
+        // Obtener el elemento select
+        const selectEstado = document.getElementById('estado');
 
-
-    // Función para manejar el click en "Ver Tracking"
-    function verTracking(pedido) {
-        alert(`Visualizando tracking para el pedido con folio: ${pedido}`);
+        // Llenar el select con los estados
+        estados.forEach(estado => {
+            let option = document.createElement('option');
+            option.value = estado;
+            option.textContent = estado;
+            selectEstado.appendChild(option);
+        });
     }
+
+
+    function verTracking(pedido) {
+    // Imprimir información básica del pedido
+    console.log(`Folio: ${pedido.folio}`);
+    console.log(`Fecha: ${pedido.fecha}`);
+    console.log(`Cajero: ${pedido.cajero}`);
+    console.log(`Cliente: ${pedido.cliente}`);
+    console.log(`Total: ${pedido.total}`);
+    console.log(`Pago: ${pedido.pago}`);
+    console.log(`Cambio: ${pedido.cambio}`);
+    console.log(`Estado actual: ${pedido.estado_actual}`);
+    console.log(`Usuario registro: ${pedido.usuario_registro}`);
+
+    // Recorrer e imprimir cada tracking asociado al pedido
+    if (pedido.tracking) { // Verifica que tracking no sea undefined
+        pedido.tracking.forEach(tracking => {
+            console.log(`--- Tracking ${pedido.folio} ---`);
+            console.log(`   Estado: ${tracking.estado}`);
+            console.log(`   Fecha estado: ${tracking.fecha_estado}`);
+            console.log(`   Usuario cambio: ${tracking.usuario_cambio}`);
+            console.log(`   Mensajero: ${tracking.mensajero}`);
+            console.log(`   Paquetería: ${tracking.paqueteria}`);
+            console.log(`   Observaciones: ${tracking.observaciones}`);
+        });
+    }
+}
+
+    });
 
 </script>

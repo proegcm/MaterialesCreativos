@@ -162,3 +162,143 @@ table.dataTable tbody tr:hover {
             padding: 0.5rem; 
         }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*ESTILOS PARA MODAL*/
+.modal-custom {
+    max-height: 80vh;
+    height: auto;
+    margin: auto;
+    overflow-y: auto;
+}
+    /* Estilos del scrollbar */
+    .modal-custom::-webkit-scrollbar {
+        width: 5px;
+        height: 5px;
+    }
+
+    .modal-custom::-webkit-scrollbar-track {
+        background-color: inherit; /* color de fondo */
+    }
+
+    .modal-custom::-webkit-scrollbar-thumb {
+        background-color: #dddddd; /* color scrollbar */
+        border-radius: 1px;
+    }
+
+        .modal-custom::-webkit-scrollbar-thumb:hover {
+            background-color: #e5e5e5; /* color al pasar mouse */
+        }
+
+
+#order-modal .modal-header {
+    font-family: 'LemonMilk', sans-serif;
+    background-color: #f0f0f0; /* Fondo suave para el header */
+    display: flex;
+    align-items: center;
+    padding: 10px 15px; /* Ajustar padding según sea necesario */
+}
+
+    #order-modal .modal-header h5.modal-title {
+        font-size: 1.6rem;
+        margin: 0;
+        margin-left: 10px; /* Espacio entre el icono y el título */
+        line-height: 1.3rem; /* Ajustar para reducir el espacio */
+    }
+
+    #order-modal .modal-header .card-icon {
+        font-size: 1.8rem;
+        margin: 0; /* Elimina cualquier margen inferior extra */
+    }
+
+    #order-modal .modal-header .close {
+        font-size: 0.8rem; /* Asegúrate de que el tamaño sea suficiente */
+        color: #303030; /* Color contrastante */
+        padding: 0; /* Elimina padding adicional */
+        margin-right: 0px; /* Alinea a la derecha */
+        /*  display: flex; Asegúrate de que el botón se muestre */
+        align-items: center; /* Centra el icono dentro del botón */
+    }
+
+/*Estilo para título cambiosPedido*/
+#cambiosPedido .cambiosE {
+    font-family: 'LemonMilk', sans-serif;
+    display: flex;
+    align-items: center;
+    padding: 0px 0px 10px 0px; /* [arriba] [derecha] [abajo] [izquierda]; */
+}
+
+    #cambiosPedido .cambiosE .card-icon {
+        font-size: 1.6rem; /* Tamaño del ícono */
+        margin-right: 5px; /* Espacio entre el ícono y el título */
+        color: #333; /* Color del ícono */
+    }
+
+    #cambiosPedido .cambiosE h5.modal-title {
+        font-size: 1.2rem !important;
+        margin: 0;
+        line-height: 1.3rem; /* Ajustar para reducir el espacio */
+    }
+
+/* Estilo para el texto del cliente y demás información */
+#modal-order-details p {
+    font-family: 'LemonMilk', sans-serif;
+    font-size: 1rem;
+    color: #0f0a35;
+}
+
+/* Estilo para los labels */
+#modal-order-details label {
+    font-family: 'Urbanist', sans-serif;
+    font-size: 1rem;
+    color: #2f2f2f;
+    font-weight: bold;
+}
+
+/* Estilo para los valores debajo de los labels */
+#modal-order-details p {
+    font-family: 'Urbanist', sans-serif;
+    font-size: 1rem;
+    color: #2f2f2f;
+    margin-bottom: 0px; /* Espacio entre el label y el contenido */
+}
+
+/* Espaciado y alineación */
+#modal-order-details .row {
+    margin-bottom: 5px; /* Espacio entre filas */
+}
+
+/* Estilo para botones dentro del modal */
+#order-modal .btn-primary {
+    font-family: 'Urbanist', sans-serif;
+    font-size: 1rem;
+    width: 100%;
+}
+

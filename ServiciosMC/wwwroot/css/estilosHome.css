@@ -293,30 +293,23 @@
     height: auto;
     margin: auto;
     overflow-y: auto;
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* Internet Explorer 10+ */
 }
+    /* Estilos del scrollbar */
     .modal-custom::-webkit-scrollbar {
-        display: none; /* Safari and Chrome */
-    }
-
-    /* Mostrar el scrollbar cuando el modal está en uso */
-    .modal-custom:hover::-webkit-scrollbar {
-        display: block;
         width: 5px;
         height: 5px;
     }
 
-    .modal-custom:hover::-webkit-scrollbar-track {
+    .modal-custom::-webkit-scrollbar-track {
         background-color: inherit; /* color de fondo */
     }
 
-    .modal-custom:hover::-webkit-scrollbar-thumb {
+    .modal-custom::-webkit-scrollbar-thumb {
         background-color: #dddddd; /* color scrollbar */
         border-radius: 1px;
     }
 
-        .modal-custom:hover::-webkit-scrollbar-thumb:hover {
+        .modal-custom::-webkit-scrollbar-thumb:hover {
             background-color: #e5e5e5; /* color al pasar mouse */
         }
     
