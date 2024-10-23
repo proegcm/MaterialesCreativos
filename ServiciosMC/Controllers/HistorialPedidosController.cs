@@ -113,8 +113,32 @@ namespace ServiciosMC.Controllers
                     if (response.IsSuccessStatusCode)
                     {
                         var responseBody = await response.Content.ReadAsStringAsync();
-                        Debug.WriteLine("Respuesta del servidor: " + responseBody);
-                        return Json(new { success = true, respuesta = responseBody });
+                        Debug.WriteLine(":) Respuesta: " + responseBody);
+
+                        // Deserializa el JSON a un JsonElement usando System.Text.Json
+                        var data = JsonSerializer.Deserialize<JsonElement>(responseBody);
+                        Debug.WriteLine(":) data: " + data);
+                        // Crea una lista filtrada con solo los campos necesarios
+                        var usuariosFiltrados = new List<object>();
+                        // Recorre el array de usuarios en el JSON
+                        foreach (var usuario in data.GetProperty("listadoUsuarios").EnumerateArray())
+                        {
+                            if (usuario.GetProperty("rol").GetString() != "PILOTO")
+                            {
+                                usuariosFiltrados.Add(new
+                                {
+                                    id_usuario = usuario.GetProperty("id_usuario").GetInt32(),
+                                    nombre = usuario.GetProperty("nombre").GetString(),
+                                    rol = usuario.GetProperty("rol").GetString(),
+                                    username = usuario.GetProperty("username").GetString()
+                                });
+                            }
+                           
+                        }
+
+
+
+                        return Json(new { success = true, listadoUsuarios = usuariosFiltrados });
                     }
                     else
                     {

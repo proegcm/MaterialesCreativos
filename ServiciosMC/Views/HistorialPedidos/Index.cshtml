@@ -29,7 +29,7 @@
                         <div class="row mb-3 align-items-end">
                             <!-- Usuario -->
                             <div class="col-md-3 mb-2">
-                                <label for="usuario" class="form-label">Usuario:</label>
+                                <label for="usuario" class="form-label">Usuario a cargo:</label>
                                 <select id="usuario" class="form-select">
                                     <option selected>Seleccione un usuario</option>
                                     <!-- Opciones de usuario -->
@@ -52,7 +52,6 @@
                             <div class="col-md-3 mb-2">
                                 <label for="estado" class="form-label">Estado:</label>
                                 <select id="estado" class="form-select">
-                                    <option selected>Seleccione un estado</option>
                                     <!-- Opciones de estado -->
                                 </select>
                             </div>
@@ -64,6 +63,14 @@
                                 </button>
                             </div>
                         </div>
+                        <div class="row">
+                            <div>
+                                <a href="#" target="_blank" class="btn btn-danger mt-lg-4 mt-md-4 float-sm-right float-md-left float-lg-left mr-lg-1 mr-md-1" style="display:none" id="btnReportePDF">
+                                    Generar reporte pdf
+                                </a>
+                            </div>
+                        </div>
+
 
                         <div class="row">
                             <div class="table-responsive">
@@ -86,6 +93,88 @@
                 </div>
             </div>
         </div>
+
+
+        <!-- Modal -->
+        <div id="order-modal" class="modal fade" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content modal-custom">
+                    <!--Modal header-->
+                    <div class="modal-header">
+                        <div class="col-12">
+                            <div class="form-group d-flex align-items-center mt-2 mb-2">
+                                <span class="material-symbols-outlined card-icon">
+                                    move_down
+                                </span>
+                                <h5 class="modal-title" id="orderModalLabel">TRACKING DEL PEDIDO</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Modal body-->
+                    <div class="modal-body">
+                        <ul id="modal-order-details">
+                            <div class="row">
+                                <div class="col-6">
+                                    <label class="mb-0"><strong>Cliente:</strong></label>
+                                    <p class ="mt-0" id="txtInfoCliente"></p>
+                                </div>
+                                <div class="col-6">
+                                    <label class="mb-0"><strong>Fecha del Pedido:</strong></label>
+                                    <p class ="mt-0" id="txtInfoFechaPedido"></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                 <div class="col-6">
+                                     <label class="mb-0"><strong>Folio ticket:</strong></label>
+                                     <p class ="mt-0" id="txtInfoTicket"></p>
+                                </div>
+                                <div class="col-6">
+                                    <label class="mb-0"><strong>Cajero:</strong></label>
+                                    <p class ="mt-0" id="txtInfoCajero"></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    <label class="mb-0"><strong>Total:</strong></label>
+                                    <p class ="mt-0" id="txtInfoTotalPedido"></p>
+                                </div>
+                                <div class="col-4">
+                                    <label class="mb-0"><strong>Pago:</strong></label>
+                                    <p class ="mt-0" id="txtInfoPagoPedido"></p>
+                                </div>
+                                <div class="col-4">
+                                    <label class="mb-0"><strong>Cambio:</strong></label>
+                                    <p class ="mt-0" id="txtInfoCambioPedido"></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label class="mb-0"><strong>Usuario a cargo:</strong></label>
+                                    <p class="mt-0" id="txtInfoUsuarioCargo"></p>
+                                </div>
+                                <div class="col-6">
+                                    <label class="mb-0"><strong>Estado actual: </strong></label>
+                                    <p class ="mt-0" id="txtInfoEstadoActual"></p>
+                                </div>
+                            </div>
+                            
+                            <hr class="custom-hr">
+                            <div class="row">
+                                 <!-- Tracking del pedido -->
+                                <ul class="timeline" id="tracking-info">
+                                    <!-- Aquí se insertarán los estados del tracking dinámicamente -->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     </div>
 
 </body>
@@ -116,43 +205,56 @@
             llenarTabla();
          });
 
-    // Obtener los elementos de fecha
-    const fechaInicio = document.getElementById('fecha-inicio');
-    const fechaFinal = document.getElementById('fecha-final');
+         $('#fecha-inicio').on('change', cambioFechaInicio);
+         $('#fecha-final').on('change', cambioFechaFin);
 
-    // Agregar evento para validar en tiempo real cuando cambia la fecha final
-    fechaFinal.addEventListener('input', validarFechas);
-
-    function validarFechas() {
-        // Obtener los valores de las fechas seleccionadas
-        const inicio = new Date(fechaInicio.value);
-        const final = new Date(fechaFinal.value);
-
-        // Comprobar que ambos campos de fecha tengan valor
-        if (fechaInicio.value && fechaFinal.value) {
-            // Calcular la diferencia en milisegundos
-            const diferenciaTiempo = final.getTime() - inicio.getTime();
-            // Convertir la diferencia en días
-            const diferenciaDias = diferenciaTiempo / (1000 * 3600 * 24);
-
-            // Validar si la diferencia es mayor a 30 días
-            if (diferenciaDias > 30) {
-                alert("La fecha final no puede ser más de un mes después de la fecha inicial.");
-                // Limpiar la fecha final para que el usuario la seleccione nuevamente
-                fechaFinal.value = '';
+         function cambioFechaInicio(e) {
+                e.preventDefault();
+                const fechaInicio = e.target.value;
+                const fechaFin = $('#fecha-final').val();
+                if (fechaFin === "") {
+                    return;
+                }
+                validarFechas(fechaInicio, fechaFin);
             }
-        }
-    }
 
 
+            function cambioFechaFin(e) {
+                e.preventDefault();
+                const fechaFin = e.target.value;
+                const fechaInicio = $('#fecha-inicio').val();
+                if (fechaInicio === "") {
+                    return;
+                }
+                validarFechas(fechaInicio,fechaFin);
+
+            }
+
+            const validarFechas = (StrFechaInicio, StrFechaFin) => {
+                const dateFechaInicio = toDate(StrFechaInicio);
+                const dateFechaFin = toDate(StrFechaFin);
+
+                if (diffDays(dateFechaInicio, dateFechaFin) > 31) {
+                    toastr.warning('El rango de la fecha no debe exceder 31 días');
+                    return false;
+                }
+
+                if (dateFechaInicio > dateFechaFin) {
+                    toastr.warning('La fecha de inicio debe ser menor o igual a la fecha de fin');
+                    return false;
+                }
+                return true;
+            }
 
     function consultaPedidos() {
         return new Promise((resolve, reject) => {
+            let parametros = obtenerParametros();
             document.getElementById('contenedor-loader').style.display = 'flex';
 
             $.ajax({
                 url: '@Url.Action("ListaPedidos", "HistorialPedidos")',
                 type: "POST",
+                data: parametros,
                 success: function (data) {
                     if (!data.success) {
                         console.log(data.errorMensaje);
@@ -174,6 +276,31 @@
 
                         // Obtener el listado de pedidos
                         const listadoPedidos = respuestaObj.listadoPedidos;
+                        const pdf = respuestaObj.pdf_base64;
+                        
+                        // Mostramos el botón si el PDF está disponible                        
+                        if (pdf) {
+                            document.getElementById('btnReportePDF').style.display = 'block';
+
+                            // Agregar un evento click al botón
+                            document.getElementById('btnReportePDF').onclick = function(event) {
+                                event.preventDefault(); // Prevenir la acción por defecto del enlace
+        
+                                // Crear un elemento de enlace temporal
+                                const downloadLink = document.createElement('a');
+                                downloadLink.href = "data:application/pdf;base64,"+pdf; 
+                                downloadLink.download = 'reporte.pdf'; // Nombre del archivo al descargar
+        
+                                // Agregar el enlace al DOM (aunque no es necesario mostrarlo)
+                                document.body.appendChild(downloadLink);
+        
+                                // Hacer clic en el enlace para iniciar la descarga
+                                downloadLink.click();
+        
+                                // Eliminar el enlace temporal del DOM
+                                document.body.removeChild(downloadLink);
+                            };
+                        }
 
                         resolve(listadoPedidos); 
 
@@ -196,13 +323,21 @@
         });
     }
 
+    function obtenerParametros() {
+        return {
+            usuarioConsulta: "",
+            usuario: $('#usuario option:selected').val(),
+            fechaInicio: $('#fecha-inicio').val(),
+            fechaFin: $('#fecha-final').val(),
+            estado : $('#estado option:selected').val()
+        };
+    }
+
     function llenarTabla() {
-        // Limpia la tabla antes de llenarla
         tablaPedidos.clear().draw();
 
         consultaPedidos().then(listadoPedidos => {
         listadoPedidos.forEach(pedido => {
-            // Agrega los datos del pedido a la tabla
             let row = tablaPedidos.row.add([
                 pedido.folio,
                 pedido.cliente,
@@ -216,7 +351,6 @@
                 </div>`
             ]).draw().node();
 
-            // Seleccionar el botón de seguimiento
             let botonTracking = row.querySelector('.btn-tracking');
             botonTracking.addEventListener('click', function () {
                 verTracking(pedido); 
@@ -232,17 +366,15 @@
 function getUsuarios() {
     document.getElementById('contenedor-loader').style.display = 'flex';
     $.ajax({
-        url: '@Url.Action("ConsultaUsuarios", "PanelControl")',
+        url: '@Url.Action("ConsultaUsuarios", "HistorialPedidos")',
         type: "POST",
         success: function (data) {
+            console.log(data);
             if (!data.success) {
                 console.log(data.errorMensaje);
             } else {
-                // Deserializar la respuesta JSON
-                let respuesta = JSON.parse(data.respuesta);
-
                 // Acceder al array de usuarios
-                let listadoUsuarios = respuesta.listadoUsuarios;
+                let listadoUsuarios = data.listadoUsuarios;
 
                 // Obtener el elemento select
                 let userSelect = $('#usuario');
@@ -253,7 +385,7 @@ function getUsuarios() {
 
                 // Agregar los usuarios al select
                 listadoUsuarios.forEach(usr => {
-                    userSelect.append(`<option value="${usr.id_usuario}">${usr.username}</option>`);
+                    userSelect.append(`<option value="${usr.id_usuario}">${usr.username} - ${usr.nombre}</option>`);
                 });
             }
             document.getElementById('contenedor-loader').style.display = 'none';
@@ -274,7 +406,7 @@ function getUsuarios() {
     function getEstados(){
         // Lista de estados únicos
         const estados = [
-            "TODOS",
+            "Todos",
             "En producción",
             "Completado",
             "Envío por Mensajería",
@@ -300,6 +432,67 @@ function getUsuarios() {
 
 
     function verTracking(pedido) {
+         // Mostrar detalles del pedido en el modal
+            $('#txtInfoCliente').text(`${pedido.cliente}`);
+            $('#txtInfoFechaPedido').text(`${formatoFecha(pedido.fecha)}`);
+            $('#txtInfoTicket').text(`#${pedido.folio}`);
+            $('#txtInfoCajero').text(`${pedido.cajero}`);
+            $('#txtInfoTotalPedido').text(`Q.${pedido.total}`);
+            $('#txtInfoPagoPedido').text(`Q.${pedido.pago}`);
+            $('#txtInfoCambioPedido').text(`Q.${pedido.cambio}`);
+            $('#txtInfoUsuarioCargo').text(`${pedido.usuario_registro}`);
+            $('#txtInfoEstadoActual').text(`${pedido.estado_actual}`);
+            
+            // Limpiar el tracking anterior
+            let trackingInfo = document.getElementById('tracking-info');
+            trackingInfo.innerHTML = ''; // Limpiar contenido anterior
+            // Insertar los estados del tracking
+            if (pedido.tracking) {
+                console.log("tracking --- " + pedido.folio);
+                pedido.tracking.forEach(tracking => {
+                    let timelineItem = document.createElement('li');
+                    timelineItem.classList.add('timeline-item');
+                    // Construir la línea del mensajero solo si hay valor
+                    // let mensajeroLine = tracking.mensajero ? `<span>Mensajero: ${tracking.mensajero}</span>` : '';
+                    // let paqoLine = tracking.paqueteria ? `<span>Paquetería: ${tracking.paqueteria}</span>` : '';
+                    // let obsLine = tracking.observaciones ? `<span>Observaciones: ${tracking.observaciones}</span>` : '';
+
+
+                    // timelineItem.innerHTML = `
+                    //     <div class="timeline-content">
+                    //         <p><strong>${tracking.estado}</strong></p>
+                    //         <span>${tracking.fecha_estado}</span>
+                    //         <span>Cambio por: ${tracking.usuario_cambio}</span>
+                    //         ${mensajeroLine}
+                    //         ${paqoLine}
+                    //         ${obsLine}
+                    //     </div>
+                    // `;
+                    let mensajeroLine = tracking.mensajero ? `<p>Mensajero: ${tracking.mensajero}</p>` : '';
+                    let paqoLine = tracking.paqueteria ? `<p>Paquetería: ${tracking.paqueteria}</p>` : '';
+                    let obsLine = tracking.observaciones ? `<p>Observaciones: ${tracking.observaciones}</p>` : '';
+
+                    timelineItem.innerHTML = `
+                        <div class="timeline-content">
+                            <p><strong>${tracking.estado}</strong></p>
+                            <p>${tracking.fecha_estado}</p>
+                            <p>Cambio por: ${tracking.usuario_cambio}</p>
+                            ${mensajeroLine}
+                            ${paqoLine}
+                            ${obsLine}
+                        </div>
+                    `;
+
+                    // Agregar el item al ul existente
+                    trackingInfo.appendChild(timelineItem);
+                });
+            }else {
+                    let noTracking = document.createElement('p');
+                    noTracking.textContent = "No hay información de seguimiento disponible.";
+                    trackingInfo.appendChild(noTracking);
+                }
+
+
     // Imprimir información básica del pedido
     console.log(`Folio: ${pedido.folio}`);
     console.log(`Fecha: ${pedido.fecha}`);
@@ -311,19 +504,91 @@ function getUsuarios() {
     console.log(`Estado actual: ${pedido.estado_actual}`);
     console.log(`Usuario registro: ${pedido.usuario_registro}`);
 
-    // Recorrer e imprimir cada tracking asociado al pedido
-    if (pedido.tracking) { // Verifica que tracking no sea undefined
-        pedido.tracking.forEach(tracking => {
-            console.log(`--- Tracking ${pedido.folio} ---`);
-            console.log(`   Estado: ${tracking.estado}`);
-            console.log(`   Fecha estado: ${tracking.fecha_estado}`);
-            console.log(`   Usuario cambio: ${tracking.usuario_cambio}`);
-            console.log(`   Mensajero: ${tracking.mensajero}`);
-            console.log(`   Paquetería: ${tracking.paqueteria}`);
-            console.log(`   Observaciones: ${tracking.observaciones}`);
-        });
+        // Recorrer e imprimir cada tracking asociado al pedido
+        if (pedido.tracking) { // Verifica que tracking no sea undefined
+            pedido.tracking.forEach(tracking => {
+                console.log(`--- Tracking ${pedido.folio} ---`);
+                console.log(`   Estado: ${tracking.estado}`);
+                console.log(`   Fecha estado: ${tracking.fecha_estado}`);
+                console.log(`   Usuario cambio: ${tracking.usuario_cambio}`);
+                console.log(`   Mensajero: ${tracking.mensajero}`);
+                console.log(`   Paquetería: ${tracking.paqueteria}`);
+                console.log(`   Observaciones: ${tracking.observaciones}`);
+            });
+        }
+
+        // Mostrar el modal y agregar la clase de categoría si existe
+            const modalElement = document.getElementById('order-modal');
+            // Mostrar el modal utilizando Bootstrap
+            modalInstance = new bootstrap.Modal(modalElement);
+            modalInstance.show();
+
     }
-}
+
+
+    //Formatear fecha 1
+        function formatoFecha(fecha) {
+            var date = new Date(fecha);
+
+            // Obtener partes de la fecha
+            var dia = date.getDate();
+            var mes = date.getMonth() + 1; // Los meses son base 0
+            var anio = date.getFullYear();
+
+            // Obtener partes de la hora
+            var horas = date.getHours();
+            var minutos = date.getMinutes();
+            var segundos = date.getSeconds();
+
+            // Formato de 12 horas
+            var amPm = horas >= 12 ? 'P.M.' : 'A.M.';
+            horas = horas % 12;
+            horas = horas ? horas : 12; // Si la hora es 0 (medianoche), ajustarla a 12
+
+            // Agregar ceros iniciales si es necesario
+            dia = dia < 10 ? '0' + dia : dia;
+            mes = mes < 10 ? '0' + mes : mes;
+            horas = horas < 10 ? '0' + horas : horas;
+            minutos = minutos < 10 ? '0' + minutos : minutos;
+            segundos = segundos < 10 ? '0' + segundos : segundos;
+
+            // Formato final
+            return dia + '/' + mes + '/' + anio + ' ' + horas + ':' + minutos + ':' + segundos + ' ' + amPm;
+        }
+
+        //Formatear fecha 2 
+        function formatoFechaDos(fecha) {
+            // Separar la fecha y la hora
+            var partesFechaHora = fecha.split(' ');
+            var partesFecha = partesFechaHora[0].split('/');
+            var partesHora = partesFechaHora[1].split(':');
+
+            // Crear un objeto Date usando las partes de la fecha y hora
+            var dia = parseInt(partesFecha[0], 10);
+            var mes = parseInt(partesFecha[1], 10) - 1; // Mes es base 0 en JavaScript
+            var anio = parseInt(partesFecha[2], 10);
+
+            var horas = parseInt(partesHora[0], 10);
+            var minutos = parseInt(partesHora[1], 10);
+            var segundos = parseInt(partesHora[2], 10);
+
+            // Determinar A.M. o P.M.
+            var amPm = horas >= 12 ? 'P.M.' : 'A.M.';
+
+            // Convertir a formato de 12 horas
+            horas = horas % 12;
+            horas = horas ? horas : 12; // Si es 0, asignar 12 (medianoche o mediodía)
+
+            // Agregar ceros iniciales si es necesario
+            dia = dia < 10 ? '0' + dia : dia;
+            mes = (mes + 1) < 10 ? '0' + (mes + 1) : (mes + 1); // Ajustar el mes de nuevo a base 1
+            horas = horas < 10 ? '0' + horas : horas;
+            minutos = minutos < 10 ? '0' + minutos : minutos;
+            segundos = segundos < 10 ? '0' + segundos : segundos;
+
+            // Formato final
+            return dia + '/' + mes + '/' + anio + ' ' + horas + ':' + minutos + ':' + segundos + ' ' + amPm;
+        }
 
     });
 

@@ -43,7 +43,6 @@
     <script type="text/javascript" src="/js/DialogoEG.js"></script>
     <link rel="stylesheet" type="text/css" href="~/css/estilosGeneral.css">
 
-    <title>Seguimiento de pedidos</title>
     <style>
 
         html, body {
@@ -129,17 +128,14 @@
                 <!-- DERECHA -->
                 <ul class="navbar-nav ml-auto d-flex align-items-center">
                     <li class="nav-item dropdown d-flex align-items-center">
-                        <a class="nav-link d-flex align-items-center" id="nomUser" data-toggle="dropdown" href="#" aria-expanded="false" style="font-weight: normal; color: #274296;">
-                            <i class="fas fa-user mr-2" ></i>
+                        <a class="nav-link d-flex align-items-center" id="nomUser" data-bs-toggle="dropdown" href="#" aria-expanded="false" style="font-weight: normal; color: #274296;">
+                            <i class="fas fa-user mr-2"></i>
                             <span>
-                                @*@if (User.Identity.IsAuthenticated)
-                                {
-                                    @User.Identity.Name
-                                }*@
                                 @username
                             </span>
                         </a>
-                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="left: inherit; right: 0px;">
+                            <div class="dropdown-divider"></div>
                             <a href="@Url.Action("Salir", "Login")" class="dropdown-item">
                                 <i class="fas fa-sign-out-alt mr-2"></i> Cerrar Sesión
                             </a>

@@ -702,7 +702,7 @@
                     total.classList.add('detalle');
 
                     const fecha = document.createElement('div');
-                    fecha.textContent = pedido.fecha_estado;
+                    fecha.textContent = formatoFechaDos(pedido.fecha_estado);
                     fecha.classList.add('detalle');
 
                     // Agregar todos los elementos creados al div card-item

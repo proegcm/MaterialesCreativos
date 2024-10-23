@@ -222,6 +222,8 @@ table.dataTable tbody tr:hover {
     font-family: 'LemonMilk', sans-serif;
     background-color: #f0f0f0; /* Fondo suave para el header */
     display: flex;
+    color: #303030;
+    border-bottom: 3px solid #303030;
     align-items: center;
     padding: 10px 15px; /* Ajustar padding según sea necesario */
 }
@@ -229,12 +231,14 @@ table.dataTable tbody tr:hover {
     #order-modal .modal-header h5.modal-title {
         font-size: 1.6rem;
         margin: 0;
+        color: #303030;
         margin-left: 10px; /* Espacio entre el icono y el título */
         line-height: 1.3rem; /* Ajustar para reducir el espacio */
     }
 
     #order-modal .modal-header .card-icon {
         font-size: 1.8rem;
+        color: #303030;
         margin: 0; /* Elimina cualquier margen inferior extra */
     }
 
@@ -243,42 +247,29 @@ table.dataTable tbody tr:hover {
         color: #303030; /* Color contrastante */
         padding: 0; /* Elimina padding adicional */
         margin-right: 0px; /* Alinea a la derecha */
-        /*  display: flex; Asegúrate de que el botón se muestre */
         align-items: center; /* Centra el icono dentro del botón */
     }
 
-/*Estilo para título cambiosPedido*/
-#cambiosPedido .cambiosE {
-    font-family: 'LemonMilk', sans-serif;
-    display: flex;
-    align-items: center;
-    padding: 0px 0px 10px 0px; /* [arriba] [derecha] [abajo] [izquierda]; */
+#order-modal .modal-body .custom-hr {
+    background-color: #303030; 
+    height: 2px; 
+    border: none; 
 }
 
-    #cambiosPedido .cambiosE .card-icon {
-        font-size: 1.6rem; /* Tamaño del ícono */
-        margin-right: 5px; /* Espacio entre el ícono y el título */
-        color: #333; /* Color del ícono */
-    }
 
-    #cambiosPedido .cambiosE h5.modal-title {
-        font-size: 1.2rem !important;
-        margin: 0;
-        line-height: 1.3rem; /* Ajustar para reducir el espacio */
-    }
 
 /* Estilo para el texto del cliente y demás información */
 #modal-order-details p {
     font-family: 'LemonMilk', sans-serif;
     font-size: 1rem;
-    color: #0f0a35;
+    color: #303030;
 }
 
 /* Estilo para los labels */
 #modal-order-details label {
     font-family: 'Urbanist', sans-serif;
     font-size: 1rem;
-    color: #2f2f2f;
+    color: #303030;
     font-weight: bold;
 }
 
@@ -286,7 +277,7 @@ table.dataTable tbody tr:hover {
 #modal-order-details p {
     font-family: 'Urbanist', sans-serif;
     font-size: 1rem;
-    color: #2f2f2f;
+    color: #303030;
     margin-bottom: 0px; /* Espacio entre el label y el contenido */
 }
 
@@ -302,3 +293,57 @@ table.dataTable tbody tr:hover {
     width: 100%;
 }
 
+
+
+
+.timeline {
+    position: relative;
+    margin: 20px 0;
+    padding: 0;
+    list-style: none;
+}
+
+    .timeline::before {
+        content: '';
+        position: absolute;
+        left: 20px;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background-color: #dee2e6;
+    }
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 20px;
+    padding-left: 50px;
+}
+
+    .timeline-item::before {
+        content: '';
+        position: absolute;
+        left: 12px;
+        top: 5px;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background-color: #fff;
+        border: 2px solid #0d6efd;
+    }
+
+    .timeline-item .timeline-content {
+        padding: 5px 10px;
+        background-color: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 5px;
+    }
+
+        .timeline-item .timeline-content strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .timeline-item .timeline-content span {
+            font-size: 12px;
+            color: #6c757d;
+        }
