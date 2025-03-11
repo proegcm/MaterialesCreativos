@@ -190,6 +190,7 @@ namespace WSMCCONSULTAS
                 result.ReaderQuotas = System.Xml.XmlDictionaryReaderQuotas.Max;
                 result.MaxReceivedMessageSize = int.MaxValue;
                 result.AllowCookies = true;
+                result.Security.Mode = System.ServiceModel.BasicHttpSecurityMode.Transport;
                 return result;
             }
             throw new System.InvalidOperationException(string.Format("No se pudo encontrar un punto de conexión con el nombre \"{0}\".", endpointConfiguration));
@@ -199,7 +200,7 @@ namespace WSMCCONSULTAS
         {
             if ((endpointConfiguration == EndpointConfiguration.WSpedidosPort))
             {
-                return new System.ServiceModel.EndpointAddress("http://localhost:8080/WSpedidosMC/WSpedidos");
+                return new System.ServiceModel.EndpointAddress("https://serviciosmc.xyz/WSpedidosMC/WSpedidos");
             }
             throw new System.InvalidOperationException(string.Format("No se pudo encontrar un punto de conexión con el nombre \"{0}\".", endpointConfiguration));
         }

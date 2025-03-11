@@ -376,8 +376,6 @@
                     type: "POST",
                     data: { folio: nofolio },
                     success: function (data) {
-                        console.log("Obtener pedido: ");
-                        console.log(data);
                         if (data.existeError) {
                             dialogoEG({
                                 type: "error",
@@ -438,17 +436,13 @@
 
     //Inserta un ticket y pasa a producción
     function ingresaTicket() {
-                console.log(">>>> Los parametros son: ");
-                console.log(parametros);
             document.getElementById('contenedor-loader').style.display = 'flex';
             $.ajax({
                 url: '@Url.Action("ingresarProduccion", "Home")',
                 type: "POST",
                 data: parametros,
                 success: function (data) {
-                    console.log(data);
                     if (!data.success) {
-                        console.log(data.errorMensaje)
                         dialogoEG({
                             type: "error",
                             title: "Error ingreso a producción",
@@ -475,7 +469,6 @@
                 },
                 error: function (xhr, status, error) {
                     document.getElementById('contenedor-loader').style.display = 'none';
-                    console.log("Error al ingresar el ticket a producción:", error);
                     dialogoEG({
                         type: "error",
                         title: "Error de comunicación",
@@ -490,14 +483,12 @@
 
     //Consulta pedidos a cargo del usuario
     function consultaPedidos() {
-        console.log("consultaPedidos...");
         document.getElementById('contenedor-loader').style.display = 'flex';
         $.ajax({
             url: '@Url.Action("listaPedidos", "Home")',
             type: "POST",
             success: function (data) {
                 if (!data.success) {
-                    console.log(data.errorMensaje)
                     dialogoEG({
                         type: "error",
                         title: "Error consulta de pedidos",
@@ -509,8 +500,6 @@
                     });
                 } else {
                     const pedidos = JSON.parse(data.respuesta).listadoPedidos;
-                    console.log("pedidos:");
-                    console.log(pedidos);
                     //Actualizar listado de pedidos
                     updateList(pedidos);
                 }
@@ -518,7 +507,6 @@
             },
             error: function (xhr, status, error) {
                 document.getElementById('contenedor-loader').style.display = 'none';
-                console.log("Error al consultar pedidos:", error);
                 dialogoEG({
                     type: "error",
                     title: "Error de comunicación",
@@ -559,7 +547,6 @@
                      },
                      error: function (xhr, status, error) {
                          document.getElementById('contenedor-loader').style.display = 'none';
-                         console.log("Error al consultar pilotos:", error);
                          dialogoEG({
                              type: "error",
                              title: "Error de comunicación",
@@ -600,7 +587,6 @@
                      },
                      error: function (xhr, status, error) {
                          document.getElementById('contenedor-loader').style.display = 'none';
-                         console.log("Error al consultar pilotos:", error);
                          dialogoEG({
                              type: "error",
                              title: "Error de comunicación",
@@ -645,7 +631,6 @@
                      },
                      error: function (xhr, status, error) {
                          document.getElementById('contenedor-loader').style.display = 'none';
-                         console.log("Error al consultar pilotos:", error);
                          dialogoEG({
                              type: "error",
                              title: "Error de comunicación",
@@ -673,8 +658,6 @@
 
                 // Obtener los valores de los pedidos con el último estado
                 const pedidosConUltimoEstado = Object.values(pedidosUltimoEstado);
-                console.log("pedidosConUltimoEstado: ");
-                console.log(pedidosConUltimoEstado);
                 // Limpiar listas existentes
                 const categories = ['production', 'courier', 'parcel', 'delivered', 'returned', 'canceled', 'completed', 'rescheduled', 'pickup'];
 
@@ -744,8 +727,6 @@
 
     // Mostrar modal
     function showModal(pedido, cardItem) {
-                console.log("Abro diálogo del pedido: ");
-                console.log(pedido);
                 let piloto = null;
                 let paqueteria = null;
                 let obvs = null;
@@ -756,7 +737,6 @@
                 let categoryClass = '';
                 if (categoryContainer) {
                     categoryClass = Array.from(categoryContainer.classList).find(cls => cls.startsWith('category-'));
-                    console.log("Clase de categoría: ", categoryClass);
                 }
 
                 const orderNumber = pedido.folio;
@@ -793,8 +773,8 @@
 
                 // Obtener los posibles siguientes estados
                 const nextStates = getNextStates(currentState);
-                console.log("Posibles siguientes estados [nextStates] ");
-                console.log(nextStates);
+                //console.log("Posibles siguientes estados [nextStates] ");
+                //console.log(nextStates);
                 if (nextStates && nextStates.length > 0) {
                     cambiosPedidos.classList.remove('oculto');  // Mostrar el div si hay estados
                 } else {
@@ -821,7 +801,7 @@
                                 const selectedPilot = document.getElementById('pilot-select').value;
                                 obvs = document.getElementById('txtInfoObservaciones').value;
                                 if (selectedPilot) {
-                                    console.log('Piloto asignado: ' + selectedPilot);
+                                    //console.log('Piloto asignado: ' + selectedPilot);
                                     piloto = selectedPilot;
                                     changeOrderState(pedido, nextState.state, piloto, paqueteria, obvs);
                                 } else {
@@ -841,7 +821,7 @@
                                 obvs = document.getElementById('txtInfoObservaciones').value;
                                 if (selectedParcel) {
                                     paqueteria = selectedParcel;
-                                    console.log('Paquetería asignada: ' + selectedParcel);
+                                    //console.log('Paquetería asignada: ' + selectedParcel);
                                     changeOrderState(pedido, nextState.state, piloto, paqueteria, obvs);
                                 } else {
                                     alert('Por favor, selecciona una empresa de paquetería.');
@@ -849,7 +829,7 @@
                             });
 
                         } else {
-                            console.log("dentro de else");
+                            //console.log("dentro de else");
                             obvs = document.getElementById('txtInfoObservaciones').value;
                             changeOrderState(pedido, nextState.state, piloto, paqueteria, obvs);
                         }
@@ -879,7 +859,7 @@
 
     // Obtener estados siguientes posibles
     function getNextStates(currentState) {
-                console.log("Dentro de getNextStates: " + currentState);
+                //console.log("Dentro de getNextStates: " + currentState);
                 const stateTransitions = {
                     production: [
                         { state: 'completed', label: 'Completado' },
@@ -942,10 +922,10 @@
 
     // Cambiar estado del pedido
     function changeOrderState(pedido, newState, piloto, paqueteria, obvs) {
-                console.log("changeOrderState ----> ");
-                console.log("observaciones .... " + obvs);
-                console.log("   pedido: ");
-                console.log(pedido);
+                // console.log("changeOrderState ----> ");
+                // console.log("observaciones .... " + obvs);
+                // console.log("   pedido: ");
+                // console.log(pedido);
                 newState = getState(newState);
 
                 let parametros = {
@@ -957,17 +937,17 @@
                     'idPaqueteria': paqueteria,
                     'observaciones': obvs
                 };
-                console.log("   parametros:");
-                console.log(parametros);
+                // console.log("   parametros:");
+                // console.log(parametros);
                 if (pedido.estado_actual && pedido.estado_actual !== newState) {
                     $.ajax({
                     url: '@Url.Action("cambioEstadoPedido", "Home")',
                     type: "POST",
                     data: parametros,
                     success: function (data) {
-                        console.log(data);
+                        // console.log(data);
                         if (!data.success) {
-                            console.log(data.errorMensaje)
+                            // console.log(data.errorMensaje)
                             dialogoEG({
                                 type: "error",
                                 title: "Error cambio de estado",
@@ -994,7 +974,7 @@
                     },
                     error: function (xhr, status, error) {
                         document.getElementById('contenedor-loader').style.display = 'none';
-                        console.log("Error al ingresar el ticket a producción:", error);
+                        // console.log("Error al ingresar el ticket a producción:", error);
                         dialogoEG({
                             type: "error",
                             title: "Error de comunicación",

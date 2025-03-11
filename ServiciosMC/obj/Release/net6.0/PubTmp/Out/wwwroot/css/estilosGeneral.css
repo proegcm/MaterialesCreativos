@@ -1,0 +1,186 @@
+﻿
+@font-face {
+    font-family: 'LemonMilk';
+    src: url('/MCreativos/Fonts/LemonMilk.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LibelSuit';
+    src: url('/MCreativos/Fonts/libel-suit-rg.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.contentMC {
+    /*font-family: 'LibelSuit', sans-serif;*/
+}
+
+
+/*LOADER SPINNER*/
+.loader {
+    display: none;
+    overflow-y: auto;
+    position: fixed;
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 auto;
+    left: 0;
+    top: 0;
+    justify-content: center;
+    align-items: center;
+    justify-content: center;
+    background: rgb(245 245 245 / 0.80);
+    z-index: 9999;
+}
+
+.spinner {
+    width: 25px; /* Aumenta el ancho del spinner */
+    height: 25px; /* Aumenta la altura del spinner */
+    border-radius: 20px; /* Aumenta el radio del spinner */
+    box-shadow: 56px 0px 0 0 rgba(232,98,23,0.2), 45.4px 33px 0 0 rgba(232,98,23,0.4), 17.36px 53.2px 0 0 rgba(232,98,23,0.6), -17.36px 53.2px 0 0 rgba(232,98,23,0.8), -45.4px 33px 0 0 #e86217;
+    animation: spinner-b87k6z 1.2s infinite linear;
+}
+
+    @keyframes spinner-b87k6z {
+        to {
+            transform: rotate(360deg);
+       }
+    }
+
+
+
+
+/* Estilo para la barra lateral */
+.main-sidebar {
+    background-color: #f8f9fa; /* Color de fondo de la barra lateral */
+    font-family: 'LemonMilk', sans-serif;
+    height: 100vh; /* Asegúrate de que la barra lateral ocupe toda la altura de la ventana */
+}
+
+
+/* Estilo para el contenedor del logo */
+.brand-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Centra el logo verticalmente */
+    height: 80px; /* Ajusta esto para que coincida con la altura de la barra de navegación */
+    padding: 0 10px; /* Espaciado a los lados, opcional */
+    box-shadow: 0px 0px 15px rgb(15 10 53 / 0.85);
+}
+
+/* Estilo para la imagen del logo */
+.brand-logo {
+    width: 60px; /* Ajusta el tamaño según sea necesario */
+    height: 60px; /* Mantiene la proporción original de la imagen */
+    border-radius: 50%; /* Hace que la imagen sea circular */
+    object-fit: cover; /* Asegura que la imagen se ajuste correctamente dentro del círculo */
+}
+
+/* Aumentar la altura de los botones de navegación */
+.nav-link {
+    display: flex;
+    align-items: center;
+    height: 50px; /* Ajusta la altura según tus preferencias */
+    padding: 0.75rem 1rem; /* Incrementa el padding para que los botones sean más grandes */
+    font-size: 1rem; /* Incrementa el tamaño del texto */
+}
+
+
+/* Estilo para la barra de navegación */
+.navbar {
+    box-shadow: 0px 0px 15px rgb(15 10 53 / 0.85);
+    height: 80px; /* Asegúrate de que la altura sea la misma que la del logo */
+    display: flex;
+    align-items: center;
+    font-family: 'LemonMilk', sans-serif;
+}
+
+/* Aumentar el tamaño de los íconos */
+.nav-icon {
+    font-size: 2rem; /* Ajusta el tamaño según tus preferencias */
+    margin-right: 15px; /* Espaciado entre el ícono y el texto */
+}
+
+/* Centrando el contenido verticalmente */
+.main-sidebar .nav-pills > .nav-item > .nav-link {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+/* Estilo para el contenedor de navegación */
+.sidebar {
+    padding-top: 10px; /* Espacio adicional en la parte superior */
+}
+
+/* O usa un margen en el primer elemento de la lista para mayor control */
+.nav-sidebar .nav-item:first-child {
+    margin-top: 10px; /* Ajusta el valor según sea necesario */
+}
+/* Aplica un margen de 5px a todos los demás elementos de la lista */
+.nav-sidebar .nav-item:not(:first-child) {
+    margin-top: 10px; /* Espacio entre los botones */
+}
+
+/* Opcional: Cambiar el color al pasar el mouse */
+.nav-link:hover {
+    background-color: #d2d6de; /* Ajusta el color de fondo al pasar el mouse */
+}
+
+/* Estilo para el contenedor de los elementos a la derecha */
+.navbar-nav.ml-auto {
+    display: flex;
+    align-items: center;
+    margin-left: auto; /* Asegura que los elementos se alineen a la derecha */
+}
+
+/* Asegura que el contenedor de los íconos y el texto mantengan la alineación correcta */
+.navbar-nav .nav-item.dropdown {
+    display: flex;
+    align-items: center;
+}
+
+/* Asegura que el menú desplegable esté alineado a la derecha */
+.dropdown-menu {
+    left: auto;
+    right: 0; /* Alinea el menú desplegable a la derecha */
+}
+
+/* Estilo para el texto en la barra de navegación */
+.navbar-text {
+    white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+    overflow: hidden; /* Oculta el texto que se desborda */
+    text-overflow: ellipsis; /* Agrega puntos suspensivos si el texto es demasiado largo */
+    font-size: 2rem; /* Tamaño de fuente predeterminado */
+    display: flex;
+    align-items: center; /* Centra verticalmente el texto */
+}
+
+
+/* Ajusta el tamaño de la fuente en dispositivos más pequeños */
+@media (max-width: 768px) {
+    .navbar-text {
+        font-size:1.3rem; /* Ajusta el tamaño según sea necesario */
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar-text {
+        font-size: 1.3rem; /* Ajusta el tamaño según sea necesario */
+    }
+}
+
+/* Estilo adicional para dispositivos pequeños */
+@media (max-width: 768px) {
+    .nav-link {
+        font-size: 1.1rem; /* Tamaño de la fuente en dispositivos pequeños */
+        height: auto; /* Permite que la altura se ajuste automáticamente */
+        padding: 0.5rem; /* Ajusta el padding para un mejor aspecto */
+    }
+}
+
+

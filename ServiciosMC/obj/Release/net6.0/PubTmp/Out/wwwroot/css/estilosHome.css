@@ -1,0 +1,624 @@
+﻿
+@font-face {
+    font-family: 'LemonMilk';
+    src: url('/MCreativos/Fonts/LemonMilk.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LibelSuit';
+    src: url('/MCreativos/Fonts/libel-suit-rg.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*ESTILOS DIV BUSCAR TICKETS*/
+.ticket-card {
+    padding: 20px; /* Espaciado interno simétrico */
+    box-shadow: 0px 0px 15px rgb(15 10 53 / 0.85);
+    margin-top: 10px;
+}
+.ticket-card .card-body {
+    padding: 0; /* Elimina padding adicional para evitar mucho espacio */
+}
+.ticket-card h3.card-title {
+        font-family: 'LemonMilk', sans-serif;
+        font-size: 1.6rem;
+        color: #0f0a35;
+        margin: 0;
+        text-align: center; /* Centrar el título horizontalmente */
+        margin-bottom: 10px; /* Espacio entre el título y el input */
+        line-height: 1.3rem;
+    }
+.ticket-card .card-icon {
+        font-size: 1.8rem;
+        color: #0f0a35;
+        justify-content: center; /* Centrar el ícono horizontalmente */
+        display: inline-flex;
+        align-items: center;
+        margin-bottom: 10px; /* Espacio entre el título y el input */
+    }
+.ticket-card .form-group {
+        display: flex;
+        justify-content: center; /* Centrar el ícono horizontalmente */
+        align-items: center;
+        margin-bottom: 0; /* Eliminar margen inferior */
+    }
+.ticket-card #txtFolio {
+        flex-grow: 1; /* Permite que el input ocupe todo el espacio disponible */
+        margin-right: 8px; /* Espacio entre el input y el botón */
+        font-family: 'Urbanist', sans-serif;
+        font-size: 1.1rem;
+    }
+.ticket-card #btnBuscarTicket,
+.ticket-card #btnLimpiar {
+        background-color: #0f0a35;
+        color: #fff;
+        border: none;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 50px; /* Ancho mínimo para hacer el botón más ancho */
+    }
+.ticket-card #btnBuscarTicket {
+        margin-right: 8px; /* Espacio entre el botón de buscar y el botón de limpiar */
+    }
+.ticket-card #btnBuscarTicket span,
+.ticket-card #btnLimpiar span {
+            font-size: 1rem; /* Tamaño del ícono */
+        }
+.ticket-card #btnBuscarTicket:hover,
+.ticket-card #btnLimpiar:hover {
+            background-color: #1f386e; /* Color de fondo al hacer hover */
+        }
+
+/*ESTILOS DIV INFORMACIÓN DEL PEDIDO*/
+.infopedido-card {
+    padding: 20px; /* Espaciado interno simétrico */
+    box-shadow: 0px 0px 15px rgb(15 10 53 / 0.85);
+    margin-top: 10px;
+}
+.infopedido-card .card-body {
+        padding: 0; /* Elimina padding adicional para evitar mucho espacio */
+    }
+.infopedido-card .card-title {
+        font-family: 'LemonMilk', sans-serif;
+        font-size: 1.2rem;
+        color: #0f0a35;
+        margin: 0;
+        line-height: 1.3rem;
+    }
+.infopedido-card .card-icon {
+        font-size: 1.8rem;
+        color: #0f0a35;
+        margin-right: 10px; /* Añade espacio entre ícono y título */
+    }
+.infopedido-card .form-group {
+        display: flex;
+        justify-content: center; /* Centrar horizontalmente ícono y título */
+        align-items: center; /* Centrar verticalmente ícono y título */
+        margin-bottom: 10px;
+    }
+.infopedido-card #btnPasarProduccion {
+        background-color: #e86217;
+        font-family: 'LemonMilk', sans-serif;
+        color: #ffffff;
+        width: 100%; /* Botón ocupa todo el ancho */
+    }
+.infopedido-card #btnPasarProduccion span {
+            font-size: 1rem; /* Tamaño del ícono */
+        }
+.infopedido-card #btnPasarProduccion:hover {
+            background-color: #1f386e;
+        }
+.infopedido-card p {
+        font-family: 'Urbanist', sans-serif;
+        font-size: 1rem; /* Ajusta el tamaño de la fuente según prefieras */
+        color: #0f0a35; /* Opcional: puedes ajustar el color de la fuente si lo necesitas */
+    }
+
+/*ESTILOS DIV PEDIDOS*/
+.pedidos-card {
+    padding: 20px;
+    box-shadow: 0px 0px 15px rgba(15, 10, 53, 0.85);
+}
+.pedidos-card .card-body {
+        padding: 0; /* Elimina padding adicional para evitar mucho espacio */
+    }
+.pedidos-card h3.card-title {
+        font-family: 'LemonMilk', sans-serif;
+        font-size: 1.6rem;
+        color: #0f0a35;
+        margin: 0;
+    }
+.pedidos-card .card-icon {
+        font-size: 1.8rem;
+        color: #0f0a35;
+    }
+.cpedidos {
+    display: flex;
+    justify-content: center;
+}
+
+.oculto {
+    display: none;
+}
+
+/* Estilo de las categorías */
+.order-category {
+    border-radius: 10px;
+    margin-bottom: 10px;
+    padding-bottom:15px;
+}
+.order-header {
+    font-family: 'LemonMilk', sans-serif;
+    display: flex;
+    align-items: center; /* Alineación vertical */
+    justify-content: flex-start; /* Alineación horizontal (puedes usar center si es necesario) */
+    margin-bottom: 10px; /* Espacio entre el encabezado y otros elementos */
+}
+.order-header .order-icon {
+        font-size: 1.6rem; /* Ajusta el tamaño del ícono */
+        color: #0f0a35; /* Aplica el color que desees */
+        margin-right: 10px; /* Espacio entre el ícono y el texto */
+        display: inline-flex;
+        align-items: center; /* Asegura que el ícono esté centrado verticalmente */
+    }
+    .order-header h3 {
+        font-size: 1.4rem !important; /* Tamaño de la fuente del título */
+        color: #0f0a35;
+        margin: 0; /* Elimina los márgenes predeterminados */
+        line-height: 1.3rem; /* Ajusta la altura de línea */
+    }
+
+/* Ícono de categoría con colores específicos */
+.category-1 .order-icon {
+    color: #274296;
+}
+.category-2 .order-icon {
+    color: #2272ab;
+}
+.category-3 .order-icon {
+    color: #aa4c9c;
+}
+.category-4 .order-icon {
+    color: #dc418c;
+}
+.category-5 .order-icon {
+    color: #e86217;
+}
+.category-6 .order-icon {
+    color: #d9b207;
+}
+.category-7 .order-icon {
+    color: #0f0a35;
+}
+/* Sombra para los .card-item en base al color del ícono */
+.category-1 .card-item {
+    box-shadow: 0 2px 8px rgb(39 66 150 / 0.80); /* Color azul para categoría 1 */
+}
+.category-2 .card-item {
+    box-shadow: 0 2px 8px rgba(34, 114, 171, 0.80); /* Color azul más claro para categoría 2 */
+}
+.category-3 .card-item {
+    box-shadow: 0 2px 8px rgba(170, 76, 156, 0.80); /* Color rosa para categoría 3 */
+}
+.category-4 .card-item {
+    box-shadow: 0 2px 8px rgba(220, 65, 140, 0.80); /* Color fucsia para categoría 4 */
+}
+.category-5 .card-item {
+    box-shadow: 0 2px 8px rgba(232, 98, 23, 0.80); /* Color naranja para categoría 5 */
+}
+.category-6 .card-item {
+    box-shadow: 0 2px 8px rgba(248, 210, 42, 0.80); /* Color amarillo para categoría 6 */
+}
+.category-7 .card-item {
+    box-shadow: 0 2px 8px rgba(15, 10, 53, 0.80); /* Color azul oscuro para categoría 7 */
+}
+
+/* Título dentro de cada categoría */
+.order-category h3 {
+    font-size: 1.3em;
+    margin: 0;
+    text-align: left;
+}
+
+/*ESTILOS PARA TARJETAS*/
+/* Estilo para nombre cliente */
+.cliente {
+    font-size: 0.9rem;
+    font-family: 'LemonMilk', sans-serif;
+    margin-bottom: 2px;
+    color: #0f0a35;
+}
+
+/* Estilo para los detalles */
+.detalle {
+    font-size: 1rem;
+    font-family: 'Urbanist', sans-serif;
+    margin-bottom: 2px;
+}
+
+/* Contenedor de tarjetas */
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas de igual tamaño */
+    gap: 20px; /* Espacio entre las tarjetas */
+    padding: 10px; /* Espacio interno en el contenedor */
+}
+
+/* Estilo de las tarjetas */
+.card-item {
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: white; /* Fondo blanco para las tarjetas */
+    transition: box-shadow 0.3s ease;
+    cursor: pointer;
+    box-sizing: border-box; /* Incluye padding y border en el ancho total */
+}
+
+.card-item:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+/* Estilos para pantallas pequeñas */
+@media (max-width: 767px) {
+    .card-container {
+        grid-template-columns: 1fr; /* Una columna para pantallas pequeñas */
+    }
+}
+
+/* Estilos para pantallas medianas */
+@media (min-width: 768px) and (max-width: 991px) {
+    .card-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas para pantallas medianas */
+    }
+}
+
+/* Estilos para pantallas grandes */
+@media (min-width: 992px) {
+    .card-container {
+        grid-template-columns: repeat(3, 1fr); /* 3 columnas para pantallas grandes */
+    }
+}
+
+
+
+/*ESTILOS PARA MODAL*/
+.modal-custom {
+    max-height: 80vh;
+    height: auto;
+    margin: auto;
+    overflow-y: auto;
+}
+    /* Estilos del scrollbar */
+    .modal-custom::-webkit-scrollbar {
+        width: 5px;
+        height: 5px;
+    }
+
+    .modal-custom::-webkit-scrollbar-track {
+        background-color: inherit; /* color de fondo */
+    }
+
+    .modal-custom::-webkit-scrollbar-thumb {
+        background-color: #dddddd; /* color scrollbar */
+        border-radius: 1px;
+    }
+
+        .modal-custom::-webkit-scrollbar-thumb:hover {
+            background-color: #e5e5e5; /* color al pasar mouse */
+        }
+    
+
+#order-modal .modal-header {
+    font-family: 'LemonMilk', sans-serif;
+    background-color: #f0f0f0; /* Fondo suave para el header */
+    display: flex;
+    align-items: center;
+    padding: 10px 15px; /* Ajustar padding según sea necesario */
+}
+
+    #order-modal .modal-header h5.modal-title {
+        font-size: 1.6rem;
+        margin: 0;
+        margin-left: 10px; /* Espacio entre el icono y el título */
+        line-height: 1.3rem; /* Ajustar para reducir el espacio */
+    }
+
+    #order-modal .modal-header .card-icon {
+        font-size: 1.8rem;
+        margin: 0; /* Elimina cualquier margen inferior extra */
+    }
+    #order-modal .modal-header .close {
+        font-size: 0.8rem; /* Asegúrate de que el tamaño sea suficiente */
+        color: #303030; /* Color contrastante */
+        padding: 0; /* Elimina padding adicional */
+        margin-right: 0px; /* Alinea a la derecha */
+        /*  display: flex; Asegúrate de que el botón se muestre */
+        align-items: center; /* Centra el icono dentro del botón */
+    }
+
+/*Estilo para título cambiosPedido*/
+#cambiosPedido .cambiosE {
+    font-family: 'LemonMilk', sans-serif;
+    display: flex;
+    align-items: center;
+    padding: 0px 0px 10px 0px; /* [arriba] [derecha] [abajo] [izquierda]; */
+}
+    #cambiosPedido .cambiosE .card-icon {
+        font-size: 1.6rem; /* Tamaño del ícono */
+        margin-right: 5px; /* Espacio entre el ícono y el título */
+        color: #333; /* Color del ícono */
+    }
+
+    #cambiosPedido .cambiosE h5.modal-title {
+        font-size: 1.2rem !important;
+        margin: 0;
+        line-height: 1.3rem; /* Ajustar para reducir el espacio */
+    }
+
+/* Estilo para el texto del cliente y demás información */
+#modal-order-details p {
+    font-family: 'LemonMilk', sans-serif;
+    font-size: 1rem;
+    color: #0f0a35;
+}
+
+/* Estilo para los labels */
+#modal-order-details label {
+    font-family: 'Urbanist', sans-serif;
+    font-size: 1rem;
+    color: #2f2f2f;
+    font-weight: bold;
+}
+
+/* Estilo para los valores debajo de los labels */
+#modal-order-details p {
+    font-family: 'Urbanist', sans-serif;
+    font-size: 1rem;
+    color: #2f2f2f;
+    margin-bottom: 0px; /* Espacio entre el label y el contenido */
+}
+
+/* Espaciado y alineación */
+#modal-order-details .row {
+    margin-bottom: 5px; /* Espacio entre filas */
+}
+
+/* Estilo para botones dentro del modal */
+#order-modal .btn-primary {
+    font-family: 'Urbanist', sans-serif;
+    font-size: 1rem;
+    width: 100%; 
+}
+
+
+/* Estilos dinámicos por categoría */
+/* Categoría 1 */
+#order-modal.category-1 .modal-header h5.modal-title,
+#order-modal.category-1 .modal-header .card-icon,
+#order-modal.category-1 .modal-header .close {
+    color: #274296;
+    border-color: #274296;
+}
+/* Agregar el color al border-bottom */
+#order-modal.category-1 .modal-header {
+    border-bottom: 3px solid #274296; /* Puedes ajustar el grosor y el color según lo necesites */
+}
+/* Agregar el color a los botones */
+#order-modal.category-1 .btn-primary {
+    background-color: #274296;
+    border-color: #274296;
+    font-weight: bold;
+}
+#order-modal.category-1 .modal-body .custom-hr {
+    background-color: #274296; /* Cambia el color del hr */
+    height: 2px; /* Ajusta la altura del hr */
+    border: none; /* Elimina bordes predeterminados si es necesario */
+}
+#order-modal.category-1 .modal-custom {
+    border: 3px solid #274296;
+}
+
+
+/* Categoría 2 */
+    #order-modal.category-2 .modal-header h5.modal-title, 
+    #order-modal.category-2 .modal-header .card-icon, 
+    #order-modal.category-2 .modal-header .close {
+    color: #2272ab;
+    border-color: #2272ab;
+}
+/* Agregar el color al border-bottom */
+#order-modal.category-2 .modal-header {
+    border-bottom: 3px solid #2272ab; /* Puedes ajustar el grosor y el color según lo necesites */
+}
+/* Agregar el color a los botones */
+#order-modal.category-2 .btn-primary {
+    background-color: #2272ab;
+    border-color: #2272ab;
+    font-weight: bold;
+}
+#order-modal.category-2 .modal-body .custom-hr {
+    background-color: #2272ab; /* Cambia el color del hr */
+    height: 2px; /* Ajusta la altura del hr */
+    border: none; /* Elimina bordes predeterminados si es necesario */
+}
+#order-modal.category-2 .modal-custom {
+    border: 3px solid #2272ab;
+}
+
+/* Categoría 3 */
+#order-modal.category-3 .modal-header h5.modal-title,
+#order-modal.category-3 .modal-header .card-icon,
+#order-modal.category-3 .modal-header .close {
+    color: #aa4c9c;
+    border-color: #aa4c9c;
+}
+/* Agregar el color al border-bottom */
+#order-modal.category-3 .modal-header {
+    border-bottom: 3px solid #aa4c9c; /* Puedes ajustar el grosor y el color según lo necesites */
+}
+/* Agregar el color a los botones */
+#order-modal.category-3 .btn-primary {
+    background-color: #aa4c9c;
+    border-color: #aa4c9c;
+    font-weight: bold;
+}
+#order-modal.category-3 .modal-body .custom-hr {
+    background-color: #aa4c9c; /* Cambia el color del hr */
+    height: 2px; /* Ajusta la altura del hr */
+    border: none; /* Elimina bordes predeterminados si es necesario */
+}
+#order-modal.category-3 .modal-custom {
+    border: 3px solid #aa4c9c;
+}
+
+/* Categoría 4 */
+#order-modal.category-4 .modal-header h5.modal-title,
+#order-modal.category-4 .modal-header .card-icon,
+#order-modal.category-4 .modal-header .close {
+    color: #dc418c;
+    border-color: #dc418c;
+}
+/* Agregar el color al border-bottom */
+#order-modal.category-4 .modal-header {
+    border-bottom: 3px solid #dc418c; /* Puedes ajustar el grosor y el color según lo necesites */
+}
+/* Agregar el color a los botones */
+#order-modal.category-4 .btn-primary {
+    background-color: #dc418c;
+    border-color: #dc418c;
+    font-weight: bold;
+}
+#order-modal.category-4 .modal-body .custom-hr {
+    background-color: #dc418c; /* Cambia el color del hr */
+    height: 2px; /* Ajusta la altura del hr */
+    border: none; /* Elimina bordes predeterminados si es necesario */
+}
+#order-modal.category-4 .modal-custom {
+    border: 3px solid #dc418c;
+}
+
+/* Categoría 5 */
+#order-modal.category-5 .modal-header h5.modal-title,
+#order-modal.category-5 .modal-header .card-icon,
+#order-modal.category-5 .modal-header .close {
+    color: #e86217;
+    border-color: #e86217;
+}
+/* Agregar el color al border-bottom */
+#order-modal.category-5 .modal-header {
+    border-bottom: 3px solid #e86217; /* Puedes ajustar el grosor y el color según lo necesites */
+}
+/* Agregar el color a los botones */
+#order-modal.category-5 .btn-primary {
+    background-color: #e86217;
+    border-color: #e86217;
+    font-weight: bold;
+}
+#order-modal.category-5 .modal-body .custom-hr {
+    background-color: #e86217; /* Cambia el color del hr */
+    height: 2px; /* Ajusta la altura del hr */
+    border: none; /* Elimina bordes predeterminados si es necesario */
+}
+#order-modal.category-5 .modal-custom {
+    border: 3px solid #e86217;
+}
+
+/* Categoría 6 */
+#order-modal.category-6 .modal-header h5.modal-title,
+#order-modal.category-6 .modal-header .card-icon,
+#order-modal.category-6 .modal-header .close {
+    color: #d9b207;
+    border-color: #f2c601;
+}
+/* Agregar el color al border-bottom */
+#order-modal.category-6 .modal-header {
+    border-bottom: 3px solid #d9b207; /* Puedes ajustar el grosor y el color según lo necesites */
+}
+/* Agregar el color a los botones */
+#order-modal.category-6 .btn-primary {
+    background-color: #d9b207;
+    border-color: #d9b207;
+    font-weight: bold;
+}
+#order-modal.category-6 .modal-body .custom-hr {
+    background-color: #d9b207; /* Cambia el color del hr */
+    height: 2px; /* Ajusta la altura del hr */
+    border: none; /* Elimina bordes predeterminados si es necesario */
+}
+#order-modal.category-6 .modal-custom {
+    border: 3px solid #d9b207;
+}
+
+/* Categoría 7 */
+#order-modal.category-7 .modal-header h5.modal-title,
+#order-modal.category-7 .modal-header .card-icon,
+#order-modal.category-7 .modal-header .close {
+    color: #0f0a35;
+    border-color: #0f0a35;
+}
+/* Agregar el color al border-bottom */
+#order-modal.category-7 .modal-header {
+    border-bottom: 3px solid #0f0a35; /* Puedes ajustar el grosor y el color según lo necesites */
+}
+/* Agregar el color a los botones */
+#order-modal.category-7 .btn-primary {
+    background-color: #0f0a35;
+    border-color: #0f0a35;
+    font-weight: bold;
+}
+#order-modal.category-7 .modal-body .custom-hr {
+    background-color: #0f0a35; /* Cambia el color del hr */
+    height: 2px; /* Ajusta la altura del hr */
+    border: none; /* Elimina bordes predeterminados si es necesario */
+}
+#order-modal.category-7 .modal-custom {
+    border: 3px solid #0f0a35;
+}
+
+
+
+
+/* Estilo para el botón de búsqueda */
+.botonesBT {
+    background-color: #274296;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease;
+}
+
+    .botonesBT:hover {
+        background-color: #2272ab; /* Color de fondo al pasar el ratón */
+    }
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .col-md-8, .col-md-6 {
+        margin-top: 15px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -28,9 +28,9 @@ namespace ServiciosMC.Controllers
         public JsonResult Autenticacion(LoginViewModel loginViewModel)
         {
             Debug.WriteLine("LOGINNNN: " + loginViewModel.Usuario);
-            ResultadoViewModel resultado = new ResultadoViewModel();
             Autenticacion autenticacion = new Autenticacion();
-            resultado = autenticacion.ValidarCredenciales(loginViewModel);
+            ResultadoViewModel resultado = autenticacion.ValidarCredenciales(loginViewModel);
+            Debug.WriteLine("Resultado:" + resultado);
 
             if (resultado.Estado == true)
             {

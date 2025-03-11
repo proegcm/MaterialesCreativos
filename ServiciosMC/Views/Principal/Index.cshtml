@@ -839,9 +839,8 @@
                         document.getElementById('parcel-select').focus();
 
                         assignParcelBtn.addEventListener('click', function () {
-                            const selectedParcel = selectElement.value;
+                            const selectedParcel = document.getElementById('parcel-select').value;
                             console.log('Valor seleccionado:', selectedParcel);
-
                             obvs = document.getElementById('txtInfoObservaciones').value;
                             //obvs = combinarObservaciones(pedido.observaciones, obvs);
                             if (selectedParcel) {

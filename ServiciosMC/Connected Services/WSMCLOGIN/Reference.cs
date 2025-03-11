@@ -188,6 +188,7 @@ namespace WSMCLOGIN
                 result.ReaderQuotas = System.Xml.XmlDictionaryReaderQuotas.Max;
                 result.MaxReceivedMessageSize = int.MaxValue;
                 result.AllowCookies = true;
+                result.Security.Mode = System.ServiceModel.BasicHttpSecurityMode.Transport;
                 return result;
             }
             throw new System.InvalidOperationException(string.Format("No se pudo encontrar un punto de conexión con el nombre \"{0}\".", endpointConfiguration));
@@ -197,7 +198,7 @@ namespace WSMCLOGIN
         {
             if ((endpointConfiguration == EndpointConfiguration.WSLoginPort))
             {
-                return new System.ServiceModel.EndpointAddress("http://localhost:8080/WSLoginMC/WSLogin");
+                return new System.ServiceModel.EndpointAddress("https://serviciosmc.xyz/WSLoginMC/WSLogin");
             }
             throw new System.InvalidOperationException(string.Format("No se pudo encontrar un punto de conexión con el nombre \"{0}\".", endpointConfiguration));
         }
