@@ -103,6 +103,7 @@ namespace ServiciosMC.Controllers
         {
             try
             {
+                Helper helper = new Helper();
                 string URL = config.GetValue<string>("Servicios:API_PYTHON") + "consultaUsuariosMC";
 
                 using (HttpClient httpClient = new HttpClient())
@@ -120,10 +121,15 @@ namespace ServiciosMC.Controllers
                         Debug.WriteLine(":) data: " + data);
                         // Crea una lista filtrada con solo los campos necesarios
                         var usuariosFiltrados = new List<object>();
+
+                        var username = User.Identity.IsAuthenticated ? User.Identity.Name : "";
+                        var tipoUsuario = User.Claims.FirstOrDefault(c => c.Type == "TIPO_USUARIO")?.Value;
+
                         // Recorre el array de usuarios en el JSON
                         foreach (var usuario in data.GetProperty("listadoUsuarios").EnumerateArray())
                         {
-                            if (usuario.GetProperty("rol").GetString() != "PILOTO")
+                            // Si es administrador, agregar todos los usuarios
+                            if (tipoUsuario == "ADMINISTRADOR")
                             {
                                 usuariosFiltrados.Add(new
                                 {
@@ -133,7 +139,22 @@ namespace ServiciosMC.Controllers
                                     username = usuario.GetProperty("username").GetString()
                                 });
                             }
-                           
+                            // Si no es administrador, agregar solo su propio usuario
+                            else 
+                            {
+                                if (usuario.GetProperty("username").GetString() == username)
+                                {
+                                    usuariosFiltrados.Add(new
+                                    {
+                                        id_usuario = usuario.GetProperty("id_usuario").GetInt32(),
+                                        nombre = usuario.GetProperty("nombre").GetString(),
+                                        rol = usuario.GetProperty("rol").GetString(),
+                                        username = usuario.GetProperty("username").GetString()
+                                    });
+                                }
+                                    
+                            }
+
                         }
 
 

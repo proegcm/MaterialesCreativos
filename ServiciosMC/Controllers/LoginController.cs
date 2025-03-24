@@ -1,23 +1,23 @@
-﻿using ServiciosMC.Helpers;
-using ServiciosMC.Models;
+﻿using ServiciosMC.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
-using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using System.Xml.Serialization;
 using ServiciosMC.MaterialesCreativos;
 
 namespace ServiciosMC.Controllers
 {
     public class LoginController : Controller
     {
-        /// private object resultado;
+        private readonly IConfiguration _config;
+
+        public LoginController(IConfiguration configuration)
+        {
+            _config = configuration;
+        }
 
         public IActionResult Index()
         {
@@ -25,12 +25,11 @@ namespace ServiciosMC.Controllers
         }
 
         [HttpPost]
-        public JsonResult Autenticacion(LoginViewModel loginViewModel)
+        public async Task<JsonResult> Autenticacion(LoginViewModel loginViewModel)
         {
-            Debug.WriteLine("LOGINNNN: " + loginViewModel.Usuario);
-            Autenticacion autenticacion = new Autenticacion();
-            ResultadoViewModel resultado = autenticacion.ValidarCredenciales(loginViewModel);
-            Debug.WriteLine("Resultado:" + resultado);
+            Debug.WriteLine("LOGIN: " + loginViewModel.Usuario);
+            Autenticacion autenticacion = new Autenticacion(_config);
+            ResultadoViewModel resultado = await autenticacion.ValidarCredencialesNuevo(loginViewModel);
 
             if (resultado.Estado == true)
             {
@@ -39,23 +38,21 @@ namespace ServiciosMC.Controllers
                             {
                                     new Claim(ClaimTypes.Name,loginViewModel.Usuario),
                                     new Claim(ClaimTypes.Role,resultado.Tipo),
+                                    new Claim(ClaimTypes.NameIdentifier, resultado.Nombre),
                                     new Claim("TIPO_USUARIO",resultado.Tipo),
                                     new Claim("IDUSR",resultado.ID),
                                     new Claim("Usuario",loginViewModel.Usuario),
                                     new Claim("Password",loginViewModel.Password)
                             };
-                Debug.WriteLine("usuarioInfo: " + usuarioInfo);
                 var usuarioIdentity = new ClaimsIdentity(usuarioInfo, "UsuarioInfo");
                 var userPrincipal = new ClaimsPrincipal(new[] { usuarioIdentity });
-                HttpContext.SignInAsync(userPrincipal);
+                await HttpContext.SignInAsync(userPrincipal);
             }
-            Debug.WriteLine(resultado);
             return Json(resultado);
         }
 
         public ActionResult Salir()
         {
-
             HttpContext.SignOutAsync();
             return RedirectToAction("Index", "Login");
         }

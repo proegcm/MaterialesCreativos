@@ -7,11 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
     <link href="~/css/estilosHistorial.css" rel="stylesheet">
-    @* <link href="~/DataTables/datatables.min.css" rel="stylesheet">
-    <script src="~/DataTables/datatables.min.js"></script> *@
     <title>Listado de Pedidos</title>
-    <style>
-    </style>
 </head>
 <body>
     <div class="row justify-content-center">
@@ -160,12 +156,12 @@
                                     <p class ="mt-0" id="txtInfoEstadoActual"></p>
                                 </div>
                             </div>
-                            
+                        </ul>
                             <hr class="custom-hr">
                             <div class="row">
                                  <!-- Tracking del pedido -->
                                 <ul class="timeline" id="tracking-info">
-                                    <!-- Aquí se insertarán los estados del tracking dinámicamente -->
+                                    <!-- estados tracking -->
                                 </ul>
                             </div>
                         </div>
@@ -173,10 +169,6 @@
                 </div>
             </div>
         </div>
-
-
-    </div>
-
 </body>
 </html>
 
@@ -257,7 +249,6 @@
                 data: parametros,
                 success: function (data) {
                     if (!data.success) {
-                        console.log(data.errorMensaje);
                         dialogoEG({
                             type: "error",
                             title: "Error consulta de pedidos",
@@ -369,10 +360,7 @@ function getUsuarios() {
         url: '@Url.Action("ConsultaUsuarios", "HistorialPedidos")',
         type: "POST",
         success: function (data) {
-            console.log(data);
-            if (!data.success) {
-                console.log(data.errorMensaje);
-            } else {
+            if (data.success) {
                 // Acceder al array de usuarios
                 let listadoUsuarios = data.listadoUsuarios;
 
@@ -387,6 +375,8 @@ function getUsuarios() {
                 listadoUsuarios.forEach(usr => {
                     userSelect.append(`<option value="${usr.id_usuario}">${usr.username} - ${usr.nombre}</option>`);
                 });
+
+                //Seleccionar el usuario en caso de 
             }
             document.getElementById('contenedor-loader').style.display = 'none';
         },
@@ -448,7 +438,6 @@ function getUsuarios() {
             trackingInfo.innerHTML = ''; // Limpiar contenido anterior
             // Insertar los estados del tracking
             if (pedido.tracking) {
-                console.log("tracking --- " + pedido.folio);
                 pedido.tracking.forEach(tracking => {
                     let timelineItem = document.createElement('li');
                     timelineItem.classList.add('timeline-item');
@@ -494,28 +483,28 @@ function getUsuarios() {
 
 
     // Imprimir información básica del pedido
-    console.log(`Folio: ${pedido.folio}`);
-    console.log(`Fecha: ${pedido.fecha}`);
-    console.log(`Cajero: ${pedido.cajero}`);
-    console.log(`Cliente: ${pedido.cliente}`);
-    console.log(`Total: ${pedido.total}`);
-    console.log(`Pago: ${pedido.pago}`);
-    console.log(`Cambio: ${pedido.cambio}`);
-    console.log(`Estado actual: ${pedido.estado_actual}`);
-    console.log(`Usuario registro: ${pedido.usuario_registro}`);
+    // console.log(`Folio: ${pedido.folio}`);
+    // console.log(`Fecha: ${pedido.fecha}`);
+    // console.log(`Cajero: ${pedido.cajero}`);
+    // console.log(`Cliente: ${pedido.cliente}`);
+    // console.log(`Total: ${pedido.total}`);
+    // console.log(`Pago: ${pedido.pago}`);
+    // console.log(`Cambio: ${pedido.cambio}`);
+    // console.log(`Estado actual: ${pedido.estado_actual}`);
+    // console.log(`Usuario registro: ${pedido.usuario_registro}`);
 
         // Recorrer e imprimir cada tracking asociado al pedido
-        if (pedido.tracking) { // Verifica que tracking no sea undefined
-            pedido.tracking.forEach(tracking => {
-                console.log(`--- Tracking ${pedido.folio} ---`);
-                console.log(`   Estado: ${tracking.estado}`);
-                console.log(`   Fecha estado: ${tracking.fecha_estado}`);
-                console.log(`   Usuario cambio: ${tracking.usuario_cambio}`);
-                console.log(`   Mensajero: ${tracking.mensajero}`);
-                console.log(`   Paquetería: ${tracking.paqueteria}`);
-                console.log(`   Observaciones: ${tracking.observaciones}`);
-            });
-        }
+        // if (pedido.tracking) { // Verifica que tracking no sea undefined
+        //     pedido.tracking.forEach(tracking => {
+        //         console.log(`--- Tracking ${pedido.folio} ---`);
+        //         console.log(`   Estado: ${tracking.estado}`);
+        //         console.log(`   Fecha estado: ${tracking.fecha_estado}`);
+        //         console.log(`   Usuario cambio: ${tracking.usuario_cambio}`);
+        //         console.log(`   Mensajero: ${tracking.mensajero}`);
+        //         console.log(`   Paquetería: ${tracking.paqueteria}`);
+        //         console.log(`   Observaciones: ${tracking.observaciones}`);
+        //     });
+        // }
 
         // Mostrar el modal y agregar la clase de categoría si existe
             const modalElement = document.getElementById('order-modal');

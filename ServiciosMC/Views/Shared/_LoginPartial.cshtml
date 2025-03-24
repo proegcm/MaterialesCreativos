@@ -24,6 +24,10 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
+     $(document).ready(function() {
+        $('#txtUser').focus();
+    });
+
     function Autenticar() {
     var usuario = $('#txtUser').val().toUpperCase();
     var password = $('#txtPasswd').val();
@@ -41,10 +45,7 @@
         success: function (data) {
             console.log(data);
             if (data.estado) {
-                /*if (data.tipo === 'ADMINISTRADOR') {} */
                  window.location.href = '@Url.Action("Index", "Principal")';
-                
-                //window.location.href = '@Url.Action("Index", "Principal")';
             } else {
                 dialogoEG({
                     type: "error",

@@ -128,7 +128,7 @@
 
 /* Opcional: Cambiar el color al pasar el mouse */
 .nav-link:hover {
-    background-color: #d2d6de; /* Ajusta el color de fondo al pasar el mouse */
+    background-color: #f8f8f8; /* Ajusta el color de fondo al pasar el mouse */
 }
 
 /* Estilo para el contenedor de los elementos a la derecha */
@@ -147,40 +147,165 @@
 /* Asegura que el menú desplegable esté alineado a la derecha */
 .dropdown-menu {
     left: auto;
-    right: 0; /* Alinea el menú desplegable a la derecha */
+    right: 0; 
 }
 
 /* Estilo para el texto en la barra de navegación */
 .navbar-text {
-    white-space: nowrap; /* Evita que el texto se divida en varias líneas */
-    overflow: hidden; /* Oculta el texto que se desborda */
-    text-overflow: ellipsis; /* Agrega puntos suspensivos si el texto es demasiado largo */
-    font-size: 2rem; /* Tamaño de fuente predeterminado */
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    font-size: 2rem; 
     display: flex;
-    align-items: center; /* Centra verticalmente el texto */
+    align-items: center;
 }
 
 
-/* Ajusta el tamaño de la fuente en dispositivos más pequeños */
+
+
+/* Ajustar la barra de navegación en dispositivos pequeños */
+@media (max-width: 768px) {
+    .container-fluid {
+        padding: 0 5px !important; /* Reducir el espacio lateral */
+    }
+
+    .navbar-text {
+        font-size: 1.5rem; /* Reducir el tamaño del texto */
+        margin-left: 5px; /* Reducir el margen izquierdo */
+    }
+
+    .nav-link {
+        /*  padding: 0.8rem 1.5rem;  Reducir el padding */
+        font-size: 1.1rem; /* Ajustar el tamaño de la fuente */
+    }
+
+    .navbar-nav {
+        margin-left: 0 !important;
+    }
+
+    .nav-item {
+        margin: 0 5px; /* Reducir espacios entre elementos */
+    }
+
+    .user-dropdown {
+        width: 100px; /* Reducir el ancho del dropdown */
+    }
+
+    .user-icon {
+        font-size: 1.3rem !important; /* Ajustar el tamaño del ícono */
+    }
+
+    .user-name {
+        font-size: 0.9rem; /* Ajustar tamaño del nombre de usuario */
+    }
+
+    .logout-btn a {
+        padding: 6px 8px; /* Ajustar el padding */
+        font-size: 0.9rem; /* Reducir el tamaño del texto */
+    }
+}
+
+/* Para pantallas aún más pequeñas */
+@media (max-width: 576px) {
+    .container-fluid {
+        padding: 0 5px !important; /* Reducir más el padding lateral */
+    }
+
+    .navbar-text {
+        font-size: 1.3rem;
+        margin-left: 2px;
+    }
+
+    .nav-link {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.95rem;
+    }
+
+    .nav-item {
+        margin: 0 3px;
+    }
+
+    .user-dropdown {
+        width: 160px;
+    }
+
+    .user-icon {
+        font-size: 1.1rem !important;
+    }
+
+    .user-name {
+        font-size: 0.85rem;
+    }
+
+    .logout-btn a {
+        padding: 5px 6px;
+        font-size: 0.85rem;
+    }
+}
+
+
+/*
 @media (max-width: 768px) {
     .navbar-text {
-        font-size:1.3rem; /* Ajusta el tamaño según sea necesario */
+        font-size:1.3rem; 
     }
 }
 
 @media (max-width: 576px) {
     .navbar-text {
-        font-size: 1.3rem; /* Ajusta el tamaño según sea necesario */
+        font-size: 1.3rem; 
     }
 }
 
-/* Estilo adicional para dispositivos pequeños */
 @media (max-width: 768px) {
     .nav-link {
-        font-size: 1.1rem; /* Tamaño de la fuente en dispositivos pequeños */
-        height: auto; /* Permite que la altura se ajuste automáticamente */
-        padding: 0.5rem; /* Ajusta el padding para un mejor aspecto */
+        font-size: 1.1rem; 
+        height: auto; 
+        padding: 0.5rem; 
     }
+}*/
+
+
+.user-dropdown {
+    font-family: 'LemonMilk', sans-serif;
+    width: 200px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(15, 10, 53, 0.5);
+    background: white;
+}
+
+.user-info {
+    padding: 10px;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+.user-icon {
+    font-size: 3rem !important; 
+    display: block;
+    margin: 0 auto; 
 }
 
 
+.user-name {
+    color: #274296;
+    display: block;
+    margin-top: 5px;
+    max-width: 100%;
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.logout-btn a {
+    font-family: 'LemonMilk', sans-serif;
+    color: #274296;
+    text-align: center;
+    display: block;
+    padding: 8px 10px;
+}
+
+    .logout-btn a:hover {
+        background-color: #274296;
+        color: white;
+    }

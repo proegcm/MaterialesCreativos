@@ -123,9 +123,13 @@
 .pedidos-card {
     padding: 20px;
     box-shadow: 0px 0px 15px rgba(15, 10, 53, 0.85);
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
 }
-.pedidos-card .card-body {
-        padding: 0; /* Elimina padding adicional para evitar mucho espacio */
+    .pedidos-card .card-body {
+        padding: 0;
+        
     }
 .pedidos-card h3.card-title {
         font-family: 'LemonMilk', sans-serif;
@@ -141,6 +145,28 @@
     display: flex;
     justify-content: center;
 }
+
+.sin-registros {
+    font-family: 'Urbanist', sans-serif;
+    text-align: center;
+    padding: 20px;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+    .sin-registros span {
+        font-size: 2rem;
+        color: gray;
+    }
+
+    .sin-registros h5 {
+        margin-top: 10px;
+        color: gray;
+    }
+
 
 .oculto {
     display: none;
@@ -243,10 +269,10 @@
 
 /* Contenedor de tarjetas */
 .card-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 columnas de igual tamaño */
-    gap: 20px; /* Espacio entre las tarjetas */
-    padding: 10px; /* Espacio interno en el contenedor */
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important; /* 3 columnas de igual tamaño */
+    gap: 20px !important; /* Espacio entre las tarjetas */
+    padding: 10px !important; /* Espacio interno en el contenedor */
 }
 
 /* Estilo de las tarjetas */
@@ -267,21 +293,21 @@
 /* Estilos para pantallas pequeñas */
 @media (max-width: 767px) {
     .card-container {
-        grid-template-columns: 1fr; /* Una columna para pantallas pequeñas */
+        grid-template-columns: 1fr !important; /* Una columna para pantallas pequeñas */
     }
 }
 
 /* Estilos para pantallas medianas */
 @media (min-width: 768px) and (max-width: 991px) {
     .card-container {
-        grid-template-columns: repeat(2, 1fr); /* 2 columnas para pantallas medianas */
+        grid-template-columns: repeat(2, 1fr) !important; /* 2 columnas para pantallas medianas */
     }
 }
 
 /* Estilos para pantallas grandes */
 @media (min-width: 992px) {
     .card-container {
-        grid-template-columns: repeat(3, 1fr); /* 3 columnas para pantallas grandes */
+        grid-template-columns: repeat(3, 1fr) !important; /* 3 columnas para pantallas grandes */
     }
 }
 
@@ -605,7 +631,12 @@
     }
 }
 
-
+@media (max-width: 1179px) {
+    .custom-stack {
+        flex: 0 0 100%; /* Ocupar todo el ancho */
+        max-width: 100%;
+    }
+}
 
 
 

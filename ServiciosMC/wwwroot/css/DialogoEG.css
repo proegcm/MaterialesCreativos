@@ -99,15 +99,15 @@
 
 
 .dialog-body {
-    padding: 20px; 
+    padding: 20px;
     display: flex;
     flex-direction: column;
-    justify-content:flex-start; 
-    align-items: center; 
+    justify-content: flex-start;
+    align-items: center;
     text-align: center;
     overflow-y: auto;
-    overflow-x: hidden; 
-    height: 100%; 
+    overflow-x: hidden;
+    height: 100%;
     box-sizing: border-box;
 }
 

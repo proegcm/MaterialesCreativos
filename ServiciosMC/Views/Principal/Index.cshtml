@@ -8,11 +8,10 @@
 </head>
 <body>
     <div class="row justify-content-center">
-        <div class="col-sm-12 col-lg-10 col-md-10">
+        <div class="col-sm-12 col-lg-10 col-md-10 ">
             <div class="row h-100">
-                <div class="col-sm-4 col-md-6 col-lg-5 flex-grow-1">
+                <div class="col-sm-4 col-md-6 col-lg-5 flex-grow-1 custom-stack">
                     <!--DIV IZQUIERDA-->
-                    
                     <div class="card ticket-card" style="margin-top: 3px;">
                         <div class="card-body">
                             <div class="row">
@@ -26,18 +25,18 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <form id="buscarTicketForm" onsubmit="buscarTicket(); return false;" class="w-100">
+                                        <form id="buscarTicketForm" class="w-100">
                                             <div class="input-group">
                                                 <input type="text" class="form-control" placeholder="Ingrese número de folio"
                                                        name="txtFolio" id="txtFolio" maxlength="10"
-                                                       inputmode="numeric" oninput="validarSoloNumeros(this)" required />
+                                                       inputmode="numeric" required />
                                                 <div class="input-group-append d-md-flex">
-                                                    <button type="submit" class="btn btn-icon" id="btnBuscarTicket" title="Buscar ticket">
+                                                    <button type="button" class="btn btn-icon" id="btnBuscarTicket" title="Buscar ticket" onclick="buscarTicket()">
                                                         <span class="material-symbols-outlined">
                                                             search
                                                         </span>
                                                     </button>
-                                                    <button type="button" class="btn btn-icon" id="btnLimpiar" title="Limpiar búsqueda">
+                                                    <button type="button" class="btn btn-icon" id="btnLimpiar" title="Limpiar búsqueda" onclick="limpiar()">
                                                         <span class="material-symbols-outlined">
                                                             backspace
                                                         </span>
@@ -52,7 +51,7 @@
                     </div>
 
 
-                    <!---->
+                    <!--DIV PEDIDO-->
                     <div class="card infopedido-card" style="margin-top: 3px; display: none;" id="pedidoInfo">
                         <div class="card-body">
                             <div class="row">
@@ -81,7 +80,7 @@
                     </div>
                 </div>
 
-                <div class="col-sm-8 col-md-6 col-lg-7 flex-grow-1">
+                <div class="col-sm-8 col-md-6 col-lg-7 flex-grow-1 custom-stack">
                     <!--DIV DERECHA-->
                     <div class="card pedidos-card" style="margin-top: 3px">
                         <div class="card-body">
@@ -91,6 +90,10 @@
                                         <span class="material-symbols-outlined card-icon">package_2</span>
                                         <h3 class="card-title ml-2">PEDIDOS</h3>
                                     </div>
+                                </div>
+                                <div class="col-12 text-center sin-registros oculto">
+                                    <span class="material-symbols-outlined" >info</span>
+                                    <h5 class="mt-2" style="color: gray;">Sin registros</h5>
                                 </div>
                                 <div class="col-12  oculto">
                                     <div class="form-group order-category category-1">
@@ -195,6 +198,7 @@
                         </div>
                     </div>
                 </div>
+            
             </div>
         </div>
 
@@ -379,30 +383,52 @@
         
 
         $(document).ready(function () {
-            console.log("READY :D");
             
             consultaPedidos();
             
+            $("#txtFolio").on("input", function () {
+                this.value = this.value.replace(/[^0-9]/g, '');
+            });
 
         });
 
         //Consulta folio en firebird
         function buscarTicket() {
             $('#pedidoInfo').hide();
-            let nofolio = $('#txtFolio').val();
+            let input = $('#txtFolio');
+            let nofolio = $('#txtFolio').val().trim();
+
+            input.tooltip('dispose');
+
+            if (nofolio === '') {
+                // Agregar tooltip con el mensaje de error
+                input.attr('data-bs-toggle', 'tooltip')
+                     .attr('data-bs-placement', 'bottom')
+                     .attr('title', 'Debes ingresar un número de folio.')
+                     .tooltip('show');
+
+                // Ocultar el tooltip después de 5 segundos y eliminarlo
+                setTimeout(() => {
+                    input.tooltip('hide').tooltip('dispose'); 
+                    input.removeAttr('title'); 
+                }, 5000);
+
+                return;
+            }
+
             document.getElementById('contenedor-loader').style.display = 'flex';
             $.ajax({
                     url: '@Url.Action("ObtenerPedido", "Principal")',
                     type: "POST",
                     data: { folio: nofolio },
                     success: function (data) {
-                        console.log("Obtener pedido: ");
-                        console.log(data);
+                        // console.log("Obtener pedido: ");
+                         console.log(data);
                         if (data.existeError) {
                             dialogoEG({
                                 type: "error",
                                 title: "Error al buscar ticket",
-                                mensaje: "Ocurrió un error al consultar a la base de datos. Intente de nuevo, si el inconveniente persiste contacte al administrador.",
+                                mensaje: "Ha ocurrido un error al consultar la información del pedido a la base de datos. Intente de nuevo, si el inconveniente persiste contacte al administrador.",
                                 confirmar: "Aceptar",
                                 img: "img/error.png"
                             });
@@ -440,7 +466,7 @@
                                 dialogoEG({
                                     type: "warning",
                                     title: "Folio Incorrecto",
-                                    mensaje: "No existe ningún pedido con el número de folio ingresado. Favor verificarlo e intentar de nuevo.",
+                                    mensaje: "No existe ningún pedido con el número de folio ingresado. Por favor, revísalo e intenta nuevamente.",
                                     confirmar: "Aceptar",
                                     img: "img/warning.png"
                                 });
@@ -463,9 +489,9 @@
                 type: "POST",
                 data: parametros,
                 success: function (data) {
-                    console.log(data);
+                    // console.log(data);
                     if (!data.success) {
-                        console.log(data.errorMensaje)
+                        // console.log(data.errorMensaje)
                         dialogoEG({
                             type: "error",
                             title: "Error ingreso a producción",
@@ -492,7 +518,6 @@
                 },
                 error: function (xhr, status, error) {
                     document.getElementById('contenedor-loader').style.display = 'none';
-                    console.log("Error al ingresar el ticket a producción:", error);
                     dialogoEG({
                         type: "error",
                         title: "Error de comunicación",
@@ -513,7 +538,7 @@
             type: "POST",
             success: function (data) {
                 if (!data.success) {
-                    console.log(data.errorMensaje)
+                    // console.log(data.errorMensaje)
                     dialogoEG({
                         type: "error",
                         title: "Error consulta de pedidos",
@@ -532,13 +557,15 @@
             },
             error: function (xhr, status, error) {
                 document.getElementById('contenedor-loader').style.display = 'none';
-                console.log("Error al consultar pedidos:", error);
+                // console.log("Error al consultar pedidos:", error);
                 dialogoEG({
                     type: "error",
                     title: "Error de comunicación",
-                    mensaje: "Ocurrió un error al obtener el listado de pedidos. Intente nuevamente, si el inconveniente persiste contacte al administrador.",
+                    mensaje: "Ocurrió un error al obtener el listado de pedidos. Se actualizará la página, si el inconveniente persiste contacte al administrador.",
                     confirmar: "Aceptar",
                     img: "img/error.png"
+                }).then(() => {
+                   location.reload();
                 });
             }
         });
@@ -551,9 +578,7 @@
                 url: '@Url.Action("ListaPilotos", "Principal")',
                 type: "POST",
                 success: function (data) {
-                    if (!data.success) {
-                        console.log(data.errorMensaje);
-                    } else {
+                    if (data.success) {
                         // Deserializar la respuesta JSON
                         let respuesta = JSON.parse(data.respuesta);
                         let listadoPilotos = respuesta.listadoPilotos;
@@ -591,9 +616,7 @@
                     url: '@Url.Action("ConsultaPilotos", "Principal")',
                     type: "POST",
                      success: function (data) {
-                         if (!data.success) {
-                             console.log(data.errorMensaje);
-                         } else {
+                         if (data.success) {
                              // Deserializar la respuesta JSON
                              let respuesta = JSON.parse(data.respuesta);
 
@@ -622,9 +645,7 @@
                     url: '@Url.Action("ConsultaPaqueterias", "Principal")',
                     type: "POST",
                      success: function (data) {
-                         if (!data.success) {
-                             console.log(data.errorMensaje);
-                         } else {
+                         if (data.success) {
                              // Deserializar la respuesta JSON
                              let respuesta = JSON.parse(data.respuesta);
 
@@ -674,6 +695,8 @@
             const pedidosConUltimoEstado = Object.values(pedidosUltimoEstado);
             // Limpiar listas existentes
             const categories = ['production', 'courier', 'parcel', 'delivered', 'returned', 'canceled', 'completed', 'rescheduled', 'pickup'];
+
+            let hayPedidos = false;
 
             categories.forEach(category => {
                 const contenedorPedidos = document.getElementById(`${category}-orders`); // Cambia este id según tu categoría
@@ -725,17 +748,25 @@
                 if (pedidosFiltrados.length > 0) {
                     // Si hay elementos, mostrar el contenedor
                     contenedorProduccion.classList.remove('oculto');
+                    hayPedidos = true;
                 } else {
                     // Si no hay elementos, ocultar el contenedor
                     contenedorProduccion.classList.add('oculto');
                 }
             });
+                // Mostrar u ocultar el mensaje de "Sin registros"
+                const mensajeSinRegistros = document.querySelector('.sin-registros');
+                if (hayPedidos) {
+                    mensajeSinRegistros.classList.add('oculto');
+                } else {
+                    mensajeSinRegistros.classList.remove('oculto');
+                }
         }
 
         //Mostral modal
         function showModal(pedido, cardItem) {
-            console.log("Abro diálogo del pedido: ");
-            console.log(pedido);
+            // console.log("Abro diálogo del pedido: ");
+            // console.log(pedido);
             let piloto = "";
             let paqueteria = "";
             let obvs = "";
@@ -840,7 +871,7 @@
 
                         assignParcelBtn.addEventListener('click', function () {
                             const selectedParcel = document.getElementById('parcel-select').value;
-                            console.log('Valor seleccionado:', selectedParcel);
+                            // console.log('Valor seleccionado:', selectedParcel);
                             obvs = document.getElementById('txtInfoObservaciones').value;
                             //obvs = combinarObservaciones(pedido.observaciones, obvs);
                             if (selectedParcel) {
@@ -895,7 +926,7 @@
 
         //Obtener estados siguientes posibles
         function getNextStates(currentState) {
-            console.log("Dentro de getNextStates: " + currentState);
+            // console.log("Dentro de getNextStates: " + currentState);
             const stateTransitions = {
                 production: [
                     { state: 'completed', label: 'Completado' },
@@ -962,9 +993,9 @@
                     type: "POST",
                     data: parametros,
                     success: function (data) {
-                        console.log(data);
+                        // console.log(data);
                         if (!data.success) {
-                            console.log(data.errorMensaje)
+                            // console.log(data.errorMensaje)
                             dialogoEG({
                                 type: "error",
                                 title: "Error cambio de estado",
@@ -991,7 +1022,7 @@
                     },
                     error: function (xhr, status, error) {
                         document.getElementById('contenedor-loader').style.display = 'none';
-                        console.log("Error al ingresar el ticket a producción:", error);
+                        // console.log("Error al ingresar el ticket a producción:", error);
                         dialogoEG({
                             type: "error",
                             title: "Error de comunicación",
@@ -1085,6 +1116,7 @@
             // Formato final
             return dia + '/' + mes + '/' + anio + ' ' + horas + ':' + minutos + ':' + segundos + ' ' + amPm;
         }
+
     </script>
 
 </body>
