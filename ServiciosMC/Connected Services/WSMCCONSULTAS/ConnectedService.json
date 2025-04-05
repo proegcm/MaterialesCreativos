@@ -1,7 +1,7 @@
 {
   "ExtendedData": {
     "inputs": [
-      "https://serviciosmc.xyz/WSpedidosMC/WSpedidos?WSDL"
+      "http://localhost:8080/WSpedidosMC/WSpedidos?WSDL"
     ],
     "collectionTypes": [
       "System.Collections.Generic.Dictionary`2",
@@ -19,6 +19,7 @@
       "Microsoft.CodeAnalysis.CSharp, {Microsoft.CodeAnalysis.CSharp, 3.3.0}",
       "Microsoft.CodeAnalysis.Razor, {Microsoft.CodeAnalysis.Razor, 3.1.21}",
       "Microsoft.Extensions.DependencyModel, {Microsoft.Extensions.DependencyModel, 3.1.6}",
+      "Newtonsoft.Json, {Newtonsoft.Json, 13.0.3}",
       "System.Collections.Immutable, {System.Collections.Immutable, 1.5.0}",
       "System.Reflection.DispatchProxy, {System.Reflection.DispatchProxy, 4.5.0}",
       "System.Reflection.Metadata, {System.Reflection.Metadata, 1.6.0}",
@@ -37,7 +38,7 @@
       "System.Text.Json, {System.Text.Json, 4.7.2}"
     ],
     "sync": true,
-    "targetFramework": "netcoreapp3.1",
+    "targetFramework": "net6.0",
     "typeReuseMode": "All"
   }
 }

@@ -2,19 +2,19 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Net.Http;
 using System.ServiceModel;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using System.Xml.Serialization;
+using System.Xml;
+using System.Xml.Linq;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using ServiciosMC.Helpers;
-using ServiciosMC.Mcreativos;
-using ServiciosMC.Mcreativos.Clases;
 using ServiciosMC.Models;
 
 namespace ServiciosMC.Controllers
@@ -47,7 +47,7 @@ namespace ServiciosMC.Controllers
         [HttpPost]
         public JsonResult ObtengoUsuario()
         {
-            Helper helper = new Helper();
+            Helper helper = new();
             LoginViewModel login = helper.Usuario(HttpContext);
             return Json(login.Usuario);
 
@@ -57,46 +57,70 @@ namespace ServiciosMC.Controllers
         public JsonResult ObtenerPedido(String folio)
         {
             Debug.WriteLine("Ingresa a obtenerPedido: " + folio);
-            //Para obtener el usuario que está logeado
-            //Helper helper = new Helper();
-            //LoginViewModel login = helper.Usuario(HttpContext);
-            //String usuario = login.Usuario;
-            ResultadoPedidoModel datosRespuesta = new ResultadoPedidoModel();
-            infoPedido datosPedido = new infoPedido();
-
-            String xml = @"<CONSULTAFOLIO><FOLIO>" + folio + "</FOLIO></CONSULTAFOLIO>";
-
+            ResultadoPedidoModel datosRespuesta = new();
             try
             {
-                WSMCCONSULTAS.WSpedidosClient obtenerPedido = new WSMCCONSULTAS.WSpedidosClient(WSMCCONSULTAS.WSpedidosClient.EndpointConfiguration.WSpedidosPort, Helper.config.GetSection("Servicios:WSMCCONSULTA").Value);
-                string resultadoConsultaWS = obtenerPedido.validaFolio(xml);
+                XElement datosXML = new("CONSULTAPEDIDO", new XElement("FOLIO", folio));
 
-                if (!String.IsNullOrEmpty(resultadoConsultaWS.Trim()))
+                Debug.WriteLine("datosXML: " + datosXML);
+
+                string servicioUrl = Helper.config.GetSection("Servicios:WSMCCONSULTA").Value;
+                Debug.WriteLine("URL del servicio: " + servicioUrl);
+
+                //string resultadoConsultaWS = @"{""CODIGO"":""200"",""MENSAJE"":""OK"",""PEDIDO"":{""idTicket"":32204,""folio"":25225,""fecha"":""Mar 20, 2025 2:02:55 PM"",""cajero"":""Karen"",""cliente"":""Moises Nistal"",""total"":168.0100,""pago"":168.0100,""cambio"":0.0000,""estatus"":""ACTIVO"",""detallePedido"":[{""producto"":""Guatex X Cobrar"",""cantidad"":1,""precio"":0.0100},{""producto"":""Yda Text Mate #2 Blanco"",""cantidad"":1,""precio"":48.0000},{""producto"":""Yda Text Mate #22 Dorado"",""cantidad"":1,""precio"":48.0000},{""producto"":""Yarda MC Subli #143"",""cantidad"":1,""precio"":72.0000}]}}";
+                WSMCCONSULTAS.WSpedidosClient obtenerPedido = new(WSMCCONSULTAS.WSpedidosClient.EndpointConfiguration.WSpedidosPort, servicioUrl);
+                string resultadoConsultaWS = obtenerPedido.validaFolio(datosXML.ToString());
+
+                Debug.WriteLine("resultadoConsultaWS");
+                Debug.WriteLine(resultadoConsultaWS);
+                Debug.WriteLine("------------------------");
+
+                if (!String.IsNullOrWhiteSpace(resultadoConsultaWS))
                 {
                     try
                     {
-                        XmlSerializer serializer = new XmlSerializer(typeof(RESPUESTACONSULTAFOLIO.RESPUESTA));
-                        using (StringReader reader = new StringReader(resultadoConsultaWS))
-                        {
-                            var resultado = (RESPUESTACONSULTAFOLIO.RESPUESTA)serializer.Deserialize(reader);
+                        var resultado = JsonSerializer.Deserialize<RespuestaPedido>(resultadoConsultaWS);
 
-                            if (resultado.Codigo.Equals("200"))
+                        if (resultado != null)
+                        {
+                            Debug.WriteLine("Datos JSON: " + resultado);
+
+                            if (resultado.CODIGO.Equals("200"))
                             {
                                 datosRespuesta.existeError = false;
                                 datosRespuesta.existenDatos = true;
 
-                                infoPedido informacion = new infoPedido();
-                                informacion.folio = resultado.Pedido.Folio;
-                                informacion.fecha = resultado.Pedido.Fecha;
-                                informacion.cajero = resultado.Pedido.Cajero;
-                                informacion.cliente = resultado.Pedido.Cliente;
-                                informacion.total = resultado.Pedido.Total;
-                                informacion.pago = resultado.Pedido.Pago;
-                                informacion.cambio = resultado.Pedido.Cambio;
-                                informacion.estatus = resultado.Pedido.Estatus;
-                                datosRespuesta.infoPedido = informacion;
+                                datosRespuesta.infoPedido = new InfoPedido
+                                {
+                                    idTicket = resultado.PEDIDO.idTicket,
+                                    folio = resultado.PEDIDO.folio,
+                                    fecha = resultado.PEDIDO.fecha,
+                                    cajero = resultado.PEDIDO.cajero,
+                                    cliente = resultado.PEDIDO.cliente,
+                                    total = resultado.PEDIDO.total,
+                                    pago = resultado.PEDIDO.pago,
+                                    cambio = resultado.PEDIDO.cambio,
+                                    estatus = resultado.PEDIDO.estatus,
+                                    detallePedido = resultado.PEDIDO.detallePedido.Select(item => new ArticulosPedido
+                                    {
+                                        producto = item.producto,
+                                        cantidad = item.cantidad,
+                                        precio = item.precio
+                                    }).ToList() ?? new List<ArticulosPedido>() // Evitar null
+                                };
+                            }
+                            else
+                            {
+                                datosRespuesta.existeError = true;
+                                datosRespuesta.existenDatos = false;
                             }
                         }
+                        else
+                        {
+                            Debug.WriteLine("Deserialización fallida. El objeto resultado es null.");
+                        }
+
+
                     }
                     catch (Exception x)
                     {
@@ -108,6 +132,10 @@ namespace ServiciosMC.Controllers
                             mensajeError = "Ocurrió un error al procesar la información del pedido."
                         });
                     }
+                }
+                else
+                {
+                    return Json(new { existeError = true, existenDatos = false, mensajeError = "No se recibieron datos del servicio." });
                 }
             }
             catch (EndpointNotFoundException ex)
@@ -128,7 +156,7 @@ namespace ServiciosMC.Controllers
                 {
                     existeError = true,
                     existenDatos = false,
-                    mensajeError = "Ocurrió un error inesperado. Intente nuevamente de nuevo."
+                    mensajeError = "Ocurrió un error inesperado. Intente nuevamente."
                 });
             }
             return Json(datosRespuesta);
@@ -136,18 +164,231 @@ namespace ServiciosMC.Controllers
 
 
         [HttpPost]
+        public JsonResult ObtenerPedidoCliente(String cliente, String fecha)
+        {
+            Debug.WriteLine("Ingresa a obtenerPedidoCliente: " + cliente + " - "+fecha);
+            ResultadoPedidoModel datosRespuesta = new();
+            try
+            {
+                XElement datosXML = new("CONSULTAPEDIDO", new XElement("CLIENTE", cliente), new XElement("FECHA", fecha));
+
+                Debug.WriteLine("datosXML: " + datosXML);
+
+                string servicioUrl = Helper.config.GetSection("Servicios:WSMCCONSULTA").Value;
+                Debug.WriteLine("URL del servicio: " + servicioUrl);
+
+                //string resultadoConsultaWS = @"{""CODIGO"":""200"",""MENSAJE"":""OK"",""PEDIDO"":{""idTicket"":32204,""folio"":25225,""fecha"":""Mar 20, 2025 2:02:55 PM"",""cajero"":""Karen"",""cliente"":""Moises Nistal"",""total"":168.0100,""pago"":168.0100,""cambio"":0.0000,""estatus"":""ACTIVO"",""detallePedido"":[{""producto"":""Guatex X Cobrar"",""cantidad"":1,""precio"":0.0100},{""producto"":""Yda Text Mate #2 Blanco"",""cantidad"":1,""precio"":48.0000},{""producto"":""Yda Text Mate #22 Dorado"",""cantidad"":1,""precio"":48.0000},{""producto"":""Yarda MC Subli #143"",""cantidad"":1,""precio"":72.0000}]}}";
+                WSMCCONSULTAS.WSpedidosClient obtenerPedido = new(WSMCCONSULTAS.WSpedidosClient.EndpointConfiguration.WSpedidosPort, servicioUrl);
+                string resultadoConsultaWS = obtenerPedido.validaCliente(datosXML.ToString());
+
+                Debug.WriteLine("resultadoConsultaWS");
+                Debug.WriteLine(resultadoConsultaWS);
+                Debug.WriteLine("------------------------");
+
+                if (!String.IsNullOrWhiteSpace(resultadoConsultaWS))
+                {
+                    try
+                    {
+                        var resultado = JsonSerializer.Deserialize<RespuestaPedido>(resultadoConsultaWS);
+
+                        if (resultado != null)
+                        {
+                            Debug.WriteLine("Datos JSON: " + resultado);
+
+                            if (resultado.CODIGO.Equals("200"))
+                            {
+                                datosRespuesta.existeError = false;
+                                datosRespuesta.existenDatos = true;
+
+                                datosRespuesta.infoPedido = new InfoPedido
+                                {
+                                    idTicket = resultado.PEDIDO.idTicket,
+                                    folio = resultado.PEDIDO.folio,
+                                    fecha = resultado.PEDIDO.fecha,
+                                    cajero = resultado.PEDIDO.cajero,
+                                    cliente = resultado.PEDIDO.cliente,
+                                    total = resultado.PEDIDO.total,
+                                    pago = resultado.PEDIDO.pago,
+                                    cambio = resultado.PEDIDO.cambio,
+                                    estatus = resultado.PEDIDO.estatus,
+                                    detallePedido = resultado.PEDIDO.detallePedido.Select(item => new ArticulosPedido
+                                    {
+                                        producto = item.producto,
+                                        cantidad = item.cantidad,
+                                        precio = item.precio
+                                    }).ToList() ?? new List<ArticulosPedido>() // Evitar null
+                                };
+                            }
+                            else
+                            {
+                                datosRespuesta.existeError = true;
+                                datosRespuesta.existenDatos = false;
+                            }
+                        }
+                        else
+                        {
+                            Debug.WriteLine("Deserialización fallida. El objeto resultado es null.");
+                        }
+
+
+                    }
+                    catch (Exception x)
+                    {
+                        Helpers.Helper.Log("Error al obtener datos: " + x.Message);
+                        return Json(new
+                        {
+                            existeError = true,
+                            existenDatos = false,
+                            mensajeError = "Ocurrió un error al procesar la información del pedido."
+                        });
+                    }
+                }
+                else
+                {
+                    return Json(new { existeError = true, existenDatos = false, mensajeError = "No se recibieron datos del servicio." });
+                }
+            }
+            catch (EndpointNotFoundException ex)
+            {
+                Helpers.Helper.Log("Error de conexión al servicio: " + ex.Message);
+                return Json(new
+                {
+                    existeError = true,
+                    existenDatos = false,
+                    mensajeError = "No se pudo conectar con el servicio de pedidos. Por favor, verifique su conexión o intente de nuevo."
+                });
+            }
+            catch (Exception ex)
+            {
+                // Error genérico
+                Helpers.Helper.Log("Error inesperado: " + ex.Message);
+                return Json(new
+                {
+                    existeError = true,
+                    existenDatos = false,
+                    mensajeError = "Ocurrió un error inesperado. Intente nuevamente."
+                });
+            }
+            return Json(datosRespuesta);
+        }
+
+
+        [HttpPost]
+        public JsonResult ObtenerClientes()
+        {
+            ResultadoClientesModel datosRespuesta = new();
+            try
+            {
+                string servicioUrl = Helper.config.GetSection("Servicios:WSMCCONSULTA").Value;
+                Debug.WriteLine("URL del servicio: " + servicioUrl);
+
+                // Crear cliente del servicio
+                WSMCCONSULTAS.WSpedidosClient obtenerClientes = new(WSMCCONSULTAS.WSpedidosClient.EndpointConfiguration.WSpedidosPort, servicioUrl);
+
+                // Crear la solicitud vacía
+                WSMCCONSULTAS.obtenerClientesRequest request = new WSMCCONSULTAS.obtenerClientesRequest(new WSMCCONSULTAS.obtenerClientesRequestBody());
+
+                // Llamar al servicio correctamente
+                WSMCCONSULTAS.obtenerClientesResponse response = obtenerClientes.obtenerClientes(request);
+
+                // Obtener la respuesta en formato string
+                string resultadoConsultaWS = response.Body.@return;
+
+                // Imprimir resultados en consola
+                Debug.WriteLine("resultadoConsultaWS");
+                Debug.WriteLine(resultadoConsultaWS);
+                Debug.WriteLine("------------------------");
+                if (!String.IsNullOrWhiteSpace(resultadoConsultaWS))
+                {
+                    try
+                    {
+                        var resultado = JsonSerializer.Deserialize<RespuestaClientes>(resultadoConsultaWS);
+
+                        if (resultado != null)
+                        {
+                            Debug.WriteLine("Datos JSON: " + resultado);
+
+                            if (resultado.CODIGO.Equals("200"))
+                            {
+                                datosRespuesta.existeError = false;
+                                datosRespuesta.existenDatos = true;
+
+                                datosRespuesta.infoClientes = new InfoClientes
+                                {
+                                    listaClientes = resultado.CLIENTES.Select(item => new Cliente
+                                    {
+                                        nombre = item.nombre
+                                    }).ToList() ?? new List<Cliente>() // Evitar null
+                                };
+                            }
+                            else
+                            {
+                                datosRespuesta.existeError = true;
+                                datosRespuesta.existenDatos = false;
+                            }
+                        }
+                        else
+                        {
+                            Debug.WriteLine("Deserialización fallida. El objeto resultado es null.");
+                        }
+
+
+                    }
+                    catch (Exception x)
+                    {
+                        Helpers.Helper.Log("Error al obtener datos: " + x.Message);
+                        return Json(new
+                        {
+                            existeError = true,
+                            existenDatos = false,
+                            mensajeError = "Ocurrió un error al procesar la información del pedido."
+                        });
+                    }
+                }
+                else
+                {
+                    return Json(new { existeError = true, existenDatos = false, mensajeError = "No se recibieron datos del servicio." });
+                }
+
+
+            }
+            catch (EndpointNotFoundException ex)
+            {
+                Helpers.Helper.Log("Error de conexión al servicio: " + ex.Message);
+                return Json(new
+                {
+                    existeError = true,
+                    existenDatos = false,
+                    mensajeError = "No se pudo conectar con el servicio de pedidos. Por favor, verifique su conexión o intente de nuevo."
+                });
+            }
+            catch (Exception ex)
+            {
+                // Error genérico
+                Helpers.Helper.Log("Error inesperado: " + ex.Message);
+                return Json(new
+                {
+                    existeError = true,
+                    existenDatos = false,
+                    mensajeError = "Ocurrió un error inesperado. Intente nuevamente."
+                });
+            }
+            return Json(datosRespuesta);
+        }
+
+        [HttpPost]
         public async Task<JsonResult> IngresarProduccion(infoIngreso pedidoData)
         {
             try
             {
-                Helper helper = new Helper();
+                Helper helper = new();
                 LoginViewModel login = helper.Usuario(HttpContext);
                 string usuarioLogin = login.Usuario;
                 pedidoData.usuario = usuarioLogin;
 
                 string URL = config.GetValue<string>("Servicios:API_PYTHON") + "ingresoPedidoMC";
 
-                using (HttpClient httpClient = new HttpClient())
+                using (HttpClient httpClient = new())
                 {
                     var datos = JsonSerializer.Serialize(pedidoData);
                     var contenido = new StringContent(datos, Encoding.UTF8, "application/json");
@@ -184,11 +425,11 @@ namespace ServiciosMC.Controllers
 
             try
             {
-                Helper helper = new Helper();
+                Helper helper = new();
                 LoginViewModel login = helper.Usuario(HttpContext);
                 string usuarioLogin = login.Usuario;
 
-                infoConsultaPedidos usrData = new infoConsultaPedidos
+                infoConsultaPedidos usrData = new()
                 {
                     infoUsuario = new infoUsuario
                     {
@@ -197,7 +438,7 @@ namespace ServiciosMC.Controllers
                 };
                 string URL = config.GetValue<string>("Servicios:API_PYTHON") + "obtengoPedidosDashboardMC";
 
-                using (HttpClient httpClient = new HttpClient())
+                using (HttpClient httpClient = new())
                 {
 
                     var datos = JsonSerializer.Serialize(usrData);
@@ -238,7 +479,7 @@ namespace ServiciosMC.Controllers
             {
                 // Maneja cualquier otra excepción.
                 Debug.WriteLine("Exception: " + ex.Message);
-                return Json(new { success = false, errorMensaje = ex.Message });
+                return Json(new { success = false, errorMensaje = "Error al cargar los pedidos. Intente recargar la página de nuevo." });
             }
         }
 
@@ -251,7 +492,7 @@ namespace ServiciosMC.Controllers
             {
                 string URL = config.GetValue<string>("Servicios:API_PYTHON") + "obtengoPilotosMC";
 
-                using (HttpClient httpClient = new HttpClient())
+                using (HttpClient httpClient = new())
                 {
 
                     var response = await httpClient.PostAsync(URL, null);
@@ -297,7 +538,7 @@ namespace ServiciosMC.Controllers
             {
                 string URL = config.GetValue<string>("Servicios:API_PYTHON") + "consultaPilotosMC";
 
-                using (HttpClient httpClient = new HttpClient())
+                using (HttpClient httpClient = new())
                 {
 
                     var response = await httpClient.PostAsync(URL, null);
@@ -343,7 +584,7 @@ namespace ServiciosMC.Controllers
             {
                 string URL = config.GetValue<string>("Servicios:API_PYTHON") + "consultaPaqueteriasMC";
 
-                using (HttpClient httpClient = new HttpClient())
+                using (HttpClient httpClient = new())
                 {
 
                     var response = await httpClient.PostAsync(URL, null);
@@ -396,13 +637,13 @@ namespace ServiciosMC.Controllers
         {
             try
             {
-                Helper helper = new Helper();
+                Helper helper = new();
                 LoginViewModel login = helper.Usuario(HttpContext);
                 string usuarioLogin = login.Usuario;
                 pedidoData.usuario = usuarioLogin;
 
                 string URL = config.GetValue<string>("Servicios:API_PYTHON") + "cambioEstadoPedidoMC";
-                using (HttpClient httpClient = new HttpClient())
+                using (HttpClient httpClient = new())
                 {
                     var datos = JsonSerializer.Serialize(pedidoData);
                     var contenido = new StringContent(datos, Encoding.UTF8, "application/json");

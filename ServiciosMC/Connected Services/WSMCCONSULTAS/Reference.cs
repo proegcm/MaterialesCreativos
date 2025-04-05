@@ -11,7 +11,7 @@ namespace WSMCCONSULTAS
 {
     
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
     [System.ServiceModel.ServiceContractAttribute(Namespace="http://webservice.materialescreativos.com/", ConfigurationName="WSMCCONSULTAS.WSpedidos")]
     public interface WSpedidos
     {
@@ -21,10 +21,22 @@ namespace WSMCCONSULTAS
         
         [System.ServiceModel.OperationContractAttribute(Action="http://webservice.materialescreativos.com/WSpedidos/validaFolioRequest", ReplyAction="http://webservice.materialescreativos.com/WSpedidos/validaFolioResponse")]
         System.Threading.Tasks.Task<WSMCCONSULTAS.validaFolioResponse> validaFolioAsync(WSMCCONSULTAS.validaFolioRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://webservice.materialescreativos.com/WSpedidos/validaClienteRequest", ReplyAction="http://webservice.materialescreativos.com/WSpedidos/validaClienteResponse")]
+        WSMCCONSULTAS.validaClienteResponse validaCliente(WSMCCONSULTAS.validaClienteRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://webservice.materialescreativos.com/WSpedidos/validaClienteRequest", ReplyAction="http://webservice.materialescreativos.com/WSpedidos/validaClienteResponse")]
+        System.Threading.Tasks.Task<WSMCCONSULTAS.validaClienteResponse> validaClienteAsync(WSMCCONSULTAS.validaClienteRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://webservice.materialescreativos.com/WSpedidos/obtenerClientesRequest", ReplyAction="http://webservice.materialescreativos.com/WSpedidos/obtenerClientesResponse")]
+        WSMCCONSULTAS.obtenerClientesResponse obtenerClientes(WSMCCONSULTAS.obtenerClientesRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://webservice.materialescreativos.com/WSpedidos/obtenerClientesRequest", ReplyAction="http://webservice.materialescreativos.com/WSpedidos/obtenerClientesResponse")]
+        System.Threading.Tasks.Task<WSMCCONSULTAS.obtenerClientesResponse> obtenerClientesAsync(WSMCCONSULTAS.obtenerClientesRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class validaFolioRequest
     {
@@ -43,7 +55,7 @@ namespace WSMCCONSULTAS
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
     [System.Runtime.Serialization.DataContractAttribute(Namespace="")]
     public partial class validaFolioRequestBody
     {
@@ -62,7 +74,7 @@ namespace WSMCCONSULTAS
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class validaFolioResponse
     {
@@ -81,7 +93,7 @@ namespace WSMCCONSULTAS
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
     [System.Runtime.Serialization.DataContractAttribute(Namespace="")]
     public partial class validaFolioResponseBody
     {
@@ -99,13 +111,165 @@ namespace WSMCCONSULTAS
         }
     }
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class validaClienteRequest
+    {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="validaCliente", Namespace="http://webservice.materialescreativos.com/", Order=0)]
+        public WSMCCONSULTAS.validaClienteRequestBody Body;
+        
+        public validaClienteRequest()
+        {
+        }
+        
+        public validaClienteRequest(WSMCCONSULTAS.validaClienteRequestBody Body)
+        {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="")]
+    public partial class validaClienteRequestBody
+    {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string datos;
+        
+        public validaClienteRequestBody()
+        {
+        }
+        
+        public validaClienteRequestBody(string datos)
+        {
+            this.datos = datos;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class validaClienteResponse
+    {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="validaClienteResponse", Namespace="http://webservice.materialescreativos.com/", Order=0)]
+        public WSMCCONSULTAS.validaClienteResponseBody Body;
+        
+        public validaClienteResponse()
+        {
+        }
+        
+        public validaClienteResponse(WSMCCONSULTAS.validaClienteResponseBody Body)
+        {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="")]
+    public partial class validaClienteResponseBody
+    {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string @return;
+        
+        public validaClienteResponseBody()
+        {
+        }
+        
+        public validaClienteResponseBody(string @return)
+        {
+            this.@return = @return;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class obtenerClientesRequest
+    {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="obtenerClientes", Namespace="http://webservice.materialescreativos.com/", Order=0)]
+        public WSMCCONSULTAS.obtenerClientesRequestBody Body;
+        
+        public obtenerClientesRequest()
+        {
+        }
+        
+        public obtenerClientesRequest(WSMCCONSULTAS.obtenerClientesRequestBody Body)
+        {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="")]
+    public partial class obtenerClientesRequestBody
+    {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string datos;
+        
+        public obtenerClientesRequestBody()
+        {
+        }
+        
+        public obtenerClientesRequestBody(string datos)
+        {
+            this.datos = datos;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class obtenerClientesResponse
+    {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="obtenerClientesResponse", Namespace="http://webservice.materialescreativos.com/", Order=0)]
+        public WSMCCONSULTAS.obtenerClientesResponseBody Body;
+        
+        public obtenerClientesResponse()
+        {
+        }
+        
+        public obtenerClientesResponse(WSMCCONSULTAS.obtenerClientesResponseBody Body)
+        {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="")]
+    public partial class obtenerClientesResponseBody
+    {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string @return;
+        
+        public obtenerClientesResponseBody()
+        {
+        }
+        
+        public obtenerClientesResponseBody(string @return)
+        {
+            this.@return = @return;
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
     public interface WSpedidosChannel : WSMCCONSULTAS.WSpedidos, System.ServiceModel.IClientChannel
     {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
     public partial class WSpedidosClient : System.ServiceModel.ClientBase<WSMCCONSULTAS.WSpedidos>, WSMCCONSULTAS.WSpedidos
     {
 
@@ -122,6 +286,22 @@ namespace WSMCCONSULTAS
             inValue.Body = new WSMCCONSULTAS.validaFolioRequestBody();
             inValue.Body.datos = xml;
             WSMCCONSULTAS.validaFolioResponse retVal = ((WSMCCONSULTAS.WSpedidos)(this)).validaFolio(inValue);
+            return retVal.Body.@return;
+        }
+
+        public string obtenerClientes()
+        {
+            WSMCCONSULTAS.obtenerClientesRequest request = new WSMCCONSULTAS.obtenerClientesRequest(new WSMCCONSULTAS.obtenerClientesRequestBody());
+            WSMCCONSULTAS.obtenerClientesResponse response = ((WSMCCONSULTAS.WSpedidos)(this)).obtenerClientes(request);
+            return response.Body.@return;
+        }
+
+        public string validaCliente(string xml)
+        {
+            WSMCCONSULTAS.validaClienteRequest inValue = new WSMCCONSULTAS.validaClienteRequest();
+            inValue.Body = new WSMCCONSULTAS.validaClienteRequestBody();
+            inValue.Body.datos = xml;
+            WSMCCONSULTAS.validaClienteResponse retVal = ((WSMCCONSULTAS.WSpedidos)(this)).validaCliente(inValue);
             return retVal.Body.@return;
         }
 
@@ -171,14 +351,29 @@ namespace WSMCCONSULTAS
             return base.Channel.validaFolioAsync(request);
         }
         
+        public WSMCCONSULTAS.validaClienteResponse validaCliente(WSMCCONSULTAS.validaClienteRequest request)
+        {
+            return base.Channel.validaCliente(request);
+        }
+        
+        public System.Threading.Tasks.Task<WSMCCONSULTAS.validaClienteResponse> validaClienteAsync(WSMCCONSULTAS.validaClienteRequest request)
+        {
+            return base.Channel.validaClienteAsync(request);
+        }
+        
+        public WSMCCONSULTAS.obtenerClientesResponse obtenerClientes(WSMCCONSULTAS.obtenerClientesRequest request)
+        {
+            return base.Channel.obtenerClientes(request);
+        }
+        
+        public System.Threading.Tasks.Task<WSMCCONSULTAS.obtenerClientesResponse> obtenerClientesAsync(WSMCCONSULTAS.obtenerClientesRequest request)
+        {
+            return base.Channel.obtenerClientesAsync(request);
+        }
+        
         public virtual System.Threading.Tasks.Task OpenAsync()
         {
             return System.Threading.Tasks.Task.Factory.FromAsync(((System.ServiceModel.ICommunicationObject)(this)).BeginOpen(null, null), new System.Action<System.IAsyncResult>(((System.ServiceModel.ICommunicationObject)(this)).EndOpen));
-        }
-        
-        public virtual System.Threading.Tasks.Task CloseAsync()
-        {
-            return System.Threading.Tasks.Task.Factory.FromAsync(((System.ServiceModel.ICommunicationObject)(this)).BeginClose(null, null), new System.Action<System.IAsyncResult>(((System.ServiceModel.ICommunicationObject)(this)).EndClose));
         }
         
         private static System.ServiceModel.Channels.Binding GetBindingForEndpoint(EndpointConfiguration endpointConfiguration)
@@ -190,7 +385,6 @@ namespace WSMCCONSULTAS
                 result.ReaderQuotas = System.Xml.XmlDictionaryReaderQuotas.Max;
                 result.MaxReceivedMessageSize = int.MaxValue;
                 result.AllowCookies = true;
-                result.Security.Mode = System.ServiceModel.BasicHttpSecurityMode.Transport;
                 return result;
             }
             throw new System.InvalidOperationException(string.Format("No se pudo encontrar un punto de conexión con el nombre \"{0}\".", endpointConfiguration));
@@ -200,7 +394,7 @@ namespace WSMCCONSULTAS
         {
             if ((endpointConfiguration == EndpointConfiguration.WSpedidosPort))
             {
-                return new System.ServiceModel.EndpointAddress("https://serviciosmc.xyz/WSpedidosMC/WSpedidos");
+                return new System.ServiceModel.EndpointAddress("http://localhost:8080/WSpedidosMC/WSpedidos");
             }
             throw new System.InvalidOperationException(string.Format("No se pudo encontrar un punto de conexión con el nombre \"{0}\".", endpointConfiguration));
         }

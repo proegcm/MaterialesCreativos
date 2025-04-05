@@ -1,10 +1,14 @@
 ﻿<!DOCTYPE html>
 <html lang="es">
 <head>
-
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <link href="~/css/estilosHome.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+	<link href="~/css/estilosHome.css" rel="stylesheet">
+	<style>
+		.highlight {
+			background-color: #f0f0f0;
+		}
+	</style>
 </head>
 <body>
     <div class="row justify-content-center">
@@ -23,187 +27,260 @@
                                         <h3 class="card-title ml-2">BUSCAR TICKET</h3>
                                     </div>
                                 </div>
-                                <div class="col-12">
+                                <div class="col-12 mb-2">
                                     <div class="form-group">
-                                        <form id="buscarTicketForm" class="w-100">
-                                            <div class="input-group">
-                                                <input type="text" class="form-control" placeholder="Ingrese número de folio"
-                                                       name="txtFolio" id="txtFolio" maxlength="10"
-                                                       inputmode="numeric" required />
-                                                <div class="input-group-append d-md-flex">
-                                                    <button type="button" class="btn btn-icon" id="btnBuscarTicket" title="Buscar ticket" onclick="buscarTicket()">
-                                                        <span class="material-symbols-outlined">
-                                                            search
-                                                        </span>
-                                                    </button>
-                                                    <button type="button" class="btn btn-icon" id="btnLimpiar" title="Limpiar búsqueda" onclick="limpiar()">
-                                                        <span class="material-symbols-outlined">
-                                                            backspace
-                                                        </span>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </form>
+                                        <div class="input-group">
+                                            <label for="tipoBusqueda">Buscar por:</label>
+                                            <select class="form-select ml-2" id="tipoBusqueda" onchange="mostrarCampos()">
+                                                <option value="cliente">Nombre del Cliente</option>
+                                                <option value="folio">Número de Folio</option>
+                                            </select>
+                                            <span class="tooltip-icon ml-2" data-toggle="tooltip" title="Usa Ctrl + F para buscar por folio o Ctrl + C para buscar por cliente">
+                                                <i class="fas fa-question-circle"></i>
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
+                                <div id="buscarTicketForm" class="col-12">
+                                    <!-- Buscar por Cliente y Fecha (inicia visible) -->
+                                    <div id="busquedaCliente">
+                                        <div class="form-group mb-2">
+                                            <div class="input-group">
+                                                <label for="txtCliente" class="me-2">Cliente:</label>
+                                                <input type="text" class="form-control" placeholder="Ingrese nombre del cliente" id="txtCliente" autofocus>
+                                                <button type="button" class="btn btn-icon" id="btnMostrarClientes" data-toggle="tooltip" title="Usa Ctrl + A para mostrar los clientes" disabled>
+                                                    <i class="fas fa-users"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-icon d-none" id="btnReintentarCarga" title="Intentar cargar clientes de nuevo" disabled>
+                                                    <i class="fas fa-redo"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <div class="input-group">
+                                                <label for="txtFecha" class="me-2">Fecha:</label>
+                                                <input type="date" class="form-control" id="txtFecha">
+                                                <button type="button" class="btn ml-2" title="Buscar pedido" id="btnBuscarTicketCliente" onclick="buscarTicketCliente()">
+                                                    <span class="material-symbols-outlined">search</span>
+                                                </button>
+                                                <button type="button" class="btn" id="btnLimpiarCliente" title="Limpiar búsqueda" onclick="limpiar()">
+                                                    <span class="material-symbols-outlined">backspace</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Buscar por Número de Folio (inicia oculto) -->
+                                    <div class="d-none" id="busquedaFolio">
+                                        <div class="form-group mb-2">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" placeholder="Ingrese número de folio"
+                                                       name="txtFolio" id="txtFolio" maxlength="10" inputmode="numeric" />
+                                                <button type="button" class="btn btn-icon" title="Buscar ticket" id="btnBuscarTicket" onclick="buscarTicketFolio()">
+                                                    <span class="material-symbols-outlined">search</span>
+                                                </button>
+                                                <button type="button" class="btn btn-icon" id="btnLimpiar" title="Limpiar búsqueda" onclick="limpiar()">
+                                                    <span class="material-symbols-outlined">backspace</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
                             </div>
                         </div>
                     </div>
-
-
+                   
                     <!--DIV PEDIDO-->
                     <div class="card infopedido-card" style="margin-top: 3px; display: none;" id="pedidoInfo">
                         <div class="card-body">
                             <div class="row">
+                                <!-- Título -->
                                 <div class="col-12">
                                     <div class="form-group d-flex align-items-center">
                                         <h3 class="card-title">INFORMACIÓN DEL PEDIDO</h3>
                                     </div>
                                 </div>
 
+                                <!-- Información del Cliente y Pedidos -->
                                 <div class="col-12">
                                     <div class="form-group d-flex flex-column align-items-start justify-content-end">
+                                        <!-- Cliente, Folio, Fecha, Cajero -->
+                                        <p><strong>Cliente:</strong> <span id="cliente"></span></p>
                                         <p><strong>Folio:</strong> <span id="folio"></span></p>
                                         <p><strong>Fecha:</strong> <span id="fecha"></span></p>
                                         <p><strong>Cajero:</strong> <span id="cajero"></span></p>
-                                        <p><strong>Cliente:</strong> <span id="cliente"></span></p>
-                                        <p><strong>Total:</strong> <span id="total"></span></p>
-                                        <p><strong>Pago:</strong> <span id="pago"></span></p>
-                                        <p><strong>Cambio:</strong> <span id="cambio"></span></p>
-                                        <button class="btn btn-block w-100 mt-2" style="background-color: #e86217; color: #ffffff; " id="btnPasarProduccion" onclick="ingresaTicket()">
-                                            <i class="fas fa-share" style="margin-right: 6px; vertical-align: middle;"></i> Pasar a producción
-                                        </button>
                                     </div>
+                                </div>
+
+                                <!-- Detalle del Pedido -->
+                                <div class="col-12">
+                                    <div class="table-responsive">
+                                        <table class="table table-sm">
+                                            <thead class="table-light">
+                                                <tr>
+                                                    <th class="cantidad-col">Cant.</th>
+                                                    <th>Producto</th>
+                                                    <th class="text-end">Precio</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="detallePedido">
+                                                <!-- Los productos se agregarán aquí -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <!-- Totales -->
+                                <div class="col-12">
+                                    <div class="d-flex justify-content-between">
+                                        <p class="mb-0"><strong>Total:</strong></p>
+                                        <p class="mb-0 totales">Q<span id="total"></span></p>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <p class="mb-0"><strong>Pago:</strong></p>
+                                        <p class="mb-0 totales">Q<span id="pago"></span></p>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <p class="mb-0"><strong>Cambio:</strong></p>
+                                        <p class="mb-0 totales">Q<span id="cambio"></span></p>
+                                    </div>
+                                </div>
+
+                                <!-- Botón para pasar a producción -->
+                                <div class="col-12 mt-2">
+                                    <button class="btn btn-block w-100" style="background-color: #e86217; color: #ffffff;" id="btnPasarProduccion" onclick="ingresaTicket()">
+                                        <i class="fas fa-share" style="margin-right: 6px; vertical-align: middle;"></i> Pasar a producción
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
                 <div class="col-sm-8 col-md-6 col-lg-7 flex-grow-1 custom-stack">
                     <!--DIV DERECHA-->
-                    <div class="card pedidos-card" style="margin-top: 3px">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-12 cpedidos">
-                                    <div class="form-group d-flex justify-content-center align-items-center">
-                                        <span class="material-symbols-outlined card-icon">package_2</span>
-                                        <h3 class="card-title ml-2">PEDIDOS</h3>
-                                    </div>
-                                </div>
-                                <div class="col-12 text-center sin-registros oculto">
-                                    <span class="material-symbols-outlined" >info</span>
-                                    <h5 class="mt-2" style="color: gray;">Sin registros</h5>
-                                </div>
-                                <div class="col-12  oculto">
-                                    <div class="form-group order-category category-1">
-                                        <div class="order-header">
-                                            <span class="material-symbols-outlined order-icon">arrow_drop_down_circle</span>
-                                            <h3 class="order-icon">En Producción</h3>
-                                        </div>
-                                        <div class="card-container" id="production-orders">
-                                            <!-- Listado de pedidos en producción -->
+                        <div class="card pedidos-card" style="margin-top: 3px">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12 cpedidos">
+                                        <div class="form-group d-flex justify-content-center align-items-center">
+                                            <span class="material-symbols-outlined card-icon">package_2</span>
+                                            <h3 class="card-title ml-2">PEDIDOS</h3>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-12 oculto">
-                                    <div class="form-group order-category category-2">
-                                        <div class="order-header">
-                                            <span class="material-symbols-outlined order-icon">arrow_drop_down_circle</span>
-                                            <h3 class="order-icon">Completado</h3>
-                                        </div>
-                                        <div class="card-container" id="completed-orders">
-                                            <!-- Listado de pedidos completados -->
+                                    <div class="col-12 text-center sin-registros">
+                                        <span class="material-symbols-outlined" >info</span>
+                                        <h5 class="mt-2" style="color: gray;">Sin registros</h5>
+                                    </div>
+                                    <div class="col-12  oculto">
+                                        <div class="form-group order-category category-1">
+                                            <div class="order-header">
+                                                <span class="material-symbols-outlined order-icon">arrow_drop_down_circle</span>
+                                                <h3 class="order-icon">En Producción</h3>
+                                            </div>
+                                            <div class="card-container" id="production-orders">
+                                                <!-- Listado de pedidos en producción -->
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-12 oculto">
-                                    <div class="form-group order-category category-3">
-                                        <div class="order-header">
-                                            <span class="material-symbols-outlined order-icon">arrow_drop_down_circle</span>
-                                            <h3 class="order-icon">Envío por Mensajería</h3>
-                                        </div>
-                                        <div class="card-container" id="courier-orders">
-                                            <!-- Listado de pedidos enviados por mensajería -->
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 oculto">
-                                    <div class="form-group order-category category-4">
-                                        <div class="order-header">
-                                            <span class="material-symbols-outlined order-icon">arrow_drop_down_circle</span>
-                                            <h3 class="order-icon">Envío por Paquetería</h3>
-                                        </div>
-                                        <div class="card-container" id="parcel-orders">
-                                            <!-- Listado de pedidos enviados por paquetería -->
+                                    <div class="col-12 oculto">
+                                        <div class="form-group order-category category-2">
+                                            <div class="order-header">
+                                                <span class="material-symbols-outlined order-icon">arrow_drop_down_circle</span>
+                                                <h3 class="order-icon">Completado</h3>
+                                            </div>
+                                            <div class="card-container" id="completed-orders">
+                                                <!-- Listado de pedidos completados -->
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-12 oculto">
-                                    <div class="form-group order-category category-5">
-                                        <div class="order-header">
-                                            <span class="material-symbols-outlined order-icon">arrow_drop_down_circle</span>
-                                            <h3 class="order-icon">Devuelto</h3>
-                                        </div>
-                                        <div class="card-container" id="returned-orders">
-                                            <!-- Listado de pedidos devueltos -->
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 oculto">
-                                    <div class="form-group order-category category-1">
-                                        <div class="order-header">
-                                            <span class="material-symbols-outlined order-icon">arrow_drop_down_circle</span>
-                                            <h3 class="order-icon">Reprogramado</h3>
-                                        </div>
-                                        <div class="card-container" id="rescheduled-orders">
-                                            <!-- Listado de pedidos Reprogramado -->
+                                    <div class="col-12 oculto">
+                                        <div class="form-group order-category category-3">
+                                            <div class="order-header">
+                                                <span class="material-symbols-outlined order-icon">arrow_drop_down_circle</span>
+                                                <h3 class="order-icon">Envío por Mensajería</h3>
+                                            </div>
+                                            <div class="card-container" id="courier-orders">
+                                                <!-- Listado de pedidos enviados por mensajería -->
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-12 oculto">
-                                    <div class="form-group order-category category-2">
-                                        <div class="order-header">
-                                            <span class="material-symbols-outlined order-icon">arrow_drop_down_circle</span>
-                                            <h3 class="order-icon">Recoge en oficina</h3>
-                                        </div>
-                                        <div class="card-container" id="pickup-orders">
-                                            <!-- Listado de pedidos Recoge en oficina -->
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 oculto">
-                                    <div class="form-group order-category category-6">
-                                        <div class="order-header">
-                                            <span class="material-symbols-outlined order-icon">arrow_drop_down_circle</span>
-                                            <h3 class="order-icon">Anulado</h3>
-                                        </div>
-                                        <div class="card-container" id="canceled-orders">
-                                            <!-- Listado de pedidos anulados -->
+                                    <div class="col-12 oculto">
+                                        <div class="form-group order-category category-4">
+                                            <div class="order-header">
+                                                <span class="material-symbols-outlined order-icon">arrow_drop_down_circle</span>
+                                                <h3 class="order-icon">Envío por Paquetería</h3>
+                                            </div>
+                                            <div class="card-container" id="parcel-orders">
+                                                <!-- Listado de pedidos enviados por paquetería -->
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-12 oculto">
-                                    <div class="form-group order-category category-7">
-                                        <div class="order-header">
-                                            <span class="material-symbols-outlined order-icon">arrow_drop_down_circle</span>
-                                            <h3 class="order-icon">Entregado</h3>
+                                    <div class="col-12 oculto">
+                                        <div class="form-group order-category category-5">
+                                            <div class="order-header">
+                                                <span class="material-symbols-outlined order-icon">arrow_drop_down_circle</span>
+                                                <h3 class="order-icon">Devuelto</h3>
+                                            </div>
+                                            <div class="card-container" id="returned-orders">
+                                                <!-- Listado de pedidos devueltos -->
+                                            </div>
                                         </div>
-                                        <div class="card-container" id="delivered-orders">
-                                            <!-- Listado de pedidos entregados -->
+                                    </div>
+                                    <div class="col-12 oculto">
+                                        <div class="form-group order-category category-1">
+                                            <div class="order-header">
+                                                <span class="material-symbols-outlined order-icon">arrow_drop_down_circle</span>
+                                                <h3 class="order-icon">Reprogramado</h3>
+                                            </div>
+                                            <div class="card-container" id="rescheduled-orders">
+                                                <!-- Listado de pedidos Reprogramado -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 oculto">
+                                        <div class="form-group order-category category-2">
+                                            <div class="order-header">
+                                                <span class="material-symbols-outlined order-icon">arrow_drop_down_circle</span>
+                                                <h3 class="order-icon">Recoge en oficina</h3>
+                                            </div>
+                                            <div class="card-container" id="pickup-orders">
+                                                <!-- Listado de pedidos Recoge en oficina -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 oculto">
+                                        <div class="form-group order-category category-6">
+                                            <div class="order-header">
+                                                <span class="material-symbols-outlined order-icon">arrow_drop_down_circle</span>
+                                                <h3 class="order-icon">Anulado</h3>
+                                            </div>
+                                            <div class="card-container" id="canceled-orders">
+                                                <!-- Listado de pedidos anulados -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 oculto">
+                                        <div class="form-group order-category category-7">
+                                            <div class="order-header">
+                                                <span class="material-symbols-outlined order-icon">arrow_drop_down_circle</span>
+                                                <h3 class="order-icon">Entregado</h3>
+                                            </div>
+                                            <div class="card-container" id="delivered-orders">
+                                                <!-- Listado de pedidos entregados -->
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                 </div>
-            
             </div>
         </div>
-
-        <!-- Modal -->
-        <div id="order-modal" class="modal fade" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
+    </div>
+    
+    <!-- Modal -->
+    <div id="order-modal" class="modal fade" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content modal-custom">
                     <!--Modal header-->
@@ -345,9 +422,27 @@
                 </div>
             </div>
         </div>
-    
-    </div>
-   
+     
+   <!--Dialogo clientes-->
+   <div class="modal fade" id="dialogBusquedaClientes" tabindex="-1" aria-labelledby="dlgBCli" aria-hidden="true">
+	        <div class="modal-dialog modal-dialog-centered modal-sm">
+		        <div class="modal-content">
+			        <div class="modal-header">
+				        <h5 class="modal-title" id="dlgBCli">Buscar clientes</h5>
+				        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+					        <span aria-hidden="true">&times;</span>
+				        </button>
+			        </div>
+			        <div class="modal-body">
+                    <input type="text" id="filterInput" class="form-control mb-3" placeholder="Filtrar clientes...">
+				        <div id="listaClientes" class="list-group cliente-scroll-container"></div>
+			        </div>
+			        <div class="modal-footer">
+				        <!--mostrar cantidad de clientes-->
+			        </div>
+		        </div>
+	        </div>
+        </div>
 
     <script type="text/javascript">
         let parametros = "";
@@ -380,744 +475,940 @@
 
         };
 
-        
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();
 
-        $(document).ready(function () {
-            
             consultaPedidos();
-            
-            $("#txtFolio").on("input", function () {
+            cargaClientes();
+
+            function mostrarCampos() {
+                let tipoBusqueda = document.getElementById("tipoBusqueda").value;
+                document.getElementById("busquedaFolio").classList.toggle("d-none", tipoBusqueda !== "folio");
+                document.getElementById("busquedaCliente").classList.toggle("d-none", tipoBusqueda !== "cliente");
+            }
+            // Detectar atajos de teclado
+            document.addEventListener("keydown", function(event) {
+                if (event.ctrlKey && event.key === "c") {
+                    event.preventDefault();
+                    document.getElementById("tipoBusqueda").value = "cliente";
+                    mostrarCampos();
+                }
+                if (event.ctrlKey && event.key === "f") {
+                    event.preventDefault();
+                    document.getElementById("tipoBusqueda").value = "folio";
+                    mostrarCampos();
+                }
+                if (event.ctrlKey && event.key === "l") {
+                    event.preventDefault();
+                    limpiar();
+                }
+                if (event.ctrlKey && event.key === "a") {
+                    event.preventDefault();
+                    $('#dialogBusquedaClientes').modal('show');
+                }
+                if (event.key === "Enter") {
+                    event.preventDefault(); // Prevenir el comportamiento por defecto del Enter
+                    let tipoBusqueda = $("#tipoBusqueda").val();
+                    if (tipoBusqueda === "folio") {
+                        buscarTicketFolio();
+                    } else {
+                        buscarTicketCliente();
+                    }
+                }
+            });
+
+
+            let dialogBusquedaClientes = document.getElementById('dialogBusquedaClientes');
+
+                    $('#dialogBusquedaClientes').on('shown.bs.modal', function () {
+                $('#filterInput').focus();
+            });
+
+            document.getElementById("btnReintentarCarga").addEventListener("click", function () {
+              this.setAttribute("disabled", true);
+              cargaClientes();
+            });
+
+             $("#txtFolio").on("input", function () {
                 this.value = this.value.replace(/[^0-9]/g, '');
             });
 
-        });
+            $(".soloNumeros").keypress(function (e) {
+                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                    return false;
+                }
+            });
+            
+            $("#btnMostrarClientes").on('click', function() {
+                $('#dialogBusquedaClientes').modal('show');
+            });
 
-        //Consulta folio en firebird
-        function buscarTicket() {
-            $('#pedidoInfo').hide();
-            let input = $('#txtFolio');
-            let nofolio = $('#txtFolio').val().trim();
-
-            input.tooltip('dispose');
-
-            if (nofolio === '') {
-                // Agregar tooltip con el mensaje de error
-                input.attr('data-bs-toggle', 'tooltip')
-                     .attr('data-bs-placement', 'bottom')
-                     .attr('title', 'Debes ingresar un número de folio.')
-                     .tooltip('show');
-
-                // Ocultar el tooltip después de 5 segundos y eliminarlo
-                setTimeout(() => {
-                    input.tooltip('hide').tooltip('dispose'); 
-                    input.removeAttr('title'); 
-                }, 5000);
-
-                return;
-            }
-
-            document.getElementById('contenedor-loader').style.display = 'flex';
-            $.ajax({
-                    url: '@Url.Action("ObtenerPedido", "Principal")',
+            function cargaClientes(){
+                $("#btnMostrarClientes i").removeClass('fas fa-users').addClass('fas fa-spinner fa-spin');
+                $.ajax({
+                    url: '@Url.Action("ObtenerClientes", "Principal")',
                     type: "POST",
-                    data: { folio: nofolio },
                     success: function (data) {
-                        // console.log("Obtener pedido: ");
-                         console.log(data);
+                        const btnMostrarClientes = document.getElementById("btnMostrarClientes");
+                        const btnReintentar = document.getElementById("btnReintentarCarga");
                         if (data.existeError) {
-                            dialogoEG({
-                                type: "error",
-                                title: "Error al buscar ticket",
-                                mensaje: "Ha ocurrido un error al consultar la información del pedido a la base de datos. Intente de nuevo, si el inconveniente persiste contacte al administrador.",
-                                confirmar: "Aceptar",
-                                img: "img/error.png"
-                            });
+                            console.log("Error al cargar clientes");
+                            btnMostrarClientes.setAttribute("disabled", true);
+                            btnReintentar.removeAttribute("disabled");
                         } else {
                             if (data.existenDatos) {
-                                let fechaF = formatoFecha(data.infoPedido.fecha);
-                                let total = parseFloat(data.infoPedido.total).toFixed(2);
-                                let pago = parseFloat(data.infoPedido.pago).toFixed(2);
-                                let cambio = parseFloat(data.infoPedido.cambio).toFixed(2);
-                                // Mostrar la información del pedido
-                                $('#folio').text(data.infoPedido.folio);
-                                $('#fecha').text(fechaF);
-                                $('#cajero').text(data.infoPedido.cajero);
-                                $('#cliente').text(data.infoPedido.cliente);
-                                $('#total').text("Q." + total);
-                                $('#pago').text("Q." + pago);
-                                $('#cambio').text("Q." + cambio);
-                                $('#estatus').text(data.infoPedido.estatus);
-                                parametros = {
-                                    infoPedido: {
-                                        folio: data.infoPedido.folio,
-                                        fecha: data.infoPedido.fecha,
-                                        cajero: data.infoPedido.cajero,
-                                        cliente: data.infoPedido.cliente,
-                                        total: data.infoPedido.total,
-                                        pago: data.infoPedido.pago,
-                                        cambio: data.infoPedido.cambio,
-                                        estatus: data.infoPedido.estatus
-                                    },
-                                    usuario: ""
-                                };
-                                // Mostrar el contenedor con la información del pedido
-                                $('#pedidoInfo').show();
-                            } else {
-                                dialogoEG({
-                                    type: "warning",
-                                    title: "Folio Incorrecto",
-                                    mensaje: "No existe ningún pedido con el número de folio ingresado. Por favor, revísalo e intenta nuevamente.",
-                                    confirmar: "Aceptar",
-                                    img: "img/warning.png"
+                                const clientes = data?.infoClientes?.listaClientes || [];
+                                clientes.forEach((item)=> {
+                                    const lista = document.getElementById('listaClientes');
+
                                 });
-                                limpiar();
+
+                                btnMostrarClientes.removeAttribute("disabled");
+                                btnReintentar.setAttribute("disabled", true);
+                                btnReintentar.classList.add("d-none");
+                            } else {
+                                btnMostrarClientes.setAttribute("disabled", true);
+                                btnReintentar.removeAttribute("disabled");
+                                btnReintentar.classList.remove("d-none");
                             }
+                            $("#btnMostrarClientes i").removeClass('fas fa-spinner fa-spin').addClass('fas fa-users');
                         }
-                        document.getElementById('contenedor-loader').style.display = 'none';
                     },
-                    error: function (xhr, status, error) {
-                        document.getElementById('contenedor-loader').style.display = 'none';
-                    }
-                });
-        }
-
-        //Insertar un ticket
-        function ingresaTicket() {
-            document.getElementById('contenedor-loader').style.display = 'flex';
-            $.ajax({
-                url: '@Url.Action("IngresarProduccion", "Principal")',
-                type: "POST",
-                data: parametros,
-                success: function (data) {
-                    // console.log(data);
-                    if (!data.success) {
-                        // console.log(data.errorMensaje)
-                        dialogoEG({
-                            type: "error",
-                            title: "Error ingreso a producción",
-                            mensaje: data.errorMensaje,
-                            confirmar: "Aceptar",
-                            img: "img/error.png"
-                        })
-                            limpiar();
-
-                    } else {
-                        dialogoEG({
-                            type: "success",
-                            title: "Ingreso exitoso",
-                            mensaje: data.respuesta,
-                            confirmar: "Aceptar",
-                            img: "img/success.png"
-                        }).then(() => {
-                            limpiar();
-                            consultaPedidos();
-                        });
-                        $('#pedidoInfo').hide();
-                    }
-                    document.getElementById('contenedor-loader').style.display = 'none';
-                },
-                error: function (xhr, status, error) {
-                    document.getElementById('contenedor-loader').style.display = 'none';
-                    dialogoEG({
-                        type: "error",
-                        title: "Error de comunicación",
-                        mensaje: "Ocurrió un error al ingresar el ticket a producción. Intente nuevamente, si el inconveniente persiste contacte al administrador.",
-                        confirmar: "Aceptar",
-                        img: "img/error.png"
-                    })
-                        limpiar();
-                }
-            });
-        }
-
-        //Consulta de pedidos
-        function consultaPedidos() {
-            document.getElementById('contenedor-loader').style.display = 'flex';
-             $.ajax({
-                url: '@Url.Action("ListaPedidosDash", "Principal")',
-            type: "POST",
-            success: function (data) {
-                if (!data.success) {
-                    // console.log(data.errorMensaje)
-                    dialogoEG({
-                        type: "error",
-                        title: "Error consulta de pedidos",
-                        mensaje: data.errorMensaje,
-                        confirmar: "Aceptar",
-                        img: "img/error.png"
-                    }).then(() => {
-                        limpiar();
+                        error: function () {
+                            console.log("Error en la petición AJAX.");
+                            document.getElementById("btnReintentarCarga").removeAttribute("disabled");
+                        }
                     });
-                } else {
-                    const pedidos = JSON.parse(data.respuesta).listadoPedidos;
-                    //Actualizar listado de pedidos
-                    updateList(pedidos);
-                }
-                document.getElementById('contenedor-loader').style.display = 'none';
-            },
-            error: function (xhr, status, error) {
-                document.getElementById('contenedor-loader').style.display = 'none';
-                // console.log("Error al consultar pedidos:", error);
-                dialogoEG({
-                    type: "error",
-                    title: "Error de comunicación",
-                    mensaje: "Ocurrió un error al obtener el listado de pedidos. Se actualizará la página, si el inconveniente persiste contacte al administrador.",
-                    confirmar: "Aceptar",
-                    img: "img/error.png"
-                }).then(() => {
-                   location.reload();
-                });
             }
         });
-        }
 
-        //Obtener pilotos activos
-        function getPilotosAct() {
-            document.getElementById('contenedor-loader').style.display = 'flex';
-            $.ajax({
-                url: '@Url.Action("ListaPilotos", "Principal")',
-                type: "POST",
-                success: function (data) {
-                    if (data.success) {
-                        // Deserializar la respuesta JSON
-                        let respuesta = JSON.parse(data.respuesta);
-                        let listadoPilotos = respuesta.listadoPilotos;
-                        let pilotSelect = $('#pilot-select');
+// Fuera de ready --------------------------------------------------------------------------------
+                //Consulta folio en firebird
+                function buscarTicketFolio() {
+                    $('#pedidoInfo').hide();
+                    let input = $('#txtFolio');
+                    let nofolio = $('#txtFolio').val().trim();
 
-                        // Vaciar las opciones existentes
-                        pilotSelect.empty();
-                        pilotSelect.append('<option value="">Selecciona un piloto</option>');
+                    input.tooltip('dispose');
 
-                        // Agregar los pilotos al select
-                        listadoPilotos.forEach(piloto => {
-                            pilotSelect.append(`<option value="${piloto.id_usuario}">${piloto.nombre}</option>`);
-                        });
-                       
-                    }  
-                    document.getElementById('contenedor-loader').style.display = 'none';
-                },
-                error: function (xhr, status, error) {
-                    document.getElementById('contenedor-loader').style.display = 'none';
-                    dialogoEG({
-                        type: "error",
-                        title: "Error de comunicación",
-                        mensaje: "Ocurrió un error al obtener listado de pilotos. Intente nuevamente, si el inconveniente persiste contacte al administrador.",
-                        confirmar: "Aceptar",
-                        img: "img/error.png"
-                    });
-                }
-            });
-        }
+                    if (nofolio === '') {
+                        // Agregar tooltip con el mensaje de error
+                        input.attr('data-bs-toggle', 'tooltip')
+                             .attr('data-bs-placement', 'bottom')
+                             .attr('title', 'Debes ingresar un número de folio.')
+                             .tooltip('show');
 
-        //Consulta todos los pilotos del sistema
-        function getPilotosAll() {
-            document.getElementById('contenedor-loader').style.display = 'flex';
-            $.ajax({
-                    url: '@Url.Action("ConsultaPilotos", "Principal")',
-                    type: "POST",
-                     success: function (data) {
-                         if (data.success) {
-                             // Deserializar la respuesta JSON
-                             let respuesta = JSON.parse(data.respuesta);
+                        // Ocultar el tooltip después de 5 segundos y eliminarlo
+                        setTimeout(() => {
+                            input.tooltip('hide').tooltip('dispose');
+                            input.removeAttr('title');
+                        }, 5000);
 
-                             // Acceder al array de pilotos
-                             let listadoPilotos = respuesta.listadoPilotos;
-                         }
-                         document.getElementById('contenedor-loader').style.display = 'none';
-                     },
-                     error: function (xhr, status, error) {
-                         document.getElementById('contenedor-loader').style.display = 'none';
-                         dialogoEG({
-                             type: "error",
-                             title: "Error de comunicación",
-                             mensaje: "Ocurrió un error al obtener listado de pilotos. Intente nuevamente, si el inconveniente persiste contacte al administrador.",
-                             confirmar: "Aceptar",
-                             img: "img/error.png"
-                         });
-                     }
-            });
-        }
-
-        //Consulta empresas de paquetería
-        function getPaqueterias() {
-            document.getElementById('contenedor-loader').style.display = 'flex';
-            $.ajax({
-                    url: '@Url.Action("ConsultaPaqueterias", "Principal")',
-                    type: "POST",
-                     success: function (data) {
-                         if (data.success) {
-                             // Deserializar la respuesta JSON
-                             let respuesta = JSON.parse(data.respuesta);
-
-                             // Acceder al array de paqueterías
-                             let listadoPaqueterias = respuesta.listadoPaqueterias;
-
-                             // Obtener el elemento select
-                             let parcelSelect = $('#parcel-select');
-                             // Vaciar las opciones existentes
-                             parcelSelect.empty();
-                             // Agregar la opción predeterminada
-                             parcelSelect.append('<option value="">Selecciona una paquetería</option>');
-
-                             // Agregar las paqueterías al select
-                             listadoPaqueterias.forEach(paq => {
-                                 parcelSelect.append(`<option value="${paq.id_paqueteria}">${paq.nombre}</option>`);
-                             });
-                         }
-                         document.getElementById('contenedor-loader').style.display = 'none';
-                     },
-                     error: function (xhr, status, error) {
-                         document.getElementById('contenedor-loader').style.display = 'none';
-                         dialogoEG({
-                             type: "error",
-                             title: "Error de comunicación",
-                             mensaje: "Ocurrió un error al obtener listado de pilotos. Intente nuevamente, si el inconveniente persiste contacte al administrador.",
-                             confirmar: "Aceptar",
-                             img: "img/error.png"
-                         });
-                     }
-            });
-        }
-
-        //Actualizar lista de pedidos
-        function updateList(listaPedidos) {
-            // Crear un objeto para almacenar el último estado de cada pedido
-            const pedidosUltimoEstado = {};
-            // Iterar sobre la lista de pedidos para encontrar el último estado de cada folio
-            listaPedidos.forEach(pedido => {
-                const folio = pedido.folio;
-                // Si el folio no está en el objeto o si el estado actual es más reciente
-                if (!pedidosUltimoEstado[folio] || new Date(pedido.fecha_estado) > new Date(pedidosUltimoEstado[folio].fecha_estado)) {
-                    pedidosUltimoEstado[folio] = pedido;
-                }
-            });
-            // Obtener los valores de los pedidos con el último estado
-            const pedidosConUltimoEstado = Object.values(pedidosUltimoEstado);
-            // Limpiar listas existentes
-            const categories = ['production', 'courier', 'parcel', 'delivered', 'returned', 'canceled', 'completed', 'rescheduled', 'pickup'];
-
-            let hayPedidos = false;
-
-            categories.forEach(category => {
-                const contenedorPedidos = document.getElementById(`${category}-orders`); // Cambia este id según tu categoría
-                contenedorPedidos.innerHTML = ''; // Limpiar la lista existente
-
-                // Filtrar los pedidos por categoría utilizando el mapeo
-                const pedidosFiltrados = pedidosConUltimoEstado.filter(pedido => categoryMap[pedido.estado_actual] === category);
-
-                pedidosFiltrados.forEach(pedido => {
-
-                    // Crear un contenedor
-                    const cardItem = document.createElement('div');
-                    cardItem.classList.add('card-item');
-
-                    // Crear elementos para cada parte del contenido
-                    const cliente = document.createElement('div');
-                    cliente.textContent = pedido.cliente;
-                    cliente.classList.add('cliente');
-
-                    const folio = document.createElement('div');
-                    folio.textContent = `Folio ticket #${pedido.folio}`;
-                    folio.classList.add('detalle');
-
-                    const total = document.createElement('div');
-                    total.textContent = `Total Q.${pedido.total}`;
-                    total.classList.add('detalle');
-
-                    const fecha = document.createElement('div');
-                    fecha.textContent = formatoFechaDos(pedido.fecha_estado);
-                    fecha.classList.add('detalle');
-
-                    // Agregar todos los elementos creados al div card-item
-                    cardItem.appendChild(cliente);
-                    cardItem.appendChild(folio);
-                    cardItem.appendChild(total);
-                    cardItem.appendChild(fecha);
-
-                    // Agregar el evento click para el modal
-                    cardItem.addEventListener('click', function () {
-                        showModal(pedido, cardItem);
-                    });
-                    // Agregar el card-item al contenedor correspondiente
-                    contenedorPedidos.appendChild(cardItem);
-                });
-
-             
-                // Verificar si hay elementos en el contenedor
-                const contenedorProduccion = contenedorPedidos.closest('.col-12');
-                if (pedidosFiltrados.length > 0) {
-                    // Si hay elementos, mostrar el contenedor
-                    contenedorProduccion.classList.remove('oculto');
-                    hayPedidos = true;
-                } else {
-                    // Si no hay elementos, ocultar el contenedor
-                    contenedorProduccion.classList.add('oculto');
-                }
-            });
-                // Mostrar u ocultar el mensaje de "Sin registros"
-                const mensajeSinRegistros = document.querySelector('.sin-registros');
-                if (hayPedidos) {
-                    mensajeSinRegistros.classList.add('oculto');
-                } else {
-                    mensajeSinRegistros.classList.remove('oculto');
-                }
-        }
-
-        //Mostral modal
-        function showModal(pedido, cardItem) {
-            // console.log("Abro diálogo del pedido: ");
-            // console.log(pedido);
-            let piloto = "";
-            let paqueteria = "";
-            let obvs = "";
-            //Aginación de colores
-            // Obtener la categoría del card-item clickeado
-            const categoryContainer = cardItem.closest('.order-category');
-            let categoryClass = '';
-            if (categoryContainer) {
-                categoryClass = Array.from(categoryContainer.classList).find(cls => cls.startsWith('category-'));
-            }
-            const orderNumber = pedido.folio;
-            const currentState = pedido.estado_actual;
-            // Mostrar detalles del pedido en el modal
-            $('#txtInfoCliente').text(`${pedido.cliente}`);
-            $('#txtInfoTicket').text(`#${orderNumber}`);
-            $('#txtInfoFechaPedido').text(`${formatoFecha(pedido.fecha)}`);
-            $('#txtInfoCajero').text(`${pedido.cajero}`);
-            $('#txtInfoTotalPedido').text(`Q.${pedido.total}`);
-            $('#txtInfoPagoPedido').text(`Q.${pedido.pago}`);
-            $('#txtInfoCambioPedido').text(`Q.${pedido.cambio}`);
-            $('#txtInfoEstadoActual').text(`${currentState}`);
-            $('#txtInfoEstadoFecha').text(`${formatoFechaDos(pedido.fecha_estado)}`);
-            if(pedido.observaciones){
-                document.getElementById('detEstado').style.display = 'block';
-                $('#txtInfoDetalleEstado').text(`${pedido.observaciones}`);
-            }
-            $('#txtInfoEstadoUsuario').text(`${pedido.usuario_cambio}`);
-            $('#txtInfoUsuarioCargo').text(`${pedido.usuario_registro}`);
-            if (pedido.mensajero) {
-                $('#txtInfoMensajero').text(`${pedido.mensajero}`);
-                document.getElementById('pilot-cargo').style.display = 'block';
-                piloto = pedido.id_mens;
-            }
-            if (pedido.paqueteria) {
-                $('#txtInfoPaqueteria').text(`${pedido.paqueteria}`);
-                document.getElementById('parcel-cargo').style.display = 'block';
-                paqueteria = pedido.id_paq;
-            }
-
-            $('#txtInfoObservaciones').val(''); 
-            
-            const cambiosPedidos = document.getElementById('cambiosPedido');
-            const statusChangeOptions = document.getElementById('status-change-options');
-            const pilotSelection = document.getElementById('pilot-selection');
-            const assignPilotBtn = document.getElementById('assign-pilot-btn');
-            const parcelSelection = document.getElementById('parcel-selection');
-            const assignParcelBtn = document.getElementById('assign-parcel-btn');
-            
-            // Resetear las opciones del modal
-            statusChangeOptions.innerHTML = '';
-            pilotSelection.style.display = 'none';
-            assignPilotBtn.style.display = 'none';
-            parcelSelection.style.display = 'none';
-            assignParcelBtn.style.display = 'none';
-            // Obtener los posibles siguientes estados
-            const nextStates = getNextStates(currentState);
-            if (nextStates && nextStates.length > 0) {
-                cambiosPedidos.classList.remove('oculto');  // Mostrar el div si hay estados
-            } else {
-                cambiosPedidos.classList.add('oculto');  // Ocultar el div si no hay estados
-            }
-            nextStates.forEach(nextState => {
-                const button = document.createElement('button');
-                button.textContent = nextState.label;
-                button.classList.add('btn', 'btn-primary', 'me-2');
-                button.addEventListener('click', function () {
-                    if (nextState.state === 'courier') { // Enviar por Mensajería
-                        getPilotosAct();
-                        pilotSelection.style.display = 'block';
-                        assignPilotBtn.style.display = 'block';
-                        assignParcelBtn.style.display = 'none';
-                        parcelSelection.style.display = 'none';
-                        document.getElementById('pilot-select').focus();
-
-                        assignPilotBtn.addEventListener('click', function () {
-                            const selectedPilot = document.getElementById('pilot-select').value;
-                            obvs = document.getElementById('txtInfoObservaciones').value;
-                            //obvs = combinarObservaciones(pedido.observaciones, obvs);
-                            if (selectedPilot) {
-                                piloto = selectedPilot;
-                                changeOrderState(pedido, nextState.state, piloto, paqueteria, obvs);
-                            } else {
-                                dialogoEG({
-                                    type: "warning",
-                                    title: "Mensajería",
-                                    mensaje: "Por favor, seleccione un mensajero encargado de la entrega del pedido.",
-                                    confirmar: "Aceptar",
-                                    img: "img/warning.png"
-                                }).then(() => {
-                                    document.getElementById('pilot-select').focus();
-                                });
-                            }
-                        });
-
-                    } else if (nextState.state === 'parcel') { // Enviar por Paquetería
-                        getPaqueterias();
-                        parcelSelection.style.display = 'block';
-                        assignParcelBtn.style.display = 'block';
-                        assignPilotBtn.style.display = 'none';
-                        pilotSelection.style.display = 'none';
-                        document.getElementById('parcel-select').focus();
-
-                        assignParcelBtn.addEventListener('click', function () {
-                            const selectedParcel = document.getElementById('parcel-select').value;
-                            // console.log('Valor seleccionado:', selectedParcel);
-                            obvs = document.getElementById('txtInfoObservaciones').value;
-                            //obvs = combinarObservaciones(pedido.observaciones, obvs);
-                            if (selectedParcel) {
-                                paqueteria = selectedParcel;
-                                changeOrderState(pedido, nextState.state, piloto, paqueteria, obvs);
-                            } else {
-                                dialogoEG({
-                                    type: "warning",
-                                    title: "Paquetería",
-                                    mensaje: "Por favor, seleccione una empresa de paquetería para la entrega del pedido.",
-                                    confirmar: "Aceptar",
-                                    img: "img/warning.png"
-                                }).then(() => {
-                                    document.getElementById('parcel-select').focus();
-                                });
-                            }
-                        });
-
-                    } else {
-                        obvs = document.getElementById('txtInfoObservaciones').value;
-                        //obvs = combinarObservaciones(pedido.observaciones, obvs);
-                        changeOrderState(pedido, nextState.state, piloto, paqueteria, obvs);
+                        return;
                     }
-                });
-                statusChangeOptions.appendChild(button);
-            });
-            // Mostrar el modal y agregar la clase de categoría si existe
-            const modalElement = document.getElementById('order-modal');
-            // Remover cualquier clase de categoría existente para evitar múltiples clases
-            modalElement.classList.remove(...Array.from(modalElement.classList).filter(cls => cls.startsWith('category-')));
 
-            // Agregar la clase de categoría si existe
-            if (categoryClass) {
-                modalElement.classList.add(categoryClass);
-            }
-            // Mostrar el modal utilizando Bootstrap
-            modalInstance = new bootstrap.Modal(modalElement);
-            modalInstance.show();
-        }
+                    document.getElementById('contenedor-loader').style.display = 'flex';
+                    $.ajax({
+                            url: '@Url.Action("ObtenerPedido", "Principal")',
+                            type: "POST",
+                            data: { folio: nofolio },
+                            success: function (data) {
+                                // console.log("Obtener pedido: ");
+                                 console.log(data);
+                                if (data.existeError) {
+                                    dialogoEG({
+                                        type: "error",
+                                        title: "Error al buscar ticket",
+                                        mensaje: "Ha ocurrido un error al consultar la información del pedido a la base de datos. Intente de nuevo, si el inconveniente persiste contacte al administrador.",
+                                        confirmar: "Aceptar",
+                                        img: "img/error.png"
+                                    });
+                                } else {
+                                    if (data.existenDatos) {
+                                                mostrarInfoPedido(data.infoPedido);
+                                    } else {
+                                        dialogoEG({
+                                            type: "warning",
+                                            title: "Folio Incorrecto",
+                                            mensaje: "No existe ningún pedido con el número de folio ingresado. Por favor, revísalo e intenta nuevamente.",
+                                            confirmar: "Aceptar",
+                                            img: "img/warning.png"
+                                        });
+                                        limpiar();
+                                    }
+                                }
+                                document.getElementById('contenedor-loader').style.display = 'none';
+                            },
+                            error: function (xhr, status, error) {
+                                document.getElementById('contenedor-loader').style.display = 'none';
+                            }
+                        });
+                }
 
-        function combinarObservaciones(pedidoObservaciones, obvs) {
-            // Verificar y combinar las observaciones según las condiciones
-            if (pedidoObservaciones && obvs) {
-                return pedidoObservaciones + " / " + obvs;
-            } else if (!pedidoObservaciones && obvs) {
-                return obvs;
-            } else if (pedidoObservaciones && !obvs) {
-                return pedidoObservaciones;
-            }
-            return ''; // En caso de que ambos estén vacíos
-        }
+                //Consulta folio en firebird
+                function buscarTicketCliente() {
+                    $('#pedidoInfo').hide();
+                    let inputCliente = $('#txtCliente');
+                    let inputFecha = $('#txtFecha');
 
-        //Obtener estados siguientes posibles
-        function getNextStates(currentState) {
-            // console.log("Dentro de getNextStates: " + currentState);
-            const stateTransitions = {
-                production: [
-                    { state: 'completed', label: 'Completado' },
-                    { state: 'canceled', label: 'Anulado' }
-                ],
-                completed: [
-                    { state: 'courier', label: 'Enviar por Mensajería' },
-                    { state: 'parcel', label: 'Enviar por Paquetería' },
-                    { state: 'pickup', label: 'Recoge en oficina' },
-                    { state: 'canceled', label: 'Anulado' }
-                ],
-                courier: [
-                    { state: 'returned', label: 'Devuelto' },
-                    { state: 'delivered', label: 'Entregado' }
-                ],
-                parcel: [
-                    { state: 'returned', label: 'Devuelto' },
-                    { state: 'delivered', label: 'Entregado' }
-                ],
-                delivered: [],
-                returned: [
-                    { state: 'canceled', label: 'Anulado' },
-                    { state: 'rescheduled', label: 'Reprogramar' }
-                ],
-                canceled: [],
-                pickup: [
-                    { state: 'delivered', label: 'Entregado' },
-                    { state: 'canceled', label: 'Anulado' }
-                ],
-                rescheduled: [
-                    { state: 'courier', label: 'Enviar por Mensajería' },
-                    { state: 'parcel', label: 'Enviar por Paquetería' },
-                    { state: 'pickup', label: 'Recoge en oficina' },
-                    { state: 'canceled', label: 'Anulado' }
-                ]
-            };
-            // Usar el mapeo para convertir currentState a su correspondiente en inglés
-            const mappedState = categoryMap[currentState];
-            return stateTransitions[mappedState] || [];
-        }
+                    // Obtener los valores de los campos de texto
+                    let clientePedido = inputCliente.val().trim();
+                    let fechaPedido = inputFecha.val(); 
 
-        // Función para obtener el equivalente en español dado un estado en inglés
-        function getState(state) {
-            return entospa[state] || "Estado desconocido";
-        }
+                    // Desactivar los tooltips anteriores si existen
+                    inputCliente.tooltip('dispose');
+                    inputFecha.tooltip('dispose');
 
-        //Cambiar estado del pedido
-        function changeOrderState(pedido, newState, piloto, paqueteria, obvs) {
-            newState = getState(newState);
-            let parametros = {
-                'folio': pedido.folio,
-                'estadoAnterior': pedido.estado_actual,
-                'estadoNuevo': newState,
-                'usuario': "",
-                'idMensajero': piloto,
-                'idPaqueteria': paqueteria,
-                'observaciones': obvs
-            };
-         
-            if (pedido.estado_actual && pedido.estado_actual !== newState) {
-                document.getElementById('contenedor-loader').style.display = 'flex';
-                $.ajax({
-                    url: '@Url.Action("cambioEstadoPedido", "Home")',
+                    // Validación para el campo de cliente
+                    if (clientePedido === '') {
+                        // Agregar tooltip con el mensaje de error
+                        inputCliente.attr('data-bs-toggle', 'tooltip')
+                            .attr('data-bs-placement', 'top')
+                            .attr('title', 'Debes ingresar el nombre de cliente.')
+                            .tooltip('show');
+
+                        // Ocultar el tooltip después de 5 segundos y eliminarlo
+                        setTimeout(() => {
+                            inputCliente.tooltip('hide').tooltip('dispose');
+                            inputCliente.removeAttr('title');
+                        }, 5000);
+                        return;
+                    }
+
+                    // Validación para el campo de fecha
+                    if (fechaPedido === '') {
+                        // Agregar tooltip con el mensaje de error
+                        inputFecha.attr('data-bs-toggle', 'tooltip')
+                            .attr('data-bs-placement', 'bottom')
+                            .attr('title', 'Selecciona o ingresa una fecha.')
+                            .tooltip('show');
+
+                        // Ocultar el tooltip después de 5 segundos y eliminarlo
+                        setTimeout(() => {
+                            inputFecha.tooltip('hide').tooltip('dispose');
+                            inputFecha.removeAttr('title');
+                        }, 5000);
+                        return;
+                     }else if (isNaN(Date.parse(fechaPedido))) {
+                        inputFecha.attr('data-bs-toggle', 'tooltip')
+                            .attr('data-bs-placement', 'bottom')
+                            .attr('title', 'Ingresa una fecha válida.')
+                            .tooltip('show');
+
+                        setTimeout(() => {
+                            inputFecha.tooltip('hide').tooltip('dispose');
+                            inputFecha.removeAttr('title');
+                        }, 5000);
+                        return;
+                    }
+
+                    document.getElementById('contenedor-loader').style.display = 'flex';
+                    $.ajax({
+                            url: '@Url.Action("ObtenerPedidoCliente", "Principal")',
+                            type: "POST",
+                            data: { cliente: clientePedido, fecha: fechaPedido },
+                            success: function (data) {
+                                    console.log(data);
+                                if (data.existeError) {
+                                    dialogoEG({
+                                        type: "error",
+                                        title: "Error al buscar ticket",
+                                        mensaje: "Ha ocurrido un error al consultar la información del pedido a la base de datos. Intente de nuevo, si el inconveniente persiste contacte al administrador.",
+                                        confirmar: "Aceptar",
+                                        img: "img/error.png"
+                                    });
+                                } else {
+                                    if (data.existenDatos) {
+                                        mostrarInfoPedido(data.infoPedido);
+                                    } else {
+                                        dialogoEG({
+                                            type: "warning",
+                                            title: "Folio Incorrecto",
+                                            mensaje: "No existe ningún pedido con el número de folio ingresado. Por favor, revísalo e intenta nuevamente.",
+                                            confirmar: "Aceptar",
+                                            img: "img/warning.png"
+                                        });
+                                        limpiar();
+                                    }
+                                }
+                                document.getElementById('contenedor-loader').style.display = 'none';
+                            },
+                            error: function (xhr, status, error) {
+                                document.getElementById('contenedor-loader').style.display = 'none';
+                            }
+                        });
+                    }
+
+                //Muestra datos del pedido encontrado
+                function mostrarInfoPedido(infoPedido){
+                    let fechaF = formatoFecha(infoPedido.fecha);
+                    let total = parseFloat(infoPedido.total).toFixed(2);
+                    let pago = parseFloat(infoPedido.pago).toFixed(2);
+                    let cambio = parseFloat(infoPedido.cambio).toFixed(2);
+
+                     // Ordenar productos por precio de mayor a menor
+                     infoPedido.detallePedido.sort((a, b) => b.precio - a.precio);
+                    // Insertar datos en la tabla
+                    const tbody = document.getElementById("detallePedido");
+                    infoPedido.detallePedido.forEach(item => {
+                        const row =`
+                                <tr>
+                                    <td class="cantidad-col">${item.cantidad}</td>
+                                    <td>${item.producto}</td>
+                                    <td class="text-end">Q${item.precio.toFixed(2)}</td>
+                                </tr>
+                                    `;
+                        tbody.innerHTML += row;
+                    });
+
+                    // Insertar datos generales
+                    document.getElementById("folio").textContent = infoPedido.folio;
+                    document.getElementById("fecha").textContent = infoPedido.fecha;
+                    document.getElementById("cajero").textContent = infoPedido.cajero;
+                    document.getElementById("cliente").textContent = infoPedido.cliente;
+                    document.getElementById("total").textContent = infoPedido.total.toFixed(2);
+                    document.getElementById("pago").textContent = infoPedido.pago.toFixed(2);
+                    document.getElementById("cambio").textContent = infoPedido.cambio.toFixed(2);
+                  // Mostrar el contenedor con la información del pedido
+                  $('#pedidoInfo').show();
+                }
+
+                //Insertar un ticket
+                function ingresaTicket() {
+                    document.getElementById('contenedor-loader').style.display = 'flex';
+                    $.ajax({
+                        url: '@Url.Action("IngresarProduccion", "Principal")',
+                        type: "POST",
+                        data: parametros,
+                        success: function (data) {
+                            // console.log(data);
+                            if (!data.success) {
+                                // console.log(data.errorMensaje)
+                                dialogoEG({
+                                    type: "error",
+                                    title: "Error ingreso a producción",
+                                    mensaje: data.errorMensaje,
+                                    confirmar: "Aceptar",
+                                    img: "img/error.png"
+                                })
+                                    limpiar();
+
+                            } else {
+                                dialogoEG({
+                                    type: "success",
+                                    title: "Ingreso exitoso",
+                                    mensaje: data.respuesta,
+                                    confirmar: "Aceptar",
+                                    img: "img/success.png"
+                                }).then(() => {
+                                    limpiar();
+                                    consultaPedidos();
+                                });
+                                $('#pedidoInfo').hide();
+                            }
+                            document.getElementById('contenedor-loader').style.display = 'none';
+                        },
+                        error: function (xhr, status, error) {
+                            document.getElementById('contenedor-loader').style.display = 'none';
+                            dialogoEG({
+                                type: "error",
+                                title: "Error de comunicación",
+                                mensaje: "Ocurrió un error al ingresar el ticket a producción. Intente nuevamente, si el inconveniente persiste contacte al administrador.",
+                                confirmar: "Aceptar",
+                                img: "img/error.png"
+                            })
+                                limpiar();
+                        }
+                    });
+                }
+
+                //Consulta de pedidos
+                function consultaPedidos() {
+                    document.getElementById('contenedor-loader').style.display = 'flex';
+                     $.ajax({
+                        url: '@Url.Action("ListaPedidosDash", "Principal")',
                     type: "POST",
-                    data: parametros,
                     success: function (data) {
-                        // console.log(data);
                         if (!data.success) {
                             // console.log(data.errorMensaje)
                             dialogoEG({
                                 type: "error",
-                                title: "Error cambio de estado",
+                                title: "Error consulta de pedidos",
                                 mensaje: data.errorMensaje,
                                 confirmar: "Aceptar",
                                 img: "img/error.png"
                             }).then(() => {
-                                //limpiar();
+                                limpiar();
                             });
                         } else {
-                            dialogoEG({
-                                type: "success",
-                                title: "Cambio de estado exitoso",
-                                mensaje: data.respuesta,
-                                confirmar: "Aceptar",
-                                img: "img/success.png"
-                            }).then(() => {
-                                modalInstance.hide(); // Cerrar el modal después de mostrar el diálogo de éxito
-
-                                consultaPedidos();
-                            });
+                            const pedidos = JSON.parse(data.respuesta).listadoPedidos;
+                            //Actualizar listado de pedidos
+                            updateList(pedidos);
                         }
                         document.getElementById('contenedor-loader').style.display = 'none';
                     },
                     error: function (xhr, status, error) {
                         document.getElementById('contenedor-loader').style.display = 'none';
-                        // console.log("Error al ingresar el ticket a producción:", error);
+                        // console.log("Error al consultar pedidos:", error);
                         dialogoEG({
                             type: "error",
                             title: "Error de comunicación",
-                            mensaje: "Ocurrió un error al ingresar el ticket a producción. Intente nuevamente, si el inconveniente persiste contacte al administrador.",
+                            mensaje: "Ocurrió un error al obtener el listado de pedidos. Se actualizará la página, si el inconveniente persiste contacte al administrador.",
                             confirmar: "Aceptar",
                             img: "img/error.png"
+                        }).then(() => {
+                           location.reload();
                         });
                     }
-            });
+                });
+                }
 
-            }
-        }
+                //Obtener pilotos activos
+                function getPilotosAct() {
+                    document.getElementById('contenedor-loader').style.display = 'flex';
+                    $.ajax({
+                        url: '@Url.Action("ListaPilotos", "Principal")',
+                        type: "POST",
+                        success: function (data) {
+                            if (data.success) {
+                                // Deserializar la respuesta JSON
+                                let respuesta = JSON.parse(data.respuesta);
+                                let listadoPilotos = respuesta.listadoPilotos;
+                                let pilotSelect = $('#pilot-select');
 
-        //Limpiar búsqueda ticket
-        function limpiar() {
-            parametros = "";
-            $('#txtFolio').val("");
-            $('#folio').text("");
-            $('#fecha').text("");
-            $('#cajero').text("");
-            $('#cliente').text("");
-            $('#total').text("");
-            $('#pago').text("");
-            $('#cambio').text("");
-            $('#estatus').text("");
-            $('#pedidoInfo').hide();
-            // Desplazar hasta la parte superior de la página
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+                                // Vaciar las opciones existentes
+                                pilotSelect.empty();
+                                pilotSelect.append('<option value="">Selecciona un piloto</option>');
 
-        //Formatear fecha 1
-        function formatoFecha(fecha) {
-            var date = new Date(fecha);
+                                // Agregar los pilotos al select
+                                listadoPilotos.forEach(piloto => {
+                                    pilotSelect.append(`<option value="${piloto.id_usuario}">${piloto.nombre}</option>`);
+                                });
 
-            // Obtener partes de la fecha
-            var dia = date.getDate();
-            var mes = date.getMonth() + 1; // Los meses son base 0
-            var anio = date.getFullYear();
+                            }
+                            document.getElementById('contenedor-loader').style.display = 'none';
+                        },
+                        error: function (xhr, status, error) {
+                            document.getElementById('contenedor-loader').style.display = 'none';
+                            dialogoEG({
+                                type: "error",
+                                title: "Error de comunicación",
+                                mensaje: "Ocurrió un error al obtener listado de pilotos. Intente nuevamente, si el inconveniente persiste contacte al administrador.",
+                                confirmar: "Aceptar",
+                                img: "img/error.png"
+                            });
+                        }
+                    });
+                }
 
-            // Obtener partes de la hora
-            var horas = date.getHours();
-            var minutos = date.getMinutes();
-            var segundos = date.getSeconds();
+                //Consulta todos los pilotos del sistema
+                function getPilotosAll() {
+                    document.getElementById('contenedor-loader').style.display = 'flex';
+                    $.ajax({
+                            url: '@Url.Action("ConsultaPilotos", "Principal")',
+                            type: "POST",
+                             success: function (data) {
+                                 if (data.success) {
+                                     // Deserializar la respuesta JSON
+                                     let respuesta = JSON.parse(data.respuesta);
 
-            // Formato de 12 horas
-            var amPm = horas >= 12 ? 'P.M.' : 'A.M.';
-            horas = horas % 12;
-            horas = horas ? horas : 12; // Si la hora es 0 (medianoche), ajustarla a 12
+                                     // Acceder al array de pilotos
+                                     let listadoPilotos = respuesta.listadoPilotos;
+                                 }
+                                 document.getElementById('contenedor-loader').style.display = 'none';
+                             },
+                             error: function (xhr, status, error) {
+                                 document.getElementById('contenedor-loader').style.display = 'none';
+                                 dialogoEG({
+                                     type: "error",
+                                     title: "Error de comunicación",
+                                     mensaje: "Ocurrió un error al obtener listado de pilotos. Intente nuevamente, si el inconveniente persiste contacte al administrador.",
+                                     confirmar: "Aceptar",
+                                     img: "img/error.png"
+                                 });
+                             }
+                    });
+                }
 
-            // Agregar ceros iniciales si es necesario
-            dia = dia < 10 ? '0' + dia : dia;
-            mes = mes < 10 ? '0' + mes : mes;
-            horas = horas < 10 ? '0' + horas : horas;
-            minutos = minutos < 10 ? '0' + minutos : minutos;
-            segundos = segundos < 10 ? '0' + segundos : segundos;
+                //Consulta empresas de paquetería
+                function getPaqueterias() {
+                    document.getElementById('contenedor-loader').style.display = 'flex';
+                    $.ajax({
+                            url: '@Url.Action("ConsultaPaqueterias", "Principal")',
+                            type: "POST",
+                             success: function (data) {
+                                 if (data.success) {
+                                     // Deserializar la respuesta JSON
+                                     let respuesta = JSON.parse(data.respuesta);
 
-            // Formato final
-            return dia + '/' + mes + '/' + anio + ' ' + horas + ':' + minutos + ':' + segundos + ' ' + amPm;
-        }
+                                     // Acceder al array de paqueterías
+                                     let listadoPaqueterias = respuesta.listadoPaqueterias;
 
-        //Formatear fecha 2 
-        function formatoFechaDos(fecha) {
-            // Separar la fecha y la hora
-            var partesFechaHora = fecha.split(' ');
-            var partesFecha = partesFechaHora[0].split('/');
-            var partesHora = partesFechaHora[1].split(':');
+                                     // Obtener el elemento select
+                                     let parcelSelect = $('#parcel-select');
+                                     // Vaciar las opciones existentes
+                                     parcelSelect.empty();
+                                     // Agregar la opción predeterminada
+                                     parcelSelect.append('<option value="">Selecciona una paquetería</option>');
 
-            // Crear un objeto Date usando las partes de la fecha y hora
-            var dia = parseInt(partesFecha[0], 10);
-            var mes = parseInt(partesFecha[1], 10) - 1; // Mes es base 0 en JavaScript
-            var anio = parseInt(partesFecha[2], 10);
+                                     // Agregar las paqueterías al select
+                                     listadoPaqueterias.forEach(paq => {
+                                         parcelSelect.append(`<option value="${paq.id_paqueteria}">${paq.nombre}</option>`);
+                                     });
+                                 }
+                                 document.getElementById('contenedor-loader').style.display = 'none';
+                             },
+                             error: function (xhr, status, error) {
+                                 document.getElementById('contenedor-loader').style.display = 'none';
+                                 dialogoEG({
+                                     type: "error",
+                                     title: "Error de comunicación",
+                                     mensaje: "Ocurrió un error al obtener listado de pilotos. Intente nuevamente, si el inconveniente persiste contacte al administrador.",
+                                     confirmar: "Aceptar",
+                                     img: "img/error.png"
+                                 });
+                             }
+                    });
+                }
 
-            var horas = parseInt(partesHora[0], 10);
-            var minutos = parseInt(partesHora[1], 10);
-            var segundos = parseInt(partesHora[2], 10);
+                //Actualizar lista de pedidos
+                function updateList(listaPedidos) {
+                    // Crear un objeto para almacenar el último estado de cada pedido
+                    const pedidosUltimoEstado = {};
+                    // Iterar sobre la lista de pedidos para encontrar el último estado de cada folio
+                    listaPedidos.forEach(pedido => {
+                        const folio = pedido.folio;
+                        // Si el folio no está en el objeto o si el estado actual es más reciente
+                        if (!pedidosUltimoEstado[folio] || new Date(pedido.fecha_estado) > new Date(pedidosUltimoEstado[folio].fecha_estado)) {
+                            pedidosUltimoEstado[folio] = pedido;
+                        }
+                    });
+                    // Obtener los valores de los pedidos con el último estado
+                    const pedidosConUltimoEstado = Object.values(pedidosUltimoEstado);
+                    // Limpiar listas existentes
+                    const categories = ['production', 'courier', 'parcel', 'delivered', 'returned', 'canceled', 'completed', 'rescheduled', 'pickup'];
 
-            // Determinar A.M. o P.M.
-            var amPm = horas >= 12 ? 'P.M.' : 'A.M.';
+                    let hayPedidos = false;
 
-            // Convertir a formato de 12 horas
-            horas = horas % 12;
-            horas = horas ? horas : 12; // Si es 0, asignar 12 (medianoche o mediodía)
+                    categories.forEach(category => {
+                        const contenedorPedidos = document.getElementById(`${category}-orders`); // Cambia este id según tu categoría
+                        contenedorPedidos.innerHTML = ''; // Limpiar la lista existente
 
-            // Agregar ceros iniciales si es necesario
-            dia = dia < 10 ? '0' + dia : dia;
-            mes = (mes + 1) < 10 ? '0' + (mes + 1) : (mes + 1); // Ajustar el mes de nuevo a base 1
-            horas = horas < 10 ? '0' + horas : horas;
-            minutos = minutos < 10 ? '0' + minutos : minutos;
-            segundos = segundos < 10 ? '0' + segundos : segundos;
+                        // Filtrar los pedidos por categoría utilizando el mapeo
+                        const pedidosFiltrados = pedidosConUltimoEstado.filter(pedido => categoryMap[pedido.estado_actual] === category);
 
-            // Formato final
-            return dia + '/' + mes + '/' + anio + ' ' + horas + ':' + minutos + ':' + segundos + ' ' + amPm;
-        }
+                        pedidosFiltrados.forEach(pedido => {
 
+                            // Crear un contenedor
+                            const cardItem = document.createElement('div');
+                            cardItem.classList.add('card-item');
+
+                            // Crear elementos para cada parte del contenido
+                            const cliente = document.createElement('div');
+                            cliente.textContent = pedido.cliente;
+                            cliente.classList.add('cliente');
+
+                            const folio = document.createElement('div');
+                            folio.textContent = `Folio ticket #${pedido.folio}`;
+                            folio.classList.add('detalle');
+
+                            const total = document.createElement('div');
+                            total.textContent = `Total Q.${pedido.total}`;
+                            total.classList.add('detalle');
+
+                            const fecha = document.createElement('div');
+                            fecha.textContent = formatoFechaDos(pedido.fecha_estado);
+                            fecha.classList.add('detalle');
+
+                            // Agregar todos los elementos creados al div card-item
+                            cardItem.appendChild(cliente);
+                            cardItem.appendChild(folio);
+                            cardItem.appendChild(total);
+                            cardItem.appendChild(fecha);
+
+                            // Agregar el evento click para el modal
+                            cardItem.addEventListener('click', function () {
+                                showModal(pedido, cardItem);
+                            });
+                            // Agregar el card-item al contenedor correspondiente
+                            contenedorPedidos.appendChild(cardItem);
+                        });
+
+
+                        // Verificar si hay elementos en el contenedor
+                        const contenedorProduccion = contenedorPedidos.closest('.col-12');
+                        if (pedidosFiltrados.length > 0) {
+                            // Si hay elementos, mostrar el contenedor
+                            contenedorProduccion.classList.remove('oculto');
+                            hayPedidos = true;
+                        } else {
+                            // Si no hay elementos, ocultar el contenedor
+                            contenedorProduccion.classList.add('oculto');
+                        }
+                    });
+                        // Mostrar u ocultar el mensaje de "Sin registros"
+                        const mensajeSinRegistros = document.querySelector('.sin-registros');
+                        if (hayPedidos) {
+                            mensajeSinRegistros.classList.add('oculto');
+                        } else {
+                            mensajeSinRegistros.classList.remove('oculto');
+                        }
+                }
+
+                //Mostral modal
+                function showModal(pedido, cardItem) {
+                    // console.log("Abro diálogo del pedido: ");
+                    // console.log(pedido);
+                    let piloto = "";
+                    let paqueteria = "";
+                    let obvs = "";
+                    //Aginación de colores
+                    // Obtener la categoría del card-item clickeado
+                    const categoryContainer = cardItem.closest('.order-category');
+                    let categoryClass = '';
+                    if (categoryContainer) {
+                        categoryClass = Array.from(categoryContainer.classList).find(cls => cls.startsWith('category-'));
+                    }
+                    const orderNumber = pedido.folio;
+                    const currentState = pedido.estado_actual;
+                    // Mostrar detalles del pedido en el modal
+                    $('#txtInfoCliente').text(`${pedido.cliente}`);
+                    $('#txtInfoTicket').text(`#${orderNumber}`);
+                    $('#txtInfoFechaPedido').text(`${formatoFecha(pedido.fecha)}`);
+                    $('#txtInfoCajero').text(`${pedido.cajero}`);
+                    $('#txtInfoTotalPedido').text(`Q.${pedido.total}`);
+                    $('#txtInfoPagoPedido').text(`Q.${pedido.pago}`);
+                    $('#txtInfoCambioPedido').text(`Q.${pedido.cambio}`);
+                    $('#txtInfoEstadoActual').text(`${currentState}`);
+                    $('#txtInfoEstadoFecha').text(`${formatoFechaDos(pedido.fecha_estado)}`);
+                    if(pedido.observaciones){
+                        document.getElementById('detEstado').style.display = 'block';
+                        $('#txtInfoDetalleEstado').text(`${pedido.observaciones}`);
+                    }
+                    $('#txtInfoEstadoUsuario').text(`${pedido.usuario_cambio}`);
+                    $('#txtInfoUsuarioCargo').text(`${pedido.usuario_registro}`);
+                    if (pedido.mensajero) {
+                        $('#txtInfoMensajero').text(`${pedido.mensajero}`);
+                        document.getElementById('pilot-cargo').style.display = 'block';
+                        piloto = pedido.id_mens;
+                    }
+                    if (pedido.paqueteria) {
+                        $('#txtInfoPaqueteria').text(`${pedido.paqueteria}`);
+                        document.getElementById('parcel-cargo').style.display = 'block';
+                        paqueteria = pedido.id_paq;
+                    }
+
+                    $('#txtInfoObservaciones').val('');
+
+                    const cambiosPedidos = document.getElementById('cambiosPedido');
+                    const statusChangeOptions = document.getElementById('status-change-options');
+                    const pilotSelection = document.getElementById('pilot-selection');
+                    const assignPilotBtn = document.getElementById('assign-pilot-btn');
+                    const parcelSelection = document.getElementById('parcel-selection');
+                    const assignParcelBtn = document.getElementById('assign-parcel-btn');
+
+                    // Resetear las opciones del modal
+                    statusChangeOptions.innerHTML = '';
+                    pilotSelection.style.display = 'none';
+                    assignPilotBtn.style.display = 'none';
+                    parcelSelection.style.display = 'none';
+                    assignParcelBtn.style.display = 'none';
+                    // Obtener los posibles siguientes estados
+                    const nextStates = getNextStates(currentState);
+                    if (nextStates && nextStates.length > 0) {
+                        cambiosPedidos.classList.remove('oculto');  // Mostrar el div si hay estados
+                    } else {
+                        cambiosPedidos.classList.add('oculto');  // Ocultar el div si no hay estados
+                    }
+                    nextStates.forEach(nextState => {
+                        const button = document.createElement('button');
+                        button.textContent = nextState.label;
+                        button.classList.add('btn', 'btn-primary', 'me-2');
+                        button.addEventListener('click', function () {
+                            if (nextState.state === 'courier') { // Enviar por Mensajería
+                                getPilotosAct();
+                                pilotSelection.style.display = 'block';
+                                assignPilotBtn.style.display = 'block';
+                                assignParcelBtn.style.display = 'none';
+                                parcelSelection.style.display = 'none';
+                                document.getElementById('pilot-select').focus();
+
+                                assignPilotBtn.addEventListener('click', function () {
+                                    const selectedPilot = document.getElementById('pilot-select').value;
+                                    obvs = document.getElementById('txtInfoObservaciones').value;
+                                    //obvs = combinarObservaciones(pedido.observaciones, obvs);
+                                    if (selectedPilot) {
+                                        piloto = selectedPilot;
+                                        changeOrderState(pedido, nextState.state, piloto, paqueteria, obvs);
+                                    } else {
+                                        dialogoEG({
+                                            type: "warning",
+                                            title: "Mensajería",
+                                            mensaje: "Por favor, seleccione un mensajero encargado de la entrega del pedido.",
+                                            confirmar: "Aceptar",
+                                            img: "img/warning.png"
+                                        }).then(() => {
+                                            document.getElementById('pilot-select').focus();
+                                        });
+                                    }
+                                });
+
+                            } else if (nextState.state === 'parcel') { // Enviar por Paquetería
+                                getPaqueterias();
+                                parcelSelection.style.display = 'block';
+                                assignParcelBtn.style.display = 'block';
+                                assignPilotBtn.style.display = 'none';
+                                pilotSelection.style.display = 'none';
+                                document.getElementById('parcel-select').focus();
+
+                                assignParcelBtn.addEventListener('click', function () {
+                                    const selectedParcel = document.getElementById('parcel-select').value;
+                                    // console.log('Valor seleccionado:', selectedParcel);
+                                    obvs = document.getElementById('txtInfoObservaciones').value;
+                                    //obvs = combinarObservaciones(pedido.observaciones, obvs);
+                                    if (selectedParcel) {
+                                        paqueteria = selectedParcel;
+                                        changeOrderState(pedido, nextState.state, piloto, paqueteria, obvs);
+                                    } else {
+                                        dialogoEG({
+                                            type: "warning",
+                                            title: "Paquetería",
+                                            mensaje: "Por favor, seleccione una empresa de paquetería para la entrega del pedido.",
+                                            confirmar: "Aceptar",
+                                            img: "img/warning.png"
+                                        }).then(() => {
+                                            document.getElementById('parcel-select').focus();
+                                        });
+                                    }
+                                });
+
+                            } else {
+                                obvs = document.getElementById('txtInfoObservaciones').value;
+                                //obvs = combinarObservaciones(pedido.observaciones, obvs);
+                                changeOrderState(pedido, nextState.state, piloto, paqueteria, obvs);
+                            }
+                        });
+                        statusChangeOptions.appendChild(button);
+                    });
+                    // Mostrar el modal y agregar la clase de categoría si existe
+                    const modalElement = document.getElementById('order-modal');
+                    // Remover cualquier clase de categoría existente para evitar múltiples clases
+                    modalElement.classList.remove(...Array.from(modalElement.classList).filter(cls => cls.startsWith('category-')));
+
+                    // Agregar la clase de categoría si existe
+                    if (categoryClass) {
+                        modalElement.classList.add(categoryClass);
+                    }
+                    // Mostrar el modal utilizando Bootstrap
+                    modalInstance = new bootstrap.Modal(modalElement);
+                    modalInstance.show();
+                }
+
+                function combinarObservaciones(pedidoObservaciones, obvs) {
+                    // Verificar y combinar las observaciones según las condiciones
+                    if (pedidoObservaciones && obvs) {
+                        return pedidoObservaciones + " / " + obvs;
+                    } else if (!pedidoObservaciones && obvs) {
+                        return obvs;
+                    } else if (pedidoObservaciones && !obvs) {
+                        return pedidoObservaciones;
+                    }
+                    return ''; // En caso de que ambos estén vacíos
+                }
+
+                //Obtener estados siguientes posibles
+                function getNextStates(currentState) {
+                    // console.log("Dentro de getNextStates: " + currentState);
+                    const stateTransitions = {
+                        production: [
+                            { state: 'completed', label: 'Completado' },
+                            { state: 'canceled', label: 'Anulado' }
+                        ],
+                        completed: [
+                            { state: 'courier', label: 'Enviar por Mensajería' },
+                            { state: 'parcel', label: 'Enviar por Paquetería' },
+                            { state: 'pickup', label: 'Recoge en oficina' },
+                            { state: 'canceled', label: 'Anulado' }
+                        ],
+                        courier: [
+                            { state: 'returned', label: 'Devuelto' },
+                            { state: 'delivered', label: 'Entregado' }
+                        ],
+                        parcel: [
+                            { state: 'returned', label: 'Devuelto' },
+                            { state: 'delivered', label: 'Entregado' }
+                        ],
+                        delivered: [],
+                        returned: [
+                            { state: 'canceled', label: 'Anulado' },
+                            { state: 'rescheduled', label: 'Reprogramar' }
+                        ],
+                        canceled: [],
+                        pickup: [
+                            { state: 'delivered', label: 'Entregado' },
+                            { state: 'canceled', label: 'Anulado' }
+                        ],
+                        rescheduled: [
+                            { state: 'courier', label: 'Enviar por Mensajería' },
+                            { state: 'parcel', label: 'Enviar por Paquetería' },
+                            { state: 'pickup', label: 'Recoge en oficina' },
+                            { state: 'canceled', label: 'Anulado' }
+                        ]
+                    };
+                    // Usar el mapeo para convertir currentState a su correspondiente en inglés
+                    const mappedState = categoryMap[currentState];
+                    return stateTransitions[mappedState] || [];
+                }
+
+                // Función para obtener el equivalente en español dado un estado en inglés
+                function getState(state) {
+                    return entospa[state] || "Estado desconocido";
+                }
+
+                //Cambiar estado del pedido
+                function changeOrderState(pedido, newState, piloto, paqueteria, obvs) {
+                    newState = getState(newState);
+                    let parametros = {
+                        'folio': pedido.folio,
+                        'estadoAnterior': pedido.estado_actual,
+                        'estadoNuevo': newState,
+                        'usuario': "",
+                        'idMensajero': piloto,
+                        'idPaqueteria': paqueteria,
+                        'observaciones': obvs
+                    };
+
+                    if (pedido.estado_actual && pedido.estado_actual !== newState) {
+                        document.getElementById('contenedor-loader').style.display = 'flex';
+                        $.ajax({
+                            url: '@Url.Action("cambioEstadoPedido", "Home")',
+                            type: "POST",
+                            data: parametros,
+                            success: function (data) {
+                                // console.log(data);
+                                if (!data.success) {
+                                    // console.log(data.errorMensaje)
+                                    dialogoEG({
+                                        type: "error",
+                                        title: "Error cambio de estado",
+                                        mensaje: data.errorMensaje,
+                                        confirmar: "Aceptar",
+                                        img: "img/error.png"
+                                    }).then(() => {
+                                        //limpiar();
+                                    });
+                                } else {
+                                    dialogoEG({
+                                        type: "success",
+                                        title: "Cambio de estado exitoso",
+                                        mensaje: data.respuesta,
+                                        confirmar: "Aceptar",
+                                        img: "img/success.png"
+                                    }).then(() => {
+                                        modalInstance.hide(); // Cerrar el modal después de mostrar el diálogo de éxito
+
+                                        consultaPedidos();
+                                    });
+                                }
+                                document.getElementById('contenedor-loader').style.display = 'none';
+                            },
+                            error: function (xhr, status, error) {
+                                document.getElementById('contenedor-loader').style.display = 'none';
+                                // console.log("Error al ingresar el ticket a producción:", error);
+                                dialogoEG({
+                                    type: "error",
+                                    title: "Error de comunicación",
+                                    mensaje: "Ocurrió un error al ingresar el ticket a producción. Intente nuevamente, si el inconveniente persiste contacte al administrador.",
+                                    confirmar: "Aceptar",
+                                    img: "img/error.png"
+                                });
+                            }
+                    });
+
+                    }
+                }
+
+                //Limpiar búsqueda ticket
+                function limpiar() {
+                    parametros = "";
+                    $('#txtFolio').val("");
+                    $('#folio').text("");
+                    $('#fecha').text("");
+                    $('#cajero').text("");
+                    $('#cliente').text("");
+                    $('#total').text("");
+                    $('#pago').text("");
+                    $('#cambio').text("");
+                    $('#estatus').text("");
+                    $('#pedidoInfo').hide();
+                    // Desplazar hasta la parte superior de la página
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+
+                //Formatear fecha 1
+                function formatoFecha(fecha) {
+                    var date = new Date(fecha);
+
+                    // Obtener partes de la fecha
+                    var dia = date.getDate();
+                    var mes = date.getMonth() + 1; // Los meses son base 0
+                    var anio = date.getFullYear();
+
+                    // Obtener partes de la hora
+                    var horas = date.getHours();
+                    var minutos = date.getMinutes();
+                    var segundos = date.getSeconds();
+
+                    // Formato de 12 horas
+                    var amPm = horas >= 12 ? 'P.M.' : 'A.M.';
+                    horas = horas % 12;
+                    horas = horas ? horas : 12; // Si la hora es 0 (medianoche), ajustarla a 12
+
+                    // Agregar ceros iniciales si es necesario
+                    dia = dia < 10 ? '0' + dia : dia;
+                    mes = mes < 10 ? '0' + mes : mes;
+                    horas = horas < 10 ? '0' + horas : horas;
+                    minutos = minutos < 10 ? '0' + minutos : minutos;
+                    segundos = segundos < 10 ? '0' + segundos : segundos;
+
+                    // Formato final
+                    return dia + '/' + mes + '/' + anio + ' ' + horas + ':' + minutos + ':' + segundos + ' ' + amPm;
+                }
+
+                //Formatear fecha 2
+                function formatoFechaDos(fecha) {
+                    // Separar la fecha y la hora
+                    var partesFechaHora = fecha.split(' ');
+                    var partesFecha = partesFechaHora[0].split('/');
+                    var partesHora = partesFechaHora[1].split(':');
+
+                    // Crear un objeto Date usando las partes de la fecha y hora
+                    var dia = parseInt(partesFecha[0], 10);
+                    var mes = parseInt(partesFecha[1], 10) - 1; // Mes es base 0 en JavaScript
+                    var anio = parseInt(partesFecha[2], 10);
+
+                    var horas = parseInt(partesHora[0], 10);
+                    var minutos = parseInt(partesHora[1], 10);
+                    var segundos = parseInt(partesHora[2], 10);
+
+                    // Determinar A.M. o P.M.
+                    var amPm = horas >= 12 ? 'P.M.' : 'A.M.';
+
+                    // Convertir a formato de 12 horas
+                    horas = horas % 12;
+                    horas = horas ? horas : 12; // Si es 0, asignar 12 (medianoche o mediodía)
+
+                    // Agregar ceros iniciales si es necesario
+                    dia = dia < 10 ? '0' + dia : dia;
+                    mes = (mes + 1) < 10 ? '0' + (mes + 1) : (mes + 1); // Ajustar el mes de nuevo a base 1
+                    horas = horas < 10 ? '0' + horas : horas;
+                    minutos = minutos < 10 ? '0' + minutos : minutos;
+                    segundos = segundos < 10 ? '0' + segundos : segundos;
+
+                    // Formato final
+                    return dia + '/' + mes + '/' + anio + ' ' + horas + ':' + minutos + ':' + segundos + ' ' + amPm;
+                }
     </script>
-
 </body>
 </html>
+

@@ -58,9 +58,13 @@
               "target": "Package",
               "version": "[4.7.*, )"
             },
+            "System.ServiceModel.Federation": {
+              "target": "Package",
+              "version": "[6.0.*, )"
+            },
             "System.ServiceModel.Http": {
               "target": "Package",
-              "version": "[4.7.*, )"
+              "version": "[6.0.0, )"
             },
             "System.ServiceModel.NetTcp": {
               "target": "Package",

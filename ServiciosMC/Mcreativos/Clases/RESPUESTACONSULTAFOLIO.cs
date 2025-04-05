@@ -6,7 +6,6 @@ namespace ServiciosMC.Mcreativos.Clases
 {
     public class RESPUESTACONSULTAFOLIO
     {
-
         [XmlRoot(ElementName = "RESPUESTA")]
         public class RESPUESTA
         {
@@ -46,7 +45,21 @@ namespace ServiciosMC.Mcreativos.Clases
             [XmlElement(ElementName = "ESTATUS")]
             public string Estatus { get; set; }
 
+            [XmlArray("DETALLE_PEDIDO")]
+            [XmlArrayItem("ITEM")]
+            public List<ITEM> DetallePedido { get; set; }
         }
 
+        public class ITEM
+        {
+            [XmlElement(ElementName = "NOMBRE")]
+            public string Nombre { get; set; }
+
+            [XmlElement(ElementName = "CANTIDAD")]
+            public int Cantidad { get; set; }
+
+            [XmlElement(ElementName = "PRECIO")]
+            public decimal Precio { get; set; }
         }
+    }
 }
