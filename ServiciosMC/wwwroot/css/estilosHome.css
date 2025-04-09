@@ -105,35 +105,78 @@ margin-top: 10px;
 
 
 /*ESTILOS DIALOGO DE BÚSQUEDA DE CLIENTES*/
-#dialogBusquedaClientes .dataTables_filter {
-    display: none !important;
+
+/* Estilo general del modal #274296 #fff
+     background-color: #e4e4e4ff;
+        color: #303030;
+
+*/
+#dialogBusquedaClientes .modal-header {
+    font-family: 'LemonMilk', sans-serif;
+    background-color: #e4e4e4ff;
+    color: #303030;
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
 }
 
-#dialogBusquedaClientes .table thead th {
-    background-color: #4c4e4f; /* Color del encabezado */
-    color: white; /* Texto blanco en el encabezado */
-    text-align: center; /* Alineación centrada en el encabezado */
-}
-
-#dialogBusquedaClientes .table tbody td {
-    vertical-align: middle;
-    text-align: center; /* Alineación centrada en el contenido de la tabla por defecto */
-}
-
-    #dialogBusquedaClientes .table tbody td.text-left {
-        text-align: left; /* Alineación a la izquierda para columnas específicas */
+    #dialogBusquedaClientes .modal-header h5.modal-title {
+        font-size: 1.2rem;
+        margin: 0;
+        margin-left: 10px;
+        line-height: 2rem;
     }
 
-#dialogBusquedaClientes table.dataTable tbody tr:hover {
-    font-weight: bold;
+    #dialogBusquedaClientes .modal-header .card-icon {
+        font-size: 1.8rem;
+        margin: 0;
+    }
+
+    #dialogBusquedaClientes .modal-header .close {
+        font-size: 0.2rem;
+        color: #303030;
+        padding: 0;
+        margin-right: 0px;
+        display: flex;
+        align-items: center;
+    }
+
+#dialogBusquedaClientes .modal-content {
+    font-family: 'Urbanist', sans-serif;
+    font-size: 1.1rem;
 }
 
-#dialogBusquedaClientes .page-item.active .page-link {
-    z-index: 3;
-    color: #fff;
-    background-color: #4c4e4f;
-    border-color: #4c4e4f;
+
+/* Input de filtro */
+#dialogBusquedaClientes #filterInput {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #0f0a35;
 }
+
+/* Lista de clientes */
+#dialogBusquedaClientes #listaClientes {
+    font-family: 'Urbanist', sans-serif;
+    max-height: 250px;
+    overflow-y: auto;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Estilos para cada cliente */
+#dialogBusquedaClientes .cliente-item {
+    padding: 8px;
+    cursor: pointer;
+}
+
+    /* Hover y elemento enfocado */
+    #dialogBusquedaClientes .cliente-item:hover,
+    #dialogBusquedaClientes .cliente-item.focused {
+        background-color: #e4e4e4ff;
+        font-weight: bold;
+        color: #303030;
+    }
 
 
 

@@ -221,8 +221,18 @@ namespace ServiciosMC.Controllers
                             }
                             else
                             {
-                                datosRespuesta.existeError = true;
-                                datosRespuesta.existenDatos = false;
+                                if (resultado.CODIGO.Equals("204"))
+                                {
+                                    datosRespuesta.existeError = false;
+                                    datosRespuesta.existenDatos = false;
+                                }
+                                else
+                                {
+                                    datosRespuesta.existeError = true;
+                                    datosRespuesta.existenDatos = false;
+                                }
+
+                                    
                             }
                         }
                         else
@@ -279,11 +289,22 @@ namespace ServiciosMC.Controllers
             ResultadoClientesModel datosRespuesta = new();
             try
             {
-                string servicioUrl = Helper.config.GetSection("Servicios:WSMCCONSULTA").Value;
-                Debug.WriteLine("URL del servicio: " + servicioUrl);
+                // Binding con timeout personalizado
+                var binding = new System.ServiceModel.BasicHttpBinding
+                {
+                    CloseTimeout = TimeSpan.FromMinutes(3),
+                    OpenTimeout = TimeSpan.FromMinutes(3),
+                    ReceiveTimeout = TimeSpan.FromMinutes(3),
+                    SendTimeout = TimeSpan.FromMinutes(3),
+                    MaxReceivedMessageSize = 65536 * 10 // Ajusta si esperas mucha data
+                };
 
-                // Crear cliente del servicio
-                WSMCCONSULTAS.WSpedidosClient obtenerClientes = new(WSMCCONSULTAS.WSpedidosClient.EndpointConfiguration.WSpedidosPort, servicioUrl);
+                string servicioUrl = Helper.config.GetSection("Servicios:WSMCCONSULTA").Value;
+                Debug.WriteLine("Servicio URL: " + servicioUrl);
+
+                // Crear cliente del servicio   //WSMCCONSULTAS.WSpedidosClient obtenerClientes = new(WSMCCONSULTAS.WSpedidosClient.EndpointConfiguration.WSpedidosPort, servicioUrl);
+                var endpoint = new System.ServiceModel.EndpointAddress(servicioUrl);
+                var obtenerClientes = new WSMCCONSULTAS.WSpedidosClient(binding, endpoint);
 
                 // Crear la solicitud vacía
                 WSMCCONSULTAS.obtenerClientesRequest request = new WSMCCONSULTAS.obtenerClientesRequest(new WSMCCONSULTAS.obtenerClientesRequestBody());
@@ -331,8 +352,6 @@ namespace ServiciosMC.Controllers
                         {
                             Debug.WriteLine("Deserialización fallida. El objeto resultado es null.");
                         }
-
-
                     }
                     catch (Exception x)
                     {
@@ -349,8 +368,6 @@ namespace ServiciosMC.Controllers
                 {
                     return Json(new { existeError = true, existenDatos = false, mensajeError = "No se recibieron datos del servicio." });
                 }
-
-
             }
             catch (EndpointNotFoundException ex)
             {
@@ -362,10 +379,21 @@ namespace ServiciosMC.Controllers
                     mensajeError = "No se pudo conectar con el servicio de pedidos. Por favor, verifique su conexión o intente de nuevo."
                 });
             }
+            catch (TimeoutException tex)
+            {
+                Helpers.Helper.Log("Timeout al conectarse al servicio: " + tex.Message);
+                return Json(new
+                {
+                    existeError = true,
+                    existenDatos = false,
+                    mensajeError = "El servicio está tardando demasiado en responder. Reintenta la carga si es necesario o ingresa directamente el nombre del cliente si realizarás una búsqueda."
+                });
+            }
             catch (Exception ex)
             {
-                // Error genérico
                 Helpers.Helper.Log("Error inesperado: " + ex.Message);
+                Debug.WriteLine("Error -- " + ex.ToString());
+
                 return Json(new
                 {
                     existeError = true,

@@ -59,7 +59,7 @@
                                         <div class="form-group mb-3">
                                             <div class="input-group">
                                                 <label for="txtFecha" class="me-2">Fecha:</label>
-                                                <input type="date" class="form-control" id="txtFecha">
+                                                <input type="date" class="form-control" id="txtFecha" min="2000-01-01">
                                                 <button type="button" class="btn ml-2" title="Buscar pedido" id="btnBuscarTicketCliente" onclick="buscarTicketCliente()">
                                                     <span class="material-symbols-outlined">search</span>
                                                 </button>
@@ -73,6 +73,7 @@
                                     <div class="d-none" id="busquedaFolio">
                                         <div class="form-group mb-2">
                                             <div class="input-group">
+                                                <label for="txtFolio" class="me-2">Folio:</label>
                                                 <input type="text" class="form-control" placeholder="Ingrese número de folio"
                                                        name="txtFolio" id="txtFolio" maxlength="10" inputmode="numeric" />
                                                 <button type="button" class="btn btn-icon" title="Buscar ticket" id="btnBuscarTicket" onclick="buscarTicketFolio()">
@@ -305,42 +306,56 @@
                                     <label class="mb-0"><strong>Cliente:</strong></label>
                                     <p class ="mt-0" id="txtInfoCliente"></p>
                                 </div>
+                                 <div class="col-6">
+                                     <label class="mb-0"><strong>Folio:</strong></label>
+                                     <p class ="mt-0" id="txtInfoTicket"></p>
+                                </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-6">
                                     <label class="mb-0"><strong>Fecha del Pedido:</strong></label>
                                     <p class ="mt-0" id="txtInfoFechaPedido"></p>
                                 </div>
-                            </div>
-                            <div class="row">
-                                 <div class="col-6">
-                                     <label class="mb-0"><strong>Folio ticket:</strong></label>
-                                     <p class ="mt-0" id="txtInfoTicket"></p>
-                                </div>
                                 <div class="col-6">
-                                    <label class="mb-0"><strong>Cajero:</strong></label>
-                                    <p class ="mt-0" id="txtInfoCajero"></p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-4">
                                     <label class="mb-0"><strong>Total:</strong></label>
-                                    <p class ="mt-0" id="txtInfoTotalPedido"></p>
-                                </div>
-                                <div class="col-4">
-                                    <label class="mb-0"><strong>Pago:</strong></label>
-                                    <p class ="mt-0" id="txtInfoPagoPedido"></p>
-                                </div>
-                                <div class="col-4">
-                                    <label class="mb-0"><strong>Cambio:</strong></label>
-                                    <p class ="mt-0" id="txtInfoCambioPedido"></p>
+                                    <p class="mt-0" id="txtInfoTotalPedido"></p>
                                 </div>
                             </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <label class="mb-0"><strong>Usuario a cargo:</strong></label>
+                                <p class="mt-0" id="txtInfoUsuarioCargo"></p>
+                            </div>
+                        </div>
                             <div class="row">
                                 <div class="col-12">
-                                    <label class="mb-0"><strong>Usuario a cargo:</strong></label>
-                                    <p class="mt-0" id="txtInfoUsuarioCargo"></p>
+                                    <!-- Botón para mostrar/ocultar -->
+                                    <a class="btn btn-sm btn-outline-primary mb-2" data-bs-toggle="collapse" href="#detallePedidoContent" role="button" aria-expanded="false" aria-controls="detallePedidoContent">
+                                        Ver artículos del pedido
+                                    </a>
+
+                                    <!-- Contenedor colapsable -->
+                                    <div class="collapse" id="detallePedidoContent">
+                                            <div class="table-responsive">
+                                                <table class="table table-sm">
+                                                    <thead class="table-light">
+                                                        <tr>
+                                                            <th class="cantidad-col">Cant.</th>
+                                                            <th>Producto</th>
+                                                            <th class="text-end">Precio</th>
+                                                        </tr>
+                                                    </thead>
+                                                <tbody id="modalDetallePedido">
+                                                        <!-- Los productos se agregarán aquí -->
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                    </div>
                                 </div>
                             </div>
+
                             <hr class="custom-hr">
+
                             <div class="row">
                                 <div class="col-6">
                                     <label class="mb-0"><strong>Estado actual: </strong></label>
@@ -390,7 +405,7 @@
                                     <label><strong>Observaciones de cambio de estado:</strong></label>
                                     <textarea class="form-control" id="txtInfoObservaciones"></textarea>
                                 </div>
-                                <div id="status-change-options" class="d-flex flex-row gap-2">
+                                <div id="status-change-options" class="d-flex flex-wrap gap-2">
                                 </div>
                             </div>
                             <!--Selección de Piloto-->
@@ -401,7 +416,9 @@
                                         <select id="pilot-select" class="form-select mb-2">
                                             <!--lista pilotos-->
                                         </select>
-                                        <button id="assign-pilot-btn" class="btn btn-primary btn-block" style="display: none;">Cambiar estado</button>
+                                    <button id="assign-pilot-btn" class="btn btn-primary btn-block my-3" style="display: none;">
+                                        <i class="bi bi-arrow-repeat me-2"></i> Cambiar estado
+                                    </button>
                                     </div>
                                 </div>
                             </div>
@@ -425,31 +442,31 @@
      
    <!--Dialogo clientes-->
    <div class="modal fade" id="dialogBusquedaClientes" tabindex="-1" aria-labelledby="dlgBCli" aria-hidden="true">
-	        <div class="modal-dialog modal-dialog-centered modal-sm">
-		        <div class="modal-content">
-			        <div class="modal-header">
-				        <h5 class="modal-title" id="dlgBCli">Buscar clientes</h5>
-				        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-					        <span aria-hidden="true">&times;</span>
-				        </button>
-			        </div>
-			        <div class="modal-body">
-                    <input type="text" id="filterInput" class="form-control mb-3" placeholder="Filtrar clientes...">
-				        <div id="listaClientes" class="list-group cliente-scroll-container"></div>
-			        </div>
-			        <div class="modal-footer">
-				        <!--mostrar cantidad de clientes-->
-			        </div>
-		        </div>
-	        </div>
-        </div>
+	    <div class="modal-dialog modal-dialog-centered modal-sm">
+		    <div class="modal-content">
+			    <div class="modal-header">
+                    <h5 class="modal-title" id="dlgBCli">Buscar clientes</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+			    </div>
+			    <div class="modal-body">
+                <input type="text" id="filterInput" class="form-control mb-3" placeholder="Filtrar clientes...">
+				    <div id="listaClientes" class="list-group cliente-scroll-container"></div>
+			    </div>
+			    <div class="modal-footer">
+				    <!--mostrar cantidad de clientes-->
+			    </div>
+		    </div>
+	    </div>
+    </div>
 
     <script type="text/javascript">
         let parametros = "";
         let usuarioLogin = "";
         let pilotosActivos = [];
         let modalInstance;
-
+        
         const categoryMap = {
             "En producción": "production",
             "Envío por Mensajería": "courier",
@@ -475,27 +492,30 @@
 
         };
 
+        let dialogBusquedaClientes = document.getElementById('dialogBusquedaClientes');
+        let inputFiltro = document.getElementById('filterInput');
+        let inputCliente = document.getElementById('txtCliente');
+        let focusedIndex = -1;
+        let clientes = [];
+
         $(document).ready(function(){
             $('[data-toggle="tooltip"]').tooltip();
 
             consultaPedidos();
             cargaClientes();
 
-            function mostrarCampos() {
-                let tipoBusqueda = document.getElementById("tipoBusqueda").value;
-                document.getElementById("busquedaFolio").classList.toggle("d-none", tipoBusqueda !== "folio");
-                document.getElementById("busquedaCliente").classList.toggle("d-none", tipoBusqueda !== "cliente");
-            }
             // Detectar atajos de teclado
             document.addEventListener("keydown", function(event) {
                 if (event.ctrlKey && event.key === "c") {
                     event.preventDefault();
                     document.getElementById("tipoBusqueda").value = "cliente";
+                    limpiar();
                     mostrarCampos();
                 }
                 if (event.ctrlKey && event.key === "f") {
                     event.preventDefault();
                     document.getElementById("tipoBusqueda").value = "folio";
+                    limpiar();
                     mostrarCampos();
                 }
                 if (event.ctrlKey && event.key === "l") {
@@ -505,9 +525,10 @@
                 if (event.ctrlKey && event.key === "a") {
                     event.preventDefault();
                     $('#dialogBusquedaClientes').modal('show');
+                    actualizarLista('');
                 }
                 if (event.key === "Enter") {
-                    event.preventDefault(); // Prevenir el comportamiento por defecto del Enter
+                    event.preventDefault(); 
                     let tipoBusqueda = $("#tipoBusqueda").val();
                     if (tipoBusqueda === "folio") {
                         buscarTicketFolio();
@@ -515,13 +536,6 @@
                         buscarTicketCliente();
                     }
                 }
-            });
-
-
-            let dialogBusquedaClientes = document.getElementById('dialogBusquedaClientes');
-
-                    $('#dialogBusquedaClientes').on('shown.bs.modal', function () {
-                $('#filterInput').focus();
             });
 
             document.getElementById("btnReintentarCarga").addEventListener("click", function () {
@@ -538,13 +552,60 @@
                     return false;
                 }
             });
-            
+
             $("#btnMostrarClientes").on('click', function() {
                 $('#dialogBusquedaClientes').modal('show');
+                actualizarLista('');
             });
+
+            $('#dialogBusquedaClientes').on('hidden.bs.modal', function () {
+                $('#filterInput').val('');
+                $('#listaClientes').empty();
+                focusedIndex = -1;
+            });
+
+            $('#dialogBusquedaClientes').on('shown.bs.modal', function () {
+                $('#filterInput').trigger('focus');
+            });
+
+            inputFiltro.addEventListener('input', e => {
+              actualizarLista(e.target.value);
+            });
+
+            inputFiltro.addEventListener('keydown', e => {
+                const lista = document.getElementById('listaClientes');
+                const items = lista.querySelectorAll('.cliente-item');
+                if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    if (focusedIndex < items.length - 1) {
+                        focusedIndex++;
+                        updateFocus(items);
+                    }
+                } else if (e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    if (focusedIndex > 0) {
+                        focusedIndex--;
+                        updateFocus(items);
+                    }
+                } else if (e.key === 'Enter') {
+                    e.preventDefault();
+                    if (focusedIndex >= 0) {
+                        items[focusedIndex].click(); 
+                    }
+                }
+            });
+
+            function updateFocus(items) {
+                items.forEach(item => item.classList.remove('focused'));
+                if (focusedIndex >= 0 && focusedIndex < items.length) {
+                    items[focusedIndex].classList.add('focused');
+                    items[focusedIndex].scrollIntoView({ block: 'nearest' });
+                }
+            }
 
             function cargaClientes(){
                 $("#btnMostrarClientes i").removeClass('fas fa-users').addClass('fas fa-spinner fa-spin');
+
                 $.ajax({
                     url: '@Url.Action("ObtenerClientes", "Principal")',
                     type: "POST",
@@ -552,16 +613,23 @@
                         const btnMostrarClientes = document.getElementById("btnMostrarClientes");
                         const btnReintentar = document.getElementById("btnReintentarCarga");
                         if (data.existeError) {
-                            console.log("Error al cargar clientes");
-                            btnMostrarClientes.setAttribute("disabled", true);
-                            btnReintentar.removeAttribute("disabled");
+                            dialogoEG({
+                                type: "error",
+                                title: "Error al cargar clientes",
+                                mensaje: data.mensajeError,
+                                confirmar: "Aceptar",
+                                img: "img/error.png"
+                            }).then(() => {
+                                btnMostrarClientes.setAttribute("disabled", true);
+                                btnReintentar.removeAttribute("disabled");
+                                btnReintentar.classList.remove("d-none");
+                                 $("#btnMostrarClientes i").removeClass('fas fa-spinner fa-spin').addClass('fas fa-users');
+                            });
                         } else {
                             if (data.existenDatos) {
-                                const clientes = data?.infoClientes?.listaClientes || [];
-                                clientes.forEach((item)=> {
-                                    const lista = document.getElementById('listaClientes');
-
-                                });
+                                clientes = data?.infoClientes?.listaClientes || [];
+                                 
+                                actualizarLista('');
 
                                 btnMostrarClientes.removeAttribute("disabled");
                                 btnReintentar.setAttribute("disabled", true);
@@ -574,15 +642,56 @@
                             $("#btnMostrarClientes i").removeClass('fas fa-spinner fa-spin').addClass('fas fa-users');
                         }
                     },
-                        error: function () {
-                            console.log("Error en la petición AJAX.");
-                            document.getElementById("btnReintentarCarga").removeAttribute("disabled");
-                        }
-                    });
+                    error: function () {
+                        console.log("Error en la petición AJAX.");
+                        document.getElementById("btnReintentarCarga").removeAttribute("disabled");
+                    }
+                });
             }
+
+            function actualizarLista(filtro) {
+                const lista = document.getElementById('listaClientes');
+                lista.innerHTML = '';
+                focusedIndex = -1;
+                const clientesFiltrados = clientes.filter(c =>
+                    c.nombre.toLowerCase().includes(filtro.toLowerCase())
+                );
+
+                clientesFiltrados.forEach((cliente) => {
+                const div = document.createElement('div');
+                div.textContent = cliente.nombre;
+                div.classList.add('cliente-item');
+
+                div.addEventListener('click', () => {
+                    document.getElementById('txtCliente').value = cliente.nombre;
+                    $('#txtFecha').trigger('focus');
+                    $('#dialogBusquedaClientes').modal('hide');
+                });
+
+                lista.appendChild(div);
+                });
+                
+                lista.scrollTop = 0;
+            }
+
+
+
         });
 
 // Fuera de ready --------------------------------------------------------------------------------
+               
+                //Seleccion busqueda
+                function mostrarCampos() {
+                    let tipoBusqueda = document.getElementById("tipoBusqueda").value;
+                    document.getElementById("busquedaFolio").classList.toggle("d-none", tipoBusqueda !== "folio");
+                    document.getElementById("busquedaCliente").classList.toggle("d-none", tipoBusqueda !== "cliente");
+                    if (tipoBusqueda === "folio") {
+                        $('#txtFolio').trigger('focus');
+                    } else if (tipoBusqueda === "cliente") {
+                        $('#txtCliente').trigger('focus');
+                    }
+                }
+
                 //Consulta folio en firebird
                 function buscarTicketFolio() {
                     $('#pedidoInfo').hide();
@@ -613,7 +722,6 @@
                             type: "POST",
                             data: { folio: nofolio },
                             success: function (data) {
-                                // console.log("Obtener pedido: ");
                                  console.log(data);
                                 if (data.existeError) {
                                     dialogoEG({
@@ -661,7 +769,6 @@
 
                     // Validación para el campo de cliente
                     if (clientePedido === '') {
-                        // Agregar tooltip con el mensaje de error
                         inputCliente.attr('data-bs-toggle', 'tooltip')
                             .attr('data-bs-placement', 'top')
                             .attr('title', 'Debes ingresar el nombre de cliente.')
@@ -671,16 +778,15 @@
                         setTimeout(() => {
                             inputCliente.tooltip('hide').tooltip('dispose');
                             inputCliente.removeAttr('title');
-                        }, 5000);
+                        }, 3000);
                         return;
                     }
 
                     // Validación para el campo de fecha
-                    if (fechaPedido === '') {
-                        // Agregar tooltip con el mensaje de error
+                     if (fechaPedido === '' || !inputFecha.get(0).checkValidity()) {
                         inputFecha.attr('data-bs-toggle', 'tooltip')
                             .attr('data-bs-placement', 'bottom')
-                            .attr('title', 'Selecciona o ingresa una fecha.')
+                            .attr('title', 'Selecciona o ingresa una fecha válida.')
                             .tooltip('show');
 
                         // Ocultar el tooltip después de 5 segundos y eliminarlo
@@ -689,17 +795,7 @@
                             inputFecha.removeAttr('title');
                         }, 5000);
                         return;
-                     }else if (isNaN(Date.parse(fechaPedido))) {
-                        inputFecha.attr('data-bs-toggle', 'tooltip')
-                            .attr('data-bs-placement', 'bottom')
-                            .attr('title', 'Ingresa una fecha válida.')
-                            .tooltip('show');
 
-                        setTimeout(() => {
-                            inputFecha.tooltip('hide').tooltip('dispose');
-                            inputFecha.removeAttr('title');
-                        }, 5000);
-                        return;
                     }
 
                     document.getElementById('contenedor-loader').style.display = 'flex';
@@ -723,12 +819,12 @@
                                     } else {
                                         dialogoEG({
                                             type: "warning",
-                                            title: "Folio Incorrecto",
-                                            mensaje: "No existe ningún pedido con el número de folio ingresado. Por favor, revísalo e intenta nuevamente.",
+                                            title: "Pedido no encontrado",
+                                            mensaje: "No existe ningún pedido con los datos que ingresaste. Por favor, revísalo e intenta nuevamente.",
                                             confirmar: "Aceptar",
                                             img: "img/warning.png"
                                         });
-                                        limpiar();
+                                        $('#txtCliente').trigger('focus');
                                     }
                                 }
                                 document.getElementById('contenedor-loader').style.display = 'none';
@@ -760,7 +856,10 @@
                                     `;
                         tbody.innerHTML += row;
                     });
-
+                    parametros = {
+                        infoPedido: infoPedido,
+                        usuario: ""
+                    };
                     // Insertar datos generales
                     document.getElementById("folio").textContent = infoPedido.folio;
                     document.getElementById("fecha").textContent = infoPedido.fecha;
@@ -827,40 +926,40 @@
                     document.getElementById('contenedor-loader').style.display = 'flex';
                      $.ajax({
                         url: '@Url.Action("ListaPedidosDash", "Principal")',
-                    type: "POST",
-                    success: function (data) {
-                        if (!data.success) {
-                            // console.log(data.errorMensaje)
+                        type: "POST",
+                        success: function (data) {
+                            if (!data.success) {
+                                // console.log(data.errorMensaje)
+                                dialogoEG({
+                                    type: "error",
+                                    title: "Error consulta de pedidos",
+                                    mensaje: data.errorMensaje,
+                                    confirmar: "Aceptar",
+                                    img: "img/error.png"
+                                }).then(() => {
+                                    limpiar();
+                                });
+                            } else {
+                                const pedidos = JSON.parse(data.respuesta).listadoPedidos;
+                                //Actualizar listado de pedidos
+                                updateList(pedidos);
+                            }
+                            document.getElementById('contenedor-loader').style.display = 'none';
+                        },
+                        error: function (xhr, status, error) {
+                            document.getElementById('contenedor-loader').style.display = 'none';
+                            // console.log("Error al consultar pedidos:", error);
                             dialogoEG({
                                 type: "error",
-                                title: "Error consulta de pedidos",
-                                mensaje: data.errorMensaje,
+                                title: "Error de comunicación",
+                                mensaje: "Ocurrió un error al obtener el listado de pedidos. Se actualizará la página, si el inconveniente persiste contacte al administrador.",
                                 confirmar: "Aceptar",
                                 img: "img/error.png"
                             }).then(() => {
-                                limpiar();
+                               location.reload();
                             });
-                        } else {
-                            const pedidos = JSON.parse(data.respuesta).listadoPedidos;
-                            //Actualizar listado de pedidos
-                            updateList(pedidos);
                         }
-                        document.getElementById('contenedor-loader').style.display = 'none';
-                    },
-                    error: function (xhr, status, error) {
-                        document.getElementById('contenedor-loader').style.display = 'none';
-                        // console.log("Error al consultar pedidos:", error);
-                        dialogoEG({
-                            type: "error",
-                            title: "Error de comunicación",
-                            mensaje: "Ocurrió un error al obtener el listado de pedidos. Se actualizará la página, si el inconveniente persiste contacte al administrador.",
-                            confirmar: "Aceptar",
-                            img: "img/error.png"
-                        }).then(() => {
-                           location.reload();
-                        });
-                    }
-                });
+                    });
                 }
 
                 //Obtener pilotos activos
@@ -991,7 +1090,7 @@
                     let hayPedidos = false;
 
                     categories.forEach(category => {
-                        const contenedorPedidos = document.getElementById(`${category}-orders`); // Cambia este id según tu categoría
+                        const contenedorPedidos = document.getElementById(`${category}-orders`); // Cambiar este id según categoría
                         contenedorPedidos.innerHTML = ''; // Limpiar la lista existente
 
                         // Filtrar los pedidos por categoría utilizando el mapeo
@@ -1009,7 +1108,7 @@
                             cliente.classList.add('cliente');
 
                             const folio = document.createElement('div');
-                            folio.textContent = `Folio ticket #${pedido.folio}`;
+                            folio.textContent = `Folio #${pedido.folio}`;
                             folio.classList.add('detalle');
 
                             const total = document.createElement('div');
@@ -1025,6 +1124,18 @@
                             cardItem.appendChild(folio);
                             cardItem.appendChild(total);
                             cardItem.appendChild(fecha);
+
+                            if(category === "courier"){
+                                const asignado = document.createElement('div');
+                                asignado.textContent = `Envío: ${pedido.paqueteria}`;
+                                asignado.classList.add('detalle');
+                                cardItem.appendChild(asignado);
+                            }else if(category === "parcel"){
+                                const asignado = document.createElement('div');
+                                asignado.textContent = `Envío: ${pedido.mensajero}`;
+                                asignado.classList.add('detalle');
+                                cardItem.appendChild(asignado);
+                            }
 
                             // Agregar el evento click para el modal
                             cardItem.addEventListener('click', function () {
@@ -1057,11 +1168,15 @@
 
                 //Mostral modal
                 function showModal(pedido, cardItem) {
-                    // console.log("Abro diálogo del pedido: ");
-                    // console.log(pedido);
+                    console.log("Abro diálogo del pedido: ");
+                    console.log(pedido);
+
                     let piloto = "";
                     let paqueteria = "";
                     let obvs = "";
+
+                    limpiarCamposModal();
+
                     //Aginación de colores
                     // Obtener la categoría del card-item clickeado
                     const categoryContainer = cardItem.closest('.order-category');
@@ -1069,8 +1184,10 @@
                     if (categoryContainer) {
                         categoryClass = Array.from(categoryContainer.classList).find(cls => cls.startsWith('category-'));
                     }
+
                     const orderNumber = pedido.folio;
                     const currentState = pedido.estado_actual;
+
                     // Mostrar detalles del pedido en el modal
                     $('#txtInfoCliente').text(`${pedido.cliente}`);
                     $('#txtInfoTicket').text(`#${orderNumber}`);
@@ -1081,12 +1198,40 @@
                     $('#txtInfoCambioPedido').text(`Q.${pedido.cambio}`);
                     $('#txtInfoEstadoActual').text(`${currentState}`);
                     $('#txtInfoEstadoFecha').text(`${formatoFechaDos(pedido.fecha_estado)}`);
-                    if(pedido.observaciones){
-                        document.getElementById('detEstado').style.display = 'block';
-                        $('#txtInfoDetalleEstado').text(`${pedido.observaciones}`);
+                    
+                    // Convertir a objeto JSON si es string
+                    if (typeof pedido.detallePedido === "string") {
+                        try {
+                            pedido.detallePedido = JSON.parse(pedido.detallePedido);
+                        } catch (e) {
+                            console.error("Error al parsear detallePedido:", e);
+                            pedido.detallePedido = []; // o puedes manejarlo de otra manera
+                        }
                     }
-                    $('#txtInfoEstadoUsuario').text(`${pedido.usuario_cambio}`);
-                    $('#txtInfoUsuarioCargo').text(`${pedido.usuario_registro}`);
+                    // Ordenar productos por precio de mayor a menor
+                    pedido.detallePedido.sort((a, b) => b.precio - a.precio);
+                    // Insertar datos en la tabla
+                    const tbody = document.getElementById("modalDetallePedido");
+                    tbody.innerHTML = "";
+                    pedido.detallePedido.forEach(item => {
+                        const row =`
+                           <tr>
+                               <td class="cantidad-col">${item.cantidad}</td>
+                               <td>${item.producto}</td>
+                               <td class="text-end">Q${item.precio.toFixed(2)}</td>
+                           </tr>
+                               `;
+                           tbody.innerHTML += row;
+                       });
+
+
+                   // Mostrar observaciones, usuarios
+                    document.getElementById('detEstado').style.display = pedido.observaciones ? 'block' : 'none';
+                    $('#txtInfoDetalleEstado').text(pedido.observaciones || '');
+                    $('#txtInfoEstadoUsuario').text(pedido.usuario_cambio || '');
+                    $('#txtInfoUsuarioCargo').text(pedido.usuario_registro || '');
+                    $('#txtInfoObservaciones').val('');
+
                     if (pedido.mensajero) {
                         $('#txtInfoMensajero').text(`${pedido.mensajero}`);
                         document.getElementById('pilot-cargo').style.display = 'block';
@@ -1097,8 +1242,6 @@
                         document.getElementById('parcel-cargo').style.display = 'block';
                         paqueteria = pedido.id_paq;
                     }
-
-                    $('#txtInfoObservaciones').val('');
 
                     const cambiosPedidos = document.getElementById('cambiosPedido');
                     const statusChangeOptions = document.getElementById('status-change-options');
@@ -1113,6 +1256,7 @@
                     assignPilotBtn.style.display = 'none';
                     parcelSelection.style.display = 'none';
                     assignParcelBtn.style.display = 'none';
+
                     // Obtener los posibles siguientes estados
                     const nextStates = getNextStates(currentState);
                     if (nextStates && nextStates.length > 0) {
@@ -1123,7 +1267,8 @@
                     nextStates.forEach(nextState => {
                         const button = document.createElement('button');
                         button.textContent = nextState.label;
-                        button.classList.add('btn', 'btn-primary', 'me-2');
+                        button.classList.add('btn', 'btn-primary');
+                                button.style.flex = '1 1 48%';
                         button.addEventListener('click', function () {
                             if (nextState.state === 'courier') { // Enviar por Mensajería
                                 getPilotosAct();
@@ -1133,10 +1278,10 @@
                                 parcelSelection.style.display = 'none';
                                 document.getElementById('pilot-select').focus();
 
+                                //Botón piloto
                                 assignPilotBtn.addEventListener('click', function () {
                                     const selectedPilot = document.getElementById('pilot-select').value;
                                     obvs = document.getElementById('txtInfoObservaciones').value;
-                                    //obvs = combinarObservaciones(pedido.observaciones, obvs);
                                     if (selectedPilot) {
                                         piloto = selectedPilot;
                                         changeOrderState(pedido, nextState.state, piloto, paqueteria, obvs);
@@ -1161,11 +1306,10 @@
                                 pilotSelection.style.display = 'none';
                                 document.getElementById('parcel-select').focus();
 
+                                //Botón 
                                 assignParcelBtn.addEventListener('click', function () {
                                     const selectedParcel = document.getElementById('parcel-select').value;
-                                    // console.log('Valor seleccionado:', selectedParcel);
                                     obvs = document.getElementById('txtInfoObservaciones').value;
-                                    //obvs = combinarObservaciones(pedido.observaciones, obvs);
                                     if (selectedParcel) {
                                         paqueteria = selectedParcel;
                                         changeOrderState(pedido, nextState.state, piloto, paqueteria, obvs);
@@ -1184,7 +1328,6 @@
 
                             } else {
                                 obvs = document.getElementById('txtInfoObservaciones').value;
-                                //obvs = combinarObservaciones(pedido.observaciones, obvs);
                                 changeOrderState(pedido, nextState.state, piloto, paqueteria, obvs);
                             }
                         });
@@ -1204,72 +1347,34 @@
                     modalInstance.show();
                 }
 
-                function combinarObservaciones(pedidoObservaciones, obvs) {
-                    // Verificar y combinar las observaciones según las condiciones
-                    if (pedidoObservaciones && obvs) {
-                        return pedidoObservaciones + " / " + obvs;
-                    } else if (!pedidoObservaciones && obvs) {
-                        return obvs;
-                    } else if (pedidoObservaciones && !obvs) {
-                        return pedidoObservaciones;
-                    }
-                    return ''; // En caso de que ambos estén vacíos
-                }
+                //Limpiar campos de los diálogos
+                function limpiarCamposModal(){
+                    // Limpiar textos
+                    $('#txtInfoCliente').text('');
+                    $('#txtInfoTicket').text('');
+                    $('#txtInfoFechaPedido').text('');
+                    $('#txtInfoCajero').text('');
+                    $('#txtInfoTotalPedido').text('');
+                    $('#txtInfoPagoPedido').text('');
+                    $('#txtInfoCambioPedido').text('');
+                    $('#txtInfoEstadoActual').text('');
+                    $('#txtInfoEstadoFecha').text('');
+                    $('#txtInfoDetalleEstado').text('');
+                    $('#txtInfoEstadoUsuario').text('');
+                    $('#txtInfoUsuarioCargo').text('');
+                    $('#txtInfoMensajero').text('');
+                    $('#txtInfoPaqueteria').text('');
+                    $('#txtInfoObservaciones').val('');
 
-                //Obtener estados siguientes posibles
-                function getNextStates(currentState) {
-                    // console.log("Dentro de getNextStates: " + currentState);
-                    const stateTransitions = {
-                        production: [
-                            { state: 'completed', label: 'Completado' },
-                            { state: 'canceled', label: 'Anulado' }
-                        ],
-                        completed: [
-                            { state: 'courier', label: 'Enviar por Mensajería' },
-                            { state: 'parcel', label: 'Enviar por Paquetería' },
-                            { state: 'pickup', label: 'Recoge en oficina' },
-                            { state: 'canceled', label: 'Anulado' }
-                        ],
-                        courier: [
-                            { state: 'returned', label: 'Devuelto' },
-                            { state: 'delivered', label: 'Entregado' }
-                        ],
-                        parcel: [
-                            { state: 'returned', label: 'Devuelto' },
-                            { state: 'delivered', label: 'Entregado' }
-                        ],
-                        delivered: [],
-                        returned: [
-                            { state: 'canceled', label: 'Anulado' },
-                            { state: 'rescheduled', label: 'Reprogramar' }
-                        ],
-                        canceled: [],
-                        pickup: [
-                            { state: 'delivered', label: 'Entregado' },
-                            { state: 'canceled', label: 'Anulado' }
-                        ],
-                        rescheduled: [
-                            { state: 'courier', label: 'Enviar por Mensajería' },
-                            { state: 'parcel', label: 'Enviar por Paquetería' },
-                            { state: 'pickup', label: 'Recoge en oficina' },
-                            { state: 'canceled', label: 'Anulado' }
-                        ]
-                    };
-                    // Usar el mapeo para convertir currentState a su correspondiente en inglés
-                    const mappedState = categoryMap[currentState];
-                    return stateTransitions[mappedState] || [];
-                }
-
-                // Función para obtener el equivalente en español dado un estado en inglés
-                function getState(state) {
-                    return entospa[state] || "Estado desconocido";
                 }
 
                 //Cambiar estado del pedido
                 function changeOrderState(pedido, newState, piloto, paqueteria, obvs) {
                     newState = getState(newState);
+                    console.log("Pedio a cambiar de estado: "+pedido);
                     let parametros = {
                         'folio': pedido.folio,
+                        'cliente': pedido.cliente,
                         'estadoAnterior': pedido.estado_actual,
                         'estadoNuevo': newState,
                         'usuario': "",
@@ -1281,7 +1386,7 @@
                     if (pedido.estado_actual && pedido.estado_actual !== newState) {
                         document.getElementById('contenedor-loader').style.display = 'flex';
                         $.ajax({
-                            url: '@Url.Action("cambioEstadoPedido", "Home")',
+                            url: '@Url.Action("cambioEstadoPedido", "Principal")',
                             type: "POST",
                             data: parametros,
                             success: function (data) {
@@ -1318,7 +1423,7 @@
                                 dialogoEG({
                                     type: "error",
                                     title: "Error de comunicación",
-                                    mensaje: "Ocurrió un error al ingresar el ticket a producción. Intente nuevamente, si el inconveniente persiste contacte al administrador.",
+                                    mensaje: "Ocurrió un error al cambiar de estado el pedido. Intente nuevamente, si el inconveniente persiste contacte al administrador.",
                                     confirmar: "Aceptar",
                                     img: "img/error.png"
                                 });
@@ -1328,6 +1433,75 @@
                     }
                 }
 
+
+                        function combinarObservaciones(pedidoObservaciones, obvs) {
+                    // Verificar y combinar las observaciones según las condiciones
+                    if (pedidoObservaciones && obvs) {
+                        return pedidoObservaciones + " / " + obvs;
+                    } else if (!pedidoObservaciones && obvs) {
+                        return obvs;
+                    } else if (pedidoObservaciones && !obvs) {
+                        return pedidoObservaciones;
+                    }
+                    return ''; // En caso de que ambos estén vacíos
+                }
+
+                //Obtener estados siguientes posibles
+                function getNextStates(currentState) {
+                    // console.log("Dentro de getNextStates: " + currentState);
+                    const stateTransitions = {
+                        production: [
+                            { state: 'completed', label: 'Completado' },
+                            { state: 'canceled', label: 'Anulado' }
+                        ],
+                        completed: [
+                            { state: 'courier', label: 'Enviar por Mensajería' },
+                            { state: 'parcel', label: 'Enviar por Paquetería' },
+                            { state: 'pickup', label: 'Recoge en oficina' },
+                            { state: 'production', label: 'En producción' },
+                            { state: 'canceled', label: 'Anulado' }
+                        ],
+                        courier: [ //envío por paquetería
+                            { state: 'production', label: 'En producción' },
+                            { state: 'returned', label: 'Devuelto' },
+                            { state: 'delivered', label: 'Entregado' }
+                        ],
+                        parcel: [ //envío por mensajería
+                            { state: 'production', label: 'En producción' },
+                            { state: 'returned', label: 'Devuelto' },
+                            { state: 'delivered', label: 'Entregado' }
+                        ],
+                        delivered: [],
+                        returned: [ //Devuelto
+                            { state: 'canceled', label: 'Anulado' },
+                            { state: 'rescheduled', label: 'Reprogramar' },
+                            { state: 'production', label: 'En producción' }
+                        ],
+                        canceled: [],
+                        pickup: [//Recoge en oficina
+                            { state: 'delivered', label: 'Entregado' },
+                            { state: 'production', label: 'En producción' },
+                            { state: 'canceled', label: 'Anulado' }
+                        ],
+                        rescheduled: [//Reprogramar
+                            { state: 'courier', label: 'Enviar por Mensajería' },
+                            { state: 'parcel', label: 'Enviar por Paquetería' },
+                            { state: 'production', label: 'En producción' },
+                            { state: 'pickup', label: 'Recoge en oficina' },
+                            { state: 'canceled', label: 'Anulado' }
+                        ]
+                    };
+                    // Usar el mapeo para convertir currentState a su correspondiente en inglés
+                    const mappedState = categoryMap[currentState];
+                    return stateTransitions[mappedState] || [];
+                }
+
+                // Función para obtener el equivalente en español dado un estado en inglés
+                function getState(state) {
+                    return entospa[state] || "Estado desconocido";
+                }
+
+                
                 //Limpiar búsqueda ticket
                 function limpiar() {
                     parametros = "";
