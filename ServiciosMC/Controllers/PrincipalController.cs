@@ -167,7 +167,7 @@ namespace ServiciosMC.Controllers
         public JsonResult ObtenerPedidoCliente(String cliente, String fecha)
         {
             Debug.WriteLine("Ingresa a obtenerPedidoCliente: " + cliente + " - "+fecha);
-            ResultadoPedidoModel datosRespuesta = new();
+            ResultadoPedidosClienteModel datosRespuesta = new();
             try
             {
                 XElement datosXML = new("CONSULTAPEDIDO", new XElement("CLIENTE", cliente), new XElement("FECHA", fecha));
@@ -189,7 +189,7 @@ namespace ServiciosMC.Controllers
                 {
                     try
                     {
-                        var resultado = JsonSerializer.Deserialize<RespuestaPedido>(resultadoConsultaWS);
+                        var resultado = JsonSerializer.Deserialize<RespuestaPedidosCliente>(resultadoConsultaWS);
 
                         if (resultado != null)
                         {
@@ -200,25 +200,26 @@ namespace ServiciosMC.Controllers
                                 datosRespuesta.existeError = false;
                                 datosRespuesta.existenDatos = true;
 
-                                datosRespuesta.infoPedido = new InfoPedido
+                                datosRespuesta.infoPedidos = resultado.PEDIDOS.Select(p => new InfoPedido
                                 {
-                                    idTicket = resultado.PEDIDO.idTicket,
-                                    folio = resultado.PEDIDO.folio,
-                                    fecha = resultado.PEDIDO.fecha,
-                                    cajero = resultado.PEDIDO.cajero,
-                                    cliente = resultado.PEDIDO.cliente,
-                                    total = resultado.PEDIDO.total,
-                                    pago = resultado.PEDIDO.pago,
-                                    cambio = resultado.PEDIDO.cambio,
-                                    estatus = resultado.PEDIDO.estatus,
-                                    detallePedido = resultado.PEDIDO.detallePedido.Select(item => new ArticulosPedido
+                                    idTicket = p.idTicket,
+                                    folio = p.folio,
+                                    fecha = p.fecha,
+                                    cajero = p.cajero,
+                                    cliente = p.cliente,
+                                    total = p.total,
+                                    pago = p.pago,
+                                    cambio = p.cambio,
+                                    estatus = p.estatus,
+                                    detallePedido = p.detallePedido?.Select(item => new ArticulosPedido
                                     {
                                         producto = item.producto,
                                         cantidad = item.cantidad,
                                         precio = item.precio
-                                    }).ToList() ?? new List<ArticulosPedido>() // Evitar null
-                                };
+                                    }).ToList() ?? new List<ArticulosPedido>()
+                                }).ToList();
                             }
+
                             else
                             {
                                 if (resultado.CODIGO.Equals("204"))
@@ -446,6 +447,46 @@ namespace ServiciosMC.Controllers
                 return Json(new { success = false, errorMensaje = "Error al procesar los datos: " + ex.Message });
             }
         }
+
+        [HttpPost]
+        public async Task<JsonResult> IngresarAsociarPedido(infoAsociar pedidoData)
+        {
+            try
+            {
+                string URL = config.GetValue<string>("Servicios:API_PYTHON") + "asociarPedidoMC";
+
+                using (HttpClient httpClient = new())
+                {
+                    var datos = JsonSerializer.Serialize(pedidoData);
+                    var contenido = new StringContent(datos, Encoding.UTF8, "application/json");
+                    var response = await httpClient.PostAsync(URL, contenido);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var responseBody = await response.Content.ReadAsStringAsync();
+                        var responseObject = JsonSerializer.Deserialize<Dictionary<string, string>>(responseBody);
+                        string mensaje = responseObject["mensaje"];
+
+                        return Json(new { success = true, respuesta = mensaje });
+                    }
+                    else
+                    {
+                        var responseBody = await response.Content.ReadAsStringAsync();
+                        var errorObject = JsonSerializer.Deserialize<Dictionary<string, string>>(responseBody);
+                        string errorMensaje = errorObject["error"]; 
+                        Debug.WriteLine("Código:" + errorMensaje);
+                        return Json(new { success = false, errorMensaje });
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, errorMensaje = "Error al procesar los datos: " + ex.Message });
+            }
+        }
+
+
 
         [HttpPost]
         public async Task<JsonResult> ListaPedidosDash()

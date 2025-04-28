@@ -10,11 +10,26 @@ namespace ServiciosMC.Models
         public InfoPedido PEDIDO { get; set; }
     }
 
+    public class RespuestaPedidosCliente
+    {
+        public string CODIGO { get; set; }
+        public string MENSAJE { get; set; }
+        public List<InfoPedido> PEDIDOS { get; set; }
+    }
+
     public class ResultadoPedidoModel
     {
         public bool existeError { get; set; }
         public bool existenDatos { get; set; }
         public InfoPedido infoPedido {get; set;}
+
+    }
+
+    public class ResultadoPedidosClienteModel
+    {
+        public bool existeError { get; set; }
+        public bool existenDatos { get; set; }
+        public List<InfoPedido> infoPedidos { get; set; }
 
     }
 
@@ -46,6 +61,12 @@ namespace ServiciosMC.Models
         public string usuario { get; set; }
     }
 
+    public class infoAsociar
+    {
+        public InfoPedido infoPedido { get; set; }
+        public string folioAsociar { get; set; }
+    }
+
     public class infoUsuario
     {
         public string usuario { get; set; }
@@ -66,12 +87,14 @@ namespace ServiciosMC.Models
     public class infoCambioPedido
     {
         public string folio { get; set; }
+        public string cliente { get; set; }
         public string estadoAnterior { get; set; }
         public string estadoNuevo { get; set; }
         public string usuario { get; set; }
         public string idMensajero { get; set; }
         public string idPaqueteria { get; set; }
         public string observaciones { get; set; }
+        public string forma_pago { get; set; }
 
 
     }

@@ -146,7 +146,6 @@ margin-top: 10px;
     font-size: 1.1rem;
 }
 
-
 /* Input de filtro */
 #dialogBusquedaClientes #filterInput {
     font-size: 1.1rem;
@@ -179,7 +178,62 @@ margin-top: 10px;
     }
 
 
+/*
+    ESTILOS PARA DIÁLOGO DE PEDIDOS ENCONTRADOS - CLIENTE
+*/
+#modalPedidos .modal-header {
+    font-family: 'LemonMilk', sans-serif;
+    background-color: #e4e4e4ff;
+    color: #303030;
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+}
 
+    #modalPedidos .modal-header h5.modal-title {
+        font-size: 1.2rem;
+        margin: 0;
+        margin-left: 10px;
+        line-height: 2rem;
+    }
+
+    #modalPedidos .modal-header .btn-close {
+        color: #303030;
+        opacity: 1;
+        font-size: 1rem;
+        padding: 0;
+        margin-right: 0px;
+        display: flex;
+        align-items: center;
+    }
+
+#modalPedidos .modal-content {
+    font-family: 'Urbanist', sans-serif;
+    font-size: 1.1rem;
+}
+
+/* Lista de pedidos */
+#modalPedidos .list-group {
+    font-family: 'Urbanist', sans-serif;
+    max-height: 250px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Estilos para cada pedido */
+#modalPedidos .list-group-item {
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+}
+
+    #modalPedidos .list-group-item:hover,
+    #modalPedidos .list-group-item:focus {
+        background-color: #e4e4e4ff;
+        font-weight: bold;
+        color: #303030;
+    }
 
 
 
@@ -249,16 +303,21 @@ margin-top: 10px;
         font-size: 1rem; /* Ajusta el tamaño de la fuente según prefieras */
         color: #0f0a35; /* Opcional: puedes ajustar el color de la fuente si lo necesitas */
     }
-.infopedido-card #btnPasarProduccion {
+    .infopedido-card #btnPasarProduccion {
         background-color: #e86217;
-        font-family: 'LemonMilk', sans-serif;
+        font-family: 'Urbanist', sans-serif;
         color: #ffffff;
         width: 100%; /* Botón ocupa todo el ancho */
         margin-top: 5px;
     }
-.infopedido-card #btnPasarProduccion span {
-            font-size: 1rem; /* Tamaño del ícono */
-        }
+
+    .infopedido-card #btnEnlaceAsociar {
+        font-family: 'Urbanist', sans-serif;
+    }
+
+    .infopedido-card #btnPasarProduccion span {
+        font-size: 1rem; /* Tamaño del ícono */
+    }
 .infopedido-card #btnPasarProduccion:hover {
             background-color: #1f386e;
         }
