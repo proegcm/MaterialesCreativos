@@ -35,7 +35,7 @@
                                                 <option value="cliente">Nombre del cliente</option>
                                                 <option value="folio">Número de folio</option>
                                             </select>
-                                            <span class="tooltip-icon ml-2" data-toggle="tooltip" title="Usa Ctrl + F para buscar por folio o Ctrl + C para buscar por cliente">
+                                            <span class="tooltip-icon ml-2" data-toggle="tooltip" title="Usa Ctrl + F para buscar por folio o Ctrl + X para buscar por cliente">
                                                 <i class="fas fa-question-circle"></i>
                                             </span>
                                         </div>
@@ -48,7 +48,7 @@
                                             <div class="input-group">
                                                 <label for="txtCliente" class="me-2">Cliente:</label>
                                                 <input type="text" class="form-control" placeholder="Ingrese nombre del cliente" id="txtCliente" autofocus>
-                                                <button type="button" class="btn btn-icon" id="btnMostrarClientes" data-toggle="tooltip" title="Usa Ctrl + A para mostrar los clientes" disabled>
+                                                <button type="button" class="btn btn-icon" id="btnMostrarClientes" title="Usa Ctrl + A para mostrar los clientes" disabled>
                                                     <i class="fas fa-users"></i>
                                                 </button>
                                                 <button type="button" class="btn btn-icon d-none" id="btnReintentarCarga" title="Intentar cargar clientes de nuevo" disabled>
@@ -572,7 +572,7 @@
 
             // Detectar atajos de teclado
             document.addEventListener("keydown", function(event) {
-                if (event.ctrlKey && event.key === "c") {
+                if (event.ctrlKey && event.key === "x") {
                     event.preventDefault();
                     document.getElementById("tipoBusqueda").value = "cliente";
                     limpiar();
@@ -608,6 +608,17 @@
               this.setAttribute("disabled", true);
               cargaClientes();
             });
+
+             document.addEventListener("DOMContentLoaded", function () {
+                if (window.innerWidth >= 768) {
+                    // Activar tooltips solo en pantallas medianas o grandes
+                    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-toggle="tooltip"]'));
+                    tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+                        new bootstrap.Tooltip(tooltipTriggerEl);
+                    });
+                }
+            });
+
 
              $("#txtFolio").on("input", function () {
                 this.value = this.value.replace(/[^0-9]/g, '');
@@ -710,7 +721,7 @@
                         }
                     },
                     error: function () {
-                        console.log("Error en la petición AJAX.");
+                        //console.log("Error en la petición AJAX.");
                         document.getElementById("btnReintentarCarga").removeAttribute("disabled");
                     }
                 });
@@ -791,7 +802,7 @@
                             type: "POST",
                             data: { folio: nofolio },
                             success: function (data) {
-                                 console.log(data);
+                                 //console.log(data);
                                 if (data.existeError) {
                                     dialogoEG({
                                         type: "error",
@@ -873,8 +884,8 @@
                             type: "POST",
                             data: { cliente: clientePedido, fecha: fechaPedido },
                             success: function (data) {
-                                console.log("Info de respuesta: ");
-                                console.log(data);
+                                // console.log("Info de respuesta: ");
+                                // console.log(data);
                                 if (data.existeError) {
                                     dialogoEG({
                                         type: "error",
@@ -1057,7 +1068,7 @@
                                 });
                             } else {
                                 const pedidos = JSON.parse(data.respuesta).listadoPedidos;
-                                console.log(pedidos);
+                                //console.log(pedidos);
                                 //Actualizar listado de pedidos
                                 updateList(pedidos);
                             }
@@ -1285,8 +1296,8 @@
 
                 //Mostral modal
                 function showModal(pedido, cardItem) {
-                    console.log("Abro diálogo del pedido: ");
-                    console.log(pedido);
+                    //console.log("Abro diálogo del pedido: ");
+                    //console.log(pedido);
 
                     let piloto = "";
                     let paqueteria = "";
@@ -1538,7 +1549,7 @@
                 //Cambiar estado del pedido
                 function changeOrderState(pedido, newState, piloto, paqueteria, obvs, formaPago) {
                     newState = getState(newState);
-                    console.log("Pedio a cambiar de estado: "+pedido);
+                    //console.log("Pedio a cambiar de estado: "+pedido);
                     let parametros = {
                         'folio': pedido.folio,
                         'cliente': pedido.cliente,
@@ -1630,8 +1641,8 @@
                         infoPedido: parametros.infoPedido,
                         folioAsociar: folioAsociado
                     };
-                    console.log("parametrosAsociar:");
-                    console.log(parametrosAsociar);
+                    //console.log("parametrosAsociar:");
+                    //console.log(parametrosAsociar);
                     document.getElementById('contenedor-loader').style.display = 'flex';
                     $.ajax({
                         url: '@Url.Action("IngresarAsociarPedido", "Principal")',

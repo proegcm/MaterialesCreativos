@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "gQ1EauGtMh262+SA7sBbcf9n2U1LbBDsgrUYlI01yDw=",
+  "Hash": "72qFts2j19FM2YhJ2/Hop3HHJd66F+Laag/6WUBQdl8=",
   "Source": "ServiciosMC",
   "BasePath": "_content/ServiciosMC",
   "Mode": "Default",
@@ -724,8 +724,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "yilcf4jy5v",
-      "Integrity": "Blmo7RrYQuD5+SuYmeyNIzHsJ8JCmNzyynJi1LOBCLA=",
+      "Fingerprint": "rkf3cyq8gd",
+      "Integrity": "m2VNZHzYsbNc+NG19tthKTqVQE9qAM1U1DxsaBK/5ng=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\DialogoEG.css"
@@ -766,8 +766,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "0fh7vy65fx",
-      "Integrity": "FMWRrlW9Vfq5vDcdI+WIk6y4Tf2ly9imOLuBZTGaar8=",
+      "Fingerprint": "uo92uxcy9c",
+      "Integrity": "jt+jHF5bhgt0weJejMrYF9xTnGescOfztfOhgDUTUGc=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\estilosGeneral.css"
@@ -808,8 +808,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "fwgl44izsb",
-      "Integrity": "zzy6+jh9b4UJSRxK3aUMog8vPJeePWJh/1IplUVH/Q8=",
+      "Fingerprint": "9pzb3ktohq",
+      "Integrity": "g/Nx4IXTdUv7E4/o5vuichgxIVl3CI68mEnUUFOV7io=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\estilosHome.css"
@@ -2556,279 +2556,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
-    },
-    {
-      "Identity": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\Log\\20241023\\20241023.log",
-      "SourceId": "ServiciosMC",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\",
-      "BasePath": "_content/ServiciosMC",
-      "RelativePath": "Log/20241023/20241023#[.{fingerprint}]?.log",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "rj7k90tyq9",
-      "Integrity": "N1zcei50abBJva3/8EepSFRXGFQET63BIYifPCPMeb8=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Log\\20241023\\20241023.log"
-    },
-    {
-      "Identity": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\Log\\20241024\\20241024.log",
-      "SourceId": "ServiciosMC",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\",
-      "BasePath": "_content/ServiciosMC",
-      "RelativePath": "Log/20241024/20241024#[.{fingerprint}]?.log",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "9zi0s0ah8m",
-      "Integrity": "6yP5AgNlUZzbuGghUQzb7HQUKCMjFSuh0W9amsXJVJI=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Log\\20241024\\20241024.log"
-    },
-    {
-      "Identity": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\Log\\20250213\\20250213.log",
-      "SourceId": "ServiciosMC",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\",
-      "BasePath": "_content/ServiciosMC",
-      "RelativePath": "Log/20250213/20250213#[.{fingerprint}]?.log",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "ijrlzlkkur",
-      "Integrity": "rjV0ZlGXPcVJFZQC9dtODa56c6hmF5+4fMzAvmRMpEA=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Log\\20250213\\20250213.log"
-    },
-    {
-      "Identity": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\Log\\XML\\20241029\\2024102922ADMIN20241029.log",
-      "SourceId": "ServiciosMC",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\",
-      "BasePath": "_content/ServiciosMC",
-      "RelativePath": "Log/XML/20241029/2024102922ADMIN20241029#[.{fingerprint}]?.log",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "6j81o6vcgk",
-      "Integrity": "csGVFLH7Ml1mFOqGAqu3B5W7/n1xSFF235P6oDllApQ=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Log\\XML\\20241029\\2024102922ADMIN20241029.log"
-    },
-    {
-      "Identity": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\Log\\XML\\20241030\\2024103023ADMIN20241030.log",
-      "SourceId": "ServiciosMC",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\",
-      "BasePath": "_content/ServiciosMC",
-      "RelativePath": "Log/XML/20241030/2024103023ADMIN20241030#[.{fingerprint}]?.log",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "9rhvdf3lc5",
-      "Integrity": "paTLlkdv1OhggdvUQ9AHcHqMHOeI9M4k1rZsAtd+lvk=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Log\\XML\\20241030\\2024103023ADMIN20241030.log"
-    },
-    {
-      "Identity": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\Log\\XML\\20241030\\2024103023ANTONY20241030.log",
-      "SourceId": "ServiciosMC",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\",
-      "BasePath": "_content/ServiciosMC",
-      "RelativePath": "Log/XML/20241030/2024103023ANTONY20241030#[.{fingerprint}]?.log",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "bl51ko177l",
-      "Integrity": "cWmBFPqIg5HyMdD+Lnr3Wqxo2q7uPiGFhZyArdLvq8c=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Log\\XML\\20241030\\2024103023ANTONY20241030.log"
-    },
-    {
-      "Identity": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\Log\\XML\\20241030\\2024103023KAREN20241030.log",
-      "SourceId": "ServiciosMC",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\",
-      "BasePath": "_content/ServiciosMC",
-      "RelativePath": "Log/XML/20241030/2024103023KAREN20241030#[.{fingerprint}]?.log",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "ailzs05dwn",
-      "Integrity": "Xnyoq7nE5lT7+Y8SquQobzP70uxQHBTzb8nk/sa+79M=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Log\\XML\\20241030\\2024103023KAREN20241030.log"
-    },
-    {
-      "Identity": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\Log\\XML\\20241030\\2024103023KLEIBY20241030.log",
-      "SourceId": "ServiciosMC",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\",
-      "BasePath": "_content/ServiciosMC",
-      "RelativePath": "Log/XML/20241030/2024103023KLEIBY20241030#[.{fingerprint}]?.log",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "gal0gblprb",
-      "Integrity": "OOhYoYgRfGffDUzcMXTuqnZrAgN/CM7jIdOtXjzJiok=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Log\\XML\\20241030\\2024103023KLEIBY20241030.log"
-    },
-    {
-      "Identity": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\Log\\XML\\20241030\\2024103023MAGDA20241030.log",
-      "SourceId": "ServiciosMC",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\",
-      "BasePath": "_content/ServiciosMC",
-      "RelativePath": "Log/XML/20241030/2024103023MAGDA20241030#[.{fingerprint}]?.log",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "o25kgm9kdx",
-      "Integrity": "sA74deTV0jRc0aox80UyIrDdzouvwvDdfyEUPe26MJs=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Log\\XML\\20241030\\2024103023MAGDA20241030.log"
-    },
-    {
-      "Identity": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\Log\\XML\\20241030\\2024103023MARTA20241030.log",
-      "SourceId": "ServiciosMC",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\",
-      "BasePath": "_content/ServiciosMC",
-      "RelativePath": "Log/XML/20241030/2024103023MARTA20241030#[.{fingerprint}]?.log",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "qy3cvv26wa",
-      "Integrity": "7mUH0fZIKpSO9IifBO2NqtrGEG+tQZdbp5Z2CJz/4qY=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Log\\XML\\20241030\\2024103023MARTA20241030.log"
-    },
-    {
-      "Identity": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\Log\\XML\\20250213\\2025021323ADMIN20250213.log",
-      "SourceId": "ServiciosMC",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\",
-      "BasePath": "_content/ServiciosMC",
-      "RelativePath": "Log/XML/20250213/2025021323ADMIN20250213#[.{fingerprint}]?.log",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "y68gsa9aec",
-      "Integrity": "eqH3u9LAAkBPgNWnPeLwUI1RTyPQF8UOEhI1u2EsFtA=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Log\\XML\\20250213\\2025021323ADMIN20250213.log"
-    },
-    {
-      "Identity": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\Log\\XML\\20250214\\2025021400ADMIN20250214.log",
-      "SourceId": "ServiciosMC",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\",
-      "BasePath": "_content/ServiciosMC",
-      "RelativePath": "Log/XML/20250214/2025021400ADMIN20250214#[.{fingerprint}]?.log",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "7u7opzipte",
-      "Integrity": "r8LOWfamSQNMovPiUCjjV/u8cHYP88COjhTtG1rTwOE=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Log\\XML\\20250214\\2025021400ADMIN20250214.log"
-    },
-    {
-      "Identity": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\Log\\XML\\20250308\\2025030811ADMIN20250308.log",
-      "SourceId": "ServiciosMC",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\",
-      "BasePath": "_content/ServiciosMC",
-      "RelativePath": "Log/XML/20250308/2025030811ADMIN20250308#[.{fingerprint}]?.log",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "on9rw8i5fm",
-      "Integrity": "XPY1lfbY/vrEebQsEuelEdlC/syxyeoe7O8nDngtgX8=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Log\\XML\\20250308\\2025030811ADMIN20250308.log"
     },
     {
       "Identity": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\MCreativos\\Fonts\\LemonMilk.otf",
@@ -6368,7 +6095,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "4232"
+          "Value": "4228"
         },
         {
           "Name": "Content-Type",
@@ -6376,11 +6103,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"Blmo7RrYQuD5+SuYmeyNIzHsJ8JCmNzyynJi1LOBCLA=\""
+          "Value": "\"m2VNZHzYsbNc+NG19tthKTqVQE9qAM1U1DxsaBK/5ng=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 12 Oct 2024 22:47:15 GMT"
+          "Value": "Sat, 15 Mar 2025 05:19:43 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6390,12 +6117,12 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-Blmo7RrYQuD5+SuYmeyNIzHsJ8JCmNzyynJi1LOBCLA="
+          "Value": "sha256-m2VNZHzYsbNc+NG19tthKTqVQE9qAM1U1DxsaBK/5ng="
         }
       ]
     },
     {
-      "Route": "css/DialogoEG.yilcf4jy5v.css",
+      "Route": "css/DialogoEG.rkf3cyq8gd.css",
       "AssetFile": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\css\\DialogoEG.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -6405,7 +6132,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "4232"
+          "Value": "4228"
         },
         {
           "Name": "Content-Type",
@@ -6413,11 +6140,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"Blmo7RrYQuD5+SuYmeyNIzHsJ8JCmNzyynJi1LOBCLA=\""
+          "Value": "\"m2VNZHzYsbNc+NG19tthKTqVQE9qAM1U1DxsaBK/5ng=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 12 Oct 2024 22:47:15 GMT"
+          "Value": "Sat, 15 Mar 2025 05:19:43 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6427,7 +6154,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "yilcf4jy5v"
+          "Value": "rkf3cyq8gd"
         },
         {
           "Name": "label",
@@ -6435,7 +6162,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-Blmo7RrYQuD5+SuYmeyNIzHsJ8JCmNzyynJi1LOBCLA="
+          "Value": "sha256-m2VNZHzYsbNc+NG19tthKTqVQE9qAM1U1DxsaBK/5ng="
         }
       ]
     },
@@ -6522,51 +6249,6 @@
       ]
     },
     {
-      "Route": "css/estilosGeneral.0fh7vy65fx.css",
-      "AssetFile": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\css\\estilosGeneral.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "5739"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"FMWRrlW9Vfq5vDcdI+WIk6y4Tf2ly9imOLuBZTGaar8=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Fri, 18 Oct 2024 03:16:21 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "0fh7vy65fx"
-        },
-        {
-          "Name": "label",
-          "Value": "css/estilosGeneral.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-FMWRrlW9Vfq5vDcdI+WIk6y4Tf2ly9imOLuBZTGaar8="
-        }
-      ]
-    },
-    {
       "Route": "css/estilosGeneral.css",
       "AssetFile": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\css\\estilosGeneral.css",
       "Selectors": [],
@@ -6577,7 +6259,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "5739"
+          "Value": "7694"
         },
         {
           "Name": "Content-Type",
@@ -6585,11 +6267,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"FMWRrlW9Vfq5vDcdI+WIk6y4Tf2ly9imOLuBZTGaar8=\""
+          "Value": "\"jt+jHF5bhgt0weJejMrYF9xTnGescOfztfOhgDUTUGc=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 18 Oct 2024 03:16:21 GMT"
+          "Value": "Fri, 14 Mar 2025 21:01:53 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6599,7 +6281,52 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-FMWRrlW9Vfq5vDcdI+WIk6y4Tf2ly9imOLuBZTGaar8="
+          "Value": "sha256-jt+jHF5bhgt0weJejMrYF9xTnGescOfztfOhgDUTUGc="
+        }
+      ]
+    },
+    {
+      "Route": "css/estilosGeneral.uo92uxcy9c.css",
+      "AssetFile": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\css\\estilosGeneral.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "7694"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"jt+jHF5bhgt0weJejMrYF9xTnGescOfztfOhgDUTUGc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 14 Mar 2025 21:01:53 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "uo92uxcy9c"
+        },
+        {
+          "Name": "label",
+          "Value": "css/estilosGeneral.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-jt+jHF5bhgt0weJejMrYF9xTnGescOfztfOhgDUTUGc="
         }
       ]
     },
@@ -6686,6 +6413,51 @@
       ]
     },
     {
+      "Route": "css/estilosHome.9pzb3ktohq.css",
+      "AssetFile": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\css\\estilosHome.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "24621"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"g/Nx4IXTdUv7E4/o5vuichgxIVl3CI68mEnUUFOV7io=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 26 Apr 2025 02:34:19 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "9pzb3ktohq"
+        },
+        {
+          "Name": "label",
+          "Value": "css/estilosHome.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-g/Nx4IXTdUv7E4/o5vuichgxIVl3CI68mEnUUFOV7io="
+        }
+      ]
+    },
+    {
       "Route": "css/estilosHome.css",
       "AssetFile": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\css\\estilosHome.css",
       "Selectors": [],
@@ -6696,7 +6468,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "18774"
+          "Value": "24621"
         },
         {
           "Name": "Content-Type",
@@ -6704,11 +6476,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"zzy6+jh9b4UJSRxK3aUMog8vPJeePWJh/1IplUVH/Q8=\""
+          "Value": "\"g/Nx4IXTdUv7E4/o5vuichgxIVl3CI68mEnUUFOV7io=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 22 Oct 2024 22:40:57 GMT"
+          "Value": "Sat, 26 Apr 2025 02:34:19 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6718,52 +6490,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-zzy6+jh9b4UJSRxK3aUMog8vPJeePWJh/1IplUVH/Q8="
-        }
-      ]
-    },
-    {
-      "Route": "css/estilosHome.fwgl44izsb.css",
-      "AssetFile": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\css\\estilosHome.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "18774"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"zzy6+jh9b4UJSRxK3aUMog8vPJeePWJh/1IplUVH/Q8=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Tue, 22 Oct 2024 22:40:57 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "fwgl44izsb"
-        },
-        {
-          "Name": "label",
-          "Value": "css/estilosHome.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-zzy6+jh9b4UJSRxK3aUMog8vPJeePWJh/1IplUVH/Q8="
+          "Value": "sha256-g/Nx4IXTdUv7E4/o5vuichgxIVl3CI68mEnUUFOV7io="
         }
       ]
     },
@@ -13570,1072 +13297,6 @@
         {
           "Name": "integrity",
           "Value": "sha256-aBc/n/nO9esvq0e80G57lEYLonvE5dKKUgoozaiVfLM="
-        }
-      ]
-    },
-    {
-      "Route": "Log/20241023/20241023.log",
-      "AssetFile": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\Log\\20241023\\20241023.log",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "121"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/octet-stream"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"N1zcei50abBJva3/8EepSFRXGFQET63BIYifPCPMeb8=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 24 Oct 2024 05:35:26 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-N1zcei50abBJva3/8EepSFRXGFQET63BIYifPCPMeb8="
-        }
-      ]
-    },
-    {
-      "Route": "Log/20241023/20241023.rj7k90tyq9.log",
-      "AssetFile": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\Log\\20241023\\20241023.log",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "121"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/octet-stream"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"N1zcei50abBJva3/8EepSFRXGFQET63BIYifPCPMeb8=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 24 Oct 2024 05:35:26 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "rj7k90tyq9"
-        },
-        {
-          "Name": "label",
-          "Value": "Log/20241023/20241023.log"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-N1zcei50abBJva3/8EepSFRXGFQET63BIYifPCPMeb8="
-        }
-      ]
-    },
-    {
-      "Route": "Log/20241024/20241024.9zi0s0ah8m.log",
-      "AssetFile": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\Log\\20241024\\20241024.log",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "484"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/octet-stream"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"6yP5AgNlUZzbuGghUQzb7HQUKCMjFSuh0W9amsXJVJI=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 24 Oct 2024 06:26:19 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "9zi0s0ah8m"
-        },
-        {
-          "Name": "label",
-          "Value": "Log/20241024/20241024.log"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-6yP5AgNlUZzbuGghUQzb7HQUKCMjFSuh0W9amsXJVJI="
-        }
-      ]
-    },
-    {
-      "Route": "Log/20241024/20241024.log",
-      "AssetFile": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\Log\\20241024\\20241024.log",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "484"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/octet-stream"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"6yP5AgNlUZzbuGghUQzb7HQUKCMjFSuh0W9amsXJVJI=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 24 Oct 2024 06:26:19 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-6yP5AgNlUZzbuGghUQzb7HQUKCMjFSuh0W9amsXJVJI="
-        }
-      ]
-    },
-    {
-      "Route": "Log/20250213/20250213.ijrlzlkkur.log",
-      "AssetFile": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\Log\\20250213\\20250213.log",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "844"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/octet-stream"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"rjV0ZlGXPcVJFZQC9dtODa56c6hmF5+4fMzAvmRMpEA=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Fri, 14 Feb 2025 05:52:36 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "ijrlzlkkur"
-        },
-        {
-          "Name": "label",
-          "Value": "Log/20250213/20250213.log"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-rjV0ZlGXPcVJFZQC9dtODa56c6hmF5+4fMzAvmRMpEA="
-        }
-      ]
-    },
-    {
-      "Route": "Log/20250213/20250213.log",
-      "AssetFile": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\Log\\20250213\\20250213.log",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "844"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/octet-stream"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"rjV0ZlGXPcVJFZQC9dtODa56c6hmF5+4fMzAvmRMpEA=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Fri, 14 Feb 2025 05:52:36 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-rjV0ZlGXPcVJFZQC9dtODa56c6hmF5+4fMzAvmRMpEA="
-        }
-      ]
-    },
-    {
-      "Route": "Log/XML/20241029/2024102922ADMIN20241029.6j81o6vcgk.log",
-      "AssetFile": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\Log\\XML\\20241029\\2024102922ADMIN20241029.log",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "235"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/octet-stream"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"csGVFLH7Ml1mFOqGAqu3B5W7/n1xSFF235P6oDllApQ=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Wed, 30 Oct 2024 04:04:29 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "6j81o6vcgk"
-        },
-        {
-          "Name": "label",
-          "Value": "Log/XML/20241029/2024102922ADMIN20241029.log"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-csGVFLH7Ml1mFOqGAqu3B5W7/n1xSFF235P6oDllApQ="
-        }
-      ]
-    },
-    {
-      "Route": "Log/XML/20241029/2024102922ADMIN20241029.log",
-      "AssetFile": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\Log\\XML\\20241029\\2024102922ADMIN20241029.log",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "235"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/octet-stream"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"csGVFLH7Ml1mFOqGAqu3B5W7/n1xSFF235P6oDllApQ=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Wed, 30 Oct 2024 04:04:29 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-csGVFLH7Ml1mFOqGAqu3B5W7/n1xSFF235P6oDllApQ="
-        }
-      ]
-    },
-    {
-      "Route": "Log/XML/20241030/2024103023ADMIN20241030.9rhvdf3lc5.log",
-      "AssetFile": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\Log\\XML\\20241030\\2024103023ADMIN20241030.log",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "235"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/octet-stream"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"paTLlkdv1OhggdvUQ9AHcHqMHOeI9M4k1rZsAtd+lvk=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 31 Oct 2024 05:12:58 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "9rhvdf3lc5"
-        },
-        {
-          "Name": "label",
-          "Value": "Log/XML/20241030/2024103023ADMIN20241030.log"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-paTLlkdv1OhggdvUQ9AHcHqMHOeI9M4k1rZsAtd+lvk="
-        }
-      ]
-    },
-    {
-      "Route": "Log/XML/20241030/2024103023ADMIN20241030.log",
-      "AssetFile": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\Log\\XML\\20241030\\2024103023ADMIN20241030.log",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "235"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/octet-stream"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"paTLlkdv1OhggdvUQ9AHcHqMHOeI9M4k1rZsAtd+lvk=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 31 Oct 2024 05:12:58 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-paTLlkdv1OhggdvUQ9AHcHqMHOeI9M4k1rZsAtd+lvk="
-        }
-      ]
-    },
-    {
-      "Route": "Log/XML/20241030/2024103023ANTONY20241030.bl51ko177l.log",
-      "AssetFile": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\Log\\XML\\20241030\\2024103023ANTONY20241030.log",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "229"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/octet-stream"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"cWmBFPqIg5HyMdD+Lnr3Wqxo2q7uPiGFhZyArdLvq8c=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 31 Oct 2024 05:02:55 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "bl51ko177l"
-        },
-        {
-          "Name": "label",
-          "Value": "Log/XML/20241030/2024103023ANTONY20241030.log"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-cWmBFPqIg5HyMdD+Lnr3Wqxo2q7uPiGFhZyArdLvq8c="
-        }
-      ]
-    },
-    {
-      "Route": "Log/XML/20241030/2024103023ANTONY20241030.log",
-      "AssetFile": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\Log\\XML\\20241030\\2024103023ANTONY20241030.log",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "229"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/octet-stream"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"cWmBFPqIg5HyMdD+Lnr3Wqxo2q7uPiGFhZyArdLvq8c=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 31 Oct 2024 05:02:55 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-cWmBFPqIg5HyMdD+Lnr3Wqxo2q7uPiGFhZyArdLvq8c="
-        }
-      ]
-    },
-    {
-      "Route": "Log/XML/20241030/2024103023KAREN20241030.ailzs05dwn.log",
-      "AssetFile": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\Log\\XML\\20241030\\2024103023KAREN20241030.log",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "231"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/octet-stream"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"Xnyoq7nE5lT7+Y8SquQobzP70uxQHBTzb8nk/sa+79M=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 31 Oct 2024 05:00:42 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "ailzs05dwn"
-        },
-        {
-          "Name": "label",
-          "Value": "Log/XML/20241030/2024103023KAREN20241030.log"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-Xnyoq7nE5lT7+Y8SquQobzP70uxQHBTzb8nk/sa+79M="
-        }
-      ]
-    },
-    {
-      "Route": "Log/XML/20241030/2024103023KAREN20241030.log",
-      "AssetFile": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\Log\\XML\\20241030\\2024103023KAREN20241030.log",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "231"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/octet-stream"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"Xnyoq7nE5lT7+Y8SquQobzP70uxQHBTzb8nk/sa+79M=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 31 Oct 2024 05:00:42 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-Xnyoq7nE5lT7+Y8SquQobzP70uxQHBTzb8nk/sa+79M="
-        }
-      ]
-    },
-    {
-      "Route": "Log/XML/20241030/2024103023KLEIBY20241030.gal0gblprb.log",
-      "AssetFile": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\Log\\XML\\20241030\\2024103023KLEIBY20241030.log",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "229"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/octet-stream"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"OOhYoYgRfGffDUzcMXTuqnZrAgN/CM7jIdOtXjzJiok=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 31 Oct 2024 05:03:58 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "gal0gblprb"
-        },
-        {
-          "Name": "label",
-          "Value": "Log/XML/20241030/2024103023KLEIBY20241030.log"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-OOhYoYgRfGffDUzcMXTuqnZrAgN/CM7jIdOtXjzJiok="
-        }
-      ]
-    },
-    {
-      "Route": "Log/XML/20241030/2024103023KLEIBY20241030.log",
-      "AssetFile": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\Log\\XML\\20241030\\2024103023KLEIBY20241030.log",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "229"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/octet-stream"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"OOhYoYgRfGffDUzcMXTuqnZrAgN/CM7jIdOtXjzJiok=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 31 Oct 2024 05:03:58 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-OOhYoYgRfGffDUzcMXTuqnZrAgN/CM7jIdOtXjzJiok="
-        }
-      ]
-    },
-    {
-      "Route": "Log/XML/20241030/2024103023MAGDA20241030.log",
-      "AssetFile": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\Log\\XML\\20241030\\2024103023MAGDA20241030.log",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "233"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/octet-stream"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"sA74deTV0jRc0aox80UyIrDdzouvwvDdfyEUPe26MJs=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 31 Oct 2024 05:04:32 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-sA74deTV0jRc0aox80UyIrDdzouvwvDdfyEUPe26MJs="
-        }
-      ]
-    },
-    {
-      "Route": "Log/XML/20241030/2024103023MAGDA20241030.o25kgm9kdx.log",
-      "AssetFile": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\Log\\XML\\20241030\\2024103023MAGDA20241030.log",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "233"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/octet-stream"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"sA74deTV0jRc0aox80UyIrDdzouvwvDdfyEUPe26MJs=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 31 Oct 2024 05:04:32 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "o25kgm9kdx"
-        },
-        {
-          "Name": "label",
-          "Value": "Log/XML/20241030/2024103023MAGDA20241030.log"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-sA74deTV0jRc0aox80UyIrDdzouvwvDdfyEUPe26MJs="
-        }
-      ]
-    },
-    {
-      "Route": "Log/XML/20241030/2024103023MARTA20241030.log",
-      "AssetFile": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\Log\\XML\\20241030\\2024103023MARTA20241030.log",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "230"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/octet-stream"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"7mUH0fZIKpSO9IifBO2NqtrGEG+tQZdbp5Z2CJz/4qY=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 31 Oct 2024 05:04:56 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-7mUH0fZIKpSO9IifBO2NqtrGEG+tQZdbp5Z2CJz/4qY="
-        }
-      ]
-    },
-    {
-      "Route": "Log/XML/20241030/2024103023MARTA20241030.qy3cvv26wa.log",
-      "AssetFile": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\Log\\XML\\20241030\\2024103023MARTA20241030.log",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "230"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/octet-stream"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"7mUH0fZIKpSO9IifBO2NqtrGEG+tQZdbp5Z2CJz/4qY=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 31 Oct 2024 05:04:56 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "qy3cvv26wa"
-        },
-        {
-          "Name": "label",
-          "Value": "Log/XML/20241030/2024103023MARTA20241030.log"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-7mUH0fZIKpSO9IifBO2NqtrGEG+tQZdbp5Z2CJz/4qY="
-        }
-      ]
-    },
-    {
-      "Route": "Log/XML/20250213/2025021323ADMIN20250213.log",
-      "AssetFile": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\Log\\XML\\20250213\\2025021323ADMIN20250213.log",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "235"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/octet-stream"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"eqH3u9LAAkBPgNWnPeLwUI1RTyPQF8UOEhI1u2EsFtA=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Fri, 14 Feb 2025 05:49:04 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-eqH3u9LAAkBPgNWnPeLwUI1RTyPQF8UOEhI1u2EsFtA="
-        }
-      ]
-    },
-    {
-      "Route": "Log/XML/20250213/2025021323ADMIN20250213.y68gsa9aec.log",
-      "AssetFile": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\Log\\XML\\20250213\\2025021323ADMIN20250213.log",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "235"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/octet-stream"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"eqH3u9LAAkBPgNWnPeLwUI1RTyPQF8UOEhI1u2EsFtA=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Fri, 14 Feb 2025 05:49:04 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "y68gsa9aec"
-        },
-        {
-          "Name": "label",
-          "Value": "Log/XML/20250213/2025021323ADMIN20250213.log"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-eqH3u9LAAkBPgNWnPeLwUI1RTyPQF8UOEhI1u2EsFtA="
-        }
-      ]
-    },
-    {
-      "Route": "Log/XML/20250214/2025021400ADMIN20250214.7u7opzipte.log",
-      "AssetFile": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\Log\\XML\\20250214\\2025021400ADMIN20250214.log",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "235"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/octet-stream"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"r8LOWfamSQNMovPiUCjjV/u8cHYP88COjhTtG1rTwOE=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Fri, 14 Feb 2025 06:35:29 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "7u7opzipte"
-        },
-        {
-          "Name": "label",
-          "Value": "Log/XML/20250214/2025021400ADMIN20250214.log"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-r8LOWfamSQNMovPiUCjjV/u8cHYP88COjhTtG1rTwOE="
-        }
-      ]
-    },
-    {
-      "Route": "Log/XML/20250214/2025021400ADMIN20250214.log",
-      "AssetFile": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\Log\\XML\\20250214\\2025021400ADMIN20250214.log",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "235"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/octet-stream"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"r8LOWfamSQNMovPiUCjjV/u8cHYP88COjhTtG1rTwOE=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Fri, 14 Feb 2025 06:35:29 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-r8LOWfamSQNMovPiUCjjV/u8cHYP88COjhTtG1rTwOE="
-        }
-      ]
-    },
-    {
-      "Route": "Log/XML/20250308/2025030811ADMIN20250308.log",
-      "AssetFile": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\Log\\XML\\20250308\\2025030811ADMIN20250308.log",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "235"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/octet-stream"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"XPY1lfbY/vrEebQsEuelEdlC/syxyeoe7O8nDngtgX8=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 08 Mar 2025 17:07:17 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-XPY1lfbY/vrEebQsEuelEdlC/syxyeoe7O8nDngtgX8="
-        }
-      ]
-    },
-    {
-      "Route": "Log/XML/20250308/2025030811ADMIN20250308.on9rw8i5fm.log",
-      "AssetFile": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\Log\\XML\\20250308\\2025030811ADMIN20250308.log",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "235"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/octet-stream"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"XPY1lfbY/vrEebQsEuelEdlC/syxyeoe7O8nDngtgX8=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 08 Mar 2025 17:07:17 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "on9rw8i5fm"
-        },
-        {
-          "Name": "label",
-          "Value": "Log/XML/20250308/2025030811ADMIN20250308.log"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-XPY1lfbY/vrEebQsEuelEdlC/syxyeoe7O8nDngtgX8="
         }
       ]
     },

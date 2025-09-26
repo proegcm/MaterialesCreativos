@@ -1,0 +1,149 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{60C5FE44-13E3-4C74-A331-400AC6F06E3D}|ServiciosMC\\ServiciosMC.csproj|c:\\users\\gabi_\\onedrive\\documentos\\portal\\portalserviciosmc\\serviciosmc\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{60C5FE44-13E3-4C74-A331-400AC6F06E3D}|ServiciosMC\\ServiciosMC.csproj|solutionrelative:serviciosmc\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{60C5FE44-13E3-4C74-A331-400AC6F06E3D}|ServiciosMC\\ServiciosMC.csproj|c:\\users\\gabi_\\onedrive\\documentos\\portal\\portalserviciosmc\\serviciosmc\\controllers\\panelcontrolcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{60C5FE44-13E3-4C74-A331-400AC6F06E3D}|ServiciosMC\\ServiciosMC.csproj|solutionrelative:serviciosmc\\controllers\\panelcontrolcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{60C5FE44-13E3-4C74-A331-400AC6F06E3D}|ServiciosMC\\ServiciosMC.csproj|c:\\users\\gabi_\\onedrive\\documentos\\portal\\portalserviciosmc\\serviciosmc\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{60C5FE44-13E3-4C74-A331-400AC6F06E3D}|ServiciosMC\\ServiciosMC.csproj|solutionrelative:serviciosmc\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{60C5FE44-13E3-4C74-A331-400AC6F06E3D}|ServiciosMC\\ServiciosMC.csproj|c:\\users\\gabi_\\onedrive\\documentos\\portal\\portalserviciosmc\\serviciosmc\\views\\principal\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{60C5FE44-13E3-4C74-A331-400AC6F06E3D}|ServiciosMC\\ServiciosMC.csproj|solutionrelative:serviciosmc\\views\\principal\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{60C5FE44-13E3-4C74-A331-400AC6F06E3D}|ServiciosMC\\ServiciosMC.csproj|c:\\users\\gabi_\\onedrive\\documentos\\portal\\portalserviciosmc\\serviciosmc\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{60C5FE44-13E3-4C74-A331-400AC6F06E3D}|ServiciosMC\\ServiciosMC.csproj|solutionrelative:serviciosmc\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{60C5FE44-13E3-4C74-A331-400AC6F06E3D}|ServiciosMC\\ServiciosMC.csproj|c:\\users\\gabi_\\onedrive\\documentos\\portal\\portalserviciosmc\\serviciosmc\\controllers\\principalcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{60C5FE44-13E3-4C74-A331-400AC6F06E3D}|ServiciosMC\\ServiciosMC.csproj|solutionrelative:serviciosmc\\controllers\\principalcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{60C5FE44-13E3-4C74-A331-400AC6F06E3D}|ServiciosMC\\ServiciosMC.csproj|c:\\users\\gabi_\\onedrive\\documentos\\portal\\portalserviciosmc\\serviciosmc\\connected services\\wsmcconsultas\\reference.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{60C5FE44-13E3-4C74-A331-400AC6F06E3D}|ServiciosMC\\ServiciosMC.csproj|solutionrelative:serviciosmc\\connected services\\wsmcconsultas\\reference.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{60C5FE44-13E3-4C74-A331-400AC6F06E3D}|ServiciosMC\\ServiciosMC.csproj|c:\\users\\gabi_\\onedrive\\documentos\\portal\\portalserviciosmc\\serviciosmc\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{60C5FE44-13E3-4C74-A331-400AC6F06E3D}|ServiciosMC\\ServiciosMC.csproj|solutionrelative:serviciosmc\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PanelControlController.cs",
+              "DocumentMoniker": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\Controllers\\PanelControlController.cs",
+              "RelativeDocumentMoniker": "ServiciosMC\\Controllers\\PanelControlController.cs",
+              "ToolTip": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\Controllers\\PanelControlController.cs",
+              "RelativeToolTip": "ServiciosMC\\Controllers\\PanelControlController.cs",
+              "ViewState": "AgIAAF0AAAAAAAAAAAAYwGMAAABAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T01:15:08.565Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "ServiciosMC\\appsettings.Development.json",
+              "ToolTip": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\appsettings.Development.json",
+              "RelativeToolTip": "ServiciosMC\\appsettings.Development.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAiwAoAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-05-12T15:23:48.892Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\appsettings.json",
+              "RelativeDocumentMoniker": "ServiciosMC\\appsettings.json",
+              "ToolTip": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\appsettings.json",
+              "RelativeToolTip": "ServiciosMC\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-05-12T15:23:41.841Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "ServiciosMC\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "ServiciosMC\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-03T17:31:12.8Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Reference.cs",
+              "DocumentMoniker": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\Connected Services\\WSMCCONSULTAS\\Reference.cs",
+              "RelativeDocumentMoniker": "ServiciosMC\\Connected Services\\WSMCCONSULTAS\\Reference.cs",
+              "ToolTip": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\Connected Services\\WSMCCONSULTAS\\Reference.cs",
+              "RelativeToolTip": "ServiciosMC\\Connected Services\\WSMCCONSULTAS\\Reference.cs",
+              "ViewState": "AgIAACMBAAAAAAAAAAA9wDEBAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-30T07:48:16.878Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\Views\\Principal\\Index.cshtml",
+              "RelativeDocumentMoniker": "ServiciosMC\\Views\\Principal\\Index.cshtml",
+              "ToolTip": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\Views\\Principal\\Index.cshtml",
+              "RelativeToolTip": "ServiciosMC\\Views\\Principal\\Index.cshtml",
+              "ViewState": "AgIAABwAAAAAAAAAAAAawCUAAACWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-30T07:19:17.147Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Startup.cs",
+              "DocumentMoniker": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\Startup.cs",
+              "RelativeDocumentMoniker": "ServiciosMC\\Startup.cs",
+              "ToolTip": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\Startup.cs",
+              "RelativeToolTip": "ServiciosMC\\Startup.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-30T03:37:28.279Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "PrincipalController.cs",
+              "DocumentMoniker": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\Controllers\\PrincipalController.cs",
+              "RelativeDocumentMoniker": "ServiciosMC\\Controllers\\PrincipalController.cs",
+              "ToolTip": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\Controllers\\PrincipalController.cs",
+              "RelativeToolTip": "ServiciosMC\\Controllers\\PrincipalController.cs",
+              "ViewState": "AgIAAKkAAAAAAAAAAAAAALsAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-30T02:51:34.1Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

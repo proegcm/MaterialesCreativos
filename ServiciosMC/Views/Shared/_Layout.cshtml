@@ -88,25 +88,6 @@
         }, 3000);
     }
 
-    function checkConnection() {
-        if (!navigator.onLine) {
-            showToast("¡Has perdido la conexión a Internet!", false);
-        } else {
-            console.log("Conectado a Internet");
-        }
-    }
-
-    window.addEventListener('load', () => {
-        checkConnection(); // Comprobar conexión al cargar la página
-    });
-
-    window.addEventListener('offline', () => {
-        showToast("¡Has perdido la conexión a Internet!", false);
-    });
-
-    window.addEventListener('online', () => {
-        showToast("¡Conectado a Internet!", true);
-    });
     </script>
 </head>
 <body class="hold-transition sidebar-mini text-sm sidebar-collapse contentMC">

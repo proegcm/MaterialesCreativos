@@ -15,64 +15,238 @@
 
 /*ESTILOS DIV BUSCAR TICKETS*/
 .ticket-card {
-    padding: 20px; /* Espaciado interno simétrico */
-    box-shadow: 0px 0px 15px rgb(15 10 53 / 0.85);
-    margin-top: 10px;
+padding: 20px; /* Espaciado interno simétrico */
+box-shadow: 0px 0px 15px rgb(15 10 53 / 0.85);
+margin-top: 10px;
 }
 .ticket-card .card-body {
-    padding: 0; /* Elimina padding adicional para evitar mucho espacio */
+   padding: 0; /* Elimina padding adicional para evitar mucho espacio */
 }
 .ticket-card h3.card-title {
-        font-family: 'LemonMilk', sans-serif;
-        font-size: 1.6rem;
-        color: #0f0a35;
-        margin: 0;
-        text-align: center; /* Centrar el título horizontalmente */
-        margin-bottom: 10px; /* Espacio entre el título y el input */
-        line-height: 1.3rem;
-    }
+    font-family: 'LemonMilk', sans-serif;
+    font-size: 1.6rem;
+    color: #0f0a35;
+    margin: 0;
+    text-align: center; /* Centrar el título horizontalmente */
+    margin-bottom: 10px; /* Espacio entre el título y el input */
+    line-height: 1.3rem;
+}
 .ticket-card .card-icon {
-        font-size: 1.8rem;
-        color: #0f0a35;
-        justify-content: center; /* Centrar el ícono horizontalmente */
-        display: inline-flex;
-        align-items: center;
-        margin-bottom: 10px; /* Espacio entre el título y el input */
-    }
+    font-size: 1.8rem;
+    color: #0f0a35;
+    justify-content: center; /* Centrar el ícono horizontalmente */
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 10px; /* Espacio entre el título y el input */
+}
 .ticket-card .form-group {
-        display: flex;
-        justify-content: center; /* Centrar el ícono horizontalmente */
-        align-items: center;
-        margin-bottom: 0; /* Eliminar margen inferior */
-    }
+    display: flex;
+    justify-content: center; /* Centrar el ícono horizontalmente */
+    align-items: center;
+    margin-bottom: 0; /* Eliminar margen inferior */
+}
+
+.ticket-card .input-group {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
 .ticket-card #txtFolio {
-        flex-grow: 1; /* Permite que el input ocupe todo el espacio disponible */
-        margin-right: 8px; /* Espacio entre el input y el botón */
-        font-family: 'Urbanist', sans-serif;
-        font-size: 1.1rem;
-    }
+    flex-grow: 1; 
+    margin-right: 8px; /* Espacio entre el input y el botón */
+    font-family: 'Urbanist', sans-serif;
+    font-size: 1.1rem;
+}
+.ticket-card input,
+.ticket-card select {
+    color: #0f0a35;
+    font-family: 'Urbanist', sans-serif;
+    font-size: 1.1rem;
+}
+
 .ticket-card #btnBuscarTicket,
+.ticket-card #btnBuscarTicketCliente,
+.ticket-card #btnLimpiarCliente,
 .ticket-card #btnLimpiar {
-        background-color: #0f0a35;
-        color: #fff;
-        border: none;
-        padding: 10px;
+    background-color: #0f0a35;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 50px; /* Ancho mínimo para hacer el botón más ancho */
+}
+.ticket-card #btnBuscarTicket,
+.ticket-card #btnBuscarTicketCliente {
+    margin-right: 8px; /* Espacio entre el botón de buscar y el botón de limpiar */
+}
+    .ticket-card #btnBuscarTicket span,
+    .ticket-card #btnBuscarTicketCliente span,
+    .ticket-card #btnLimpiarCliente span,
+    .ticket-card #btnLimpiar span {
+        font-size: 1rem; /* Tamaño del ícono */
+    }
+    .ticket-card #btnBuscarTicket:hover,
+    .ticket-card #btnLimpiarCliente:hover,
+    .ticket-card #btnLimpiar:hover {
+        background-color: #1f386e; /* Color de fondo al hacer hover */
+    }
+
+.ticket-card .input-group label {
+    font-family: 'Urbanist', sans-serif;
+    font-size: 1rem;
+    color: #0f0a35;
+}
+
+
+
+
+/*ESTILOS DIALOGO DE BÚSQUEDA DE CLIENTES*/
+
+/* Estilo general del modal #274296 #fff
+     background-color: #e4e4e4ff;
+        color: #303030;
+
+*/
+#dialogBusquedaClientes .modal-header {
+    font-family: 'LemonMilk', sans-serif;
+    background-color: #e4e4e4ff;
+    color: #303030;
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+}
+
+    #dialogBusquedaClientes .modal-header h5.modal-title {
+        font-size: 1.2rem;
+        margin: 0;
+        margin-left: 10px;
+        line-height: 2rem;
+    }
+
+    #dialogBusquedaClientes .modal-header .card-icon {
+        font-size: 1.8rem;
+        margin: 0;
+    }
+
+    #dialogBusquedaClientes .modal-header .close {
+        font-size: 0.2rem;
+        color: #303030;
+        padding: 0;
+        margin-right: 0px;
         display: flex;
         align-items: center;
-        justify-content: center;
-        min-width: 50px; /* Ancho mínimo para hacer el botón más ancho */
     }
-.ticket-card #btnBuscarTicket {
-        margin-right: 8px; /* Espacio entre el botón de buscar y el botón de limpiar */
+
+#dialogBusquedaClientes .modal-content {
+    font-family: 'Urbanist', sans-serif;
+    font-size: 1.1rem;
+}
+
+/* Input de filtro */
+#dialogBusquedaClientes #filterInput {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #0f0a35;
+}
+
+/* Lista de clientes */
+#dialogBusquedaClientes #listaClientes {
+    font-family: 'Urbanist', sans-serif;
+    max-height: 250px;
+    overflow-y: auto;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Estilos para cada cliente */
+#dialogBusquedaClientes .cliente-item {
+    padding: 8px;
+    cursor: pointer;
+}
+
+    /* Hover y elemento enfocado */
+    #dialogBusquedaClientes .cliente-item:hover,
+    #dialogBusquedaClientes .cliente-item.focused {
+        background-color: #e4e4e4ff;
+        font-weight: bold;
+        color: #303030;
     }
-.ticket-card #btnBuscarTicket span,
-.ticket-card #btnLimpiar span {
-            font-size: 1rem; /* Tamaño del ícono */
-        }
-.ticket-card #btnBuscarTicket:hover,
-.ticket-card #btnLimpiar:hover {
-            background-color: #1f386e; /* Color de fondo al hacer hover */
-        }
+
+
+/*
+    ESTILOS PARA DIÁLOGO DE PEDIDOS ENCONTRADOS - CLIENTE
+*/
+#modalPedidos .modal-header {
+    font-family: 'LemonMilk', sans-serif;
+    background-color: #e4e4e4ff;
+    color: #303030;
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+}
+
+    #modalPedidos .modal-header h5.modal-title {
+        font-size: 1.2rem;
+        margin: 0;
+        margin-left: 10px;
+        line-height: 2rem;
+    }
+
+    #modalPedidos .modal-header .btn-close {
+        color: #303030;
+        opacity: 1;
+        font-size: 1rem;
+        padding: 0;
+        margin-right: 0px;
+        display: flex;
+        align-items: center;
+    }
+
+#modalPedidos .modal-content {
+    font-family: 'Urbanist', sans-serif;
+    font-size: 1.1rem;
+}
+
+/* Lista de pedidos */
+#modalPedidos .list-group {
+    font-family: 'Urbanist', sans-serif;
+    max-height: 250px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Estilos para cada pedido */
+#modalPedidos .list-group-item {
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+}
+
+    #modalPedidos .list-group-item:hover,
+    #modalPedidos .list-group-item:focus {
+        background-color: #e4e4e4ff;
+        font-weight: bold;
+        color: #303030;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*ESTILOS DIV INFORMACIÓN DEL PEDIDO*/
 .infopedido-card {
@@ -83,11 +257,12 @@
 .infopedido-card .card-body {
         padding: 0; /* Elimina padding adicional para evitar mucho espacio */
     }
-.infopedido-card .card-title {
+    .infopedido-card .card-title {
         font-family: 'LemonMilk', sans-serif;
         font-size: 1.2rem;
         color: #0f0a35;
         margin: 0;
+        margin-bottom: 10px;
         line-height: 1.3rem;
     }
 .infopedido-card .card-icon {
@@ -95,21 +270,54 @@
         color: #0f0a35;
         margin-right: 10px; /* Añade espacio entre ícono y título */
     }
-.infopedido-card .form-group {
+    .infopedido-card .form-group {
         display: flex;
         justify-content: center; /* Centrar horizontalmente ícono y título */
         align-items: center; /* Centrar verticalmente ícono y título */
-        margin-bottom: 10px;
+        margin-bottom: 0px;
     }
-.infopedido-card #btnPasarProduccion {
+    .infopedido-card .table-responsive {
+        color: #0f0a35;
+        margin-top: 10px;
+    }
+
+    /* Asegura que los encabezados de la tabla estén centrados horizontalmente */
+    .infopedido-card .table th {
+        text-align: center; /* Centra los encabezados */
+        font-weight: bold; /* Asegura que los encabezados estén en negrita */
+    }
+
+    .infopedido-card .cantidad-col {
+        text-align: center;
+        width: 15%;
+    }
+
+    .infopedido-card .totales {
+        text-align: right;
+    }
+    .infopedido-card p,
+    .infopedido-card strong, /* Asegura que los textos dentro de strong también tengan el mismo estilo */
+    .infopedido-card .table th,
+    .infopedido-card .table td {
+        font-family: 'Urbanist', sans-serif;
+        font-size: 1rem; /* Ajusta el tamaño de la fuente según prefieras */
+        color: #0f0a35; /* Opcional: puedes ajustar el color de la fuente si lo necesitas */
+    }
+    .infopedido-card #btnPasarProduccion {
         background-color: #e86217;
-        font-family: 'LemonMilk', sans-serif;
+        font-family: 'Urbanist', sans-serif;
         color: #ffffff;
         width: 100%; /* Botón ocupa todo el ancho */
+        margin-top: 5px;
     }
-.infopedido-card #btnPasarProduccion span {
-            font-size: 1rem; /* Tamaño del ícono */
-        }
+
+    .infopedido-card #btnEnlaceAsociar {
+        font-family: 'Urbanist', sans-serif;
+    }
+
+    .infopedido-card #btnPasarProduccion span {
+        font-size: 1rem; /* Tamaño del ícono */
+    }
 .infopedido-card #btnPasarProduccion:hover {
             background-color: #1f386e;
         }
@@ -119,13 +327,46 @@
         color: #0f0a35; /* Opcional: puedes ajustar el color de la fuente si lo necesitas */
     }
 
+/* Estilo para el h5 Detalle del Pedido */
+.infopedido-card .detalle-pedido {
+        font-family: 'Urbanist', sans-serif; /* Mismo que el <p> */
+        font-size: 1rem; /* Ajusta el tamaño según prefieras */
+        color: #0f0a35; /* Mismo color que el <p> */
+        font-weight: bold; /* Asegura que el texto sea en negrita */
+        margin: 0; /* Elimina márgenes innecesarios */
+    }
+
+
+
+
+
+.btn-icon {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+    .btn-icon i {
+        font-size: 1.2rem;
+    }
+
+
+
+
+
+
+
 /*ESTILOS DIV PEDIDOS*/
 .pedidos-card {
     padding: 20px;
     box-shadow: 0px 0px 15px rgba(15, 10, 53, 0.85);
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
 }
-.pedidos-card .card-body {
-        padding: 0; /* Elimina padding adicional para evitar mucho espacio */
+    .pedidos-card .card-body {
+        padding: 0;
+        
     }
 .pedidos-card h3.card-title {
         font-family: 'LemonMilk', sans-serif;
@@ -141,6 +382,28 @@
     display: flex;
     justify-content: center;
 }
+
+.sin-registros {
+    font-family: 'Urbanist', sans-serif;
+    text-align: center;
+    padding: 20px;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+    .sin-registros span {
+        font-size: 2rem;
+        color: gray;
+    }
+
+    .sin-registros h5 {
+        margin-top: 10px;
+        color: gray;
+    }
+
 
 .oculto {
     display: none;
@@ -243,10 +506,10 @@
 
 /* Contenedor de tarjetas */
 .card-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 columnas de igual tamaño */
-    gap: 20px; /* Espacio entre las tarjetas */
-    padding: 10px; /* Espacio interno en el contenedor */
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important; /* 3 columnas de igual tamaño */
+    gap: 20px !important; /* Espacio entre las tarjetas */
+    padding: 10px !important; /* Espacio interno en el contenedor */
 }
 
 /* Estilo de las tarjetas */
@@ -267,25 +530,25 @@
 /* Estilos para pantallas pequeñas */
 @media (max-width: 767px) {
     .card-container {
-        grid-template-columns: 1fr; /* Una columna para pantallas pequeñas */
+        grid-template-columns: 1fr !important; /* Una columna para pantallas pequeñas */
     }
 }
 
 /* Estilos para pantallas medianas */
 @media (min-width: 768px) and (max-width: 991px) {
     .card-container {
-        grid-template-columns: repeat(2, 1fr); /* 2 columnas para pantallas medianas */
+        grid-template-columns: repeat(2, 1fr) !important; /* 2 columnas para pantallas medianas */
     }
 }
 
 /* Estilos para pantallas grandes */
 @media (min-width: 992px) {
     .card-container {
-        grid-template-columns: repeat(3, 1fr); /* 3 columnas para pantallas grandes */
+        grid-template-columns: repeat(3, 1fr) !important; /* 3 columnas para pantallas grandes */
     }
 }
 
-
+/*ESTILOS PARA MODAL BUSQUEDA DE CLIENTES*/
 
 /*ESTILOS PARA MODAL*/
 .modal-custom {
@@ -605,7 +868,12 @@
     }
 }
 
-
+@media (max-width: 1179px) {
+    .custom-stack {
+        flex: 0 0 100%; /* Ocupar todo el ancho */
+        max-width: 100%;
+    }
+}
 
 
 

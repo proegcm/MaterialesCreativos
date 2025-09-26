@@ -17,58 +17,6 @@
       "PackagePath": "staticwebassets\\DataTables\\datatables.min.js"
     },
     {
-      "Id": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\Log\\20241023\\20241023.log",
-      "PackagePath": "staticwebassets\\Log\\20241023\\20241023.log"
-    },
-    {
-      "Id": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\Log\\20241024\\20241024.log",
-      "PackagePath": "staticwebassets\\Log\\20241024\\20241024.log"
-    },
-    {
-      "Id": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\Log\\20250213\\20250213.log",
-      "PackagePath": "staticwebassets\\Log\\20250213\\20250213.log"
-    },
-    {
-      "Id": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\Log\\XML\\20241029\\2024102922ADMIN20241029.log",
-      "PackagePath": "staticwebassets\\Log\\XML\\20241029\\2024102922ADMIN20241029.log"
-    },
-    {
-      "Id": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\Log\\XML\\20241030\\2024103023ADMIN20241030.log",
-      "PackagePath": "staticwebassets\\Log\\XML\\20241030\\2024103023ADMIN20241030.log"
-    },
-    {
-      "Id": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\Log\\XML\\20241030\\2024103023ANTONY20241030.log",
-      "PackagePath": "staticwebassets\\Log\\XML\\20241030\\2024103023ANTONY20241030.log"
-    },
-    {
-      "Id": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\Log\\XML\\20241030\\2024103023KAREN20241030.log",
-      "PackagePath": "staticwebassets\\Log\\XML\\20241030\\2024103023KAREN20241030.log"
-    },
-    {
-      "Id": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\Log\\XML\\20241030\\2024103023KLEIBY20241030.log",
-      "PackagePath": "staticwebassets\\Log\\XML\\20241030\\2024103023KLEIBY20241030.log"
-    },
-    {
-      "Id": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\Log\\XML\\20241030\\2024103023MAGDA20241030.log",
-      "PackagePath": "staticwebassets\\Log\\XML\\20241030\\2024103023MAGDA20241030.log"
-    },
-    {
-      "Id": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\Log\\XML\\20241030\\2024103023MARTA20241030.log",
-      "PackagePath": "staticwebassets\\Log\\XML\\20241030\\2024103023MARTA20241030.log"
-    },
-    {
-      "Id": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\Log\\XML\\20250213\\2025021323ADMIN20250213.log",
-      "PackagePath": "staticwebassets\\Log\\XML\\20250213\\2025021323ADMIN20250213.log"
-    },
-    {
-      "Id": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\Log\\XML\\20250214\\2025021400ADMIN20250214.log",
-      "PackagePath": "staticwebassets\\Log\\XML\\20250214\\2025021400ADMIN20250214.log"
-    },
-    {
-      "Id": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\Log\\XML\\20250308\\2025030811ADMIN20250308.log",
-      "PackagePath": "staticwebassets\\Log\\XML\\20250308\\2025030811ADMIN20250308.log"
-    },
-    {
       "Id": "C:\\Users\\gabi_\\OneDrive\\Documentos\\PORTAL\\PortalServiciosMC\\ServiciosMC\\wwwroot\\MCreativos\\Fonts\\LemonMilk.otf",
       "PackagePath": "staticwebassets\\MCreativos\\Fonts\\LemonMilk.otf"
     },

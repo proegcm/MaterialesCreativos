@@ -606,8 +606,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>yilcf4jy5v</Fingerprint>
-      <Integrity>Blmo7RrYQuD5+SuYmeyNIzHsJ8JCmNzyynJi1LOBCLA=</Integrity>
+      <Fingerprint>rkf3cyq8gd</Fingerprint>
+      <Integrity>m2VNZHzYsbNc+NG19tthKTqVQE9qAM1U1DxsaBK/5ng=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\DialogoEG.css'))</OriginalItemSpec>
@@ -642,8 +642,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>0fh7vy65fx</Fingerprint>
-      <Integrity>FMWRrlW9Vfq5vDcdI+WIk6y4Tf2ly9imOLuBZTGaar8=</Integrity>
+      <Fingerprint>uo92uxcy9c</Fingerprint>
+      <Integrity>jt+jHF5bhgt0weJejMrYF9xTnGescOfztfOhgDUTUGc=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\estilosGeneral.css'))</OriginalItemSpec>
@@ -678,8 +678,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>fwgl44izsb</Fingerprint>
-      <Integrity>zzy6+jh9b4UJSRxK3aUMog8vPJeePWJh/1IplUVH/Q8=</Integrity>
+      <Fingerprint>9pzb3ktohq</Fingerprint>
+      <Integrity>g/Nx4IXTdUv7E4/o5vuichgxIVl3CI68mEnUUFOV7io=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\estilosHome.css'))</OriginalItemSpec>
@@ -2177,240 +2177,6 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\lib\jquery\LICENSE.txt'))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Log\20241023\20241023.log'))">
-      <SourceType>Package</SourceType>
-      <SourceId>ServiciosMC</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/ServiciosMC</BasePath>
-      <RelativePath>Log/20241023/20241023.log</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>rj7k90tyq9</Fingerprint>
-      <Integrity>N1zcei50abBJva3/8EepSFRXGFQET63BIYifPCPMeb8=</Integrity>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Log\20241023\20241023.log'))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Log\20241024\20241024.log'))">
-      <SourceType>Package</SourceType>
-      <SourceId>ServiciosMC</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/ServiciosMC</BasePath>
-      <RelativePath>Log/20241024/20241024.log</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>9zi0s0ah8m</Fingerprint>
-      <Integrity>6yP5AgNlUZzbuGghUQzb7HQUKCMjFSuh0W9amsXJVJI=</Integrity>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Log\20241024\20241024.log'))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Log\20250213\20250213.log'))">
-      <SourceType>Package</SourceType>
-      <SourceId>ServiciosMC</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/ServiciosMC</BasePath>
-      <RelativePath>Log/20250213/20250213.log</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>ijrlzlkkur</Fingerprint>
-      <Integrity>rjV0ZlGXPcVJFZQC9dtODa56c6hmF5+4fMzAvmRMpEA=</Integrity>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Log\20250213\20250213.log'))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Log\XML\20241029\2024102922ADMIN20241029.log'))">
-      <SourceType>Package</SourceType>
-      <SourceId>ServiciosMC</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/ServiciosMC</BasePath>
-      <RelativePath>Log/XML/20241029/2024102922ADMIN20241029.log</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>6j81o6vcgk</Fingerprint>
-      <Integrity>csGVFLH7Ml1mFOqGAqu3B5W7/n1xSFF235P6oDllApQ=</Integrity>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Log\XML\20241029\2024102922ADMIN20241029.log'))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Log\XML\20241030\2024103023ADMIN20241030.log'))">
-      <SourceType>Package</SourceType>
-      <SourceId>ServiciosMC</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/ServiciosMC</BasePath>
-      <RelativePath>Log/XML/20241030/2024103023ADMIN20241030.log</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>9rhvdf3lc5</Fingerprint>
-      <Integrity>paTLlkdv1OhggdvUQ9AHcHqMHOeI9M4k1rZsAtd+lvk=</Integrity>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Log\XML\20241030\2024103023ADMIN20241030.log'))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Log\XML\20241030\2024103023ANTONY20241030.log'))">
-      <SourceType>Package</SourceType>
-      <SourceId>ServiciosMC</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/ServiciosMC</BasePath>
-      <RelativePath>Log/XML/20241030/2024103023ANTONY20241030.log</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>bl51ko177l</Fingerprint>
-      <Integrity>cWmBFPqIg5HyMdD+Lnr3Wqxo2q7uPiGFhZyArdLvq8c=</Integrity>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Log\XML\20241030\2024103023ANTONY20241030.log'))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Log\XML\20241030\2024103023KAREN20241030.log'))">
-      <SourceType>Package</SourceType>
-      <SourceId>ServiciosMC</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/ServiciosMC</BasePath>
-      <RelativePath>Log/XML/20241030/2024103023KAREN20241030.log</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>ailzs05dwn</Fingerprint>
-      <Integrity>Xnyoq7nE5lT7+Y8SquQobzP70uxQHBTzb8nk/sa+79M=</Integrity>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Log\XML\20241030\2024103023KAREN20241030.log'))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Log\XML\20241030\2024103023KLEIBY20241030.log'))">
-      <SourceType>Package</SourceType>
-      <SourceId>ServiciosMC</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/ServiciosMC</BasePath>
-      <RelativePath>Log/XML/20241030/2024103023KLEIBY20241030.log</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>gal0gblprb</Fingerprint>
-      <Integrity>OOhYoYgRfGffDUzcMXTuqnZrAgN/CM7jIdOtXjzJiok=</Integrity>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Log\XML\20241030\2024103023KLEIBY20241030.log'))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Log\XML\20241030\2024103023MAGDA20241030.log'))">
-      <SourceType>Package</SourceType>
-      <SourceId>ServiciosMC</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/ServiciosMC</BasePath>
-      <RelativePath>Log/XML/20241030/2024103023MAGDA20241030.log</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>o25kgm9kdx</Fingerprint>
-      <Integrity>sA74deTV0jRc0aox80UyIrDdzouvwvDdfyEUPe26MJs=</Integrity>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Log\XML\20241030\2024103023MAGDA20241030.log'))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Log\XML\20241030\2024103023MARTA20241030.log'))">
-      <SourceType>Package</SourceType>
-      <SourceId>ServiciosMC</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/ServiciosMC</BasePath>
-      <RelativePath>Log/XML/20241030/2024103023MARTA20241030.log</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>qy3cvv26wa</Fingerprint>
-      <Integrity>7mUH0fZIKpSO9IifBO2NqtrGEG+tQZdbp5Z2CJz/4qY=</Integrity>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Log\XML\20241030\2024103023MARTA20241030.log'))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Log\XML\20250213\2025021323ADMIN20250213.log'))">
-      <SourceType>Package</SourceType>
-      <SourceId>ServiciosMC</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/ServiciosMC</BasePath>
-      <RelativePath>Log/XML/20250213/2025021323ADMIN20250213.log</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>y68gsa9aec</Fingerprint>
-      <Integrity>eqH3u9LAAkBPgNWnPeLwUI1RTyPQF8UOEhI1u2EsFtA=</Integrity>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Log\XML\20250213\2025021323ADMIN20250213.log'))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Log\XML\20250214\2025021400ADMIN20250214.log'))">
-      <SourceType>Package</SourceType>
-      <SourceId>ServiciosMC</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/ServiciosMC</BasePath>
-      <RelativePath>Log/XML/20250214/2025021400ADMIN20250214.log</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>7u7opzipte</Fingerprint>
-      <Integrity>r8LOWfamSQNMovPiUCjjV/u8cHYP88COjhTtG1rTwOE=</Integrity>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Log\XML\20250214\2025021400ADMIN20250214.log'))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Log\XML\20250308\2025030811ADMIN20250308.log'))">
-      <SourceType>Package</SourceType>
-      <SourceId>ServiciosMC</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/ServiciosMC</BasePath>
-      <RelativePath>Log/XML/20250308/2025030811ADMIN20250308.log</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>on9rw8i5fm</Fingerprint>
-      <Integrity>XPY1lfbY/vrEebQsEuelEdlC/syxyeoe7O8nDngtgX8=</Integrity>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Log\XML\20250308\2025030811ADMIN20250308.log'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\MCreativos\Fonts\LemonMilk.otf'))">
       <SourceType>Package</SourceType>

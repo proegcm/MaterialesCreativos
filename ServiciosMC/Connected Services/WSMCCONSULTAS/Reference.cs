@@ -16,99 +16,23 @@ namespace WSMCCONSULTAS
     public interface WSpedidos
     {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://webservice.materialescreativos.com/WSpedidos/validaFolioRequest", ReplyAction="http://webservice.materialescreativos.com/WSpedidos/validaFolioResponse")]
-        WSMCCONSULTAS.validaFolioResponse validaFolio(WSMCCONSULTAS.validaFolioRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://webservice.materialescreativos.com/WSpedidos/validaFolioRequest", ReplyAction="http://webservice.materialescreativos.com/WSpedidos/validaFolioResponse")]
-        System.Threading.Tasks.Task<WSMCCONSULTAS.validaFolioResponse> validaFolioAsync(WSMCCONSULTAS.validaFolioRequest request);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://webservice.materialescreativos.com/WSpedidos/validaClienteRequest", ReplyAction="http://webservice.materialescreativos.com/WSpedidos/validaClienteResponse")]
         WSMCCONSULTAS.validaClienteResponse validaCliente(WSMCCONSULTAS.validaClienteRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://webservice.materialescreativos.com/WSpedidos/validaClienteRequest", ReplyAction="http://webservice.materialescreativos.com/WSpedidos/validaClienteResponse")]
         System.Threading.Tasks.Task<WSMCCONSULTAS.validaClienteResponse> validaClienteAsync(WSMCCONSULTAS.validaClienteRequest request);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://webservice.materialescreativos.com/WSpedidos/validaFolioRequest", ReplyAction="http://webservice.materialescreativos.com/WSpedidos/validaFolioResponse")]
+        WSMCCONSULTAS.validaFolioResponse validaFolio(WSMCCONSULTAS.validaFolioRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://webservice.materialescreativos.com/WSpedidos/validaFolioRequest", ReplyAction="http://webservice.materialescreativos.com/WSpedidos/validaFolioResponse")]
+        System.Threading.Tasks.Task<WSMCCONSULTAS.validaFolioResponse> validaFolioAsync(WSMCCONSULTAS.validaFolioRequest request);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://webservice.materialescreativos.com/WSpedidos/obtenerClientesRequest", ReplyAction="http://webservice.materialescreativos.com/WSpedidos/obtenerClientesResponse")]
         WSMCCONSULTAS.obtenerClientesResponse obtenerClientes(WSMCCONSULTAS.obtenerClientesRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://webservice.materialescreativos.com/WSpedidos/obtenerClientesRequest", ReplyAction="http://webservice.materialescreativos.com/WSpedidos/obtenerClientesResponse")]
         System.Threading.Tasks.Task<WSMCCONSULTAS.obtenerClientesResponse> obtenerClientesAsync(WSMCCONSULTAS.obtenerClientesRequest request);
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class validaFolioRequest
-    {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="validaFolio", Namespace="http://webservice.materialescreativos.com/", Order=0)]
-        public WSMCCONSULTAS.validaFolioRequestBody Body;
-        
-        public validaFolioRequest()
-        {
-        }
-        
-        public validaFolioRequest(WSMCCONSULTAS.validaFolioRequestBody Body)
-        {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="")]
-    public partial class validaFolioRequestBody
-    {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public string datos;
-        
-        public validaFolioRequestBody()
-        {
-        }
-        
-        public validaFolioRequestBody(string datos)
-        {
-            this.datos = datos;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class validaFolioResponse
-    {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="validaFolioResponse", Namespace="http://webservice.materialescreativos.com/", Order=0)]
-        public WSMCCONSULTAS.validaFolioResponseBody Body;
-        
-        public validaFolioResponse()
-        {
-        }
-        
-        public validaFolioResponse(WSMCCONSULTAS.validaFolioResponseBody Body)
-        {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="")]
-    public partial class validaFolioResponseBody
-    {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public string @return;
-        
-        public validaFolioResponseBody()
-        {
-        }
-        
-        public validaFolioResponseBody(string @return)
-        {
-            this.@return = @return;
-        }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -182,6 +106,82 @@ namespace WSMCCONSULTAS
         }
         
         public validaClienteResponseBody(string @return)
+        {
+            this.@return = @return;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class validaFolioRequest
+    {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="validaFolio", Namespace="http://webservice.materialescreativos.com/", Order=0)]
+        public WSMCCONSULTAS.validaFolioRequestBody Body;
+        
+        public validaFolioRequest()
+        {
+        }
+        
+        public validaFolioRequest(WSMCCONSULTAS.validaFolioRequestBody Body)
+        {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="")]
+    public partial class validaFolioRequestBody
+    {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string datos;
+        
+        public validaFolioRequestBody()
+        {
+        }
+        
+        public validaFolioRequestBody(string datos)
+        {
+            this.datos = datos;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class validaFolioResponse
+    {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="validaFolioResponse", Namespace="http://webservice.materialescreativos.com/", Order=0)]
+        public WSMCCONSULTAS.validaFolioResponseBody Body;
+        
+        public validaFolioResponse()
+        {
+        }
+        
+        public validaFolioResponse(WSMCCONSULTAS.validaFolioResponseBody Body)
+        {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="")]
+    public partial class validaFolioResponseBody
+    {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string @return;
+        
+        public validaFolioResponseBody()
+        {
+        }
+        
+        public validaFolioResponseBody(string @return)
         {
             this.@return = @return;
         }
@@ -305,7 +305,6 @@ namespace WSMCCONSULTAS
             return retVal.Body.@return;
         }
 
-
         static partial void ConfigureEndpoint(System.ServiceModel.Description.ServiceEndpoint serviceEndpoint, System.ServiceModel.Description.ClientCredentials clientCredentials);
         
         public WSpedidosClient() : 
@@ -341,16 +340,6 @@ namespace WSMCCONSULTAS
         {
         }
         
-        public WSMCCONSULTAS.validaFolioResponse validaFolio(WSMCCONSULTAS.validaFolioRequest request)
-        {
-            return base.Channel.validaFolio(request);
-        }
-        
-        public System.Threading.Tasks.Task<WSMCCONSULTAS.validaFolioResponse> validaFolioAsync(WSMCCONSULTAS.validaFolioRequest request)
-        {
-            return base.Channel.validaFolioAsync(request);
-        }
-        
         public WSMCCONSULTAS.validaClienteResponse validaCliente(WSMCCONSULTAS.validaClienteRequest request)
         {
             return base.Channel.validaCliente(request);
@@ -359,6 +348,16 @@ namespace WSMCCONSULTAS
         public System.Threading.Tasks.Task<WSMCCONSULTAS.validaClienteResponse> validaClienteAsync(WSMCCONSULTAS.validaClienteRequest request)
         {
             return base.Channel.validaClienteAsync(request);
+        }
+        
+        public WSMCCONSULTAS.validaFolioResponse validaFolio(WSMCCONSULTAS.validaFolioRequest request)
+        {
+            return base.Channel.validaFolio(request);
+        }
+        
+        public System.Threading.Tasks.Task<WSMCCONSULTAS.validaFolioResponse> validaFolioAsync(WSMCCONSULTAS.validaFolioRequest request)
+        {
+            return base.Channel.validaFolioAsync(request);
         }
         
         public WSMCCONSULTAS.obtenerClientesResponse obtenerClientes(WSMCCONSULTAS.obtenerClientesRequest request)

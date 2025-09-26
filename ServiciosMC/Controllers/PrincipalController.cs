@@ -171,16 +171,46 @@ namespace ServiciosMC.Controllers
             try
             {
                 XElement datosXML = new("CONSULTAPEDIDO", new XElement("CLIENTE", cliente), new XElement("FECHA", fecha));
-
                 Debug.WriteLine("datosXML: " + datosXML);
 
                 string servicioUrl = Helper.config.GetSection("Servicios:WSMCCONSULTA").Value;
-                Debug.WriteLine("URL del servicio: " + servicioUrl);
+                Debug.WriteLine("Servicio URL: " + servicioUrl);
 
-                //string resultadoConsultaWS = @"{""CODIGO"":""200"",""MENSAJE"":""OK"",""PEDIDO"":{""idTicket"":32204,""folio"":25225,""fecha"":""Mar 20, 2025 2:02:55 PM"",""cajero"":""Karen"",""cliente"":""Moises Nistal"",""total"":168.0100,""pago"":168.0100,""cambio"":0.0000,""estatus"":""ACTIVO"",""detallePedido"":[{""producto"":""Guatex X Cobrar"",""cantidad"":1,""precio"":0.0100},{""producto"":""Yda Text Mate #2 Blanco"",""cantidad"":1,""precio"":48.0000},{""producto"":""Yda Text Mate #22 Dorado"",""cantidad"":1,""precio"":48.0000},{""producto"":""Yarda MC Subli #143"",""cantidad"":1,""precio"":72.0000}]}}";
-                WSMCCONSULTAS.WSpedidosClient obtenerPedido = new(WSMCCONSULTAS.WSpedidosClient.EndpointConfiguration.WSpedidosPort, servicioUrl);
-                string resultadoConsultaWS = obtenerPedido.validaCliente(datosXML.ToString());
+                // Binding con timeout personalizado
+                var binding = new System.ServiceModel.BasicHttpBinding
+                {
+                    Security = new System.ServiceModel.BasicHttpSecurity
+                    {
+                        Mode = System.ServiceModel.BasicHttpSecurityMode.Transport
+                    },
+                    CloseTimeout = TimeSpan.FromMinutes(3),
+                    OpenTimeout = TimeSpan.FromMinutes(3),
+                    ReceiveTimeout = TimeSpan.FromMinutes(3),
+                    SendTimeout = TimeSpan.FromMinutes(3),
+                    MaxReceivedMessageSize = 65536 * 10 
+                };
 
+               
+
+                // Crear servicio  
+                var endpoint = new System.ServiceModel.EndpointAddress(servicioUrl);
+                var obtenerPedidos = new WSMCCONSULTAS.WSpedidosClient(binding, endpoint);
+
+                // Crear la solicitud con mis datos datosXML
+                WSMCCONSULTAS.validaClienteRequest request = new WSMCCONSULTAS.validaClienteRequest(
+              new WSMCCONSULTAS.validaClienteRequestBody
+                    {
+                        datos = datosXML.ToString()
+                    }
+                );
+
+                // Llamar al servicio correctamente
+                WSMCCONSULTAS.validaClienteResponse response = obtenerPedidos.validaCliente(request);
+
+                // Obtener la respuesta en formato string
+                string resultadoConsultaWS = response.Body.@return;
+
+                // Imprimir resultados en consola
                 Debug.WriteLine("resultadoConsultaWS");
                 Debug.WriteLine(resultadoConsultaWS);
                 Debug.WriteLine("------------------------");
@@ -197,27 +227,35 @@ namespace ServiciosMC.Controllers
 
                             if (resultado.CODIGO.Equals("200"))
                             {
-                                datosRespuesta.existeError = false;
-                                datosRespuesta.existenDatos = true;
-
-                                datosRespuesta.infoPedidos = resultado.PEDIDOS.Select(p => new InfoPedido
+                                if (resultado.PEDIDOS != null && resultado.PEDIDOS.Any())
                                 {
-                                    idTicket = p.idTicket,
-                                    folio = p.folio,
-                                    fecha = p.fecha,
-                                    cajero = p.cajero,
-                                    cliente = p.cliente,
-                                    total = p.total,
-                                    pago = p.pago,
-                                    cambio = p.cambio,
-                                    estatus = p.estatus,
-                                    detallePedido = p.detallePedido?.Select(item => new ArticulosPedido
+                                    datosRespuesta.existeError = false;
+                                    datosRespuesta.existenDatos = true;
+
+                                    datosRespuesta.infoPedidos = resultado.PEDIDOS.Select(p => new InfoPedido
                                     {
-                                        producto = item.producto,
-                                        cantidad = item.cantidad,
-                                        precio = item.precio
-                                    }).ToList() ?? new List<ArticulosPedido>()
-                                }).ToList();
+                                        idTicket = p.idTicket,
+                                        folio = p.folio,
+                                        fecha = p.fecha,
+                                        cajero = p.cajero,
+                                        cliente = p.cliente,
+                                        total = p.total,
+                                        pago = p.pago,
+                                        cambio = p.cambio,
+                                        estatus = p.estatus,
+                                        detallePedido = p.detallePedido?.Select(item => new ArticulosPedido
+                                        {
+                                            producto = item.producto,
+                                            cantidad = item.cantidad,
+                                            precio = item.precio
+                                        }).ToList() ?? new List<ArticulosPedido>()
+                                    }).ToList();
+                                }
+                                else
+                                {
+                                    datosRespuesta.existeError = false;
+                                    datosRespuesta.existenDatos = false;
+                                }
                             }
 
                             else
@@ -231,9 +269,7 @@ namespace ServiciosMC.Controllers
                                 {
                                     datosRespuesta.existeError = true;
                                     datosRespuesta.existenDatos = false;
-                                }
-
-                                    
+                                }    
                             }
                         }
                         else
@@ -293,6 +329,10 @@ namespace ServiciosMC.Controllers
                 // Binding con timeout personalizado
                 var binding = new System.ServiceModel.BasicHttpBinding
                 {
+                    Security = new System.ServiceModel.BasicHttpSecurity
+                    {
+                        Mode = System.ServiceModel.BasicHttpSecurityMode.Transport
+                    },
                     CloseTimeout = TimeSpan.FromMinutes(3),
                     OpenTimeout = TimeSpan.FromMinutes(3),
                     ReceiveTimeout = TimeSpan.FromMinutes(3),
